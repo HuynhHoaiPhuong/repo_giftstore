@@ -1,0 +1,209 @@
+	Basic: * (Buộc có)		Extentions: # (Có thể thêm hoặc bớt)
+
+*table_product
+	-id: int
+	-id_list: int
+	-id_cat: int
+	-photo: string
+	-slug: string
+	-name: string
+	-description: string
+	-price:float
+	-code: string
+	-numb: int
+	-status:string
+	-date_create: datetime
+	-date_update: datetime
+*table_product_list (Danh mục cấp 1)
+	-id: int
+	-photo: string
+	-slug: string
+	-name: string
+	-description: string
+	-numb: int
+	-status:string
+	-date_create: datetime
+	-date_update: datetime
+*table_product_cat (Danh mục cấp 2)
+	-id: int
+	-id_list: int
+	-photo: string
+	-slug: string
+	-name: string
+	-description: string
+	-numb: int
+	-status:string
+	-date_create: datetime
+	-date_update: datetime
+*table_cart (giỏ hàng)
+	-id: int
+	-id_member:member
+	-product: product
+	-quantity: int
+	-price_pay: float
+*table_setting (cài đặt thông tin cấu hình cho web mà người dùng có thể thay đổi như sđt hotline, fanpage, tên web,toạ độ map...)
+	-id: int
+	-name: string
+	-address: string
+	-email: string
+	-hotline:string
+	-phone:string
+*table_photo (hình ảnh)
+	-id: int
+	-photo: string
+	-name:string
+	-link: string
+	-type:string
+	-atc:string
+	-numb: int
+	-status:string
+	-date_create: datetime
+	-date_update: datetime
+*table_topic (Bài viết)
+	-id: int
+	-slug: string
+	-name: string
+	-description: string
+	-content: string
+	-photo: string
+	-type: string
+	-status: string
+	-date_create: datetime
+	-date_update: datetime
+*table_static (Trang tĩnh)
+	-id: int
+	-slug: string
+	-name: string
+	-description: string
+	-content: string
+	-photo: string
+	-type: string
+	-status: string
+	-date_create: datetime
+	-date_update: datetime
+*table_user (người dùng)
+	-id: int
+	-username: string
+	-password: string
+	-user_token: string
+	-fullname: string
+	-phone: int
+	-address: string
+	-gender: string
+	-birthday: string
+	-photo: string
+	-role: role
+	-status: string
+#table_member (thành viên)
+	-id: int
+	-user: user
+	-current_point: int
+	-date_create: datetime
+	-date_update: datetime
+	-rank: rank
+	-status: string
+#table_stock (Kho)
+	-id: int
+	-name: string
+	-address: string
+	-status: string
+#table_stock_detail (Chi tiết kho)
+	-id: int
+	-stock: stock
+	-product: product
+	-quantity: int
+	-price_pay: float
+	-total_price: float
+	-status: string
+	-date_create: datetime
+	-date_update: datetime
+*table_bill (Hoá đơn)
+	-id: int
+	-member: member
+	-date_order: datetime
+	-date_confirm: datetime
+	-code_voucher: string
+	-total_price: float
+	-total_quantity: int
+	-payment: string
+	-status: string
+*table_bill_detail (Chi tiết hoá đơn)
+	-id: int
+	-id_bill: bill
+	-product: product
+	-quantity: int
+	-price: float
+	-discount: float
+	-rate_status: string
+#table_producer
+	-id: int
+	-name: string
+	-address: string
+	-phone: int
+	-email: string
+	-status: string
+#table_bill_order (Hoá đơn nhập)
+	-id: int
+	-date_order: datetime
+	-quantity: int
+	-total_price: float
+	-producer: producer
+	-user: user
+	-stock: stock
+	-status: string
+#table_bill_order_detail (chi tiết hoá đơn nhập)
+	-id: int
+	-price_order: float
+	-product: product
+	-quantity: int
+	-total_price: float
+	-bill_order: bill_order
+	-status: string
+#table_voucher (ưu đãi)
+	-id: int
+	-code:string
+	-max_use: int
+	-max_price: floats
+	-percent_price: int
+	-min_price_pay: float
+	-description: string
+	-date_start: datetime
+	-date_end: datetime
+	-status: string
+#table_discount (Giảm giá theo rank hoặc danh mục cấp 2)
+	-id: int
+	-percent_price:float
+	-rank: rank
+	-id_cat: product_cat
+	-status: string
+#table_favorite (Sản phẩm yêu thích)
+	-id: int
+	-product: product
+	-member: member
+	-status: string
+#table_activity_history (Lịch sử hoạt động)
+	-id:int
+	-activity: string
+	-date_create: datetime
+	-id_member: user
+	-type: string
+#table_rate
+	-id: int
+	-member: member
+	-product: product
+	-star: int
+	-comment: string
+	-date_create: datetime
+	-numb_like: int
+	-status: string
+*table_role (Phân quyền)
+	-id: int
+	-name: string
+	-status: string
+#table_rank (Hạng member)
+	-id: int
+	-name: string
+	-point: int
+	-date_create: datetime
+	-date_update: datetime
+	-status: string
