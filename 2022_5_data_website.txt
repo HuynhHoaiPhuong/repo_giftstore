@@ -1,5 +1,16 @@
 	Basic: * (Buộc có)		Extentions: # (Có thể thêm hoặc bớt)
 
+*table_role (Phân quyền)
+	-id: int
+	-name: string
+	-status: string
+#table_rank (Hạng member)
+	-id: int
+	-name: string
+	-point: int
+	-date_create: datetime
+	-date_update: datetime
+	-status: string
 *table_product
 	-id: int
 	-id_list: int
@@ -117,6 +128,17 @@
 	-status: string
 	-date_create: datetime
 	-date_update: datetime
+#table_voucher (ưu đãi)
+	-id: int
+	-code:string
+	-max_use: int
+	-max_price: floats
+	-percent_price: int
+	-min_price_pay: float
+	-description: string
+	-date_start: datetime
+	-date_end: datetime
+	-status: string
 *table_bill (Hoá đơn)
 	-id: int
 	-member: member
@@ -159,17 +181,6 @@
 	-total_price: float
 	-bill_order: bill_order
 	-status: string
-#table_voucher (ưu đãi)
-	-id: int
-	-code:string
-	-max_use: int
-	-max_price: floats
-	-percent_price: int
-	-min_price_pay: float
-	-description: string
-	-date_start: datetime
-	-date_end: datetime
-	-status: string
 #table_discount (Giảm giá theo rank hoặc danh mục cấp 2)
 	-id: int
 	-percent_price:float
@@ -195,15 +206,4 @@
 	-comment: string
 	-date_create: datetime
 	-numb_like: int
-	-status: string
-*table_role (Phân quyền)
-	-id: int
-	-name: string
-	-status: string
-#table_rank (Hạng member)
-	-id: int
-	-name: string
-	-point: int
-	-date_create: datetime
-	-date_update: datetime
 	-status: string
