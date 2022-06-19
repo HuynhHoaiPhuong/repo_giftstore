@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Member;
+class Bill extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'id',
+        'id_member',
+        'date_order',
+        'date_confirm',
+        'code_voucher',
+        'total_price',
+        'total_quantity',
+        'payment',
+        'status',
+    ];
+
+    public $timestamp = false;
+
+    public function member(){
+        return $this->belongsTo(Member::class, 'id_member', 'id_member');
+    }
+}
