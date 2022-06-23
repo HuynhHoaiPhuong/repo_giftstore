@@ -118,7 +118,7 @@
 	-name: string
 	-address: string
 	-status: string
-#table_stock_detail (Chi tiết kho)
+#table_stock_details (Chi tiết kho)
 	-id: int
 	-stock: stock
 	-product: product
@@ -149,7 +149,7 @@
 	-total_quantity: int
 	-payment: string
 	-status: string
-*table_bill_detail (Chi tiết hoá đơn)
+*table_bill_details (Chi tiết hoá đơn)
 	-id: int
 	-id_bill: bill
 	-product: product
@@ -173,7 +173,7 @@
 	-user: user
 	-stock: stock
 	-status: string
-#table_bill_order_detail (chi tiết hoá đơn nhập)
+#table_bill_order_details (chi tiết hoá đơn nhập)
 	-id: int
 	-price_order: float
 	-product: product
@@ -183,9 +183,9 @@
 	-status: string
 #table_discount (Giảm giá theo rank hoặc danh mục cấp 2)
 	-id: int
-	-percent_price:float
 	-rank: rank
 	-id_cat: product_cat
+	-percent_price:float
 	-status: string
 #table_favorite (Sản phẩm yêu thích)
 	-id: int
