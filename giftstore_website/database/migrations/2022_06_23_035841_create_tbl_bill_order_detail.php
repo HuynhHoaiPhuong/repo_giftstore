@@ -13,7 +13,7 @@ class CreateTblBillOrderDetails extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_bill_order_details', function (Blueprint $table) {
+        Schema::create('tbl_bill_order_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_product');//khoangoai
             $table->integer('id_bill_order');//khoangoai
@@ -31,6 +31,6 @@ class CreateTblBillOrderDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_bill_order_details');
+        Schema::dropIfExists('tbl_bill_order_detail');
     }
 }
