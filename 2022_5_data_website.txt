@@ -118,7 +118,7 @@
 	-name: string
 	-address: string
 	-status: string
-#table_stock_details (Chi tiết kho)
+#table_stock_detail (Chi tiết kho)
 	-id: int
 	-stock: stock
 	-product: product
@@ -173,7 +173,7 @@
 	-user: user
 	-stock: stock
 	-status: string
-#table_bill_order_details (chi tiết hoá đơn nhập)
+#table_bill_order_detail (chi tiết hoá đơn nhập)
 	-id: int
 	-price_order: float
 	-product: product

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\Bill_Order;
-class Bill_Order_Details extends Model
+class Bill_Order_Detail extends Model
 {
     use HasFactory;
     protected $fillable = [
