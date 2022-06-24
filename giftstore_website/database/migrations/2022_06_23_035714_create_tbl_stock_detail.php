@@ -13,7 +13,7 @@ class CreateTblStockDetails extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_stock_details', function (Blueprint $table) {
+        Schema::create('tbl_stock_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_stock');//Khoangoai
             $table->integer('id_product');//Khoangoai
@@ -33,6 +33,6 @@ class CreateTblStockDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_stock_details');
+        Schema::dropIfExists('tbl_stock_detail');
     }
 }
