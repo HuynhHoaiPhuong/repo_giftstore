@@ -20,7 +20,7 @@ class CreateTblBillOrder extends Migration
             $table->integer('id_stock');//foreign key
             $table->datetime('date_order');
             $table->integer('quantity');
-            $table->float('total_price');
+            $table->bigInteger('total_price');
             $table->string('status');
             $table->timestamps();
         });

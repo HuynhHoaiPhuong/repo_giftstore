@@ -17,9 +17,9 @@ class CreateTblBillOrderDetails extends Migration
             $table->increments('id')->primary(); //primary key
             $table->integer('id_product');//foreign key
             $table->integer('id_bill_order');//foreign key
-            $table->float('price_order');
+            $table->bigInteger('price_order');
             $table->integer('quantity');
-            $table->float('total_price');
+            $table->bigInteger('total_price');
             $table->string('status');
             $table->timestamps();
         });

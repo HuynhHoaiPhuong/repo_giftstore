@@ -18,7 +18,7 @@ class CreateTblBillDetails extends Migration
             $table->integer('id_bill');//foreign key
             $table->integer('id_product');//foreign key
             $table->integer('quantity');
-            $table->float('price');
+            $table->bigInteger('price');
             $table->float('discount');
             $table->string('rate_status');
             $table->timestamps();

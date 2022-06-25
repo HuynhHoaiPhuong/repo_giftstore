@@ -17,7 +17,7 @@ class CreateTblBill extends Migration
             $table->increments('id')->primary(); //primary key
             $table->integer('id_member');//foreign key
             $table->string('code_voucher');
-            $table->float('total_price');
+            $table->bigInteger('total_price');
             $table->integer('total_quantity');
             $table->string('payment');
             $table->datetime('date_order');

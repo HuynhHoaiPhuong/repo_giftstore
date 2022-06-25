@@ -18,7 +18,7 @@ class CreateTblActivityHistory extends Migration
             $table->integer('id_user');//foreign key
             $table->string('activity');
             $table->string('type');
-            $table->datetime('date_create');
+            $table->datetime('date_created');
             $table->timestamps();
         });
     }

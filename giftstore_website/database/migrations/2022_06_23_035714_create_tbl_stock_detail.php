@@ -19,7 +19,7 @@ class CreateTblStockDetails extends Migration
             $table->integer('id_product');//foreign key
             $table->integer('quantity');
             $table->float('price_pay');
-            $table->integer('total_price');
+            $table->bigInteger('total_price');
             $table->string('status');
             $table->datetime('date_create');
             $table->datetime('date_update');
