@@ -14,15 +14,16 @@ class CreateTblStockDetails extends Migration
     public function up()
     {
         Schema::create('tbl_stock_detail', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_stock');//Khoangoai
-            $table->integer('id_product');//Khoangoai
+            $table->increments('id')->primary(); //primary key
+            $table->integer('id_stock');//foreign key
+            $table->integer('id_product');//foreign key
             $table->integer('quantity');
             $table->float('price_pay');
             $table->integer('total_price');
             $table->string('status');
             $table->datetime('date_create');
             $table->datetime('date_update');
+            $table->timestamps();
         });
     }
 

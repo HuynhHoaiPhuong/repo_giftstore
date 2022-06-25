@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblStock extends Migration
+class CreateIdMemberToTblBill extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTblStock extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_stock', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->string('name');
-            $table->string('address');
-            $table->string('status');
-            $table->timestamps();
+        Schema::table('tbl_bill', function (Blueprint $table) {
+            $table->foreign('id_member')->references('id')->on('tbl_member');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateTblStock extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_stock');
+        Schema::table('tbl_bill', function (Blueprint $table) {
+            //
+        });
     }
 }

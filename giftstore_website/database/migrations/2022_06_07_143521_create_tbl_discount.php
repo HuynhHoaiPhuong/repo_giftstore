@@ -14,11 +14,12 @@ class CreateTblDiscount extends Migration
     public function up()
     {
         Schema::create('tbl_discount', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_rank');//khoangoai
-            $table->integer('id_cat');//khoangoai
-            $table->float('percent_price');
+            $table->increments('id')->primary(); //primary key
+            $table->integer('id_rank');//foreign key
+            $table->integer('id_cat');//foreign key
+            $table->float('percent_price')->default(0);
             $table->string('status');
+            $table->timestamps();
         });
     }
 

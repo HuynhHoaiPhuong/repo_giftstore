@@ -14,15 +14,16 @@ class CreateTblVoucher extends Migration
     public function up()
     {
         Schema::create('tbl_voucher', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->primary(); //primary key
             $table->string('code');
             $table->integer('max_user');
-            $table->float('max-price');
-            $table->integer('percent_price');
+            $table->float('max_price');
+            $table->integer('percent_price')->default(0);
             $table->string('description');
             $table->datetime('date_start');
             $table->datetime('date_end');
             $table->string('status');
+            $table->timestamps();
         });
     }
 

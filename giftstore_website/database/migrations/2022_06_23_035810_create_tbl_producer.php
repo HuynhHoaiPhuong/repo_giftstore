@@ -14,12 +14,13 @@ class CreateTblProducer extends Migration
     public function up()
     {
         Schema::create('tbl_producer', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->primary(); //primary key
             $table->string('name');
             $table->string('address');
             $table->integer('phone');
             $table->string('email');
             $table->string('status');
+            $table->timestamps();
         });
     }
 
