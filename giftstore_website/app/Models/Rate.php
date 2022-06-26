@@ -17,4 +17,11 @@ class Rate extends Model
         'status',
     ];
     public $timestamp = false;
+
+    public function member(){
+        return $this->belongsTo(Rank::class, 'id_member', 'id');
+    }
+    public function product(){
+        return $this->belongsTo(Product::class, 'id_product', 'id');
+    }
 }
