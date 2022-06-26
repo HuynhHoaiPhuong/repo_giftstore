@@ -14,5 +14,6 @@ class Rank extends Model
         'point',
         'date_created',
         'date_updated',
+        'status'
     ];
 }

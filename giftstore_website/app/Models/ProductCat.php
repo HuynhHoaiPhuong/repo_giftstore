@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductList;
 
 class ProductCat extends Model
 {
@@ -21,5 +22,8 @@ class ProductCat extends Model
     ];
     public function productlist(){
         return $this->belongsTo(ProductList::class, 'id_list', 'id');
+    }
+    public function products(){
+        return $this->hasMany(Product::class,'id_cat','id');
     }
 }

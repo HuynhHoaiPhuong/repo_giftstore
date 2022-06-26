@@ -21,8 +21,9 @@ class Product extends Model
         'description',
         'price',
         'code',
+        'status',
         'date_created',
-        'date_updated',
+        'date_updated'
     ];
     public function productlist(){
         return $this->belongsTo(ProductList::class, 'id_list', 'id');
