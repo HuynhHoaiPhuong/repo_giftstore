@@ -15,8 +15,8 @@ class Stock_detail extends Model
         'quantity',
         'price_pay',
         'total_price',
-        'date_create',
-        'date_update',
+        'date_created',
+        'date_updated',
         'status',
     ];
 

@@ -12,7 +12,7 @@ class Activity_History extends Model
         'id',
         'id_user',
         'activity',
-        'date_create',    
+        'date_created',    
         'type',
     ];
     public $timestamp = false;
