@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Activity_HistoryResource extends JsonResource
+class ActivityHistoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

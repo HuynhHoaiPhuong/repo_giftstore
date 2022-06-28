@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bill_Order_Detail extends Model
+class ActivityHistory extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
-        'id_bill_order',
-        'id_product',
-        'price_order',
-        'quantity',
-        'total_price',
-        'status',
+        'id_user',
+        'activity',
+        'date_created',    
+        'type',
     ];
     public $timestamp = false;
 }

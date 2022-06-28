@@ -5,17 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Bill_Detail extends Model
+class StockDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
-        'id_bill',
+        'id_stock',
         'id_product',
-        'price',
         'quantity',
-        'discount',
-        'rate_status',
+        'price_pay',
+        'total_price',
+        'date_created',
+        'date_updated',
+        'status',
     ];
+
     public $timestamp = false;
 }
