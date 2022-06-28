@@ -14,12 +14,11 @@ class CreateTblActivityHistory extends Migration
     public function up()
     {
         Schema::create('tbl_activity_history', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_user');//foreign key
+            $table->string('id')->primary(); //primary key
+            $table->string('id_user');//foreign key
             $table->string('activity');
             $table->string('type');
             $table->datetime('date_created');
-            $table->timestamps();
         });
     }
 

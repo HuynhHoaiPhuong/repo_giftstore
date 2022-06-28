@@ -14,11 +14,10 @@ class CreateTblFavorite extends Migration
     public function up()
     {
         Schema::create('tbl_favorite', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_product');//foreign key
-            $table->integer('id_member');//foreign key
-            $table->string('status');
-            $table->timestamps();
+            $table->string('id')->primary(); //primary key
+            $table->string('id_product');//foreign key
+            $table->string('id_member');//foreign key
+            $table->string('status')->default('hienthi');
         });
     }
 
