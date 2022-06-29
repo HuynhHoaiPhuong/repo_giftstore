@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Stock;
 use App\Models\Product;
 
-class Stock_detail extends Model
+class StockDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
