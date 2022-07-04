@@ -88,7 +88,7 @@ Route::group(['prefix'=>'/billOrder'],function() {
     
     Route::get('/get-all-bill-order-by-status/{status}',[BillOrderController::class,'getAllBillOrderByStatus']);
     
-    oute::get('/get-bill-order-by-id-and-status/{id}&{status}',[BillOrderController::class,'getSBillOrderByIdAndStatus']);
+    Route::get('/get-bill-order-by-id-and-status/{id}&{status}',[BillOrderController::class,'getSBillOrderByIdAndStatus']);
     
     Route::get('/get-bill-order-by-id/{id}',[BillOrderController::class,'getBillOrderById']);
     
