@@ -8,7 +8,7 @@ use App\Models\Producer;
 use App\Models\User;
 use App\Models\Stock;
 
-class Bill_Order extends Model
+class BillOrder extends Model
 {
     use HasFactory;
     protected $fillable = [

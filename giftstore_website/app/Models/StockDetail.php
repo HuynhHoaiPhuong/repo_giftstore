@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Stock;
 use App\Models\Product;
 
-class Stock_detail extends Model
+class StockDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -17,8 +17,8 @@ class Stock_detail extends Model
         'quantity',
         'price_pay',
         'total_price',
-        'date_create',
-        'date_update',
+        'date_created',
+        'date_updated',
         'status',
     ];
 

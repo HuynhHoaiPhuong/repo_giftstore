@@ -14,14 +14,13 @@ class CreateTblBillDetails extends Migration
     public function up()
     {
         Schema::create('tbl_bill_detail', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_bill');//foreign key
-            $table->integer('id_product');//foreign key
-            $table->integer('quantity');
-            $table->bigInteger('price');
-            $table->float('discount');
+            $table->string('id')->primary(); //primary key
+            $table->string('id_bill');//foreign key
+            $table->string('id_product');//foreign key
+            $table->integer('quantity')->default(0);
+            $table->bigInteger('price')->default(0);
+            $table->float('discount')->default(0);
             $table->string('rate_status');
-            $table->timestamps();
         });
     }
 

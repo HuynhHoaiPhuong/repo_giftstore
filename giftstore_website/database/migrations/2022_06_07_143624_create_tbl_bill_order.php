@@ -14,15 +14,15 @@ class CreateTblBillOrder extends Migration
     public function up()
     {
         Schema::create('tbl_bill_order', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_producer');//foreign key
-            $table->integer('id_user');//foreign key
-            $table->integer('id_stock');//foreign key
+            $table->string('id')->primary(); //primary key
+            $table->string('id_producer');//foreign key
+            $table->string('id_user');//foreign key
+            $table->string('id_stock');//foreign key
             $table->datetime('date_order');
-            $table->integer('quantity');
-            $table->bigInteger('total_price');
-            $table->string('status');
-            $table->timestamps();
+            $table->integer('quantity')->default(0);
+            $table->bigInteger('total_price')->default(0);
+            $table->string('status')->default('hienthi');
+
         });
     }
 

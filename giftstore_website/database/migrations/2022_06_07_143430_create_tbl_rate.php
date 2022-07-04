@@ -14,15 +14,14 @@ class CreateTblRate extends Migration
     public function up()
     {
         Schema::create('tbl_rate', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_member');//foreign key
-            $table->integer('id_product');//foreign key
-            $table->integer('star');
+            $table->string('id')->primary(); //primary key
+            $table->string('id_member');//foreign key
+            $table->string('id_product');//foreign key
+            $table->integer('star')->default(5);
             $table->string('comment');
-            $table->datetime('date_create');
-            $table->integer('numb_like');
-            $table->string('status');
-            $table->timestamps();
+            $table->datetime('date_created');
+            $table->integer('numb_like')->default(0);
+            $table->string('status')->default('hienthi');
         });
     }
 

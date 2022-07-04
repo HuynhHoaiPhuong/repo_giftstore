@@ -4,29 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Bill_Order;
+use App\Models\Bill;
 use App\Models\Product;
 
-class Bill_Order_Detail extends Model
+class BillDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
         'id',
-        'id_bill_order',
+        'id_bill',
         'id_product',
-        'price_order',
+        'price',
         'quantity',
-        'total_price',
-        'status',
+        'discount',
+        'rate_status',
     ];
     public $timestamp = false;
 
-
-    public function billOrder(){
-        return $this->belongsTo(Bill_Order::class, 'id_bill_order', 'id');
+    public function bill(){
+        return $this->belongsTo(Bill::class, 'id_bill', 'id');
     }
     public function product(){
         return $this->belongsTo(Product::class, 'id_product', 'id');
     }
-
 }

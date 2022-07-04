@@ -14,11 +14,10 @@ class CreateTblStock extends Migration
     public function up()
     {
         Schema::create('tbl_stock', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
+            $table->string('id')->primary(); //primary key
             $table->string('name');
             $table->string('address');
-            $table->string('status');
-            $table->timestamps();
+            $table->string('status')->default('hienthi');
         });
     }
 
