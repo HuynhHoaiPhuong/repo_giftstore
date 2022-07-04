@@ -15,8 +15,8 @@ class CreateTblRole extends Migration
     {
         Schema::create('tbl_role', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('name');
-            $table->string('status');
+            $table->string('name')->unique()->nullable(false);
+            $table->string('status')->nullable(false)->default('hienthi');
         });
     }
 

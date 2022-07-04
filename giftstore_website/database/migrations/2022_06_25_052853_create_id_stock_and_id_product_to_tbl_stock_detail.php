@@ -15,8 +15,7 @@ class CreateIdStockAndIdProductToTblStockDetail extends Migration
     {
         Schema::table('tbl_stock_detail', function (Blueprint $table) {
             $table->foreign('id_stock')->references('id')->on('tbl_stock'); 
-            $table->foreign('id_product')->references('id')->on('tbl_product');
-            $table->foreign('id_stock_detail')->references('id')->on('tbl_stock_detail'); 
+            $table->foreign('id_product')->references('id')->on('tbl_product'); 
         });
     }
 

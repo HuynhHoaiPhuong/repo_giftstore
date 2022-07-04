@@ -15,7 +15,7 @@ class CreateTblStock extends Migration
     {
         Schema::create('tbl_stock', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('name');
+            $table->string('name')->unique()->nullable(false);
             $table->string('address');
             $table->string('status')->default('hienthi');
         });

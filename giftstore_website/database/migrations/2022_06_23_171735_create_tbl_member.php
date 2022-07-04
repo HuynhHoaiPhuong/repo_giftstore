@@ -15,8 +15,8 @@ class CreateTblMember extends Migration
     {
         Schema::create('tbl_member', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->tring('id_user'); //foreign key
-            $table->tring('id_rank'); //foreign key
+            $table->string('id_user'); //foreign key
+            $table->string('id_rank'); //foreign key
             $table->integer('current_point')->default(0);
             $table->datetime('date_created')->nullable(false);
             $table->datetime('date_updated')->nullable(false);

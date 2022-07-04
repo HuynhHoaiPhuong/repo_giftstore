@@ -15,7 +15,7 @@ class CreateIdCatAndIdRankToTblDiscount extends Migration
     {
         Schema::table('tbl_discount', function (Blueprint $table) {
             $table->foreign('id_cat')->references('id')->on('tbl_product_cat');
-            $table->foreign('id_product')->references('id')->on('tbl_product');        
+            $table->foreign('id_rank')->references('id')->on('tbl_rank');    
         });
     }
 

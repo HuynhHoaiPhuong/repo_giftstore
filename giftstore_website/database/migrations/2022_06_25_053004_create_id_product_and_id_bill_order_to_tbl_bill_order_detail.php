@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdProductAndIdBillOrderToTblOrderDetail extends Migration
+class CreateIdProductAndIdBillOrderToTblBillOrderDetail extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIdProductAndIdBillOrderToTblOrderDetail extends Migration
      */
     public function up()
     {
-        Schema::table('tbl_order_detail', function (Blueprint $table) {
+        Schema::table('tbl_bill_order_detail', function (Blueprint $table) {
             $table->foreign('id_product')->references('id')->on('tbl_product'); 
             $table->foreign('id_bill_order')->references('id')->on('tbl_bill_order'); 
         });
@@ -26,7 +26,7 @@ class CreateIdProductAndIdBillOrderToTblOrderDetail extends Migration
      */
     public function down()
     {
-        Schema::table('tbl_order_detail', function (Blueprint $table) {
+        Schema::table('tbl_bill_order_detail', function (Blueprint $table) {
             //
         });
     }
