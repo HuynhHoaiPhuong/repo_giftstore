@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BillResource extends JsonResource
+class BillOrderDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,11 @@ class BillResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'id_member' => new ProducerResource($this->id_member),
-            'code_voucher' => $this->code_voucher,
+            'id_bill_order' => new BillOrderResource($this->id_bill_order),
+            'id_product' => new ProductResource($this->id_product),
+            'price_order' => $this->price_order,
+            'quantity' => $this->quantity,
             'total_price' => $this->total_price,
-            'total_quantity' => $this->total_quantity,
-            'payment' => $this->payment,
-            'date_order' => Carbon::parse($this->date_order,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),  
-            'date_confirm' => Carbon::parse($this->date_confirm,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),  
             'status' => $this->status,
         ];
     }
