@@ -14,16 +14,15 @@ class CreateTblProductList extends Migration
     public function up()
     {
         Schema::create('tbl_product_list', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
+            $table->string('id')->primary(); //primary key
             $table->integer('numb')->default(0); 
-            $table->string('photo');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('description');
-            $table->datetime('date_created');
-            $table->datetime('date_updated');
-            $table->string('status');
-            $table->timestamps();
+            $table->string('photo')->nullable(false);
+            $table->string('name')->unique()->nullable(false);
+            $table->string('slug')->unique()->nullable(false);
+            $table->string('description')->nullable(false);
+            $table->datetime('date_created')->nullable(false);
+            $table->datetime('date_updated')->nullable(false);
+            $table->string('status')->nullable(false)->default('hienthi');
         });
     }
 

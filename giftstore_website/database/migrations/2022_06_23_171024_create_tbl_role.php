@@ -14,10 +14,9 @@ class CreateTblRole extends Migration
     public function up()
     {
         Schema::create('tbl_role', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
+            $table->string('id')->primary(); //primary key
             $table->string('name');
             $table->string('status');
-            $table->timestamps();
         });
     }
 

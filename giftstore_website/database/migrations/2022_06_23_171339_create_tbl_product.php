@@ -14,20 +14,19 @@ class CreateTblProduct extends Migration
     public function up()
     {
         Schema::create('tbl_product', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_list'); //foreign key
-            $table->integer('id_cat'); //foreign key
+            $table->string('id')->primary(); //primary key
+            $table->string('id_list'); //foreign key
+            $table->string('id_cat'); //foreign key
             $table->integer('numb')->default(0); 
-            $table->string('code'); //mã sản phẩm
+            $table->string('code')->unique(); //mã sản phẩm
             $table->string('photo');
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique()->nullable(false);
             $table->string('description');
             $table->bigInteger('price')->nullable(false);
             $table->datetime('date_created');
             $table->datetime('date_updated');
             $table->string('status');
-            $table->timestamps();
         });
     }
 

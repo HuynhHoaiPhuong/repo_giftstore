@@ -14,19 +14,18 @@ class CreateTblUser extends Migration
     public function up()
     {
         Schema::create('tbl_user', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_role'); //foreign key
-            $table->string('username')->unique();
+            $table->string('id')->primary(); //primary key
+            $table->string('id_role'); //foreign key
+            $table->string('username')->unique()->nullable(false);
             $table->string('password')->nullable(false);
-            $table->string('user_token');
-            $table->string('photo');
-            $table->string('fullname');
-            $table->integer('phone');
-            $table->string('address');
-            $table->string('gender');
-            $table->date('birthday');
-            $table->string('status');
-            $table->timestamps();
+            $table->string('user_token')->unique()->nullable(false);
+            $table->string('photo')->nullable(false);
+            $table->string('fullname')->nullable(false);
+            $table->string('phone')->nullable(false);
+            $table->string('address')->nullable(false);
+            $table->string('gender')->nullable(false);
+            $table->date('birthday')->nullable(false);
+            $table->string('status')->nullable(false)->default('hienthi');
         });
     }
 

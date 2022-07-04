@@ -14,13 +14,12 @@ class CreateTblRank extends Migration
     public function up()
     {
         Schema::create('tbl_rank', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
+            $table->string('id')->primary(); //primary key
             $table->string('name');
             $table->integer('point')->default(0);
             $table->datetime('date_created');
             $table->datetime('date_updated');
             $table->string('status');
-            $table->timestamps();
         });
     }
 

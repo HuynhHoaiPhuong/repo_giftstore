@@ -14,14 +14,13 @@ class CreateTblMember extends Migration
     public function up()
     {
         Schema::create('tbl_member', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_user'); //foreign key
-            $table->integer('id_rank'); //foreign key
+            $table->string('id')->primary(); //primary key
+            $table->tring('id_user'); //foreign key
+            $table->tring('id_rank'); //foreign key
             $table->integer('current_point')->default(0);
-            $table->datetime('date_created');
-            $table->datetime('date_updated');
-            $table->string('status');
-            $table->timestamps();
+            $table->datetime('date_created')->nullable(false);
+            $table->datetime('date_updated')->nullable(false);
+            $table->string('status')->nullable(false)->default('hienthi');
         });
     }
 

@@ -14,13 +14,12 @@ class CreateTblSetting extends Migration
     public function up()
     {
         Schema::create('tbl_setting', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->string('name');
-            $table->string('address');
-            $table->integer('hotline');
-            $table->integer('phone');
-            $table->string('email');
-            $table->timestamps();
+            $table->string('id')->primary(); //primary key
+            $table->string('name')->unique()->nullable(false);
+            $table->string('address')->nullable(false);
+            $table->integer('hotline')->nullable(false);
+            $table->integer('phone')->nullable(false);
+            $table->string('email')->nullable(false);
         });
     }
 

@@ -14,12 +14,11 @@ class CreateTblCart extends Migration
     public function up()
     {
         Schema::create('tbl_cart', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_member'); //foreign key
-            $table->integer('id_product'); //foreign key
-            $table->integer('quantity');
+            $table->string('id')->primary(); //primary key
+            $table->string('id_member'); //foreign key
+            $table->string('id_product'); //foreign key
+            $table->integer('quantity')->default(0);
             $table->bigInteger('price_pay')->nullable(false);
-            $table->timestamps();
         });
     }
 

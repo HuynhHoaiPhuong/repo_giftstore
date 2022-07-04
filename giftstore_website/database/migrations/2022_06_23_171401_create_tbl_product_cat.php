@@ -14,17 +14,16 @@ class CreateTblProductCat extends Migration
     public function up()
     {
         Schema::create('tbl_product_cat', function (Blueprint $table) {
-            $table->increments('id')->primary(); //primary key
-            $table->integer('id_list'); //foreign key
+            $table->string('id')->primary(); //primary key
+            $table->string('id_list'); //foreign key
             $table->integer('numb')->default(0); 
-            $table->string('photo');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('description');
-            $table->datetime('date_created');
-            $table->datetime('date_updated');
-            $table->string('status');
-            $table->timestamps();
+            $table->string('photo')->nullable(false);
+            $table->string('name')->unique()->nullable(false);
+            $table->string('slug')->unique()->nullable(false);
+            $table->string('description')->nullable(false);
+            $table->datetime('date_created')->nullable(false);
+            $table->datetime('date_updated')->nullable(false);
+            $table->string('status')->nullable(false)->default('hienthi');
         });
     }
 
