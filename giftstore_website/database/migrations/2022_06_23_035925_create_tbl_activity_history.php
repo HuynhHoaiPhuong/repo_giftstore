@@ -18,7 +18,7 @@ class CreateTblActivityHistory extends Migration
             $table->string('id_user');//foreign key
             $table->string('activity');
             $table->string('type');
-            $table->datetime('date_created');
+            $table->datetime('date_created')->nullable(false);;
         });
     }
 
