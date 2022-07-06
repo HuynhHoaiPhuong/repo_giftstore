@@ -16,7 +16,7 @@ class BillOrderDetailResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'id_bill_order' => new Bill_OrderResource($this->id_bill_order),
+            'id_bill_order' => new BillOrderResource($this->id_bill_order),
             'id_product' => new ProductResource($this->id_product),
             'price_order' => $this->price_order,
             'quantity' => $this->quantity,
