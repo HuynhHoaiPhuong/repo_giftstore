@@ -258,7 +258,7 @@
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="/">
+                            <a class="active" href="/admin">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Tổng quan</span>
                             </a>
@@ -296,8 +296,8 @@
                                 <span>Quản lý hóa đơn nhập</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm hóa đơn</a></li>
-                                <li><a href="">Danh sách hóa đơn</a></li>
+                                <li><a href="/admin/add-bill-order">Thêm hóa đơn</a></li>
+                                <li><a href="/admin/all-bill-order">Danh sách hóa đơn</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -306,8 +306,8 @@
                                 <span>Quản lý hóa đơn bán</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm hóa đơn</a></li>
-                                <li><a href="">Danh sách hóa đơn</a></li>
+                                <li><a href="/admin/add-bill">Thêm hóa đơn</a></li>
+                                <li><a href="/admin/all-bill">Danh sách hóa đơn</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">

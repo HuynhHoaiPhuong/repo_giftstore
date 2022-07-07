@@ -48,15 +48,17 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($all_bill_order as $key => $bo)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>NSX1</td>
-            <td>MEM1</td>
-            <td>12c2324caf</td>
-            <td>15</td>
-            <td>5000000</td>
-            <td>1/7/2022</td>
+            <td>{{$bo->id}}</td>
+            <td>{{$bo->id_producer}}</td>
+            <td>{{$bo->id_user}}</td>
+            <td>{{$bo->id_stock}}</td>
+            <td>{{$bo->quantity}}</td>
+            <td>{{$bo->total_price}}</td>
+            <td>{{$bo->date_order}}</td>
+            <td>{{$bo->status}}</td>
             <td>check</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
@@ -68,6 +70,7 @@
             </td>
             <td></td>
           </tr>
+          @endforeach
         </tbody>
 
       </table>
