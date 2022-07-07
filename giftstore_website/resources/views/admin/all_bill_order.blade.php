@@ -59,16 +59,28 @@
             <td>{{$bo->total_price}}</td>
             <td>{{$bo->date_order}}</td>
             <td>{{$bo->status}}</td>
-            <td>check</td>
+            <td><span class="text-ellipsis">
+              <?php 
+                if($bo->status == 'an'){
+              ?>
+                <a href="/admin/unactive-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+              <?php
+                }else
+                {
+              ?>
+                <a href="/admin/active-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+              <?php
+                }
+              ?>
+            </span></td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/update-bill-order/{{$bo->id}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/delete-bill-order/{{$bo->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
-            <td></td>
           </tr>
           @endforeach
         </tbody>

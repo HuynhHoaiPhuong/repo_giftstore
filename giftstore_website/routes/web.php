@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//bill
+
 Route::group(['prefix'=>'admin'],function(){
+//bill
     Route::get('/add-bill',[App\Http\Controllers\web\BillController::class,'addBill']);
     Route::get('/all-bill',[App\Http\Controllers\web\BillController::class,'allBill']);
     Route::post('/save-bill',[App\Http\Controllers\web\BillController::class,'saveBill']);
@@ -25,10 +26,7 @@ Route::group(['prefix'=>'admin'],function(){
     
     Route::get('/show-bill',[App\Http\Controllers\web\BillController::class,'showBill']);
 
-});
-
 //bill-order
-Route::group(['prefix'=>'admin'],function(){
     Route::get('/add-bill-order',[App\Http\Controllers\web\BillOrderController::class,'addBillOrder']);
     Route::get('/all-bill-order',[App\Http\Controllers\web\BillOrderController::class,'allBillOrder']);
     Route::post('/save-bill-order',[App\Http\Controllers\web\BillOrderController::class,'saveBillOrder']);
