@@ -191,7 +191,7 @@
                             <div class="alert alert-info clearfix">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                                 <div class="noti-info">
-                                    <a href="#"> Server #1 overloaded.</a>
+                                    <a href="#"> Kí đầu giờ chứ xem =)).</a>
                                 </div>
                             </div>
                         </li>
@@ -199,7 +199,7 @@
                             <div class="alert alert-danger clearfix">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                                 <div class="noti-info">
-                                    <a href="#"> Server #2 overloaded.</a>
+                                    <a href="#"> 1 phút trước.</a>
                                 </div>
                             </div>
                         </li>
@@ -207,7 +207,7 @@
                             <div class="alert alert-success clearfix">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                                 <div class="noti-info">
-                                    <a href="#"> Server #3 overloaded.</a>
+                                    <a href="#"> Đăng ký nhận tin.</a>
                                 </div>
                             </div>
                         </li>
@@ -266,12 +266,12 @@
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-book"></i>
-                                <span>Quản lý danh mục</span>
+                                <span>Quản lý sản phẩm</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Danh mục cấp 1</a></li>
-                                <li><a href="">Danh mục cấp 2</a></li>
-                                <li><a href="">Sản phẩm</a></li>
+                                <li><a href="{{route('product-management')}}">Danh mục cấp 1</a></li>
+                                <li><a href="{{route('product-management')}}">Danh mục cấp 2</a></li>
+                                <li><a href="{{route('product-management')}}">Sản phẩm</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -279,6 +279,10 @@
                                 <i class="fa fa-file-text"></i>
                                 <span>Quản lý trang tĩnh</span>
                             </a>
+                            <ul class="sub">
+                                <li><a href="{{route('static-page-management')}}">Giới thiệu</a></li>
+                                <li><a href="{{route('static-page-management')}}">Footer</a></li>
+                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -286,8 +290,8 @@
                                 <span>Quản lý bài viết</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm bài viết</a></li>
-                                <li><a href="">Danh sách bài viết</a></li>
+                                <li><a href="{{route('topic-management')}}">Tin tức</a></li>
+                                <li><a href="{{route('topic-management')}}">Chính sách</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -316,12 +320,12 @@
                                 <span>Quản lý hình ảnh và video</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm hình ảnh - video</a></li>
-                                <li><a href="">Danh sách hình ảnh - video </a></li>
+                                <li><a href="{{route('add-photo')}}">Logo</a></li>
+                                <li><a href="{{route('photo-management')}}">Slideshow</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{route('role-management')}}">
                                 <i class="fa fa-users"></i>
                                 <span>Quản lý phân quyền</span>
                             </a>
@@ -344,7 +348,7 @@
                         </li>
                         
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{route('setting')}}">
                                 <i class="fa fa-cog"></i>
                                 <span>Cài đặt</span>
                             </a>

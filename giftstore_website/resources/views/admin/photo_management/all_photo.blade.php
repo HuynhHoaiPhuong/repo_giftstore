@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách sản phẩm
+      Slideshow
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -35,11 +35,12 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>ID</th>
+            <th>Tên</th>
             <th>Hình ảnh</th>
-            <th>Tiêu đề</th>
-            <th>Mô tả</th>
-            <th>Nội dung</th>
+            <th>Liên kết</th>
             <th>Loại</th>
+            <th>Tác giả</th>
             <th>Hiển thị</th>
             <th>Thao tác</th>
             <th></th>
@@ -48,11 +49,12 @@
         <tbody>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>pic1</td>
-            <td>tiêu đề 1</td>
-            <td>dess1</td>
-            <td>content1</td>
             <td>1</td>
+            <td>photo1</td>
+            <td>photo</td>
+            <td>123455</td>
+            <td>1</td>
+            <td>ABC</td>
             <td>check</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
@@ -65,46 +67,7 @@
             <td></td>
           </tr>
         </tbody>
-        <tbody>
-          <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>pic1</td>
-            <td>tiêu đề 1</td>
-            <td>dess1</td>
-            <td>content1</td>
-            <td>1</td>
-            <td>check</td>
-            <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>pic1</td>
-            <td>tiêu đề 1</td>
-            <td>dess1</td>
-            <td>content1</td>
-            <td>1</td>
-            <td>check</td>
-            <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
+
       </table>
     </div>
     <footer class="panel-footer">

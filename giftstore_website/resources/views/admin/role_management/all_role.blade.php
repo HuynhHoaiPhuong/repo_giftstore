@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách sản phẩm
+      Quản lý phân quyền
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -36,11 +36,10 @@
               </label>
             </th>
             <th>ID</th>
-            <th>Tên</th>
-            <th>Hình ảnh</th>
-            <th>Liên kết</th>
-            <th>Loại</th>
-            <th>Tác giả</th>
+            <th>Tên hạng</th>
+            <th>Point</th>
+            <th>Ngày Created</th>
+            <th>Ngày Upadted</th>
             <th>Hiển thị</th>
             <th>Thao tác</th>
             <th></th>
@@ -50,11 +49,10 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>1</td>
-            <td>photo1</td>
-            <td>photo</td>
-            <td>123455</td>
-            <td>1</td>
-            <td>ABC</td>
+            <td>Đồng</td>
+            <td>14214</td>
+            <td>dd-mm-yy</td>
+            <td>dd-mm-yy</td>
             <td>check</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
