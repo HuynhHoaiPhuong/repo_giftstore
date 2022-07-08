@@ -53,25 +53,27 @@ class BillOrderController extends Controller
 
     }
     public function editBillOrder($id){
-        $member = DB::table('tbl_member')->orderby('id','desc')->get();
-        $edit_bill = DB::table('tbl_bill_order')->where('id',$id)->get();
-        $manager_bill = view('admin.edit_bill')->with('edit_bill',$edit_bill)->with('id',$member); 
-        return view('admin_layout')->with('admin.edit_bill', $manager_bill);
+        $producer = DB::table('tbl_producer')->orderby('id','desc')->get();
+        $user = DB::table('tbl_user')->orderby('id','desc')->get();
+        $stock = DB::table('tbl_stock')->orderby('id','desc')->get();
+        // return view('admin.add_bill_order')->with('producer',$producer)->with('user',$user)->with('stock',$stock);
+        $edit_bill_order = DB::table('tbl_bill_order')->where('id',$id)->get();
+        $manager_bill_order = view('admin.edit_bill_order')->with('edit_bill_order',$edit_bill_order)->with('id',$producer)->with('id',$user)->with('id',$stock); 
+        return view('admin_layout')->with('admin.edit_bill_order', $manager_bill_order);
         
     }
     public function updateBillOrder(Request $request, $id){
         $data = array();
         $data['id'] = $request->id;
-        $data['id_member'] = $request->id_member;
-        $data['code_voucher'] = $request->code_voucher;
-        $data['total_quantity'] = $request->total_quantity;
+        $data['id_producer'] = $request->id_producer;
+        $data['id_user'] = $request->id_user;
+        $data['id_stock'] = $request->id_stock;
+        $data['quantity'] = $request->quantity;
         $data['total_price'] = $request->total_price;
-        $data['payment'] = $request->payment;
         $data['date_order'] = $request->date_order;
-        $data['date_confirm'] = $request->date_confirm;
         $data['status'] = $request->status;
         DB::table('tbl_bill_order')->where('id',$id)->update($data); 
-        return redirect('admin/all-bill');
+        return redirect('admin/all-bill-order');
 
     }
 

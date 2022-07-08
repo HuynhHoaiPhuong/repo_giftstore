@@ -3165,7 +3165,11 @@ div#graph1, div#graph4, div#graph5, div#graph6, div#graph7, div#graph8, div#grap
     
 }
 .logout i{
-    padding-left: 10px;
+    padding-left: 11px;
+    padding-top: 8px;
+}
+.reply i{
+    padding-left: 8px;
     padding-top: 8px;
 }
 span.fa-thumb-styling.fa.fa-thumbs-up{

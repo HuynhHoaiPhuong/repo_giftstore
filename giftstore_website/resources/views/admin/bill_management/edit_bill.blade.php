@@ -9,7 +9,7 @@
             <div class="panel-body">
               @foreach($edit_bill as $key => $edit)
                 <div class="position-center">
-                    <form role="form" action="admin/update-bill/{{$edit->id}}" method="POST">
+                    <form role="form" action="/admin/update-bill/{{$edit->id}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">ID</label>
@@ -18,9 +18,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">ID Member</label>
                             <select name="id_member" value="{{$edit->id_member}}" class="form-control input-sm m-bot15">
-                            @foreach($member as $key => $mem)
-                                <option value="{{$mem->id}}">{{$mem->id}}</option>
-                            @endforeach
+                                <option value="{{$edit->id_member}}">{{$edit->id_member}}</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -8,7 +8,7 @@
         <i class="fa fa-cogs" aria-hidden="true"> </i></i>
       </div>
       <div class="col-md-8 market-update-left">
-        <a href="">
+        <a href="/admin/static-page-management">
           <h4>Cấu Hình Site</h4>
           <p><b>View more</b></p>
         </a>
@@ -22,7 +22,7 @@
         <i class="fa fa-users" ></i>
       </div>
       <div class="col-md-8 market-update-left">
-        <a href="">
+        <a href="/admin/all-member">
           <h4>Tài Khoản</h4>
           <p><b>View more</b></p>
         </a>
@@ -36,7 +36,7 @@
         <i class="fa fa-key"></i>
       </div>
       <div class="col-md-8 market-update-left">
-        <a href="">
+        <a href="/admin/repassword">
           <h4>Đổi Mật Khẩu</h4>
           <p><b>View more</b></p>
         </a>
@@ -50,7 +50,7 @@
         <i class="fa fa-envelope" aria-hidden="true"></i>
       </div>
       <div class="col-md-8 market-update-left">
-          <a href="">
+          <a href="#">
             <h4>Thư Liên Hệ</h4>
             <p><b>View more</b></p>
           </a>

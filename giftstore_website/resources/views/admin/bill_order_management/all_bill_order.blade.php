@@ -74,7 +74,7 @@
               ?>
             </span></td>
             <td>
-              <a href="/admin/update-bill-order/{{$bo->id}}" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/edit-bill-order/{{$bo->id}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="/admin/delete-bill-order/{{$bo->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">

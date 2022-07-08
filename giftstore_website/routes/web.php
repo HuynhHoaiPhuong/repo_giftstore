@@ -37,5 +37,27 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/active-bill-order/{id}', [App\Http\Controllers\web\BillOrderController::class,'activeBillOrder']);
     
     Route::get('/show-bill-order',[App\Http\Controllers\web\BillOrderController::class,'showBillOrder']);
-
+    
+//member
+    Route::get('/add-member',[App\Http\Controllers\web\MemberController::class,'addMember']);
+    Route::get('/all-member',[App\Http\Controllers\web\MemberController::class,'allMember']);
+    Route::post('/save-member',[App\Http\Controllers\web\MemberController::class,'saveMember']);
+    Route::get('/edit-member/{id}',[App\Http\Controllers\web\MemberController::class,'editMember']);
+    Route::post('/update-member/{id}',[App\Http\Controllers\web\MemberController::class,'updateMember']);
+    Route::get('/delete-member/{id}',[App\Http\Controllers\web\MemberController::class,'delMember']);
+    Route::get('/unactive-member/{id}', [App\Http\Controllers\web\MemberController::class,'unActiveMember']);
+    Route::get('/active-member/{id}', [App\Http\Controllers\web\MemberController::class,'activeMember']);
+    
+//rank-member
+    Route::get('/add-rank',[App\Http\Controllers\web\RankController::class,'addRank']);
+    Route::get('/all-rank',[App\Http\Controllers\web\RankController::class,'allRank']);
+    Route::post('/save-rank',[App\Http\Controllers\web\RankController::class,'saveRank']);
+    Route::get('/edit-rank/{id}',[App\Http\Controllers\web\RankController::class,'editRank']);
+    Route::post('/update-rank/{id}',[App\Http\Controllers\web\RankController::class,'updateRank']);
+    Route::get('/delete-rank/{id}',[App\Http\Controllers\web\RankController::class,'delRank']);
+    Route::get('/unactive-rank/{id}', [App\Http\Controllers\web\RankController::class,'unActiveRank']);
+    Route::get('/active-rank/{id}', [App\Http\Controllers\web\RankController::class,'activeRank']);
+    
+//visitor
+    Route::get('/all-visitor',[App\Http\Controllers\web\VisitorController::class,'allVisitor']);
 });
