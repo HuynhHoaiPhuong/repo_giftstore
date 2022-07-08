@@ -19,7 +19,7 @@ class CreateTblRate extends Migration
             $table->string('id_product');//foreign key
             $table->integer('star')->default(5);
             $table->string('comment');
-            $table->datetime('date_created');
+            $table->datetime('date_created')->nullable(false);
             $table->integer('numb_like')->default(0);
             $table->string('status')->default('hienthi');
         });
