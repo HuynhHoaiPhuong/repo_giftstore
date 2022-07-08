@@ -15,7 +15,7 @@ class BillOrderController extends Controller
         $producer = DB::table('tbl_producer')->orderby('id','desc')->get();
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
         $stock = DB::table('tbl_stock')->orderby('id','desc')->get();
-        return view('admin.add_bill_order')->with('producer',$producer)->with('user',$user)->with('stock',$stock);
+        return view('admin.bill_order_management.add_bill_order')->with('producer',$producer)->with('user',$user)->with('stock',$stock);
         
     }
     public function saveBillOrder(Request $request){
@@ -38,8 +38,8 @@ class BillOrderController extends Controller
         ->join('tbl_user','tbl_user.id','=','tbl_bill_order.id_user')
         ->join('tbl_stock','tbl_stock.id','=','tbl_bill_order.id_stock')
         ->orderby('tbl_bill_order.id','desc')->get();
-        $manager_bill_order = view('admin.all_bill_order')->with('all_bill_order', $all_bill_order); 
-        return view('admin_layout')->with('admin.all_bill_order',$manager_bill_order);   
+        $manager_bill_order = view('admin.bill_order_management.all_bill_order')->with('all_bill_order', $all_bill_order); 
+        return view('admin_layout')->with('admin.bill_order_management.all_bill_order',$manager_bill_order);   
 
     }
     public function unActiveBillOrder($id){
@@ -56,10 +56,9 @@ class BillOrderController extends Controller
         $producer = DB::table('tbl_producer')->orderby('id','desc')->get();
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
         $stock = DB::table('tbl_stock')->orderby('id','desc')->get();
-        // return view('admin.add_bill_order')->with('producer',$producer)->with('user',$user)->with('stock',$stock);
         $edit_bill_order = DB::table('tbl_bill_order')->where('id',$id)->get();
-        $manager_bill_order = view('admin.edit_bill_order')->with('edit_bill_order',$edit_bill_order)->with('id',$producer)->with('id',$user)->with('id',$stock); 
-        return view('admin_layout')->with('admin.edit_bill_order', $manager_bill_order);
+        $manager_bill_order = view('admin.bill_order_management.edit_bill_order')->with('edit_bill_order',$edit_bill_order)->with('id',$producer)->with('id',$user)->with('id',$stock); 
+        return view('admin_layout')->with('admin.bill_order_management.edit_bill_order', $manager_bill_order);
         
     }
     public function updateBillOrder(Request $request, $id){

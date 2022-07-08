@@ -32,7 +32,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="/admin" class="logo">
+            <a href="/admin/all-visitor" class="logo">
                 MANAGER
             </a>
             <div class="sidebar-toggle-box">
@@ -225,9 +225,6 @@
                     <a href="" class="form-control reply"><i class="fa fa-reply"></i> </a>
                 </li>
                 <li>
-                    <input type="text" class="form-control search" placeholder=" Search">
-                </li>
-                <li>
                     <a href="" class="form-control logout"><i class="fa fa-sign-out"></i> </a>
                 </li>
                 <!-- user login dropdown start-->
@@ -295,24 +292,16 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="/admin/all-bill-order">
                                 <i class="fa fa-credit-card-alt"></i>
                                 <span>Quản lý hóa đơn nhập</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="/admin/add-bill-order">Thêm hóa đơn</a></li>
-                                <li><a href="/admin/all-bill-order">Danh sách hóa đơn</a></li>
-                            </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="/admin/all-bill">
                                 <i class="fa fa-credit-card"></i>
                                 <span>Quản lý hóa đơn bán</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="/admin/add-bill">Thêm hóa đơn</a></li>
-                                <li><a href="/admin/all-bill">Danh sách hóa đơn</a></li>
-                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -331,24 +320,17 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="/admin/all-member">
                                 <i class="fa fa-user"></i>
                                 <span>Quản lý thành viên</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="/admin/add-member">Thêm thành viên</a></li>
-                                <li><a href="/admin/all-member">Danh sách thành viên</a></li>
-                            </ul>
+
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="/admin/add-rank">
                                 <i class="fa fa-level-up"></i>
                                 <span>Quản lý hạng thành viên</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="/admin/all-rank">Danh sách hạng</a></li>
-                                <li><a href="/admin/add-rank">Giảm giá thuộc mức hạng</a></li>
-                            </ul>
                         </li>
                         
                         <li class="sub-menu">

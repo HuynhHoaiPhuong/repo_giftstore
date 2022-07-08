@@ -14,7 +14,7 @@ class MemberController extends Controller
     public function addMember(){
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
         $rank = DB::table('tbl_rank')->orderby('id','desc')->get();
-        return view('admin.add_member')->with('user',$user)->with('rank',$rank);
+        return view('admin.member_management.add_member')->with('user',$user)->with('rank',$rank);
         
     }
 
@@ -23,8 +23,8 @@ class MemberController extends Controller
         ->join('tbl_user','tbl_user.id','=','tbl_member.id_user')
         ->join('tbl_rank','tbl_rank.id','=','tbl_member.id_rank')
         ->orderby('tbl_member.id','desc')->get();
-        $manager_member = view('admin.all_member')->with('all_member', $all_member); 
-        return view('admin_layout')->with('admin.all_member',$manager_member); 
+        $manager_member = view('admin.member_management.all_member')->with('all_member', $all_member); 
+        return view('admin_layout')->with('admin.member_management.all_member',$manager_member); 
           
     }
     public function saveMember(Request $request){
@@ -51,8 +51,8 @@ class MemberController extends Controller
     public function editMember($id){
         $member = DB::table('tbl_member')->orderby('id','desc')->get();
         $edit_member = DB::table('tbl_member')->where('id',$id)->get();
-        $manager_member = view('admin.edit_member')->with('edit_member',$edit_member)->with('id',$member); 
-        return view('admin_layout')->with('admin.edit_bill', $manager_member);
+        $manager_member = view('admin.member_management.edit_member')->with('edit_member',$edit_member)->with('id',$member); 
+        return view('admin_layout')->with('admin.member_management.edit_bill', $manager_member);
         
     }
     public function updateMember(Request $request, $id){

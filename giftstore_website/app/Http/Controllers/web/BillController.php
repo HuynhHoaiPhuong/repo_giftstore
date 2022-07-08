@@ -13,15 +13,15 @@ class BillController extends Controller
 {
     public function addBill(){
         $member = DB::table('tbl_member')->orderby('id','desc')->get();
-        return view('admin.add_bill')->with('member',$member);
+        return view('admin.bill_management.add_bill')->with('member',$member);
         
     }
     public function allBill(){
         $all_bill = DB::table('tbl_bill')
         ->join('tbl_member','tbl_member.id','=','tbl_bill.id_member')
         ->orderby('tbl_bill.id','desc')->get();
-        $manager_bill = view('admin.all_bill')->with('all_bill', $all_bill); 
-        return view('admin_layout')->with('admin.all_bill',$manager_bill);   
+        $manager_bill = view('admin.bill_management.all_bill')->with('all_bill', $all_bill); 
+        return view('admin_layout')->with('admin.bill_management.all_bill',$manager_bill);   
 
     }
     public function saveBill(Request $request){
@@ -52,8 +52,8 @@ class BillController extends Controller
     public function editBill($id){
         $member = DB::table('tbl_member')->orderby('id','desc')->get();
         $edit_bill = DB::table('tbl_bill')->where('id',$id)->get();
-        $manager_bill = view('admin.edit_bill')->with('edit_bill',$edit_bill)->with('id',$member); 
-        return view('admin_layout')->with('admin.edit_bill', $manager_bill);
+        $manager_bill = view('admin.bill_management.edit_bill')->with('edit_bill',$edit_bill)->with('id',$member); 
+        return view('admin_layout')->with('admin.bill_management.edit_bill', $manager_bill);
         
     }
     public function updateBill(Request $request, $id){

@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách sản phẩm
+      Danh sách thành viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -14,7 +14,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>        
-        <a href="/add" class="btn btn-sm btn-primary">Add</a>           
+        <a href="/admin/add-member" class="btn btn-sm btn-primary">Add</a>           
       </div>
       <div class="col-sm-4">
       </div>

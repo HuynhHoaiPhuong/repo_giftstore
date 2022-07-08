@@ -13,7 +13,8 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-success">Apply</button>  
+        <a href="/admin/add-bill" class="btn btn-sm btn-primary">Add</a>                
       </div>
       <div class="col-sm-4">
       </div>
