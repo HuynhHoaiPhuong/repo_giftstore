@@ -10,10 +10,6 @@
                 <div class="position-center">
                     <form role="form" action="/admin/save-bill" method="POST">
                         @csrf
-                        {{-- <div class="form-group">
-                            <label >ID</label>
-                            <input type="number" name="id" class="form-control">
-                        </div>  --}}
                         <div class="form-group">
                             <label >ID Member</label>
                             <select name="id_member" class="form-control input-sm m-bot15">
@@ -39,9 +35,9 @@
                         <div class="form-group">
                         	<label >PT thanh toán</label>
                             <select  name="payment" class="form-control input-sm m-bot15">
-                                <option value="Cast">Cast</option>
-                                <option value="Debiy cards">Debit cards</option>
-                                <option value="Credit cards">Credit cards</option>
+                                <option value="cast">Cast</option>
+                                <option value="debitcards">Debit cards</option>
+                                <option value="creditcards">Credit cards</option>
                             </select>
                         </div>
                         <div class="form-group">
