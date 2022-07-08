@@ -48,26 +48,41 @@
           </tr>
         </thead>
         <tbody>
+          @foreach($all_bill_order as $key => $bo)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>NSX1</td>
-            <td>MEM1</td>
-            <td>12c2324caf</td>
-            <td>15</td>
-            <td>5000000</td>
-            <td>1/7/2022</td>
-            <td>check</td>
+            <td>{{$bo->id}}</td>
+            <td>{{$bo->id_producer}}</td>
+            <td>{{$bo->id_user}}</td>
+            <td>{{$bo->id_stock}}</td>
+            <td>{{$bo->quantity}}</td>
+            <td>{{$bo->total_price}}</td>
+            <td>{{$bo->date_order}}</td>
+            <td>{{$bo->status}}</td>
+            <td><span class="text-ellipsis">
+              <?php 
+                if($bo->status == 'an'){
+              ?>
+                <a href="/admin/unactive-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+              <?php
+                }else
+                {
+              ?>
+                <a href="/admin/active-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+              <?php
+                }
+              ?>
+            </span></td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/edit-bill-order/{{$bo->id}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/delete-bill-order/{{$bo->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
-            <td></td>
           </tr>
+          @endforeach
         </tbody>
 
       </table>

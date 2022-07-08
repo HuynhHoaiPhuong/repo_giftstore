@@ -13,7 +13,8 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-success">Apply</button>        
+        <a href="/add" class="btn btn-sm btn-primary">Add</a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -45,12 +46,13 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($all_member as $key => $member)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>User 1</td>
-            <td>Rank 1</td>
-            <td>123456</td>
+            <td>{{$member->id}}</td>
+            <td>{{$member->id_user}}</td>
+            <td>{{$member->id_rank}}</td>
+            <td>{{$member->point}}</td>
             <td>check</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
@@ -62,6 +64,8 @@
             </td>
             <td></td>
           </tr>
+          @endforeach
+          
         </tbody>
 
       </table>

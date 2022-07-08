@@ -32,7 +32,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="" class="logo">
+            <a href="/admin" class="logo">
                 MANAGER
             </a>
             <div class="sidebar-toggle-box">
@@ -222,7 +222,7 @@
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
                 <li>
-                    <a href="" class="form-control logout"><i class="fa fa-reply"></i> </a>
+                    <a href="" class="form-control reply"><i class="fa fa-reply"></i> </a>
                 </li>
                 <li>
                     <input type="text" class="form-control search" placeholder=" Search">
@@ -241,7 +241,7 @@
                     <ul class="dropdown-menu extended logout">
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                        <li><a href="/logout"><i class="fa fa-key"></i> Log Out</a></li>
+                        <li><a href="#"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -258,7 +258,7 @@
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="/">
+                            <a class="active" href="/admin/all-visitor">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Tổng quan</span>
                             </a>
@@ -300,8 +300,8 @@
                                 <span>Quản lý hóa đơn nhập</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm hóa đơn</a></li>
-                                <li><a href="">Danh sách hóa đơn</a></li>
+                                <li><a href="/admin/add-bill-order">Thêm hóa đơn</a></li>
+                                <li><a href="/admin/all-bill-order">Danh sách hóa đơn</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -310,8 +310,8 @@
                                 <span>Quản lý hóa đơn bán</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm hóa đơn</a></li>
-                                <li><a href="">Danh sách hóa đơn</a></li>
+                                <li><a href="/admin/add-bill">Thêm hóa đơn</a></li>
+                                <li><a href="/admin/all-bill">Danh sách hóa đơn</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -336,8 +336,8 @@
                                 <span>Quản lý thành viên</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="">Thêm thành viên</a></li>
-                                <li><a href="">Danh sách thành viên</a></li>
+                                <li><a href="/admin/add-member">Thêm thành viên</a></li>
+                                <li><a href="/admin/all-member">Danh sách thành viên</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -345,6 +345,10 @@
                                 <i class="fa fa-level-up"></i>
                                 <span>Quản lý hạng thành viên</span>
                             </a>
+                            <ul class="sub">
+                                <li><a href="/admin/all-rank">Danh sách hạng</a></li>
+                                <li><a href="/admin/add-rank">Giảm giá thuộc mức hạng</a></li>
+                            </ul>
                         </li>
                         
                         <li class="sub-menu">
@@ -438,7 +442,7 @@
     });
     </script>
 <!-- calendar -->
-    <script type="text/javascript" src="{{asset('js/monthly.js')}}"></script>
+    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
     <script type="text/javascript">
         $(window).load( function() {
 
