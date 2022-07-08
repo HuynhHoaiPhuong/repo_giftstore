@@ -72,6 +72,9 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/unactive-rank/{id}', [App\Http\Controllers\web\RankController::class,'unActiveRank']);
     Route::get('/active-rank/{id}', [App\Http\Controllers\web\RankController::class,'activeRank']);
     
-//visitor
-    Route::get('/all-visitor',[App\Http\Controllers\web\VisitorController::class,'allVisitor']);
+
+});
+//index admin
+Route::get('/',function(){
+    return view('admin.index');
 });
