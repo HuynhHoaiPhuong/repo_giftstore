@@ -8,31 +8,43 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="/admin/save-member" enctype="multipart/form-data" method="POST">
+                    <form role="form" action="/admin/save-member" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID</label>
-                            <input type="text" name="id" class="form-control" id="exampleInputEmail1">
+                            <label>User</label>
+                            <select name="id_user" class="form-control input-sm m-bot15">
+                            @foreach($user as $key => $u)
+                                <option value="{{$u->id}}">{{$u->username}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">User</label>
-                          <input type="text" name="id_user" class="form-control" id="exampleInputEmail1">
+                            <label>Rank</label>
+                            <select name="id_rank" class="form-control input-sm m-bot15">
+                            @foreach($rank as $key => $r)
+                                <option value="{{$r->id}}">{{$r->name}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Rank</label>
-                          <input type="text" name="id_rank" class="form-control" id="exampleInputEmail1">
+                            <label>Point</label>
+                            <input name="point" type="number" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Point</label>
-                            <input name="point" type="number" style="resize: none;" class="form-control" id="exampleInputPassword1">
+                            <label>Ngày tạo</label>
+                            <input type="datetime-local" name="date_created" class="form-control" >
                         </div>
                         <div class="form-group">
-                        	<label for="exampleInputPassword1">Hiển thị</label>
+                        <label>Ngày cập nhật</label>
+                            <input type="datetime-local" name="date_updated" class="form-control">
+                        </div>
+                        <div class="form-group">
+                        	<label>Hiển thị</label>
                             <select  name="status" class="form-control input-sm m-bot15">
-                                <option value="Ẩn">Ẩn</option>
-                                <option value="Hiển thị">Hiển thị</option>
-                                <option value="Nổi bật">Nổi bật</option>
-                                <option value="Mới">Mới</option>
+                                <option value="an">Ẩn</option>
+                                <option value="hienthi">Hiển thị</option>
+                                <option value="noibat">Nổi bật</option>
+                                <option value="moi">Mới</option>
                             </select>
                         </div>
                         <button type="submit" name="" class="btn btn-info">Thêm</button>

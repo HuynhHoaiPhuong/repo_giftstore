@@ -10,12 +10,12 @@
                 <div class="position-center">
                     <form role="form" action="/admin/save-bill-order" enctype="multipart/form-data" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">ID</label>
+                        {{-- <div class="form-group">
+                            <label >ID</label>
                             <input type="number" name="id" class="form-control" id="exampleInputEmail1">
-                        </div> 
+                        </div>  --}}
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID Producer</label>
+                            <label >ID Producer</label>
                             <select name="id_producer" class="form-control input-sm m-bot15">
                             @foreach($producer as $key => $prod)
                                 <option value="{{$prod->id}}">{{$prod->id}}</option>
@@ -23,7 +23,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID User</label>
+                            <label >ID User</label>
                             <select name="id_user" class="form-control input-sm m-bot15">
                             @foreach($user as $key => $us)
                                 <option value="{{$us->id}}">{{$us->id}}</option>
@@ -31,7 +31,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID Stock</label>
+                            <label >ID Stock</label>
                             <select name="id_stock" class="form-control input-sm m-bot15">
                             @foreach($stock as $key => $st)
                                 <option value="{{$st->id}}">{{$st->id}}</option>
@@ -39,25 +39,27 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Số lượng</label>
-                            <input type="number" name="quantity" class="form-control" id="exampleInputEmail1">
+                            <label>Số lượng</label>
+                            <input type="number" name="quantity" class="form-control">
                         </div> 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Tổng tiền</label>
-                            <input type="text" name="total_price" class="form-control" id="exampleInputPassword1">
+                            <label>Tổng tiền</label>
+                            <input type="text" name="total_price" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Ngày mua</label>
-                            <input type="datetime-local"class="form-control" id="exampleInputPassword1" name="date_order">
+                            <label>Ngày mua</label>
+                            <input type="datetime-local" name="date_order" class="form-control" >
                         </div>
                         <div class="form-group">
-                        	<label for="exampleInputPassword1">Hiển thị</label>
+                        	<label >Hiển thị</label>
                             <select  name="status" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiển thị</option>
+                                <option value="an">Ẩn</option>
+                                <option value="hienthi">Hiển thị</option>
+                                <option value="noibat">Nổi bật</option>
+                                <option value="moi">Mới</option>
                             </select>
                         </div>
-                        <button type="submit" name="admin/save-bill-order" class="btn btn-info">Thêm hóa đơn nhập</button>
+                        <button type="submit" name="" class="btn btn-info">Thêm</button>
                     </form>
                 </div>
             </div>

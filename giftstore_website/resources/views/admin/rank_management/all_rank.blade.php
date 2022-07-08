@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách sản phẩm
+      Danh sách hạng thành viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -40,33 +40,34 @@
             <th>Tên hạng</th>
             <th>Point</th>
             <th>Ngày Created</th>
-            <th>Ngày Upadted</th>
+            <th>Ngày Updated</th>
             <th>Hiển thị</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
+          @foreach ($all_rank as $key => $rank)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>Đồng</td>
-            <td>14214</td>
-            <td>dd-mm-yy</td>
-            <td>dd-mm-yy</td>
+            <td>{{$rank->id}}</td>
+            <td>{{$rank->name}}</td>
+            <td>{{$rank->point}}</td>
+            <td>{{$rank->date_created}}</td>
+            <td>{{$rank->date_updated}}</td>
             <td>check</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/edit-rank/{{$rank->id}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a href="/admin/delete-rank/{{$rank->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
             <td></td>
           </tr>
+          @endforeach
         </tbody>
-
       </table>
     </div>
     <footer class="panel-footer">

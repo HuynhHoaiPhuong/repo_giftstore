@@ -8,14 +8,14 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="/admin/save-bill" enctype="multipart/form-data" method="POST">
+                    <form role="form" action="/admin/save-bill" method="POST">
                         @csrf
+                        {{-- <div class="form-group">
+                            <label >ID</label>
+                            <input type="number" name="id" class="form-control">
+                        </div>  --}}
                         <div class="form-group">
-                            <label for="exampleInputEmail1">ID</label>
-                            <input type="number" name="id" class="form-control" id="exampleInputEmail1">
-                        </div> 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">ID Member</label>
+                            <label >ID Member</label>
                             <select name="id_member" class="form-control input-sm m-bot15">
                             @foreach($member as $key => $mem)
                                 <option value="{{$mem->id}}">{{$mem->id}}</option>
@@ -23,21 +23,21 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Mã giảm giá</label>                            
+                            <label >Mã giảm giá</label>                            
                             <select  name="code_voucher" class="form-control input-sm m-bot15">
                                 <option value="CODE5">CODE5</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tổng số lượng</label>
-                            <input type="number" name="total_quantity" class="form-control" id="exampleInputEmail1">
+                            <label >Tổng số lượng</label>
+                            <input type="number" name="total_quantity" class="form-control">
                         </div> 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Thành tiền</label>
-                            <input type="text" name="total_price" class="form-control" id="exampleInputPassword1">
+                            <label >Thành tiền</label>
+                            <input type="text" name="total_price" class="form-control">
                         </div>
                         <div class="form-group">
-                        	<label for="exampleInputPassword1">PT thanh toán</label>
+                        	<label >PT thanh toán</label>
                             <select  name="payment" class="form-control input-sm m-bot15">
                                 <option value="Cast">Cast</option>
                                 <option value="Debiy cards">Debit cards</option>
@@ -45,21 +45,23 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Ngày mua</label>
-                            <input type="datetime-local"class="form-control" id="exampleInputPassword1" name="date_order">
+                            <label >Ngày mua</label>
+                            <input type="datetime-local" name="date_order" class="form-control">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Ngày xác nhận</label>
-                          <input type="datetime-local" name="date_confirm" class="form-control" id="exampleInputPassword1" >
+                          <label >Ngày nhận</label>
+                          <input type="datetime-local" name="date_confirm" class="form-control">
                         </div>
                         <div class="form-group">
-                        	<label for="exampleInputPassword1">Hiển thị</label>
+                        	<label >Hiển thị</label>
                             <select  name="status" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiển thị</option>
+                                <option value="an">Ẩn</option>
+                                <option value="hienthi">Hiển thị</option>
+                                <option value="noibat">Nổi bật</option>
+                                <option value="moi">Mới</option>
                             </select>
                         </div>
-                        <button type="submit" name="admin/save-bill" class="btn btn-info">Thêm hóa đơn bán</button>
+                        <button type="submit" name="/admin/save-bill" class="btn btn-info">Thêm</button>
                     </form>
                 </div>
             </div>

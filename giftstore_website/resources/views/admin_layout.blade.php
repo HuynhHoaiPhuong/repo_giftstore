@@ -327,7 +327,7 @@
 
                         </li>
                         <li class="sub-menu">
-                            <a href="/admin/add-rank">
+                            <a href="/admin/all-rank">
                                 <i class="fa fa-level-up"></i>
                                 <span>Quản lý hạng thành viên</span>
                             </a>
