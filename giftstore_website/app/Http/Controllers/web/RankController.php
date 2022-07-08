@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class RankController extends Controller
 {
     public function allRank(){
-        return view('admin.all_rank');
+        return view('admin.rank_management.all_rank');
     }
     public function addRank(){
-        return view('admin.add_rank');
+        return view('admin.rank_management.add_rank');
     }
 }
