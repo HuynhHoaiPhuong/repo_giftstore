@@ -14,7 +14,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>        
-        <a href="/admin/add-member" class="btn btn-sm btn-primary">Add</a>           
+        <a href="{{route('add-member')}}" class="btn btn-sm btn-primary">Add</a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -55,24 +55,21 @@
             <td>{{$member->point}}</td>
             <td>check</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('edit-member',$member->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('delete-member',$member->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
             <td></td>
           </tr>
           @endforeach
-          
         </tbody>
-
       </table>
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>

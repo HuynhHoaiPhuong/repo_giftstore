@@ -14,7 +14,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>       
-        <a href="/admin/add-bill-order" class="btn btn-sm btn-primary">Add</a>           
+        <a href="{{route('add-bill-order')}}" class="btn btn-sm btn-primary">Add</a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -64,21 +64,21 @@
               <?php 
                 if($bo->status == 'an'){
               ?>
-                <a href="/admin/unactive-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <a href="{{route('unactive-bill',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
               <?php
                 }else
                 {
               ?>
-                <a href="/admin/active-bill-order/{{$bo->id}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <a href="{{route('active-bill',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
               <?php
                 }
               ?>
             </span></td>
             <td>
-              <a href="/admin/edit-bill-order/{{$bo->id}}" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('edit-bill',$bo->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a href="/admin/delete-bill-order/{{$bo->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('delete-bill',$bo->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>

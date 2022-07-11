@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 use Session;
 session_start();
 
@@ -19,8 +20,9 @@ class BillOrderController extends Controller
         
     }
     public function saveBillOrder(Request $request){
+        $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $data = array();
-        $data['id'] = $request->id;
+        $data['id'] = $request->id_producer . $request->id_user . $request->id_stock . $datenow;
         $data['id_producer'] = $request->id_producer;
         $data['id_user'] = $request->id_user;
         $data['id_stock'] = $request->id_stock;
@@ -56,17 +58,20 @@ class BillOrderController extends Controller
         $producer = DB::table('tbl_producer')->orderby('id','desc')->get();
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
         $stock = DB::table('tbl_stock')->orderby('id','desc')->get();
+
         $edit_bill_order = DB::table('tbl_bill_order')->where('id',$id)->get();
-        $manager_bill_order = view('admin.bill_order_management.edit_bill_order')->with('edit_bill_order',$edit_bill_order)->with('id',$producer)->with('id',$user)->with('id',$stock); 
-        return view('admin_layout')->with('admin.bill_order_management.edit_bill_order', $manager_bill_order);
+        $manager_bill_order = view('admin.bill_order_management.edit_bill_order')
+        ->with('edit_bill_order',$edit_bill_order)
+        ->with('id',$producer)->with('id',$user)->with('id',$stock); 
         
+        return view('admin_layout')->with('admin.bill_order_management.edit_bill_order', $manager_bill_order);
     }
     public function updateBillOrder(Request $request, $id){
         $data = array();
-        $data['id'] = $request->id;
-        $data['id_producer'] = $request->id_producer;
-        $data['id_user'] = $request->id_user;
-        $data['id_stock'] = $request->id_stock;
+        // $data['id'] = $request->id_producer . $request->id_user . $request->id_stock . $datenow;
+        // $data['id_producer'] = $request->id_producer;
+        // $data['id_user'] = $request->id_user;
+        // $data['id_stock'] = $request->id_stock;
         $data['quantity'] = $request->quantity;
         $data['total_price'] = $request->total_price;
         $data['date_order'] = $request->date_order;

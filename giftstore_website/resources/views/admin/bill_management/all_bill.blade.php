@@ -50,36 +50,36 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($all_bill as $key => $bill)
+          @foreach($all_bill as $key => $b)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>{{$bill->id}}</td>
-            <td>{{$bill->id_member}}</td>
-            <td>{{$bill->code_voucher}}</td>
-            <td>{{$bill->total_quantity}}</td>
-            <td>{{$bill->total_price}}</td>
-            <td>{{$bill->payment}}</td>
-            <td>{{$bill->date_order}}</td>
-            <td>{{$bill->date_confirm}}</td>
+            <td>{{$b->id}}</td>
+            <td>{{$b->id_member}}</td>
+            <td>{{$b->code_voucher}}</td>
+            <td>{{$b->total_quantity}}</td>
+            <td>{{$b->total_price}}</td>
+            <td>{{$b->payment}}</td>
+            <td>{{$b->date_order}}</td>
+            <td>{{$b->date_confirm}}</td>
             <td><span class="text-ellipsis">
               <?php 
-                if($bill->status == 'an'){
+                if($b->status == 'an'){
               ?>
-                <a href="/admin/unactive-bill/{{$bill->id}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <a href="{{route('unactive-bill',$b->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
               <?php
                 }else
                 {
               ?>
-                <a href="/admin/active-bill/{{$bill->id}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <a href="{{route('active-bill',$b->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
               <?php
                 }
               ?>
             </span></td>
             <td>
-              <a href="/admin/edit-bill/{{$bill->id}}" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('edit-bill',$b->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a href="/admin/delete-bill/{{$bill->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('delete-bill',$b->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>

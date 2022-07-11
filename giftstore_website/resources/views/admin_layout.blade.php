@@ -32,7 +32,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="/admin/all-visitor" class="logo">
+            <a href="{{route('all-visitor')}}" class="logo">
                 MANAGER
             </a>
             <div class="sidebar-toggle-box">
@@ -255,7 +255,7 @@
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="/admin/all-visitor">
+                            <a class="active" href="{{route('all-visitor')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Tổng quan</span>
                             </a>
@@ -292,13 +292,13 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="/admin/all-bill-order">
+                            <a href="{{route('all-bill-order')}}">
                                 <i class="fa fa-credit-card-alt"></i>
                                 <span>Quản lý hóa đơn nhập</span>
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="/admin/all-bill">
+                            <a href="{{route('all-bill')}}">
                                 <i class="fa fa-credit-card"></i>
                                 <span>Quản lý hóa đơn bán</span>
                             </a>
@@ -320,14 +320,14 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="/admin/all-member">
+                            <a href="{{route('all-member')}}">
                                 <i class="fa fa-user"></i>
                                 <span>Quản lý thành viên</span>
                             </a>
 
                         </li>
                         <li class="sub-menu">
-                            <a href="/admin/all-rank">
+                            <a href="{{route('all-rank')}}">
                                 <i class="fa fa-level-up"></i>
                                 <span>Quản lý hạng thành viên</span>
                             </a>

@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 use Session;
 session_start();
 
 class BillController extends Controller
 {
+
     public function addBill(){
         $member = DB::table('tbl_member')->orderby('id','desc')->get();
         return view('admin.bill_management.add_bill')->with('member',$member);
@@ -25,8 +27,9 @@ class BillController extends Controller
 
     }
     public function saveBill(Request $request){
+        $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $data = array();
-        $data['id'] = $request->id;
+        $data['id'] = $request->id_member.$datenow;
         $data['id_member'] = $request->id_member;
         $data['code_voucher'] = $request->code_voucher;
         $data['total_quantity'] = $request->total_quantity;
@@ -49,17 +52,31 @@ class BillController extends Controller
         return redirect('admin/all-bill');
 
     }
-    public function editBill($id){
-        $member = DB::table('tbl_member')->orderby('id','desc')->get();
-        $edit_bill = DB::table('tbl_bill')->where('id',$id)->get();
-        $manager_bill = view('admin.bill_management.edit_bill')->with('edit_bill',$edit_bill)->with('id',$member); 
-        return view('admin_layout')->with('admin.bill_management.edit_bill', $manager_bill);
+    // public function editBill($id){
+    //     $member = DB::table('tbl_member')->orderby('id','desc')->get();
         
+    //     $edit_bill = DB::table('tbl_bill')->where('id',$id)->get();
+    //     $manager_bill = view('admin.bill_management.edit_bill')
+    //     ->with('edit_bill',$edit_bill)
+    //     ->with('member',$member); 
+
+    //     return view('admin_layout')->with('admin.bill_management.edit_bill', $manager_bill);
+        
+    // }
+
+    public function editBill($id){
+
+        $member = DB::table('tbl_member')->orderby('id','desc')->get();
+
+        $edit_bill = DB::table('tbl_bill')->where('id',$id)->get();
+        $manager_bill = view('admin.bill_management.edit_bill')
+        ->with('edit_bill',$edit_bill)
+        ->with('member',$member); 
+        
+        return view('admin_layout')->with('admin.bill_management.edit_product', $manager_bill);
     }
     public function updateBill(Request $request, $id){
         $data = array();
-        $data['id'] = $request->id;
-        $data['id_member'] = $request->id_member;
         $data['code_voucher'] = $request->code_voucher;
         $data['total_quantity'] = $request->total_quantity;
         $data['total_price'] = $request->total_price;
