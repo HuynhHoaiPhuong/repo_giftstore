@@ -64,21 +64,21 @@
               <?php 
                 if($bo->status == 'an'){
               ?>
-                <a href="{{route('unactive-bill',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                <a href="{{route('unactive-bill-order',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
               <?php
                 }else
                 {
               ?>
-                <a href="{{route('active-bill',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                <a href="{{route('active-bill-order',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
               <?php
                 }
               ?>
             </span></td>
             <td>
-              <a href="{{route('edit-bill',$bo->id)}}" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('edit-bill-order',$bo->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a href="{{route('delete-bill',$bo->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
+              <a href="{{route('delete-bill-order',$bo->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>

@@ -25,8 +25,9 @@
 	<div class="w3layouts-main">
 		<h2>Sign In Now</h2>
 			<form action="{{route('check-login')}}" method="post">
-				<input type="text" class="ggg" name="username" placeholder="Username" required="">
-				<input type="password" class="ggg" name="password" placeholder="Password" required="">
+				@csrf
+				<input type="text" class="ggg" name="admin_username" placeholder="Username" required="">
+				<input type="password" class="ggg" name="admin_password" placeholder="Password" required="">
 				<span><input type="checkbox" />Remember Me</span>
 				<h6><a href="#">Forgot Password?</a></h6>
 					<div class="clearfix"></div>

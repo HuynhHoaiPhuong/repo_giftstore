@@ -8,13 +8,11 @@
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
+          <option value="0">Theo ngày</option>
+          <option value="1">Mới nhất</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="/admin/add-bill" class="btn btn-sm btn-primary">Add</a>                
+        {{-- <a href="/admin/add-bill" class="btn btn-sm btn-primary">Add</a>                 --}}
       </div>
       <div class="col-sm-4">
       </div>
@@ -45,7 +43,7 @@
             <th>Ngày mua</th>
             <th>Ngày xác nhận</th>
             <th>Hiển thị</th>
-            <th>Thao tác</th>
+            {{-- <th>Thao tác</th> --}}
             <th></th>
           </tr>
         </thead>
@@ -61,28 +59,15 @@
             <td>{{$b->payment}}</td>
             <td>{{$b->date_order}}</td>
             <td>{{$b->date_confirm}}</td>
-            <td><span class="text-ellipsis">
-              <?php 
-                if($b->status == 'an'){
-              ?>
-                <a href="{{route('unactive-bill',$b->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
-              <?php
-                }else
-                {
-              ?>
-                <a href="{{route('active-bill',$b->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
-              <?php
-                }
-              ?>
-            </span></td>
-            <td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name=""></label></td>
+            {{-- <td>
               <a href="{{route('edit-bill',$b->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="{{route('delete-bill',$b->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
-            </td>
+            </td> --}}
             <td></td>
           </tr>
           @endforeach
