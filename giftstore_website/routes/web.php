@@ -69,6 +69,10 @@ Route::group(['prefix'=>'admin'],function(){
     Route::get('/unactive-rank/{id}', [App\Http\Controllers\web\RankController::class,'unActiveRank'])->name('unactive-rank');
     Route::get('/active-rank/{id}', [App\Http\Controllers\web\RankController::class,'activeRank'])->name('active-rank');
     
+//login-admin
+    Route::get('/login', [App\Http\Controllers\web\AdminController::class,'login'])->name('login');
+    Route::post('/check-login', [App\Http\Controllers\web\AdminController::class,'checkLogin'])->name('check-login');
+    Route::get('/logout', [App\Http\Controllers\web\AdminController::class,'logout'])->name('logout');
 
 });
 //index admin

@@ -225,7 +225,7 @@
                     <a href="" class="form-control reply"><i class="fa fa-reply"></i> </a>
                 </li>
                 <li>
-                    <a href="" class="form-control logout"><i class="fa fa-sign-out"></i> </a>
+                    <a href="{{route('logout')}}" class="form-control logout"><i class="fa fa-sign-out"></i> </a>
                 </li>
                 <!-- user login dropdown start-->
                 <li class="dropdown">
@@ -238,7 +238,6 @@
                     <ul class="dropdown-menu extended logout">
                         <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                         <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                        <li><a href="#"><i class="fa fa-key"></i> Log Out</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
