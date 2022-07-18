@@ -23,22 +23,29 @@
 <body>
 	<div class="log-w3">
 	<div class="w3layouts-main">
-		<h2>Sign In Now</h2>
+		<h2>Register</h2>
 		@if(session('error'))
 			<div class="alert alert-danger">
-					{{ session('error') }}
+					{{session('success')}}
 			</div>
 		@endif
-			<form action="{{route('check-login')}}" method="post">
+			<form action="{{route('save')}}" method="post">
 				@csrf
-				<input type="text" class="ggg" name="username" placeholder="Username" required="">
-				<input type="password" class="ggg" name="password" placeholder="Password" required="">
-				<span><input type="checkbox" />Remember Me</span>
-				<h6><a href="#">Forgot Password?</a></h6>
-					<div class="clearfix"></div>
-					<input type="submit" value="Sign In" >
+				<input type="hidden" class="ggg" name="id_role" value="2">
+				<input type="text" class="ggg" name="username" placeholder="Please Enter Username" required="">
+				<input type="password" class="ggg" name="password" placeholder="Please Enter Password" required="">
+				<input type="password" class="ggg" name="confirm" placeholder="Please Confirm Password" required="">
+				<input type="hidden" class="ggg" name="user_token">
+				<input type="text" class="ggg" name="photo" >
+        <input type="text" class="ggg" name="fullname" placeholder="Please Enter Fullname" required="">
+        <input type="text" class="ggg" name="phone" placeholder="Please Enter Phone" required="">
+        <input type="text" class="ggg" name="address" placeholder="Please Enter Address" required="">
+        <input type="text" class="ggg" name="gender" placeholder="Please Enter Gender" required="">
+        <input type="datetime-local" class="ggg" name="birthday" placeholder="Please Enter Birthday" required="">
+        <div class="clearfix"></div>
+        <input type="submit" value="Register" >
 			</form>
-			<p>Don't Have an Account ?<a href="{{route('register')}}">Create an account</a></p>
+			<p><a href="{{url('/admin/login')}}">Back to Login</a></p>
 	</div>
 	</div>
 	<script src="{{asset('admin/js/bootstrap.js')}}"></script>
@@ -46,7 +53,6 @@
 	<script src="{{asset('admin/js/scripts.js')}}"></script>
 	<script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 	<script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 	<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>

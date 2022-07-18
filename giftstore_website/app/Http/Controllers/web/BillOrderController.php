@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\web;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +30,6 @@ class BillOrderController extends Controller
         $data['status'] = $request->status;
         DB::table('tbl_bill_order')->insert($data); 
         return redirect('admin/add-bill-order');
-
     }
     public function allBillOrder(){
         $all_bill_order = DB::table('tbl_bill_order')
@@ -67,10 +65,6 @@ class BillOrderController extends Controller
     }
     public function updateBillOrder(Request $request, $id){
         $data = array();
-        // $data['id'] = $request->id_producer . $request->id_user . $request->id_stock . $datenow;
-        // $data['id_producer'] = $request->id_producer;
-        // $data['id_user'] = $request->id_user;
-        // $data['id_stock'] = $request->id_stock;
         $data['quantity'] = $request->quantity;
         $data['total_price'] = $request->total_price;
         $data['date_order'] = $request->date_order;

@@ -32,7 +32,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="{{route('all-visitor')}}" class="logo">
+            <a href="{{url('/')}}" class="logo">
                 MANAGER
             </a>
             <div class="sidebar-toggle-box">
@@ -254,7 +254,7 @@
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="{{route('all-visitor')}}">
+                            <a class="active" href="{{url('/')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Tổng quan</span>
                             </a>

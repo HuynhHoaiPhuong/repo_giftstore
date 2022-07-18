@@ -18,7 +18,8 @@ class CreateTblUser extends Migration
             $table->string('id_role'); //foreign key
             $table->string('username')->unique()->nullable(false);
             $table->string('password')->nullable(false);
-            $table->string('user_token')->unique()->nullable(false);
+            // $table->string('user_token')->unique()->nullable(false);
+            $table->string('user_token')->unique()->nullable();
             $table->string('photo')->nullable(false);
             $table->string('fullname')->nullable(false);
             $table->string('phone')->nullable(false);

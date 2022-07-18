@@ -13,7 +13,7 @@
                         @csrf
                         <div class="form-group">
                             <label >Số lượng</label>
-                            <input type="number" name="quantity" value="" class="form-control">
+                            <input type="number" name="quantity" class="form-control">
                         </div> 
                         <div class="form-group">
                             <label >Tổng tiền</label>
@@ -28,11 +28,11 @@
                             <select  name="status" class="form-control input-sm m-bot15">
                                 <option value="an">Ẩn</option>
                                 <option value="hienthi">Hiển thị</option>
-                                <option value="noibat">Nổi bật</option>
-                                <option value="moi">Mới</option>
+                                {{-- <option value="noibat">Nổi bật</option>
+                                <option value="moi">Mới</option> --}}
                             </select>
                         </div>
-                        <button type="submit" name="" class="btn btn-info">Cập nhật</button>
+                        <button type="submit" class="btn btn-info">Cập nhật</button>
                     </form>
                 </div>
               @endforeach
