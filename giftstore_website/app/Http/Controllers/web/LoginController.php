@@ -18,7 +18,8 @@ class LoginController extends Controller
     public function checkLogin(Request $request)
     {        
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect('admin/index');
+            $request->session()->regenerate();
+            return redirect()->intended('admin/index');
         }
         return redirect('admin/login')->with('error', 'Tài khoản hoặc mật khẩu không hợp lệ');
         
@@ -57,8 +58,11 @@ class LoginController extends Controller
     }
     
     
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        $request->session()->flush();
         return redirect('admin/login');
     }
 }

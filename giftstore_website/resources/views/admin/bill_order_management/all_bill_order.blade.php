@@ -42,8 +42,8 @@
             <th>ID sản phẩm</th>
             <th>Số lượng</th>
             <th>Tổng tiền</th>
-            <th>Ngày mua</th>
-            <th>Hiển thị</th>
+            <th>Ngày nhập</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
@@ -59,21 +59,7 @@
             <td>{{$bo->quantity}}</td>
             <td>{{$bo->total_price}}</td>
             <td>{{$bo->date_order}}</td>
-            <td>{{$bo->status}}</td>
-            <td><span class="text-ellipsis">
-              <?php 
-                if($bo->status == 'an'){
-              ?>
-                <a href="{{route('unactive-bill-order',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
-              <?php
-                }else
-                {
-              ?>
-                <a href="{{route('active-bill-order',$bo->id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
-              <?php
-                }
-              ?>
-            </span></td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>
               <a href="{{route('edit-bill-order',$bo->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -82,6 +68,7 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
+            <td></td>
           </tr>
           @endforeach
         </tbody>

@@ -41,7 +41,7 @@
             <th>Point</th>
             <th>Ngày Created</th>
             <th>Ngày Updated</th>
-            <th>Hiển thị</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
@@ -55,7 +55,7 @@
             <td>{{$rank->point}}</td>
             <td>{{$rank->date_created}}</td>
             <td>{{$rank->date_updated}}</td>
-            <td>check</td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>
               <a href="{{route('edit-rank',$rank->id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -72,7 +72,6 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 session_start();
 
 class RankController extends Controller
@@ -17,7 +16,6 @@ class RankController extends Controller
         ->with('all_rank', $all_rank); 
         return view('admin_layout')->with('admin.rank_management.all_rank',$manager_rank);
     }
-
 
     public function addRank(){
         return view('admin.rank_management.add_rank');

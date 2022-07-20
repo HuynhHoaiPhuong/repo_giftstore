@@ -13,6 +13,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     protected $table = 'tbl_user';
+    // public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
         'id',
         'id_role',

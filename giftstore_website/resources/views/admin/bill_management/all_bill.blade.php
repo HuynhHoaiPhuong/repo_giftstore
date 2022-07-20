@@ -42,7 +42,7 @@
             <th>PT thanh toán</th>
             <th>Ngày mua</th>
             <th>Ngày xác nhận</th>
-            <th>Hiển thị</th>
+            <th>Trạng thái</th>
             {{-- <th>Thao tác</th> --}}
             <th></th>
           </tr>

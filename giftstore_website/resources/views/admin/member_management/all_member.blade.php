@@ -40,7 +40,7 @@
             <th>ID User</th>
             <th>ID Rank</th>
             <th>Point</th>
-            <th>Hiển thị</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
@@ -53,14 +53,10 @@
             <td>{{$member->id_user}}</td>
             <td>{{$member->id_rank}}</td>
             <td>{{$member->point}}</td>
-            <td>check</td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>
-              <a href="{{route('edit-member',$member->id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a href="{{route('delete-member',$member->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
+              <a href="{{route('edit-member',$member->id)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a href="{{route('delete-member',$member->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
             <td></td>
           </tr>

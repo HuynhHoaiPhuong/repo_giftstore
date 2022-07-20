@@ -27,6 +27,7 @@ Route::group(['middleware' => ['hasrole']], function(){
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 
     Route::group(['prefix' => 'admin'], function(){
+        
         Route::get('/index',[IndexController::class,'index'])->name('/index');
 
         Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
@@ -38,9 +39,7 @@ Route::group(['middleware' => ['hasrole']], function(){
         Route::get('/add-photo',[PhotoController::class,'addPhoto'])->name('add-photo');
         
     //bill
-        Route::group(['prefix'=>'bill'],function(){
-            Route::get('/all-bill',[BillController::class,'allBill'])->name('all-bill');
-        });
+        Route::get('/all-bill',[BillController::class,'allBill'])->name('all-bill');
      
     //bill-order
         Route::get('/add-bill-order',[BillOrderController::class,'addBillOrder'])->name('add-bill-order');

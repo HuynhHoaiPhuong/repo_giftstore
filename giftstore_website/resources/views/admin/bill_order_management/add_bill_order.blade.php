@@ -18,7 +18,7 @@
                             <label >ID Producer</label>
                             <select name="id_producer" class="form-control input-sm m-bot15">
                             @foreach($producer as $key => $prod)
-                                <option value="{{$prod->id}}">{{$prod->id}}</option>
+                                <option value="{{$prod->id}}">{{$prod->name}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -26,7 +26,7 @@
                             <label >ID User</label>
                             <select name="id_user" class="form-control input-sm m-bot15">
                             @foreach($user as $key => $us)
-                                <option value="{{$us->id}}">{{$us->id}}</option>
+                                <option value="{{$us->id}}">{{$us->username}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -34,7 +34,7 @@
                             <label >ID Stock</label>
                             <select name="id_stock" class="form-control input-sm m-bot15">
                             @foreach($stock as $key => $st)
-                                <option value="{{$st->id}}">{{$st->id}}</option>
+                                <option value="{{$st->id}}">{{$st->name}}</option>
                             @endforeach
                             </select>
                         </div>

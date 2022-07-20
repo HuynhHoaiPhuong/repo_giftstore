@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 session_start();
 
 class MemberController extends Controller
@@ -57,8 +56,7 @@ class MemberController extends Controller
 
         $edit_member = DB::table('tbl_member')->where('id',$id)->get();
         $manager_member = view('admin.member_management.edit_member')
-        ->with('edit_member',$edit_member)
-        ->with('user',$user)->with('rank',$rank); 
+        ->with('edit_member',$edit_member)->with('user',$user)->with('rank',$rank); 
         return view('admin_layout')->with('admin.member_management.edit_member', $manager_member);
         
     }
