@@ -17,12 +17,12 @@ class CreateTblPhoto extends Migration
             $table->string('id')->primary(); //primary key
             $table->integer('numb')->default(0); 
             $table->string('name')->unique()->nullable(false);
-            $table->string('photo')->nullable(false);
+            $table->string('photo');
             $table->string('link')->nullable(false);
             $table->string('type')->nullable(false);
             $table->string('act')->nullable(false);
             $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated')->nullable(false);
+            $table->datetime('date_updated');
             $table->string('status')->nullable(false)->default('hienthi');
         });
     }

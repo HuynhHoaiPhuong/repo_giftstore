@@ -20,8 +20,8 @@ class CreateTblVoucher extends Migration
             $table->float('max_price')->default(0);
             $table->integer('percent_price')->default(0);
             $table->string('description');
-            $table->datetime('date_start')->nullable(false);;
-            $table->datetime('date_end')->nullable(false);;
+            $table->datetime('date_start')->nullable(false);
+            $table->datetime('date_end')->nullable(false);
             $table->string('status')->default('hienthi');
         });
     }

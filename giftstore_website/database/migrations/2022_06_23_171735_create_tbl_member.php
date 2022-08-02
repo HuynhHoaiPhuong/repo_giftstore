@@ -19,7 +19,7 @@ class CreateTblMember extends Migration
             $table->string('id_rank'); //foreign key
             $table->integer('current_point')->default(0);
             $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated')->nullable(false);
+            $table->datetime('date_updated');
             $table->string('status')->nullable(false)->default('hienthi');
         });
     }

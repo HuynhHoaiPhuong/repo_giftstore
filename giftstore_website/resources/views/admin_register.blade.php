@@ -32,11 +32,11 @@
 			<form action="{{route('save')}}" method="post">
 				@csrf
 				<input type="hidden" class="ggg" name="id_role" value="2">
-				<input type="text" class="ggg" name="username" placeholder="Please Enter Username" required="">
+				<input type="text" class="ggg" name="username" placeholder="Please Enter Username">
 				<input type="password" class="ggg" name="password" placeholder="Please Enter Password" required="">
 				<input type="password" class="ggg" name="confirm" placeholder="Please Confirm Password" required="">
 				<input type="hidden" class="ggg" name="user_token">
-				<input type="text" class="ggg" name="photo" >
+				<input type="hidden" class="ggg" name="photo" >
         <input type="text" class="ggg" name="fullname" placeholder="Please Enter Fullname" required="">
         <input type="text" class="ggg" name="phone" placeholder="Please Enter Phone" required="">
         <input type="text" class="ggg" name="address" placeholder="Please Enter Address" required="">

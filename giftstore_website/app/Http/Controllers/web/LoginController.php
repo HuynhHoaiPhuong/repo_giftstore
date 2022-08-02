@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
+use Illuminate\Support\Str;
 class LoginController extends Controller
 {
 
@@ -22,7 +22,6 @@ class LoginController extends Controller
             return redirect()->intended('admin/index');
         }
         return redirect('admin/login')->with('error', 'Tài khoản hoặc mật khẩu không hợp lệ');
-        
     }
 
     public function register(){
@@ -35,7 +34,6 @@ class LoginController extends Controller
             'password' => 'required|min:6|max:32',
             'confirm' => 'same:password',
             'phone' => 'required|max:12',
-            'address',
             'gender' => 'required',
             'birthday' => 'required',
             'timestamps' => 'false'
@@ -46,7 +44,7 @@ class LoginController extends Controller
         $data['id_role'] = $request->id_role;
         $data['username'] = $request->username;
         $data['password'] = bcrypt($request->password);
-        $data['user_token'] = $request->user_token;
+        $data['user_token'] = Str::random(32);
         $data['photo'] = $request->photo;
         $data['fullname'] = $request->fullname;
         $data['phone'] = $request->phone;
@@ -56,7 +54,6 @@ class LoginController extends Controller
         DB::table('tbl_user')->insert($data); 
         return redirect()->route('register')->with('success', 'Created successfully!');
     }
-    
     
     public function logout(Request $request){
         Auth::logout();

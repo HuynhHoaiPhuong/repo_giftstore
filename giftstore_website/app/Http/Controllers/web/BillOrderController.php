@@ -20,7 +20,8 @@ class BillOrderController extends Controller
     public function saveBillOrder(Request $request){
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $data = array();
-        $data['id'] = $request->id_producer . $request->id_user . $request->id_stock . $datenow;
+        // $data['id'] = $request->id_producer . $request->id_user . $request->id_stock . $datenow;
+        $data['id'] = $datenow;
         $data['id_producer'] = $request->id_producer;
         $data['id_user'] = $request->id_user;
         $data['id_stock'] = $request->id_stock;

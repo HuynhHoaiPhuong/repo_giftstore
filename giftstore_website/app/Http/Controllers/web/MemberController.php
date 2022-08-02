@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
+use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -33,8 +34,8 @@ class MemberController extends Controller
         $data['id_user'] = $request->id_user;
         $data['id_rank'] = $request->id_rank;
         $data['current_point'] = $request->point;
-        $data['date_created'] = $request->date_created;
-        $data['date_updated'] = $request->date_updated;
+        $data['date_created'] = $datenow;
+        $data['date_updated'] = $datenow;
         $data['status'] = $request->status;
         DB::table('tbl_member')->insert($data); 
         return redirect('admin/add-member');
@@ -51,12 +52,14 @@ class MemberController extends Controller
 
     }
     public function editMember($id){
-        $user = DB::table('tbl_user')->orderby('tbl_user.id','desc')->get();
-        $rank = DB::table('tbl_rank')->orderby('tbl_rank.id','desc')->get();
-
+        $user = DB::table('tbl_user')->orderby('id','desc')->get();
+        $rank = DB::table('tbl_rank')->orderby('id','desc')->get();
         $edit_member = DB::table('tbl_member')->where('id',$id)->get();
         $manager_member = view('admin.member_management.edit_member')
-        ->with('edit_member',$edit_member)->with('user',$user)->with('rank',$rank); 
+        ->with('edit_member',$edit_member)
+        ->with('user',$user)
+        ->with('rank',$rank); 
+
         return view('admin_layout')->with('admin.member_management.edit_member', $manager_member);
         
     }
@@ -64,7 +67,7 @@ class MemberController extends Controller
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $data = array();
         $data['current_point'] = $request->point;
-        $data['date_created'] = $request->date_created;
+        // $data['date_created'] = $request->date_created;
         $data['date_updated'] = $datenow;
         $data['status'] = $request->status;
         DB::table('tbl_member')->where('id',$id)->update($data); 

@@ -25,10 +25,8 @@
                         <div class="form-group">
                           <label>Hiển thị</label>
                             <select  name="status" class="form-control input-sm m-bot15">
-                                <option value="an">Ẩn</option>
                                 <option value="hienthi">Hiển thị</option>
-                                <option value="noibat">Nổi bật</option>
-                                <option value="moi">Mới</option>
+                                <option value="an">Ẩn</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-info">Thêm</button>

@@ -37,8 +37,8 @@
               </label>
             </th>
             <th>ID</th>
-            <th>ID User</th>
-            <th>ID Rank</th>
+            <th>User</th>
+            <th>Rank</th>
             <th>Point</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
@@ -50,9 +50,9 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$member->id}}</td>
-            <td>{{$member->id_user}}</td>
-            <td>{{$member->id_rank}}</td>
-            <td>{{$member->point}}</td>
+            <td>{{$member->username}}</td>
+            <td>{{$member->name}}</td>
+            <td>{{$member->current_point}}</td>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>
               <a href="{{route('edit-member',$member->id)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>

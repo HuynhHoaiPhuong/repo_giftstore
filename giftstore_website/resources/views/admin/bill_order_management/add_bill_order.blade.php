@@ -51,7 +51,7 @@
                             <input type="datetime-local" name="date_order" class="form-control" >
                         </div>
                         <div class="form-group">
-                        	<label >Hiển thị</label>
+                        	<label>Trạng thái</label>
                             <select  name="status" class="form-control input-sm m-bot15">
                                 <option value="an">Ẩn</option>
                                 <option value="hienthi">Hiển thị</option>

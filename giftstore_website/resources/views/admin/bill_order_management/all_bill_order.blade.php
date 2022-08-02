@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách sản phẩm
+      Danh sách hóa đơn nhập
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -39,7 +39,7 @@
             <th>ID</th>
             <th>ID NSX</th>
             <th>ID User</th>
-            <th>ID sản phẩm</th>
+            <th>ID Kho</th>
             <th>Số lượng</th>
             <th>Tổng tiền</th>
             <th>Ngày nhập</th>

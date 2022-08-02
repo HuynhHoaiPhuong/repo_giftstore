@@ -17,12 +17,12 @@ class CreateTblProductCat extends Migration
             $table->string('id')->primary(); //primary key
             $table->string('id_list'); //foreign key
             $table->integer('numb')->default(0); 
-            $table->string('photo')->nullable(false);
+            $table->string('photo');
             $table->string('name')->unique()->nullable(false);
             $table->string('slug')->unique()->nullable(false);
             $table->string('description')->nullable(false);
             $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated')->nullable(false);
+            $table->datetime('date_updated');
             $table->string('status')->nullable(false)->default('hienthi');
         });
     }
