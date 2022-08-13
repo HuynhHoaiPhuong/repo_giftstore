@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//admin
 use App\Http\Controllers\web\RoleController;
 use App\Http\Controllers\web\StaticPageController;
 use App\Http\Controllers\web\ProductController;
@@ -13,8 +14,16 @@ use App\Http\Controllers\web\IndexController;
 use App\Http\Controllers\web\MemberController;
 use App\Http\Controllers\web\RankController;
 use App\Http\Controllers\web\LoginController;
+//user
+use App\Http\Controllers\user\HomeController;
+use App\Http\Controllers\user\CartController;
+use App\Http\Controllers\user\CheckoutController;
+use App\Http\Controllers\user\ContactController;
+use App\Http\Controllers\user\ProductClientController;
+use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\user\LoginClientController;
 
-
+//admin
 Route::group(['prefix' => 'admin'],function(){
     Route::get('/login', [LoginController::class,'login']);
     Route::post('/login', [LoginController::class,'checkLogin'])->name('check-login');
@@ -74,5 +83,15 @@ Route::group(['middleware' => ['hasrole']], function(){
 });
 
 
-
-
+//user
+Route::get('/main', function(){
+    return view('user.layout');
+});
+//web-user
+Route::get('/', [HomeController::class,'index'])->name('/');
+Route::get('/cart', [CartController::class,'index'])->name('cart');
+Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
+Route::get('/contact', [ContactController::class,'index'])->name('contact');
+Route::get('/product', [ProductClientController::class,'index'])->name('product');
+Route::get('/shop', [ShopController::class,'index'])->name('shop');
+Route::get('/log-in', [LoginClientController::class,'index'])->name('log-in');
