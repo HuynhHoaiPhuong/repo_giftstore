@@ -15,14 +15,14 @@ class CreateTableStockDetails extends Migration
     {
         Schema::create('tbl_stock_details', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_stock'); //foreign key
-            $table->string('id_product'); //foreign key
+            $table->string('id_stocks'); //foreign key
+            $table->string('id_products'); //foreign key
             $table->integer('quantity')->default(0);
             $table->float('price_pay')->default(0);
             $table->bigInteger('total_price')->default(0);
-            $table->string('status')->default('hienthi');
+            $table->string('status')->default('enabled');
             $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated');
+            $table->datetime('date_updated')->nullable(false);
         });
     }
 

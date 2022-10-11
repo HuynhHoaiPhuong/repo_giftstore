@@ -15,14 +15,14 @@ class CreateTableBills extends Migration
     {
         Schema::create('tbl_bills', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_member');//foreign key
+            $table->string('id_members');//foreign key
             $table->string('code_voucher');
             $table->bigInteger('total_price')->default(0);
             $table->integer('total_quantity')->default(0);
             $table->string('payment');
             $table->datetime('date_order')->nullable(false);
             $table->datetime('date_confirm')->nullable(false);
-            $table->string('status')->default('hienthi');
+            $table->string('status')->default('enabled');
         });
     }
 

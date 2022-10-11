@@ -15,10 +15,10 @@ class CreateTableBillDiscounts extends Migration
     {
         Schema::create('tbl_discounts', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_rank');//foreign key
-            $table->string('id_cat');//foreign key
+            $table->string('id_ranks');//foreign key
+            $table->string('id_cats');//foreign key
             $table->float('percent_price')->default(0);
-            $table->string('status')->default('hienthi');
+            $table->string('status')->default('enabled');
         });
     }
 

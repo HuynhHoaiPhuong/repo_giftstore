@@ -15,8 +15,8 @@ class CreateTableBillDetails extends Migration
     {
         Schema::create('tbl_bill_details', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_bill');//foreign key
-            $table->string('id_product');//foreign key
+            $table->string('id_bills');//foreign key
+            $table->string('id_products');//foreign key
             $table->integer('quantity')->default(0);
             $table->bigInteger('price')->default(0);
             $table->float('discount')->default(0);

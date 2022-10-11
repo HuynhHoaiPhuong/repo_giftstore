@@ -15,9 +15,9 @@ class CreateTableFavorites extends Migration
     {
         Schema::create('tbl_favorites', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_product');//foreign key
-            $table->string('id_member');//foreign key
-            $table->string('status')->default('hienthi');
+            $table->string('id_products');//foreign key
+            $table->string('id_members');//foreign key
+            $table->string('status')->default('enabled');
         });
     }
 

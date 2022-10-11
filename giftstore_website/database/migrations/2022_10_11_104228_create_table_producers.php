@@ -19,7 +19,7 @@ class CreateTableProducers extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('email');
-            $table->string('status');
+            $table->string('status')->default('enabled');
         });
     }
 

@@ -15,10 +15,11 @@ class CreateTableActivitiesHistory extends Migration
     {
         Schema::create('tbl_activities_history', function (Blueprint $table) {
             $table->string('id')->primary(); //primary key
-            $table->string('id_user');//foreign key
+            $table->string('id_users');//foreign key
             $table->string('activity');
             $table->string('type');
             $table->datetime('date_created')->nullable(false);
+            $table->datetime('date_updated')->nullable(false);
         });
     }
 

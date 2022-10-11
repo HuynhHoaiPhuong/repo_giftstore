@@ -22,7 +22,7 @@ class CreateTableVouchers extends Migration
             $table->string('description');
             $table->datetime('date_start')->nullable(false);
             $table->datetime('date_end')->nullable(false);
-            $table->string('status')->default('hienthi');
+            $table->string('status')->default('enabled');
         });
     }
 
