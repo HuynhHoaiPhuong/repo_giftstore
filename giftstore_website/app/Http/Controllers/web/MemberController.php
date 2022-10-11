@@ -15,17 +15,12 @@ class MemberController extends Controller
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
         $rank = DB::table('tbl_rank')->orderby('id','desc')->get();
         return view('admin.member_management.add_member')->with('user',$user)->with('rank',$rank);
-        
     }
-
     public function allMember(){
-        $all_member = DB::table('tbl_member')
-        ->join('tbl_user','tbl_user.id','=','tbl_member.id_user')
+        $all_member = DB::table('tbl_member')->join('tbl_user','tbl_user.id','=','tbl_member.id_user')
         ->join('tbl_rank','tbl_rank.id','=','tbl_member.id_rank')->orderby('tbl_member.id','desc')->get();
-        
-        $manager_member = view('admin.member_management.all_member')->with('all_member', $all_member); 
+        $manager_member = view('admin.member_management.all_member')->with('all_member', $all_member);
         return view('admin_layout')->with('admin.member_management.all_member',$manager_member); 
-          
     }
     public function saveMember(Request $request){
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
@@ -39,17 +34,14 @@ class MemberController extends Controller
         $data['status'] = $request->status;
         DB::table('tbl_member')->insert($data); 
         return redirect('admin/add-member');
-
     }
     public function unActiveMember($id){
         DB::table('tbl_member')->where('id', $id)->update(['status' => 'an']);
         return redirect('admin/all-member');
-
     }
     public function activeMember($id){
         DB::table('tbl_member')->where('id', $id)->update(['status' => 'hienthi']);
         return redirect('admin/all-member');
-
     }
     public function editMember($id){
         $user = DB::table('tbl_user')->orderby('id','desc')->get();
@@ -59,9 +51,7 @@ class MemberController extends Controller
         ->with('edit_member',$edit_member)
         ->with('user',$user)
         ->with('rank',$rank); 
-
         return view('admin_layout')->with('admin.member_management.edit_member', $manager_member);
-        
     }
     public function updateMember(Request $request, $id){
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
@@ -73,10 +63,8 @@ class MemberController extends Controller
         DB::table('tbl_member')->where('id',$id)->update($data); 
         return redirect('admin/all-member');
     }
-
     public function delMember($id){
         DB::table('tbl_member')->where('id',$id)->delete();
         return redirect('admin/all-member');
-    
     }
 }

@@ -33,7 +33,7 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
             <th>ID</th>
@@ -42,7 +42,6 @@
             <th>Point</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -58,7 +57,6 @@
               <a href="{{route('edit-member',$member->id)}}" class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a href="{{route('delete-member',$member->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
-            <td></td>
           </tr>
           @endforeach
         </tbody>
@@ -74,8 +72,6 @@
             <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
             <li><a href="">1</a></li>
             <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
             <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
           </ul>
         </div>

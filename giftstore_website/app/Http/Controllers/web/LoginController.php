@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +9,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 class LoginController extends Controller
 {
-
     public function login(){
         return view('admin_login');
     }
