@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateTblProducer extends Migration
 {
     /**
-     * Run the migrations.
      *
      * @return void
      */

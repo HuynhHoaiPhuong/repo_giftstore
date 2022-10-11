@@ -13,9 +13,13 @@ class CreateTableProducers extends Migration
      */
     public function up()
     {
-        Schema::create('producers', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbl_producers', function (Blueprint $table) {
+            $table->string('id')->primary(); //primary key
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('status');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateTableProducers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('producers');
+        Schema::dropIfExists('tbl_producers');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableBills extends Migration
+class CreateTableStocks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTableBills extends Migration
      */
     public function up()
     {
-        Schema::create('bills', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbl_stocks', function (Blueprint $table) {
+            $table->string('id')->primary(); //primary key
+            $table->string('name')->unique()->nullable(false);
+            $table->string('address');
+            $table->string('status')->default('hienthi');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateTableBills extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bills');
+        Schema::dropIfExists('tbl_stocks');
     }
 }

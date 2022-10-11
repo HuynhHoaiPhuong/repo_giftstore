@@ -13,9 +13,12 @@ class CreateTableActivitiesHistory extends Migration
      */
     public function up()
     {
-        Schema::create('activities_history', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbl_activities_history', function (Blueprint $table) {
+            $table->string('id')->primary(); //primary key
+            $table->string('id_user');//foreign key
+            $table->string('activity');
+            $table->string('type');
+            $table->datetime('date_created')->nullable(false);
         });
     }
 
@@ -26,6 +29,6 @@ class CreateTableActivitiesHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities_history');
+        Schema::dropIfExists('tbl_activities_history');
     }
 }

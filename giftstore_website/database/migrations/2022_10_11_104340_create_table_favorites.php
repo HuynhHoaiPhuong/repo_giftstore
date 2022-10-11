@@ -13,9 +13,11 @@ class CreateTableFavorites extends Migration
      */
     public function up()
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('tbl_favorites', function (Blueprint $table) {
+            $table->string('id')->primary(); //primary key
+            $table->string('id_product');//foreign key
+            $table->string('id_member');//foreign key
+            $table->string('status')->default('hienthi');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateTableFavorites extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('tbl_favorites');
     }
 }
