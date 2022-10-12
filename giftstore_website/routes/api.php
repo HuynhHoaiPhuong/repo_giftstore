@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\services\RoleController;
+use App\Http\Controllers\services\RankController;
+use App\Http\Controllers\services\ProductListController;
 use App\Http\ControlleStockController;
 use App\Http\Controller\StockDetailController;
 use App\Http\Controller\VoucherController;
@@ -13,6 +16,7 @@ use App\Http\Controller\DiscountController;
 use App\Http\Controller\FavoriteController;
 use App\Http\Controller\ActivityHistoryController;
 use App\Http\Controller\RateController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -197,3 +201,44 @@ Route::group(['prefix'=>'/acitvityHistory'],function() {
     Route::post('/update-activity-history',[activityHistoryController::class,'updateActivityHistory']);
 });
 //--------------------End 12 bang cuoi---------------------
+
+// Start 12 first table
+
+// API Role
+Route::group(['prefix'=>'/roles'],function()
+{
+    Route::get('/get-all-role-by-status/{status}',[RoleController::class,'getAllRoleByStatus']);
+   
+    Route::post('/save-role',[RoleController::class,'saveRole']);
+   
+    Route::post('/update-role',[RoleController::class,'updateRole']);
+   
+    Route::post('/remove-role',[RoleController::class,'removeRole']);
+});
+
+// API rank
+Route::group(['prefix'=>'/ranks'],function()
+{
+    Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
+   
+    Route::post('/save-rank',[RankController::class,'saveRank']);
+   
+    Route::post('/update-rank',[RankController::class,'updateRank']);
+   
+    Route::post('/remove-rank',[RankController::class,'removeRank']);
+});
+
+// API product list
+Route::group(['prefix'=>'/product_lists'],function()
+{
+    Route::get('/get-all-product-list-by-status/{status}',[ProductListController::class,'getAllProductListByStatus']);
+   
+    Route::post('/save-product-list',[ProductListController::class,'saveProductList']);
+   
+    Route::post('/update-product-list',[ProductListController::class,'updateProductList']);
+   
+    Route::post('/remove-product-list',[ProductListController::class,'removeProductList']);
+});
+
+
+// End 12 last table

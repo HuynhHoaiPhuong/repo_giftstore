@@ -9,10 +9,10 @@ class Rank extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'name',
+        'id_rank',
+        'rank_name',
         'point',
-        'date_created',
-        'date_updated',
+        'created_at',
+        'updated_at'
     ];
 }
