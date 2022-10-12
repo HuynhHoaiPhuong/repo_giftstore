@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\services\RoleController;
+use App\Http\Controllers\services\RankController;
+use App\Http\Controllers\services\ProductListController;
 use App\Http\ControlleStockController;
 use App\Http\Controller\StockDetailController;
 use App\Http\Controller\VoucherController;
@@ -213,5 +215,30 @@ Route::group(['prefix'=>'/roles'],function()
    
     Route::post('/remove-role',[RoleController::class,'removeRole']);
 });
+
+// API rank
+Route::group(['prefix'=>'/ranks'],function()
+{
+    Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
+   
+    Route::post('/save-rank',[RankController::class,'saveRank']);
+   
+    Route::post('/update-rank',[RankController::class,'updateRank']);
+   
+    Route::post('/remove-rank',[RankController::class,'removeRank']);
+});
+
+// API product list
+Route::group(['prefix'=>'/product_lists'],function()
+{
+    Route::get('/get-all-product-list-by-status/{status}',[ProductListController::class,'getAllProductListByStatus']);
+   
+    Route::post('/save-product-list',[ProductListController::class,'saveProductList']);
+   
+    Route::post('/update-product-list',[ProductListController::class,'updateProductList']);
+   
+    Route::post('/remove-product-list',[ProductListController::class,'removeProductList']);
+});
+
 
 // End 12 last table

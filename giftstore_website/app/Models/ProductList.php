@@ -9,13 +9,13 @@ class ProductList extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_product_list',
         'numb',
         'photo',
         'slug',
         'name',
         'description',
-        'date_created',
-        'date_updated',
+        'created_at',
+        'updated_at'
     ];
 }

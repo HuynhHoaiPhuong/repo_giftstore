@@ -25,19 +25,19 @@ class RankController extends Controller
         $rank = new Rank();
         $rank->fill(
             [
-                'rank_id' =>  $req -> rank_id,
+                'id_rank' =>  $req -> id_rank,
                 'rank_name' => $req->rank_name,
                 'point' => $req->point,
             ]
         );
         $rank->save();
-        $rank = Rank::where('rank_id',$rank->rank_id)->first();
+        $rank = Rank::where('id_rank',$rank->id_rank)->first();
         return Payload::toJson(new RankResource($rank),"Create Successfully",201);
     }
 
     public function updateRank(Request $req)
     {
-        $result = Rank::where('rank_id', $req -> rank_id)
+        $result = Rank::where('id_rank', $req -> id_rank)
             //Key Value // Get e by array...
             ->update(
                 [
@@ -46,7 +46,7 @@ class RankController extends Controller
                 ],
             );  
         if($result == 1){
-            $rank = Rank::where('rank_id',$req->rank_id)->first();
+            $rank = Rank::where('id_rank',$req->id_rank)->first();
             return Payload::toJson(new RankResource($rank),"Update Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
@@ -54,11 +54,11 @@ class RankController extends Controller
 
     public function removeRank(Request $req)
     {
-        $result = Rank::where('rank_id', $req -> rank_id)
+        $result = Rank::where('id_rank', $req -> id_rank)
              ->update(['status'=> $req -> status]);
         if($result == 1)
         {
-            $rank = Rank::where('rank_id',$req->rank_id)->first();
+            $rank = Rank::where('id_rank',$req->id_rank)->first();
             return Payload::toJson(new RankResource($rank),"Remove Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
