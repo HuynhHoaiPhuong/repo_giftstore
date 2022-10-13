@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableBillDetails extends Migration
+class CreateBillDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableBillDetails extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_bill_details', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('id_bills');//foreign key
-            $table->string('id_products');//foreign key
+        Schema::table('bill_details', function (Blueprint $table) {
+            $table->string('id_bill_detail')->primary(); //primary key
+            $table->string('id_bill');//foreign key
+            $table->string('id_product');//foreign key
             $table->integer('quantity')->default(0);
             $table->bigInteger('price')->default(0);
             $table->float('discount')->default(0);
@@ -31,6 +31,8 @@ class CreateTableBillDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_bill_details');
+        Schema::table('bill_details', function (Blueprint $table) {
+            //
+        });
     }
 }

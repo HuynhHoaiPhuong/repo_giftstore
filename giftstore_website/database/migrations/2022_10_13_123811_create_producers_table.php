@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableBillDiscounts extends Migration
+class CreateProducersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableBillDiscounts extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_discounts', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('id_ranks');//foreign key
-            $table->string('id_cats');//foreign key
-            $table->float('percent_price')->default(0);
+        Schema::table('producers', function (Blueprint $table) {
+            $table->string('id_producer')->primary(); //primary key
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('email');
             $table->string('status')->default('enabled');
         });
     }
@@ -29,6 +30,8 @@ class CreateTableBillDiscounts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_discounts');
+        Schema::table('producers', function (Blueprint $table) {
+            //
+        });
     }
 }

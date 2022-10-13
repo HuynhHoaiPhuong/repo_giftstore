@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableBillOrderDetails extends Migration
+class CreateBillOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTableBillOrderDetails extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_bill_order_details', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('id_products');//foreign key
-            $table->string('id_bill_orders');//foreign key
-            $table->bigInteger('price_order')->default(0);
+        Schema::table('bill_orders', function (Blueprint $table) {
+            $table->string('id_bill_order')->primary(); //primary key
+            $table->string('id_producer');//foreign key
+            $table->string('id_user');//foreign key
+            $table->string('id_stock');//foreign key
+            $table->datetime('date_order');
             $table->integer('quantity')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
@@ -31,6 +32,8 @@ class CreateTableBillOrderDetails extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_bill_order_details');
+        Schema::table('bill_orders', function (Blueprint $table) {
+            //
+        });
     }
 }

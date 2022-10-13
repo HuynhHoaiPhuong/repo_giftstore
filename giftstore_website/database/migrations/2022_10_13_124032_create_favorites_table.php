@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableProducers extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTableProducers extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_producers', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('email');
+        Schema::table('favorites', function (Blueprint $table) {
+            $table->string('id_favorite')->primary(); //primary key
+            $table->string('id_product');//foreign key
+            $table->string('id_member');//foreign key
             $table->string('status')->default('enabled');
         });
     }
@@ -30,6 +28,8 @@ class CreateTableProducers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_producers');
+        Schema::table('favorites', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableVouchers extends Migration
+class CreateVouchersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateTableVouchers extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_vouchers', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
+        Schema::table('vouchers', function (Blueprint $table) {
+            $table->string('id_voucher')->primary(); //primary key
             $table->string('code');
             $table->integer('max_user')->default(0);
             $table->float('max_price')->default(0);
@@ -33,6 +33,8 @@ class CreateTableVouchers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_vouchers');
+        Schema::table('vouchers', function (Blueprint $table) {
+            //
+        });
     }
 }

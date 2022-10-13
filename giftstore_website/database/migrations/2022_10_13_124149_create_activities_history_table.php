@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableActivitiesHistory extends Migration
+class CreateActivitiesHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTableActivitiesHistory extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_activities_history', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('id_users');//foreign key
+        Schema::table('activities_history', function (Blueprint $table) {
+            $table->string('id_activity_history')->primary(); //primary key
+            $table->string('id_user');//foreign key
             $table->string('activity');
             $table->string('type');
             $table->datetime('date_created')->nullable(false);
@@ -30,6 +30,8 @@ class CreateTableActivitiesHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_activities_history');
+        Schema::table('activities_history', function (Blueprint $table) {
+            //
+        });
     }
 }

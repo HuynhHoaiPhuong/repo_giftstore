@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableRates extends Migration
+class CreateRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableRates extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_rates', function (Blueprint $table) {
-            $table->string('id')->primary(); //primary key
-            $table->string('id_members');//foreign key
-            $table->string('id_products');//foreign key
+        Schema::table('rates', function (Blueprint $table) {
+            $table->string('id_rate')->primary(); //primary key
+            $table->string('id_member');//foreign key
+            $table->string('id_product');//foreign key
             $table->integer('star')->default(5);
             $table->string('comment');
             $table->datetime('date_created');
@@ -32,6 +32,8 @@ class CreateTableRates extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_rates');
+        Schema::table('rates', function (Blueprint $table) {
+            //
+        });
     }
 }
