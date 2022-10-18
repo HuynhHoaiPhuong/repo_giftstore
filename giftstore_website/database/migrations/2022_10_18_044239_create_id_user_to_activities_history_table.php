@@ -14,7 +14,7 @@ class CreateIdUserToActivitiesHistoryTable extends Migration
     public function up()
     {
         Schema::table('activities_history', function (Blueprint $table) {
-            //
+            $table->foreign('id_user')->references('id_user')->on('users'); 
         });
     }
 

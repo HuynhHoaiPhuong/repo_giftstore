@@ -14,7 +14,8 @@ class CreateIdProductAndIdBillOrderToBillOrderDetailsTable extends Migration
     public function up()
     {
         Schema::table('bill_order_details', function (Blueprint $table) {
-            //
+            $table->foreign('id_product')->references('id_product')->on('products'); 
+            $table->foreign('id_bill_order')->references('id_bill_order')->on('bill_orders'); 
         });
     }
 
