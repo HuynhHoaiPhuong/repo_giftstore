@@ -13,7 +13,7 @@ class CreateStockDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('stock_details', function (Blueprint $table) {
+        Schema::create('stock_details', function (Blueprint $table) {
             $table->string('id_stock_detail')->primary(); //primary key
             $table->string('id_stock'); //foreign key
             $table->string('id_product'); //foreign key
@@ -33,8 +33,6 @@ class CreateStockDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('stock_details', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('stock_details');
     }
 }

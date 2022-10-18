@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStocksTable extends Migration
+class CreateProducersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateStocksTable extends Migration
      */
     public function up()
     {
-        Schema::table('stocks', function (Blueprint $table) {
-            $table->string('id_stock')->primary(); //primary key
-            $table->string('name')->unique()->nullable(false);
+        Schema::create('producers', function (Blueprint $table) {
+            $table->string('id_producer')->primary(); //primary key
+            $table->string('name');
             $table->string('address');
+            $table->string('phone');
+            $table->string('email');
             $table->string('status')->default('enabled');
         });
     }
@@ -28,8 +30,6 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::table('stocks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('producers');
     }
 }

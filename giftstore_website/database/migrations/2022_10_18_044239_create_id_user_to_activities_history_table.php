@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesHistoryTable extends Migration
+class CreateIdUserToActivitiesHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,7 @@ class CreateActivitiesHistoryTable extends Migration
     public function up()
     {
         Schema::table('activities_history', function (Blueprint $table) {
-            $table->string('id_activity_history')->primary(); //primary key
-            $table->string('id_user');//foreign key
-            $table->string('activity');
-            $table->string('type');
-            $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated')->nullable(false);
+            //
         });
     }
 

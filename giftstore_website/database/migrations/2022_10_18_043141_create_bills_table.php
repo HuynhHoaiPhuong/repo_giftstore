@@ -13,7 +13,7 @@ class CreateBillsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bills', function (Blueprint $table) {
+        Schema::create('bills', function (Blueprint $table) {
             $table->string('id_bill')->primary(); //primary key
             $table->string('id_member');//foreign key
             $table->string('code_voucher');
@@ -33,8 +33,6 @@ class CreateBillsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('bills');
     }
 }

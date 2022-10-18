@@ -13,7 +13,7 @@ class CreateVouchersTable extends Migration
      */
     public function up()
     {
-        Schema::table('vouchers', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->string('id_voucher')->primary(); //primary key
             $table->string('code');
             $table->integer('max_user')->default(0);
@@ -33,8 +33,6 @@ class CreateVouchersTable extends Migration
      */
     public function down()
     {
-        Schema::table('vouchers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('vouchers');
     }
 }

@@ -13,10 +13,10 @@ class CreateBillOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bill_order_details', function (Blueprint $table) {
+        Schema::create('bill_order_details', function (Blueprint $table) {
             $table->string('id_bill_order_detail')->primary(); //primary key
-            $table->string('id_products');//foreign key
-            $table->string('id_bill_orders');//foreign key
+            $table->string('id_product');//foreign key
+            $table->string('id_bill_order');//foreign key
             $table->bigInteger('price_order')->default(0);
             $table->integer('quantity')->default(0);
             $table->bigInteger('total_price')->default(0);
@@ -31,8 +31,6 @@ class CreateBillOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bill_order_details', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('bill_order_details');
     }
 }

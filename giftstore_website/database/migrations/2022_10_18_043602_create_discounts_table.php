@@ -13,7 +13,7 @@ class CreateDiscountsTable extends Migration
      */
     public function up()
     {
-        Schema::table('discounts', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->string('id_discount')->primary(); //primary key
             $table->string('id_rank');//foreign key
             $table->string('id_cat');//foreign key
@@ -29,8 +29,6 @@ class CreateDiscountsTable extends Migration
      */
     public function down()
     {
-        Schema::table('discounts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('discounts');
     }
 }
