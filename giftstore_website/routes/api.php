@@ -240,5 +240,29 @@ Route::group(['prefix'=>'/product_lists'],function()
     Route::post('/remove-product-list',[ProductListController::class,'removeProductList']);
 });
 
+// API product cat
+Route::group(['prefix'=>'/product_cats'],function()
+{
+    Route::get('/get-all-product-cat-by-status/{status}',[ProductCatController::class,'getAllProductCatByStatus']);
+   
+    Route::post('/save-product-cat',[ProductCatController::class,'saveProductCat']);
+   
+    Route::post('/update-product-cat',[ProductCatController::class,'updateProductCat']);
+   
+    Route::post('/remove-product-cat',[ProductCatController::class,'removeProductCat']);
+});
+
+// API product
+Route::group(['prefix'=>'/products'],function()
+{
+    Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
+   
+    Route::post('/save-product',[ProductController::class,'saveProduct']);
+   
+    Route::post('/update-product',[ProductController::class,'updateProduct']);
+   
+    Route::post('/remove-product',[ProductController::class,'removeProduct']);
+});
+
 
 // End 12 last table

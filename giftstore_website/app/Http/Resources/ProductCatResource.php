@@ -15,7 +15,7 @@ class ProductCatResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            'id_product_cat'=>$this->id_product_cat,
             'product_list'=> new ProductListResource($this -> product_list),
             'name'=>$this->name,
             'slug'=>$this->slug,
@@ -23,8 +23,8 @@ class ProductCatResource extends JsonResource
             'numb'=>$this->numb,
             'description'=>$this->description,
             'status'=>$this->status,
-            'date_created'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }
