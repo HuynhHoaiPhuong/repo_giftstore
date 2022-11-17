@@ -37,20 +37,22 @@ class RoleController extends Controller
     }
     public function updateRole (Request $req)
     {
-        $role= Role::where('id_role',$req->id_role)
+        $result= Role::where('id_role',$req->id_role)
         ->update(['name'=>$req->name]);
-        if($role==1){
-            return Payload::toJson($role,'Completed',200);
+        if($result==1){
+            $role = Role::where('id_role',$req->id_role)->first();
+            return Payload::toJson(new RoleResource($role),'Completed',200);
         }
-        return Payload::toJson($role,'Uncompleted',500);
+        return Payload::toJson(null,'Uncompleted',500);
     }
     public function removeRole (Request $req)
     {
-        $role= Role::where('id_role',$req->id_role)
+        $result= Role::where('id_role',$req->id_role)
         ->update(['status'=>$req->status]);
-        if($role==1){
-            return Payload::toJson($role,'Completed',200);
+        if($result==1){
+            $role = Role::where('id_role',$req->id_role)->first();
+            return Payload::toJson(new RoleResource($role),'Completed',200);
         }
-        return Payload::toJson($role,'Uncompleted',500);
+        return Payload::toJson(null,'Uncompleted',500);
     }
 }
