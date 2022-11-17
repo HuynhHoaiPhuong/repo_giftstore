@@ -9,12 +9,12 @@ class Producer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_producer',
         'name',
         'address',
         'phone',
         'email',
-        'status',
+        'status'
     ];
-    public $timestamp = false;
+    public $timestamps = false;
 }

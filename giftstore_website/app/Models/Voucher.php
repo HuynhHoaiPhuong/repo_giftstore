@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +8,7 @@ class Voucher extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_voucher',
         'code',
         'max_use',
         'max_price',
@@ -18,8 +17,7 @@ class Voucher extends Model
         'description',
         'date_start',
         'date_end',
-        'status',
+        'status'
     ];
-
-    public $timestamp = false;
+    public $timestamps = false;
 }

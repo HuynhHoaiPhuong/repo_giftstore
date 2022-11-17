@@ -19,6 +19,7 @@ class CreateVouchersTable extends Migration
             $table->integer('max_user')->default(0);
             $table->float('max_price')->default(0);
             $table->integer('percent_price')->default(0);
+            $table->float('min_price_pay')->default(0);
             $table->string('description');
             $table->datetime('date_start')->nullable(false);
             $table->datetime('date_end')->nullable(false);

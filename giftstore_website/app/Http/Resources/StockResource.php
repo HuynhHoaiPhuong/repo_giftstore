@@ -15,10 +15,10 @@ class StockResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id_stock' => $this->id_stock,
             'name' => $this->name,
             'address' => $this->address,
-            'status' => $this->status,
+            'status' => $this->status
         ];
 
         // parent::toArray($request);

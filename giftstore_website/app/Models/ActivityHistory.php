@@ -9,16 +9,16 @@ use App\Models\User;
 class ActivityHistory extends Model
 {
     use HasFactory;
+    // protected $table = 'activities_history';
     protected $fillable = [
-        'id',
+        'id_activity_history',
         'id_user',
         'activity',
         'date_created',    
-        'type',
+        'type'
     ];
-    public $timestamp = false;
-
+    public $timestamps = false;
     public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 }

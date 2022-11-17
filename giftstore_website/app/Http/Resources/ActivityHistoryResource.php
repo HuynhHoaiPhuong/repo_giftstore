@@ -15,11 +15,11 @@ class ActivityHistoryResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id_activity_history' => $this->id_activity_history,
             'id_user' => new UserResource($this->id_member),
             'activity' => $this->activity,
             'date_created' => Carbon::parse($this->date_created,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),    
-            'type' => $this->type,
+            'type' => $this->type
         ];
     }
 }

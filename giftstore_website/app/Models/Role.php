@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model as Authenticatable;
 class Role extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'tbl_role';
+    protected $table = 'roles';
 
     protected $fillable=[
-        'id',
+        'id_role',
         'name',
     ];
 }

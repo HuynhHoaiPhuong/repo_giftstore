@@ -10,17 +10,16 @@ class Favorite extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_favorite',
         'id_product',
         'id_member',
         'status',
     ];
-    public $timestamp = false;
-
+    public $timestamps = false;
     public function member(){
-        return $this->belongsTo(Rank::class, 'id_member', 'id');
+        return $this->belongsTo(Member::class, 'id_member', 'id_member');
     }
     public function product(){
-        return $this->belongsTo(Product::class, 'id_product', 'id');
+        return $this->belongsTo(Product::class, 'id_product', 'id_product');
     }
 }

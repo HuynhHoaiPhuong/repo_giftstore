@@ -15,13 +15,13 @@ class BillDetailResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id_bill_detail' => $this->id_bill_detail,
             'id_bill' => new BillResource($this->id_bill),
             'id_product' => new ProductResource($this->id_product),
             'price' => $this->price,
             'quantity' => $this->quantity,
             'discount' => $this->discount,
-            'rate_status' => $this->rate_status,
+            'rate_status' => $this->rate_status
         ];
     }
 }

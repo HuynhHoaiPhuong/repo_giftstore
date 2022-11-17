@@ -11,22 +11,20 @@ class BillOrderDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_bill_order_detail',
         'id_bill_order',
         'id_product',
         'price_order',
         'quantity',
         'total_price',
-        'status',
+        'status'
     ];
-    public $timestamp = false;
-
-
+    public $timestamps = false;
     public function billOrder(){
-        return $this->belongsTo(Bill_Order::class, 'id_bill_order', 'id');
+        return $this->belongsTo(BillOrder::class, 'id_bill_order', 'id_bill_order');
     }
     public function product(){
-        return $this->belongsTo(Product::class, 'id_product', 'id');
+        return $this->belongsTo(Product::class, 'id_product', 'id_product');
     }
 
 }
