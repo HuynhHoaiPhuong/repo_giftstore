@@ -13,7 +13,7 @@ class CreateIdUserAndIdRankToMembers extends Migration
      */
     public function up()
     {
-        Schema::table('mebers', function (Blueprint $table) {
+        Schema::table('members', function (Blueprint $table) {
             $table->foreign('id_user')->references('id_user')->on('users');
             $table->foreign('id_rank')->references('id_rank')->on('ranks');
         });

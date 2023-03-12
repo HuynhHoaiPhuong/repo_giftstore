@@ -29,23 +29,23 @@
 					{{session('success')}}
 			</div>
 		@endif
-			<form action="{{route('save')}}" method="post">
-				@csrf
-				<input type="hidden" class="ggg" name="id_role" value="2">
-				<input type="text" class="ggg" name="username" placeholder="Please Enter Username">
-				<input type="password" class="ggg" name="password" placeholder="Please Enter Password" required="">
-				<input type="password" class="ggg" name="confirm" placeholder="Please Confirm Password" required="">
-				<input type="hidden" class="ggg" name="user_token">
-				<input type="hidden" class="ggg" name="photo" >
-        <input type="text" class="ggg" name="fullname" placeholder="Please Enter Fullname" required="">
-        <input type="text" class="ggg" name="phone" placeholder="Please Enter Phone" required="">
-        <input type="text" class="ggg" name="address" placeholder="Please Enter Address" required="">
-        <input type="text" class="ggg" name="gender" placeholder="Please Enter Gender" required="">
-        <input type="datetime-local" class="ggg" name="birthday" placeholder="Please Enter Birthday" required="">
-        <div class="clearfix"></div>
-        <input type="submit" value="Register" >
-			</form>
-			<p><a href="{{url('/admin/login')}}">Back to Login</a></p>
+		<form action="{{route('save')}}" method="post">
+			@csrf
+			<input type="hidden" class="ggg" name="id_role" value="2">
+			<input type="text" class="ggg" name="username" placeholder="Please Enter Username">
+			<input type="password" class="ggg" name="password" placeholder="Please Enter Password" required="">
+			<input type="password" class="ggg" name="confirm" placeholder="Please Confirm Password" required="">
+			<input type="hidden" class="ggg" name="user_token">
+			<input type="file" class="ggg" name="photo" placeholder="photo">
+	        <input type="text" class="ggg" name="fullname" placeholder="Please Enter Fullname" required="">
+	        <input type="text" class="ggg" name="phone" placeholder="Please Enter Phone" required="">
+	        <input type="text" class="ggg" name="address" placeholder="Please Enter Address" required="">
+	        <input type="text" class="ggg" name="gender" placeholder="Please Enter Gender" required="">
+	        <input type="datetime-local" class="ggg" name="birthday" placeholder="Please Enter Birthday" required="">
+	        <div class="clearfix"></div>
+	        <input type="submit" value="Register" >
+		</form>
+		<p><a href="{{url('/admin/login')}}">Back to Login</a></p>
 	</div>
 	</div>
 	<script src="{{asset('admin/js/bootstrap.js')}}"></script>

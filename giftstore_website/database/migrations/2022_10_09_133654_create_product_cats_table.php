@@ -15,7 +15,7 @@ class CreateProductCatsTable extends Migration
     {
         Schema::create('product_cats', function (Blueprint $table) {
             $table->string('id_product_cat')->primary(); //primary key
-            $table->string('id_list'); //foreign key
+            $table->string('id_product_list'); //foreign key
             $table->integer('numb')->default(0); 
             $table->string('photo')->nullable(false);
             $table->string('name')->unique()->nullable(false);

@@ -38,7 +38,7 @@ class LoginController extends Controller
         ]);
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $data = array();
-        $data['id'] = $request->id_role.$datenow;
+        $data['id_user'] = $request->id_role.$datenow;
         $data['id_role'] = $request->id_role;
         $data['username'] = $request->username;
         $data['password'] = bcrypt($request->password);
@@ -49,7 +49,7 @@ class LoginController extends Controller
         $data['address'] = $request->address;
         $data['gender'] = $request->gender;
         $data['birthday'] = $request->birthday;
-        DB::table('tbl_user')->insert($data); 
+        DB::table('users')->insert($data); 
         return redirect()->route('register')->with('success', 'Created successfully!');
     }
     
