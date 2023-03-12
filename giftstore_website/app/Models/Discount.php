@@ -11,19 +11,18 @@ class Discount extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_discount',
         'id_rank',
         'id_cat',
         'payment_price',    
-        'status',
+        'status'
     ];
-    public $timestamp = false;
-
+    public $timestamps = false;
     public function rank(){
-        return $this->belongsTo(Rank::class, 'id_rank', 'id');
+        return $this->belongsTo(Rank::class, 'id_rank', 'id_rank');
     }
     public function cat(){
-        return $this->belongsTo(ProductCat::class, 'id_cat', 'id');
+        return $this->belongsTo(ProductCat::class, 'id_cat', 'id_product_cat');
     }
 
 }

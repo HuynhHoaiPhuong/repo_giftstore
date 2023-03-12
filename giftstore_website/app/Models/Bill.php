@@ -9,7 +9,7 @@ class Bill extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_bill',
         'id_member', 
         'code_voucher',
         'total_price',
@@ -17,13 +17,13 @@ class Bill extends Model
         'payment',
         'date_order',
         'date_confirm',
-        'status',
+        'status'
     ];
 
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function member(){
-        return $this->belongsTo(Member::class, 'id_member', 'id');
+        return $this->belongsTo(Member::class, 'id_member', 'id_member');
     }
 
 }

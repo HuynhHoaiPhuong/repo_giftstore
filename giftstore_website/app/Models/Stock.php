@@ -9,11 +9,11 @@ class Stock extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_stock',
         'name',
         'address',
-        'status',
+        'status'
     ];
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

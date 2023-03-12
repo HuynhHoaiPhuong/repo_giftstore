@@ -8,15 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     
-    protected $table = 'tbl_user';
+    protected $table = 'users';
     // public $incrementing = false;
     protected $keyType = 'string';
+    protected $primaryKey = 'id_user';
+    public $timestamps = false;
     protected $fillable = [
-        'id',
+        'id_user',
         'id_role',
         'username',
         'password',
@@ -27,13 +30,10 @@ class User extends Authenticatable
         'address',
         'gender',
         'birthday',
-        'status',
+        'status'
     ];
-
-    public $timestamp = false;
-
     public function role(){
-        return $this->belongsTo(Role::class, 'id_role', 'id');
+        return $this->belongsTo(Role::class, 'id_role', 'id_role');
     }
     
 }

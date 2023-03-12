@@ -15,11 +15,11 @@ class DiscountResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id_discount' => $this->id_discount,
             'id_rank' => new RankResource($this->id_rank),
             'id_cat' => new ProductCatResource($this->id_cat),
             'payment_price' => $this->payment_price,
-            'status' => $this->status,
+            'status' => $this->status
         ];
     }
 }

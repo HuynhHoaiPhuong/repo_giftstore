@@ -12,24 +12,24 @@ class BillOrder extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_bill_order',
         'id_producer',
         'id_user',
         'id_stock',
         'quantity',        
         'total_price',
         'date_order',
-        'status',
+        'status'
     ];
-    public $timestamp = false;
+    public $timestamps = false;
 
     public function producer(){
-        return $this->belongsTo(Producer::class, 'id_producer', 'id');
+        return $this->belongsTo(Producer::class, 'id_producer', 'id_producer');
     }
     public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
-    public function sotck(){
-        return $this->belongsTo(Stock::class, 'id_stock', 'id');
+    public function stock(){
+        return $this->belongsTo(Stock::class, 'id_stock', 'id_stock');
     }
 }

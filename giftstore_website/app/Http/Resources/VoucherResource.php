@@ -15,7 +15,7 @@ class VoucherResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'id_voucher' => $this->id_voucher,
             'code' => $this->code,
             'max_use' => $this->max_use,
             'max_price' => $this->max_price,
@@ -24,7 +24,7 @@ class VoucherResource extends JsonResource
             'description' => $this->description,
             'date_start' => $this->date_start,
             'date_end' => $this->date_end,
-            'status' => $this->status,
+            'status' => $this->status
           ];
     }
 }
