@@ -24,7 +24,7 @@ class CartController extends Controller
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
         $cart->fill(
             [
-                'id' => $req -> id_product . $req -> id_member . $datenow,
+                'id_cart' => $req -> id_product . $req -> id_member . $datenow,
                 'id_product' => $req-> id_product,
                 'member_id' => $req->id_member,
                 'quantity' => $req->quantity,

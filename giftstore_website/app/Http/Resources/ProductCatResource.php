@@ -16,7 +16,7 @@ class ProductCatResource extends JsonResource
     {
         return [
             'id_product_cat'=>$this->id_product_cat,
-            'product_list'=> new ProductListResource($this -> product_list),
+            'product_list'=> new ProductListResource($this -> productlist),
             'name'=>$this->name,
             'slug'=>$this->slug,
             'photo'=>$this->photo,

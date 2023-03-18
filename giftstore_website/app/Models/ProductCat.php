@@ -11,19 +11,19 @@ class ProductCat extends Model
     use HasFactory;
     protected $fillable = [
         'id_product_cat',
-        'id_list',
+        'id_product_list',
         'numb',
         'photo',
         'slug',
         'name',
         'description',
-        'date_created',
-        'date_updated',
+        'create_at',
+        'update_at',
     ];
     public function productlist(){
-        return $this->belongsTo(ProductList::class, 'id_list', 'id');
+        return $this->belongsTo(ProductList::class, 'id_product_list', 'id_product_list');
     }
-    public function products(){
-        return $this->hasMany(Product::class,'id_cat','id');
-    }
+    // public function products(){
+    //     return $this->hasMany(Product::class,'id_product_cat','id_product_cat');
+    // }
 }

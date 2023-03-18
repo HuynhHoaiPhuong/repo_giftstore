@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\services\RoleController;
 use App\Http\Controllers\services\RankController;
 use App\Http\Controllers\services\ProductListController;
+use App\Http\Controllers\services\ProductCatController;
 use App\Http\Controllers\services\StockController;
 use App\Http\Controllers\services\StockDetailController;
 use App\Http\Controllers\services\ProducerController;
