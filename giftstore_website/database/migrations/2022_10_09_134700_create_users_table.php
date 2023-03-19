@@ -16,16 +16,16 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->string('id_user')->primary(); //primary key
             $table->string('id_role'); //foreign key
-            $table->string('username')->unique()->nullable(false);
-            $table->string('password')->nullable(false);
-            $table->string('user_token')->unique()->nullable(false);
-            $table->string('photo')->nullable(false);
-            $table->string('fullname')->nullable(false);
-            $table->string('phone')->nullable(false);
-            $table->string('address')->nullable(false);
-            $table->string('gender')->nullable(false);
-            $table->date('birthday')->nullable(false);
-            $table->string('status')->nullable(false)->default('enabled');
+            $table->string('username')->unique();
+            $table->string('password');
+            $table->string('user_token')->unique();
+            $table->string('photo')->nullable(true);
+            $table->string('fullname');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('gender')->nullable(true);
+            $table->date('birthday')->nullable(true);
+            $table->string('status')->default('enabled');
         });
     }
 

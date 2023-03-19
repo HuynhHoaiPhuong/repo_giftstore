@@ -16,8 +16,8 @@ class ProductResource extends JsonResource
     {
         return [
             'id_product'=>$this->id_product,
-            'product_list'=> new ProductListResource($this -> product_list),
-            'product_cat'=> new ProductCatResource($this -> product_cat),
+            'product_list'=> new ProductListResource($this -> productlist),
+            'product_cat'=> new ProductCatResource($this -> productcat),
             'name'=>$this->name,
             'slug'=>$this->slug,
             'photo'=>$this->photo,
@@ -26,8 +26,8 @@ class ProductResource extends JsonResource
             'price'=>$this->price,
             'code'=>$this->code,
             'status'=>$this->status,
-            'date_created'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }

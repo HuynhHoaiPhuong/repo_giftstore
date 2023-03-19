@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('id_member'); //foreign key
             $table->string('id_product'); //foreign key
             $table->integer('quantity')->default(0);
-            $table->bigInteger('price_pay')->nullable(false);
+            $table->bigInteger('price_pay')->nullable(true);
         });
     }
 

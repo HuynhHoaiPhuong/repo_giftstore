@@ -24,6 +24,8 @@ class ProductController extends Controller
         $product->fill(
             [
                 'id_product' =>  "PRODUCT".Carbon::now()->format('ymdhis').rand(1,1000),
+                'id_product_list'=>$req->id_product_list,
+                'id_product_cat'=>$req->id_product_cat,
                 'name'=>$req->name,
                 'slug'=>$req->slug,
                 'photo'=>$req->photo,
@@ -44,6 +46,8 @@ class ProductController extends Controller
             //Key Value // Get e by array...
             ->update(
                 [
+                    'id_product_list'=>$req->id_product_list,
+                    'id_product_cat'=>$req->id_product_cat,
                     'name' => $req->name,
                     'slug'=>$req->slug,
                     'photo'=>$req->photo,

@@ -11,9 +11,9 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'id_list',
-        'id_cat',
+        'id_product',
+        'id_product_list',
+        'id_product_cat',
         'numb',
         'photo',
         'slug',
@@ -25,9 +25,9 @@ class Product extends Model
         'date_updated',
     ];
     public function productlist(){
-        return $this->belongsTo(ProductList::class, 'id_list', 'id');
+        return $this->belongsTo(ProductList::class, 'id_product_list', 'id_product_list');
     }
     public function productcat(){
-        return $this->belongsTo(ProductCat::class, 'id_cat', 'id');
+        return $this->belongsTo(ProductCat::class, 'id_product_cat', 'id_product_cat');
     }
 }

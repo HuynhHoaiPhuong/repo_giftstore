@@ -14,7 +14,7 @@ class CreateIdRoleToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_role')->references('id_role')->on('roles');
+            $table->foreign('id_role')->references('id_role')->on('roles')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

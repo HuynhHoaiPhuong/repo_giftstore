@@ -15,8 +15,8 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->string('id_role')->primary(); //primary key
-            $table->string('name')->unique()->nullable(false);
-            $table->string('status')->nullable(false)->default('enabled');
+            $table->string('name')->unique();
+            $table->string('status')->default('enabled');
             $table->timestamps();
         });
     }

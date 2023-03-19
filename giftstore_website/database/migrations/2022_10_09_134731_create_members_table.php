@@ -18,7 +18,7 @@ class CreateMembersTable extends Migration
             $table->string('id_user'); //foreign key
             $table->string('id_rank'); //foreign key
             $table->integer('current_point')->default(0);
-            $table->string('status')->nullable(false)->default('enabled');
+            $table->string('status')->default('enabled');
             $table->timestamps();
         });
     }

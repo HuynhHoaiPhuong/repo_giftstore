@@ -14,8 +14,8 @@ class CreateIdListAndIdCatToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('id_product_list')->references('id_product_list')->on('product_lists');
-            $table->foreign('id_product_cat')->references('id_product_cat')->on('product_cats');
+            $table->foreign('id_product_list')->references('id_product_list')->on('product_lists')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_product_cat')->references('id_product_cat')->on('product_cats')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

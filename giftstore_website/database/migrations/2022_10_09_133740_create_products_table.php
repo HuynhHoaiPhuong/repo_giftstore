@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('numb')->default(0); 
             $table->string('code')->unique(); //mã sản phẩm
             $table->string('photo');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->unique()->nullable(false);
             $table->string('description');
             $table->bigInteger('price')->nullable(false);

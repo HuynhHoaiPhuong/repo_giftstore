@@ -15,11 +15,11 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->string('id_setting')->primary(); //primary key
-            $table->string('name')->unique()->nullable(false);
-            $table->string('address')->nullable(false);
-            $table->integer('hotline')->nullable(false);
-            $table->integer('phone')->nullable(false);
-            $table->string('email')->nullable(false);
+            $table->string('name')->unique();
+            $table->string('address')->nullable(true);
+            $table->integer('hotline')->nullable(true);
+            $table->integer('phone')->nullable(true);
+            $table->string('email')->nullable(true);
         });
     }
 

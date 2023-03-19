@@ -14,8 +14,8 @@ class CreateIdUserAndIdRankToMembers extends Migration
     public function up()
     {
         Schema::table('members', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id_user')->on('users');
-            $table->foreign('id_rank')->references('id_rank')->on('ranks');
+            $table->foreign('id_user')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_rank')->references('id_rank')->on('ranks')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

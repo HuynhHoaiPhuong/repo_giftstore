@@ -16,12 +16,12 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->string('id_photo')->primary(); //primary key
             $table->integer('numb')->default(0); 
-            $table->string('name')->unique()->nullable(false);
-            $table->string('photo')->nullable(false);
-            $table->string('link')->nullable(false);
-            $table->string('type')->nullable(false);
-            $table->string('act')->nullable(false);
-            $table->string('status')->nullable(false)->default('enabled');
+            $table->string('name')->unique();
+            $table->string('photo');
+            $table->string('link')->nullable(true);
+            $table->string('type');
+            $table->string('act');
+            $table->string('status')->default('enabled');
             $table->timestamps();
         });
     }

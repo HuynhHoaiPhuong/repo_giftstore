@@ -16,11 +16,11 @@ class CreateProductListsTable extends Migration
         Schema::create('product_lists', function (Blueprint $table) {
             $table->string('id_product_list')->primary(); //primary key
             $table->integer('numb')->default(0); 
-            $table->string('photo')->nullable(false);
-            $table->string('name')->unique()->nullable(false);
-            $table->string('slug')->unique()->nullable(false);
-            $table->string('description')->nullable(false);
-            $table->string('status')->nullable(false)->default("enabled");
+            $table->string('photo')->nullable(true);
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->string('description')->nullable(true);
+            $table->string('status')->default("enabled");
             $table->timestamps();
         });
     }

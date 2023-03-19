@@ -17,11 +17,11 @@ class CreateProductCatsTable extends Migration
             $table->string('id_product_cat')->primary(); //primary key
             $table->string('id_product_list'); //foreign key
             $table->integer('numb')->default(0); 
-            $table->string('photo')->nullable(false);
-            $table->string('name')->unique()->nullable(false);
-            $table->string('slug')->unique()->nullable(false);
-            $table->string('description')->nullable(false);
-            $table->string('status')->nullable(false)->default("enabled");
+            $table->string('photo')->nullable(true);
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->string('description')->nullable(true);
+            $table->string('status')->default("enabled");
             $table->timestamps();
         });
     }

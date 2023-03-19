@@ -23,7 +23,4 @@ class ProductCat extends Model
     public function productlist(){
         return $this->belongsTo(ProductList::class, 'id_product_list', 'id_product_list');
     }
-    // public function products(){
-    //     return $this->hasMany(Product::class,'id_product_cat','id_product_cat');
-    // }
 }
