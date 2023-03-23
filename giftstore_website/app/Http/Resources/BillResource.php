@@ -15,7 +15,7 @@ class BillResource extends JsonResource
     {
         return [
             'id_bill' => $this->id_bill,
-            'member' => new ProducerResource($this->member),
+            'member' => new MemberResource($this->member),
             'code_voucher' => $this->code_voucher,
             'total_price' => $this->total_price,
             'total_quantity' => $this->total_quantity,
