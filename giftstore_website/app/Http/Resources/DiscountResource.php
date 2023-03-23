@@ -16,9 +16,9 @@ class DiscountResource extends JsonResource
     {
         return [
             'id_discount' => $this->id_discount,
-            'id_rank' => new RankResource($this->id_rank),
-            'id_cat' => new ProductCatResource($this->id_cat),
-            'payment_price' => $this->payment_price,
+            'rank' => new RankResource($this->rank),
+            'product_cat' => new ProductCatResource($this->productCat),
+            'percent_price' => $this->percent_price,
             'status' => $this->status
         ];
     }

@@ -9,6 +9,7 @@ use App\Models\Product;
 class StockDetail extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $fillable = [
         'id_stock_detail',
         'id_stock',
@@ -16,11 +17,10 @@ class StockDetail extends Model
         'quantity',
         'price_pay',
         'total_price',
-        'date_created',
-        'date_updated',
-        'status'
+        'status',
+        'created_at',
+        'updated_at',
     ];
-    public $timestamps = false;
     public function stock(){
         return $this->belongsTo(Stock::class, 'id_stock', 'id_stock');
     }

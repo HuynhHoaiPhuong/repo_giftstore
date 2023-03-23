@@ -9,17 +9,17 @@ use App\Models\Product;
 class Favorite extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_favorite',
         'id_product',
         'id_member',
         'status',
     ];
-    public $timestamps = false;
-    public function member(){
-        return $this->belongsTo(Member::class, 'id_member', 'id_member');
-    }
     public function product(){
         return $this->belongsTo(Product::class, 'id_product', 'id_product');
+    }
+    public function member(){
+        return $this->belongsTo(Member::class, 'id_member', 'id_member');
     }
 }

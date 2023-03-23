@@ -16,10 +16,11 @@ class ActivityHistoryResource extends JsonResource
     {
         return [
             'id_activity_history' => $this->id_activity_history,
-            'id_user' => new UserResource($this->id_member),
+            'user' => new UserResource($this->user),
             'activity' => $this->activity,
-            'date_created' => Carbon::parse($this->date_created,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),    
-            'type' => $this->type
+            'type' => $this->type,
+            'created_at' => Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),  
+            'updated_at' => Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),    
         ];
     }
 }

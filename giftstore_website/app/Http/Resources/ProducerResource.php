@@ -15,12 +15,12 @@ class ProducerResource extends JsonResource
     public function toArray($request)
     {
         return [
-        'id_producer' => $this->id_producer,
-        'name' => $this->name,
-        'address' => $this->address,
-        'phone' => $this->phone,
-        'email' => $this->email,
-        'status' => $this->status
-    ];
+            'id_producer' => $this->id_producer,
+            'name' => $this->name,
+            'address' => $this->address,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'status' => $this->status
+        ];
     }
 }

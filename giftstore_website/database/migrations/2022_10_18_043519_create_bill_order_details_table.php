@@ -15,8 +15,8 @@ class CreateBillOrderDetailsTable extends Migration
     {
         Schema::create('bill_order_details', function (Blueprint $table) {
             $table->string('id_bill_order_detail')->primary(); //primary key
-            $table->string('id_product');//foreign key
             $table->string('id_bill_order');//foreign key
+            $table->string('id_product');//foreign key
             $table->bigInteger('price_order')->default(0);
             $table->integer('quantity')->default(0);
             $table->bigInteger('total_price')->default(0);

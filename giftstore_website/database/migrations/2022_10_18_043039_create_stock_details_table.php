@@ -21,8 +21,8 @@ class CreateStockDetailsTable extends Migration
             $table->float('price_pay')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
-            $table->datetime('date_created')->nullable(false);
-            $table->datetime('date_updated')->nullable(false);
+            $table->datetime('created_at');
+            $table->datetime('updated_at');
         });
     }
 

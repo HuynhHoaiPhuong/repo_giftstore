@@ -10,17 +10,17 @@ use App\Models\Product;
 class BillDetail extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_bill_detail',
         'id_bill',
         'id_product',
-        'price',
         'quantity',
+        'price',
         'discount',
-        'rate_status'
+        'status',
     ];
-    public $timestamps = false;
-
+    
     public function bill(){
         return $this->belongsTo(Bill::class, 'id_bill', 'id_bill');
     }

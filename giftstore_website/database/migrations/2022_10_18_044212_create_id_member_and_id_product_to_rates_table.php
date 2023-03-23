@@ -14,8 +14,8 @@ class CreateIdMemberAndIdProductToRatesTable extends Migration
     public function up()
     {
         Schema::table('rates', function (Blueprint $table) {
-            $table->foreign('id_member')->references('id_member')->on('members');
-            $table->foreign('id_product')->references('id_product')->on('products');
+            $table->foreign('id_member')->references('id_member')->on('members')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_product')->references('id_product')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

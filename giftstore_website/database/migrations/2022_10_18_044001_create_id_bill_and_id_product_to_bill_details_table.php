@@ -14,8 +14,8 @@ class CreateIdBillAndIdProductToBillDetailsTable extends Migration
     public function up()
     {
         Schema::table('bill_details', function (Blueprint $table) {
-            $table->foreign('id_bill')->references('id_bill')->on('bills'); 
-            $table->foreign('id_product')->references('id_product')->on('products'); 
+            $table->foreign('id_bill')->references('id_bill')->on('bills')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_product')->references('id_product')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

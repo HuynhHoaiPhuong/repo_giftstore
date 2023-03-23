@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_stock',
         'name',
         'address',
         'status'
     ];
-
-    public $timestamps = false;
 }

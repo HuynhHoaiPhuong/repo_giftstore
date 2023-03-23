@@ -11,6 +11,7 @@ use App\Models\Stock;
 class BillOrder extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_bill_order',
         'id_producer',
@@ -18,11 +19,10 @@ class BillOrder extends Model
         'id_stock',
         'quantity',        
         'total_price',
+        'status',
         'date_order',
-        'status'
     ];
-    public $timestamps = false;
-
+    
     public function producer(){
         return $this->belongsTo(Producer::class, 'id_producer', 'id_producer');
     }

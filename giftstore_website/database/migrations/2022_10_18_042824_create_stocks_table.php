@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->string('id_stock')->primary(); //primary key
-            $table->string('name')->unique()->nullable(false);
+            $table->string('name')->unique();
             $table->string('address');
             $table->string('status')->default('enabled');
         });

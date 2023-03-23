@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Voucher extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_voucher',
         'code',
@@ -15,9 +16,8 @@ class Voucher extends Model
         'percent_price',
         'min_price_pay',
         'description',
+        'status',
         'date_start',
         'date_end',
-        'status'
     ];
-    public $timestamps = false;
 }

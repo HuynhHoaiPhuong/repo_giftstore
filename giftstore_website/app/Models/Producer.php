@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Producer extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_producer',
         'name',
@@ -16,5 +17,5 @@ class Producer extends Model
         'email',
         'status'
     ];
-    public $timestamps = false;
+    
 }

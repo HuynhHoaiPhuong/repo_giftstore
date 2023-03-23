@@ -8,6 +8,8 @@ use App\Models\Member;
 class Bill extends Model
 {
     use HasFactory;
+    protected $table = 'bills';
+    public $timestamps = false;
     protected $fillable = [
         'id_bill',
         'id_member', 
@@ -15,12 +17,10 @@ class Bill extends Model
         'total_price',
         'total_quantity',
         'payment',
+        'status',
         'date_order',
         'date_confirm',
-        'status'
     ];
-
-    public $timestamps = false;
 
     public function member(){
         return $this->belongsTo(Member::class, 'id_member', 'id_member');

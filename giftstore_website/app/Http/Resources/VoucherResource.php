@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class VoucherResource extends JsonResource
 {
@@ -22,9 +23,9 @@ class VoucherResource extends JsonResource
             'percent_price' => $this->percent_price,
             'min_price_pay' => $this->min_price_pay,
             'description' => $this->description,
-            'date_start' => $this->date_start,
-            'date_end' => $this->date_end,
-            'status' => $this->status
+            'status' => $this->status,
+            'date_start' => Carbon::parse($this->date_start,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'date_end' => Carbon::parse($this->date_end,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
           ];
     }
 }

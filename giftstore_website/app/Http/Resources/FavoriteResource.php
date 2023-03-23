@@ -16,8 +16,8 @@ class FavoriteResource extends JsonResource
     {
         return [
             'id_favorite' => $this->id_favorite,
-            'id_product'=> new ProductResource($this->id_product),
-            'id_member'=> new MemberResource($this->id_member),
+            'product'=> new ProductResource($this->product),
+            'member'=> new MemberResource($this->member),
             'status' => $this->status
         ];
     }

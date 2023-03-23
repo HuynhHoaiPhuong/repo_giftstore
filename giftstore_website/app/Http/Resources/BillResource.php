@@ -15,14 +15,14 @@ class BillResource extends JsonResource
     {
         return [
             'id_bill' => $this->id_bill,
-            'id_member' => new ProducerResource($this->id_member),
+            'member' => new ProducerResource($this->member),
             'code_voucher' => $this->code_voucher,
             'total_price' => $this->total_price,
             'total_quantity' => $this->total_quantity,
             'payment' => $this->payment,
-            'date_order' => Carbon::parse($this->date_order,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),  
-            'date_confirm' => Carbon::parse($this->date_confirm,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),  
-            'status' => $this->status
+            'status' => $this->status,
+            'date_order' => Carbon::parse($this->date_order,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'date_confirm' => Carbon::parse($this->date_confirm,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
         ];
     }
 }

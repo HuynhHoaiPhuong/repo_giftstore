@@ -10,6 +10,7 @@ use App\Models\Product;
 class BillOrderDetail extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
         'id_bill_order_detail',
         'id_bill_order',
@@ -19,7 +20,7 @@ class BillOrderDetail extends Model
         'total_price',
         'status'
     ];
-    public $timestamps = false;
+    
     public function billOrder(){
         return $this->belongsTo(BillOrder::class, 'id_bill_order', 'id_bill_order');
     }

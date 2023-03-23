@@ -15,14 +15,14 @@ class StockDetailResource extends JsonResource
     {
         return [
             'id_stock_detail' => $this->id_stock_detail,
-            'id_stock'=> new ProductResource($this->id_product),
-            'id_product'=> new ProductResource($this->id_product),
+            'stock' => new StockResource($this->stock),
+            'product' => new ProductResource($this->product),
             'quantity' => $this->quantity,
             'price_pay' => $this->price_pay,
             'total_price' => $this->total_price,
-            'date_created' => Carbon::parse($this->date_created,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated' => Carbon::parse($this->date_updated,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'status' => $this->status
+            'status' => $this->status,
+            'created_at' => Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at' => Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
         ];
     }
 }

@@ -16,12 +16,12 @@ class BillDetailResource extends JsonResource
     {
         return [
             'id_bill_detail' => $this->id_bill_detail,
-            'id_bill' => new BillResource($this->id_bill),
-            'id_product' => new ProductResource($this->id_product),
+            'bill' => new BillResource($this->bill),
+            'product' => new ProductResource($this->product),
             'price' => $this->price,
             'quantity' => $this->quantity,
             'discount' => $this->discount,
-            'rate_status' => $this->rate_status
+            'status' => $this->status,
         ];
     }
 }

@@ -18,10 +18,7 @@ class StockResource extends JsonResource
             'id_stock' => $this->id_stock,
             'name' => $this->name,
             'address' => $this->address,
-            'status' => $this->status
+            'status' => $this->status,
         ];
-
-        // parent::toArray($request);
-
     }
 }

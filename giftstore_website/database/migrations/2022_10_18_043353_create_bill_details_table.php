@@ -20,7 +20,7 @@ class CreateBillDetailsTable extends Migration
             $table->integer('quantity')->default(0);
             $table->bigInteger('price')->default(0);
             $table->float('discount')->default(0);
-            $table->string('rate_status');
+            $table->string('status')->default('enabled');
         });
     }
 

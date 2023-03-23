@@ -14,9 +14,9 @@ class CreateIdProducerAndIdUserAndIdStockToBillOrdersTable extends Migration
     public function up()
     {
         Schema::table('bill_orders', function (Blueprint $table) {
-            $table->foreign('id_producer')->references('id_producer')->on('producers');
-            $table->foreign('id_user')->references('id_user')->on('users'); 
-            $table->foreign('id_stock')->references('id_stock')->on('stocks'); 
+            $table->foreign('id_producer')->references('id_producer')->on('producers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_user')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_stock')->references('id_stock')->on('stocks')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

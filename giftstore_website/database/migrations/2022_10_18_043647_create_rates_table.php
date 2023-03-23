@@ -19,9 +19,9 @@ class CreateRatesTable extends Migration
             $table->string('id_product');//foreign key
             $table->integer('star')->default(5);
             $table->string('comment');
-            $table->datetime('date_created');
             $table->integer('numb_like')->default(0);
             $table->string('status')->default('enabled');
+            $table->datetime('created_at');
         });
     }
 

@@ -18,10 +18,10 @@ class CreateBillOrdersTable extends Migration
             $table->string('id_producer');//foreign key
             $table->string('id_user');//foreign key
             $table->string('id_stock');//foreign key
-            $table->datetime('date_order');
             $table->integer('quantity')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
+            $table->datetime('date_order');
         });
     }
 

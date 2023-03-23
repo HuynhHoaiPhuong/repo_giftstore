@@ -9,6 +9,7 @@ use App\Models\Product;
 class Rate extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $fillable = [
         'id_rate',
         'id_member',
@@ -16,11 +17,9 @@ class Rate extends Model
         'star',
         'comment',
         'numb_like',
-        'date_created',
-        'status'
+        'status',
+        'created_at', 
     ];
-    public $timestamps = false;
-
     public function member(){
         return $this->belongsTo(Member::class, 'id_member', 'id_member');
     }
