@@ -4,70 +4,71 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\StaticPage;
 use App\Http\Resources\StaticPageResource;
 use Carbon\Carbon;
 use App\Http\Payload;
 
 class StaticPageController extends Controller
 {
-    public function getAllProductByStatus($status)
+    public function getAllStaticByStatus($status)
     {
-        $products = Product::where('status',$status)->get();
-         if($products->isEmpty())
+        $statics = Static::where('status',$status)->get();
+         if($statics->isEmpty())
             return Payload::toJson(null,"Data Not Found",404);   
-        return Payload::toJson(ProductResource::collection($products),"Request Successfully",200);
+        return Payload::toJson(StaticPageResource::collection($statics),"Request Successfully",200);
     }
 
-    public function saveProduct(Request $req)
+    public function saveStatic(Request $req)
     {
-        $product= new Product();
-        $product->fill(
+        $static= new StaticPage();
+        $static->fill(
             [
-                'id_product' =>  "PRODUCT".Carbon::now()->format('ymdhis').rand(1,1000),
+                'id_static' =>  "STC".Carbon::now()->format('ymdhis').rand(1,1000),
                 'name'=>$req->name,
                 'slug'=>$req->slug,
                 'photo'=>$req->photo,
                 'numb'=>$req->numb,
                 'description'=>$req->description,
-                'price'=>$req->price,
-                'code'=>$req->code
+                'content'=>$req->content,
+                'type'=>$req->type
             ]
         );
-        $product->save();
-        $product = Product::where('id_product',$product->id_product)->first();
-        return Payload::toJson(new ProductResource($product),"Create Successfully",201);
+        $static->save();
+        $static = Static::where('id_static',$static->id_static)->first();
+        return Payload::toJson(new StaticPageResource($static),"Create Successfully",201);
     }
 
-    public function updateProduct(Request $req)
+    public function updateStatic(Request $req)
     {
-        $result = Product::where('id_product', $req -> id_product)
+        $result = Static::where('id_static', $req -> id_static)
             //Key Value // Get e by array...
             ->update(
                 [
-                    'name' => $req->name,
+                    'name'=>$req->name,
                     'slug'=>$req->slug,
                     'photo'=>$req->photo,
                     'numb'=>$req->numb,
                     'description'=>$req->description,
-                    'price'=>$req->price,
-                    'code'=>$req->code
+                    'content'=>$req->content,
+                    'type'=>$req->type
                 ],
             );  
         if($result == 1){
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Update Successfully",202);
+            $static = Static::where('id_static',$req->id_static)->first();
+            return Payload::toJson(new StaticPageResource($static),"Update Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }
 
-    public function removeProduct(Request $req)
+    public function removeStatic(Request $req)
     {
-        $result = Product::where('id_product', $req -> id_product)
+        $result = Static::where('id_static', $req -> id_static)
              ->update(['status'=> $req -> status]);
         if($result == 1)
         {
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Remove Successfully",202);
+            $static = Static::where('id_static',$req->id_static)->first();
+            return Payload::toJson(new StaticPageResource($static),"Remove Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }

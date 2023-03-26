@@ -15,7 +15,7 @@ class PhotoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            'id_photo'=>$this->id_photo,
             'name'=>$this->name,
             'link'=>$this->link,
             'photo'=>$this->photo,
@@ -23,8 +23,8 @@ class PhotoResource extends JsonResource
             'type'=>$this->type,
             'act'=>$this->act,
             'status'=>$this->status,
-            'date_created'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }

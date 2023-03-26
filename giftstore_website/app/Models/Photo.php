@@ -9,7 +9,7 @@ class Photo extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_photo',
         'numb',
         'photo',
         'link',
@@ -17,7 +17,7 @@ class Photo extends Model
         'type',
         'act',
         'status',
-        'date_created',
-        'date_updated'
+        'created_at',
+        'updated_at'
     ];
 }

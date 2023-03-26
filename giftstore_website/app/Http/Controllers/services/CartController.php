@@ -26,7 +26,7 @@ class CartController extends Controller
             [
                 'id_cart' => $req -> id_product . $req -> id_member . $datenow,
                 'id_product' => $req-> id_product,
-                'member_id' => $req->id_member,
+                'id_member' => $req->id_member,
                 'quantity' => $req->quantity,
                 'price_pay' =>$req->price_pay,
             ]
@@ -36,5 +36,27 @@ class CartController extends Controller
 
         return Payload::toJson(new CartResource($cart),"Create Successfully",201); 
 
+    }
+
+    public function removeCart(Request $req){
+        $cart = Cart::where('id_cart',$req->id_cart)->delete();
+        return Payload::toJson(true,"Remove Successfully",202);
+    }
+
+    public function updateQuantityInCart(Request $req){
+
+        $cart = Cart::where('id_cart',$req->id_cart)->update(['quantity'=>$req->quantity]);
+
+        if($cart==1)
+        {
+            return Payload::toJson($cart,'Completed',202);
+        }
+        return Payload::toJson($cart,'Uncomleted',500);
+    }
+
+    public function removeAllCart(Request $req){
+        $member = Member::where('id_member',$req->id_member)->first();
+        $cart = Cart::where('id_member',$member->id_member)->delete();
+        return Payload::toJson(true,"Remove Successfully",202);
     }
 }

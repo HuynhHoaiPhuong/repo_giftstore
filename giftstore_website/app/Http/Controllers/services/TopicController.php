@@ -4,70 +4,71 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Topic;
 use App\Http\Resources\TopicResource;
 use Carbon\Carbon;
 use App\Http\Payload;
 
 class TopicController extends Controller
 {
-    public function getAllProductByStatus($status)
+    public function getAllTopicByStatus($status)
     {
-        $products = Product::where('status',$status)->get();
-         if($products->isEmpty())
+        $topics = Topic::where('status',$status)->get();
+         if($topics->isEmpty())
             return Payload::toJson(null,"Data Not Found",404);   
-        return Payload::toJson(ProductResource::collection($products),"Request Successfully",200);
+        return Payload::toJson(TopicResource::collection($topics),"Request Successfully",200);
     }
 
-    public function saveProduct(Request $req)
+    public function saveTopic(Request $req)
     {
-        $product= new Product();
-        $product->fill(
+        $topic= new Topic();
+        $topic->fill(
             [
-                'id_product' =>  "PRODUCT".Carbon::now()->format('ymdhis').rand(1,1000),
+                'id_topic' =>  "Topic".Carbon::now()->format('ymdhis').rand(1,1000),
                 'name'=>$req->name,
                 'slug'=>$req->slug,
                 'photo'=>$req->photo,
                 'numb'=>$req->numb,
                 'description'=>$req->description,
-                'price'=>$req->price,
-                'code'=>$req->code
+                'content'=>$req->content,
+                'type'=>$req->type
             ]
         );
-        $product->save();
-        $product = Product::where('id_product',$product->id_product)->first();
-        return Payload::toJson(new ProductResource($product),"Create Successfully",201);
+        $topic->save();
+        $topic = Topic::where('id_topic',$topic->id_topic)->first();
+        return Payload::toJson(new TopicResource($topic),"Create Successfully",201);
     }
 
-    public function updateProduct(Request $req)
+    public function updateTopic(Request $req)
     {
-        $result = Product::where('id_product', $req -> id_product)
+        $result = Topic::where('id_topic', $req -> id_topic)
             //Key Value // Get e by array...
             ->update(
                 [
-                    'name' => $req->name,
+                    'name'=>$req->name,
                     'slug'=>$req->slug,
                     'photo'=>$req->photo,
                     'numb'=>$req->numb,
                     'description'=>$req->description,
-                    'price'=>$req->price,
-                    'code'=>$req->code
+                    'content'=>$req->content,
+                    'type'=>$req->type
                 ],
             );  
         if($result == 1){
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Update Successfully",202);
+            $topic = Topic::where('id_topic',$req->id_topic)->first();
+            return Payload::toJson(new TopicResource($topic),"Update Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }
 
-    public function removeProduct(Request $req)
+    public function removeTopic(Request $req)
     {
-        $result = Product::where('id_product', $req -> id_product)
+        $result = Topic::where('id_topic', $req -> id_topic)
              ->update(['status'=> $req -> status]);
         if($result == 1)
         {
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Remove Successfully",202);
+            $topic = Topic::where('id_topic',$req->id_topic)->first();
+            return Payload::toJson(new TopicResource($topic),"Remove Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }

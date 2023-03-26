@@ -4,6 +4,7 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Http\Resources\ProductResource;
 use Carbon\Carbon;
 use App\Http\Payload;

@@ -9,7 +9,7 @@ class Setting extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_setting',
         'name',
         'address',
         'email',

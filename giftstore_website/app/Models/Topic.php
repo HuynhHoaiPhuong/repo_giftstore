@@ -9,7 +9,7 @@ class Topic extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_topic',
         'numb',
         'photo',
         'slug',
@@ -18,7 +18,7 @@ class Topic extends Model
         'content',
         'type',
         'status',
-        'date_created',
-        'date_updated'
+        'created_at',
+        'updated_at'
     ];
 }
