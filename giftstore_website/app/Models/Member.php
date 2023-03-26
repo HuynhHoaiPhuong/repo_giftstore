@@ -11,18 +11,18 @@ class Member extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_member',
         'id_user',
         'id_rank',
         'current_point',
         'status',
-        'date_created',
-        'date_updated'
+        'created_at',
+        'updated_at'
     ];
     public function user(){
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
     public function rank(){
-        return $this->belongsTo(Rank::class, 'id_rank', 'id');
+        return $this->belongsTo(Rank::class, 'id_rank', 'id_rank');
     }
 }

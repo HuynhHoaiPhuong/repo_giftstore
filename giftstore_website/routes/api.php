@@ -4,8 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\services\RoleController;
 use App\Http\Controllers\services\RankController;
+use App\Http\Controllers\services\PhotoController;
+use App\Http\Controllers\services\ProductController;
 use App\Http\Controllers\services\ProductListController;
 use App\Http\Controllers\services\ProductCatController;
+use App\Http\Controllers\services\StaticPageController;
+use App\Http\Controllers\services\CartController;
+use App\Http\Controllers\services\TopicController;
+use App\Http\Controllers\services\SettingController;
 use App\Http\Controllers\services\StockController;
 use App\Http\Controllers\services\StockDetailController;
 use App\Http\Controllers\services\ProducerController;
@@ -19,6 +25,7 @@ use App\Http\Controllers\services\FavoriteController;
 use App\Http\Controllers\services\ActivityHistoryController;
 use App\Http\Controllers\services\RateController;
 use App\Http\Controllers\services\UserController;
+use App\Http\Controllers\services\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,12 +212,83 @@ Route::group(['prefix'=>'/products'],function()
     Route::post('/remove-product',[ProductController::class,'removeProduct']);
 });
 
+// API user
 Route::group(['prefix'=>'/users'],function()
 {
     Route::get('/get-all-user-by-status/{status}',[UserController::class,'getAllUserByStatus']);
     Route::post('/save-user',[UserController::class,'saveUser']);
     Route::post('/update-user',[UserController::class,'updateUser']);
-    Route::post('/remove-user/{id}',[UserController::class,'removeUser']);
+    Route::post('/remove-user',[UserController::class,'removeUser']);
+});
+
+// API cart
+Route::group(['prefix'=>'/carts'],function()
+{
+    Route::get('/get-all-cart-by-id-member/{id_member}',[CartController::class,'getAllCartByIdMember']);
+    Route::post('/save-cart',[CartController::class,'saveCart']);
+    Route::post('/update-quantity-in-cart',[CartController::class,'updateQuantityInCart']);
+    Route::post('/remove-cart',[CartController::class,'removeCart']);
+    Route::post('/remove-all-cart',[CartController::class,'removeAllCart']);
+});
+
+// API setting
+Route::group(['prefix'=>'/settings'],function()
+{
+    Route::get('/get-all-setting-by-status/{status}',[SettingController::class,'getAllSettingByStatus']);
+   
+    Route::post('/save-setting',[SettingController::class,'saveSetting']);
+   
+    Route::post('/update-setting',[SettingController::class,'updateSetting']);
+   
+    Route::post('/remove-setting',[SettingController::class,'removeSetting']);
+});
+
+// API static
+Route::group(['prefix'=>'/statics'],function()
+{
+    Route::get('/get-all-static-by-status/{status}',[StaticPageController::class,'getAllStaticByStatus']);
+   
+    Route::post('/save-static',[StaticPageController::class,'saveStatic']);
+   
+    Route::post('/update-static',[StaticPageController::class,'updateStatic']);
+   
+    Route::post('/remove-static',[StaticPageController::class,'removeStatic']);
+});
+
+// API topic
+Route::group(['prefix'=>'/topics'],function()
+{
+    Route::get('/get-all-topic-by-status/{status}',[TopicController::class,'getAllTopicByStatus']);
+   
+    Route::post('/save-topic',[TopicController::class,'saveTopic']);
+   
+    Route::post('/update-topic',[TopicController::class,'updateTopic']);
+   
+    Route::post('/remove-topic',[TopicController::class,'removeTopic']);
+});
+
+// API photo
+Route::group(['prefix'=>'/photos'],function()
+{
+    Route::get('/get-all-photo-by-status/{status}',[PhotoController::class,'getAllPhotoByStatus']);
+   
+    Route::post('/save-photo',[PhotoController::class,'savePhoto']);
+   
+    Route::post('/update-photo',[PhotoController::class,'updatePhoto']);
+   
+    Route::post('/remove-photo',[PhotoController::class,'removePhoto']);
+});
+
+// API member
+Route::group(['prefix'=>'/members'],function()
+{
+    Route::get('/get-all-member-by-status/{status}',[MemberController::class,'getAllMemberByStatus']);
+   
+    Route::post('/save-member',[MemberController::class,'saveMember']);
+   
+    Route::post('/update-current-point-member',[MemberController::class,'updateCurrentPointMember']);
+   
+    Route::post('/remove-member',[MemberController::class,'removeMember']);
 });
 
 // End 12 last table

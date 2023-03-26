@@ -15,13 +15,13 @@ class MemberResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            'id_member'=>$this->id,
             'user'=> new UserResource($this -> user),
             'rank'=> new RankResource($this -> rank),
             'current_point'=>$this->current_point,
             'status'=>$this->status,
-            'date_created'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }

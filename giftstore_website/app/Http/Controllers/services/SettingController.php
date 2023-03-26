@@ -4,6 +4,7 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Setting;
 use App\Http\Resources\SettingResource;
 use Carbon\Carbon;
 use App\Http\Payload;
@@ -20,54 +21,50 @@ class SettingController extends Controller
 
     public function saveSetting(Request $req)
     {
-        $product= new Setting();
-        $product->fill(
+        $setting= new Setting();
+        $setting->fill(
             [
-                'id_product' =>  "PRODUCT".Carbon::now()->format('ymdhis').rand(1,1000),
+                'id_setting' =>  "SETTING".Carbon::now()->format('ymdhis').rand(1,1000),
                 'name'=>$req->name,
-                'slug'=>$req->slug,
-                'photo'=>$req->photo,
-                'numb'=>$req->numb,
-                'description'=>$req->description,
-                'price'=>$req->price,
-                'code'=>$req->code
+                'address'=>$req->address,
+                'email'=>$req->email,
+                'hotline'=>$req->hotline,
+                'phone'=>$req->phone
             ]
         );
-        $product->save();
-        $product = Setting::where('id_product',$product->id_product)->first();
-        return Payload::toJson(new SettingResource($product),"Create Successfully",201);
+        $setting->save();
+        $setting = Setting::where('id_setting',$setting->id_setting)->first();
+        return Payload::toJson(new SettingResource($setting),"Create Successfully",201);
     }
 
     public function updateSetting(Request $req)
     {
-        $result = Setting::where('id_product', $req -> id_product)
+        $result = Setting::where('id_setting', $req -> id_setting)
             //Key Value // Get e by array...
             ->update(
                 [
-                    'name' => $req->name,
-                    'slug'=>$req->slug,
-                    'photo'=>$req->photo,
-                    'numb'=>$req->numb,
-                    'description'=>$req->description,
-                    'price'=>$req->price,
-                    'code'=>$req->code
+                    'name'=>$req->name,
+                    'address'=>$req->address,
+                    'email'=>$req->email,
+                    'hotline'=>$req->hotline,
+                    'phone'=>$req->phone
                 ],
             );  
         if($result == 1){
-            $product = Setting::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new SettingResource($product),"Update Successfully",202);
+            $setting = Setting::where('id_setting',$req->id_setting)->first();
+            return Payload::toJson(new SettingResource($setting),"Update Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }
 
     public function removeSetting(Request $req)
     {
-        $result = Setting::where('id_product', $req -> id_product)
+        $result = Setting::where('id_setting', $req -> id_setting)
              ->update(['status'=> $req -> status]);
         if($result == 1)
         {
-            $product = Setting::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new SettingResource($product),"Remove Successfully",202);
+            $setting = Setting::where('id_setting',$req->id_setting)->first();
+            return Payload::toJson(new SettingResource($setting),"Remove Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
     }

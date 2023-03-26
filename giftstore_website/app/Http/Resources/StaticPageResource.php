@@ -15,7 +15,7 @@ class StaticPageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
+            'id_static'=>$this->id_static,
             'name'=>$this->name,
             'slug'=>$this->slug,
             'photo'=>$this->photo,
@@ -24,8 +24,8 @@ class StaticPageResource extends JsonResource
             'content'=>$this->content,
             'type'=>$this->type,
             'status'=>$this->status,
-            'date_created'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_updated'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }

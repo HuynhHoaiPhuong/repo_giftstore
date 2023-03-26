@@ -9,7 +9,7 @@ class StaticPage extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
+        'id_static',
         'numb',
         'photo',
         'slug',
@@ -18,7 +18,7 @@ class StaticPage extends Model
         'content',
         'type',
         'status',
-        'date_created',
-        'date_updated'
+        'created_at',
+        'updated_at'
     ];
 }
