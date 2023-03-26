@@ -30,7 +30,7 @@ class BillOrderController extends Controller
             'id_stock' => $request->id_stock, 
             'quantity' => $request->quantity, 
             'total_price' => $request->total_price, 
-            // 'date_order' => $request->date_order, 
+            'date_order' => $request->date_order, 
         ]);
         if($billOrders->save() == 1){
             $BillOrder=BillOrder::where('id_bill_order', $billOrders->id_bill_order)->first();

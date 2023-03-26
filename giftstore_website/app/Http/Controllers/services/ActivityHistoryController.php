@@ -11,7 +11,7 @@ use App\Http\Resources\ActivityHistoryResource;
 
 class ActivityHistoryController extends Controller
 {
-    public function getAllActivityHistoryByStatus ($id)
+    public function getAllActivityHistoryByStatus($id)
     {
         $activitiesHistory = ActivityHistory::where('id_activity_history', $id)->get();
         if($activitiesHistory->isEmpty())

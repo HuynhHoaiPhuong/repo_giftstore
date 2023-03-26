@@ -27,7 +27,6 @@ class FavoriteController extends Controller
             'id_favorite' => $request->id_favorite, 
             'id_product' => $request->id_product, 
             'id_member' => $request->id_member, 
-            'status' => $request->status
         ]);
         if($favorites->save()==1){
             $favorites = Favorite::where('id_favorite', $favorites->id_favorite)->first();

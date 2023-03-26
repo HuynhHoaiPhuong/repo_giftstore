@@ -121,10 +121,11 @@ Route::group(['prefix'=>'/vouchers'],function() {
 });
 
 //Activity-History-Api
-Route::group(['prefix'=>'/acitvities-history'],function() {
+Route::group(['prefix'=>'/activities-history'],function() {
     Route::get('/get-all-activity-history-by-status/{status}',[activityHistoryController::class,'getAllActivityHistoryByStatus']);
-    Route::post('/save-activity-history',[activityHistoryController::class,'saveActivityHistory']);
-    Route::post('/update-activity-history',[activityHistoryController::class,'updateActivityHistory']);
+    Route::post('/save-activity-history',[activityHistoryController::class,'store']);
+    Route::post('/update-activity-history',[activityHistoryController::class,'update']);
+    Route::post('/remove-activity-history',[activityHistoryController::class,'détroy']);
 });
 //--------------------End 12 bang cuoi---------------------
 

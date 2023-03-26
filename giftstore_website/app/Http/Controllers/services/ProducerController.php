@@ -50,14 +50,15 @@ class ProducerController extends Controller
         }
         return Payload::toJson($producers, 'Uncompleted', 500);
     }
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $producers = Producer::where('id_producer', $id)->first();
-        if($producers)
+        $result = Producer::where('id_producer', $request->id_producer)
+        ->update(['status'=> $request -> status]);
+        if($result == 1)
         {
-            $producers = Producer::where('id_producer', $id)->delete();
-            return Payload::toJson(new ProducerResource($producers), "Remove Successfully", 202);
+            $producers = Producer::where('id_producer',$request->id_producer)->first();
+            return Payload::toJson(new ProducerResource($producers),"Remove Successfully",202);
         }
-        return Payload::toJson(null, "Cannot Deleted!", 500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
 }

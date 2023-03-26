@@ -19,6 +19,7 @@ class Rate extends Model
         'numb_like',
         'status',
         'created_at', 
+        'updated_at', 
     ];
     public function member(){
         return $this->belongsTo(Member::class, 'id_member', 'id_member');

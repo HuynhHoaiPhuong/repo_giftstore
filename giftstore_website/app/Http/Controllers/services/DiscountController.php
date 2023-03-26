@@ -27,8 +27,7 @@ class DiscountController extends Controller
             'id_discount' => $request->id_discount, 
             'id_rank' => $request->id_rank, 
             'id_product_cat' => $request->id_product_cat, 
-            'percent_price' => $request->payment_price, 
-            'status' => $request->status
+            'percent_price' => $request->percent_price, 
         ]);
         if($discounts->save() == 1){
             $discounts = Discount::where('id_discount', $discounts->id_discount)->first();
@@ -42,7 +41,7 @@ class DiscountController extends Controller
         ->update([
             'id_rank' => $request->id_rank, 
             'id_product_cat' => $request->id_product_cat, 
-            'percent_price' => $request->payment_price, 
+            'percent_price' => $request->percent_price, 
         ]);
         if($discounts == 1){
             return Payload::toJson($discounts, 'Completed', 200);

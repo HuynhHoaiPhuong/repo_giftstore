@@ -10,7 +10,7 @@ use App\Http\Resources\StockDetailResource;
 
 class StockDetailController extends Controller
 {
-    public function getAllStockDetailByStatus ($status)
+    public function getAllStockDetailByStatus($status)
     {
         $stockdetails = StockDetail::where('status', $status)->get();
         if($stockdetails->isEmpty())

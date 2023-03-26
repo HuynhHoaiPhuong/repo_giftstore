@@ -22,6 +22,7 @@ class CreateRatesTable extends Migration
             $table->integer('numb_like')->default(0);
             $table->string('status')->default('enabled');
             $table->datetime('created_at');
+            $table->datetime('updated_at');
         });
     }
 
