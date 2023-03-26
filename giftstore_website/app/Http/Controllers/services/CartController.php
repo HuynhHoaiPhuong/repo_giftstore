@@ -26,7 +26,7 @@ class CartController extends Controller
             [
                 'id_cart' => $req -> id_product . $req -> id_member . $datenow,
                 'id_product' => $req-> id_product,
-                'member_id' => $req->id_member,
+                'id_member' => $req->id_member,
                 'quantity' => $req->quantity,
                 'price_pay' =>$req->price_pay,
             ]
