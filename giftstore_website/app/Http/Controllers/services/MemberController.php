@@ -28,7 +28,8 @@ class MemberController extends Controller
 
         $member->fill([
             'id_member' => $req->id_member,
-            'name'=>$req->name,
+            'id_user'=>$req->id_user,
+            'id_rank'=>$req->id_rank,
         ]);
         if($member->save()==1){
             $member=Member::where('id_member',$member->id_member)->first();
