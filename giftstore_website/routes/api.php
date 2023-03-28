@@ -230,7 +230,7 @@ Route::group(['prefix'=>'/settings'],function()
 });
 
 // API static
-Route::group(['prefix'=>'/statics'],function()
+Route::group(['prefix'=>'/static_pages'],function()
 {
     Route::get('/get-all-static-by-status/{status}',[StaticPageController::class,'getAllStaticByStatus']);
    

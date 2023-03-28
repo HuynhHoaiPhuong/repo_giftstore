@@ -13,7 +13,7 @@ class StaticPageController extends Controller
 {
     public function getAllStaticByStatus($status)
     {
-        $statics = Static::where('status',$status)->get();
+        $statics = StaticPage::where('status',$status)->get();
          if($statics->isEmpty())
             return Payload::toJson(null,"Data Not Found",404);   
         return Payload::toJson(StaticPageResource::collection($statics),"Request Successfully",200);
@@ -35,13 +35,13 @@ class StaticPageController extends Controller
             ]
         );
         $static->save();
-        $static = Static::where('id_static',$static->id_static)->first();
+        $static = StaticPage::where('id_static',$static->id_static)->first();
         return Payload::toJson(new StaticPageResource($static),"Create Successfully",201);
     }
 
     public function updateStatic(Request $req)
     {
-        $result = Static::where('id_static', $req -> id_static)
+        $result = StaticPage::where('id_static', $req -> id_static)
             //Key Value // Get e by array...
             ->update(
                 [
@@ -55,7 +55,7 @@ class StaticPageController extends Controller
                 ],
             );  
         if($result == 1){
-            $static = Static::where('id_static',$req->id_static)->first();
+            $static = StaticPage::where('id_static',$req->id_static)->first();
             return Payload::toJson(new StaticPageResource($static),"Update Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);
@@ -63,11 +63,11 @@ class StaticPageController extends Controller
 
     public function removeStatic(Request $req)
     {
-        $result = Static::where('id_static', $req -> id_static)
+        $result = StaticPage::where('id_static', $req -> id_static)
              ->update(['status'=> $req -> status]);
         if($result == 1)
         {
-            $static = Static::where('id_static',$req->id_static)->first();
+            $static = StaticPage::where('id_static',$req->id_static)->first();
             return Payload::toJson(new StaticPageResource($static),"Remove Successfully",202);
         }
         return Payload::toJson(null,"Cannot Update",500);

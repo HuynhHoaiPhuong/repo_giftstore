@@ -13,7 +13,7 @@ class CreateStaticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statics', function (Blueprint $table) {
+        Schema::create('static_pages', function (Blueprint $table) {
             $table->string('id_static')->primary(); //primary key
             $table->string('photo')->nullable(true);
             $table->string('name')->unique();
@@ -33,6 +33,6 @@ class CreateStaticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statics');
+        Schema::dropIfExists('static_pages');
     }
 }
