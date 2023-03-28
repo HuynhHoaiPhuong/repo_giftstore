@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdUserToActivitiesHistoryTable extends Migration
+class CreateIdUserToActivityHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIdUserToActivitiesHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::table('activities_history', function (Blueprint $table) {
+        Schema::table('activity_histories', function (Blueprint $table) {
             $table->foreign('id_user')->references('id_user')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
@@ -25,7 +25,7 @@ class CreateIdUserToActivitiesHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::table('activities_history', function (Blueprint $table) {
+        Schema::table('activity_histories', function (Blueprint $table) {
             //
         });
     }

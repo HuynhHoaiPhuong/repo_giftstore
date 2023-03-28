@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class ActivityHistory extends Model
+class ActivityHistories extends Model
 {
     use HasFactory;
-    protected $table = 'activities_history';
+    protected $table = 'activity_histories';
     public $timestamps = true;
     protected $fillable = [
         'id_activity_history',

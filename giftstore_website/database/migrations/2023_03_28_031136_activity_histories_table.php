@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesHistoryTable extends Migration
+class ActivityHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActivitiesHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('activities_history', function (Blueprint $table) {
+        Schema::create('activity_histories', function (Blueprint $table) {
             $table->string('id_activity_history')->primary(); //primary key
             $table->string('id_user');//foreign key
             $table->string('activity');
@@ -30,6 +30,6 @@ class CreateActivitiesHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('activities_history');
+        Schema::dropIfExists('activity_histories');
     }
 }
