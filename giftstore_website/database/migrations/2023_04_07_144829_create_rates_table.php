@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavoritesTable extends Migration
+class CreateRatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateFavoritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->string('id_favorite')->primary(); //primary key
-            $table->string('id_product');//foreign key
+        Schema::create('rates', function (Blueprint $table) {
+            $table->string('id_rate')->primary(); //primary key
             $table->string('id_member');//foreign key
+            $table->string('id_product');//foreign key
+            $table->integer('number_of_stars')->default(5);
+            $table->string('comment');
+            $table->integer('like')->default(0);
             $table->string('status')->default('enabled');
         });
     }
@@ -28,6 +31,6 @@ class CreateFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('rates');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductListsTable extends Migration
+class CreateRanksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateProductListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_lists', function (Blueprint $table) {
-            $table->string('id_product_list')->primary(); //primary key
-            $table->integer('numb')->default(0); 
-            $table->string('photo')->nullable(true);
+        Schema::create('ranks', function (Blueprint $table) {
+            $table->string('id_rank')->primary();  //primary key
             $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->string('description')->nullable(true);
+            $table->integer('score_level')->default(0);
             $table->string('status')->default("enabled");
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ class CreateProductListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_lists');
+        Schema::dropIfExists('ranks');
     }
 }

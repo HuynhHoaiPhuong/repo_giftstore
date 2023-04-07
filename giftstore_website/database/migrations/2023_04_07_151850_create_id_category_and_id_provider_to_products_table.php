@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdListAndIdCatToProducts extends Migration
+class CreateIdCategoryAndIdProviderToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class CreateIdListAndIdCatToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->foreign('id_product_list')->references('id_product_list')->on('product_lists')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_product_cat')->references('id_product_cat')->on('product_cats')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_category')->references('id_category')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_provider')->references('id_provider')->on('provider')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

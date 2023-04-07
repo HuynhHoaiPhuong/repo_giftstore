@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdListToProductCats extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateIdListToProductCats extends Migration
      */
     public function up()
     {
-        Schema::table('product_cats', function (Blueprint $table) {
-            $table->foreign('id_product_list')->references('id_product_list')->on('product_lists')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('carts', function (Blueprint $table) {
+            $table->string('id_cart')->primary(); //primary key
+            $table->string('id_member'); //foreign key
+            $table->string('id_product'); //foreign key
+            $table->integer('quantity')->default(0);
         });
     }
 
@@ -25,8 +28,6 @@ class CreateIdListToProductCats extends Migration
      */
     public function down()
     {
-        Schema::table('product_cats', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('carts');
     }
 }

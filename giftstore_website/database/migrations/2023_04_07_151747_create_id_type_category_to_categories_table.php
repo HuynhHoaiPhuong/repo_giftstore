@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStocksTable extends Migration
+class CreateIdTypeCategoryToCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateStocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('stocks', function (Blueprint $table) {
-            $table->string('id_stock')->primary(); //primary key
-            $table->string('name')->unique();
-            $table->string('address');
-            $table->string('status')->default('enabled');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->foreign('id_type_category')->references('id_type_category')->on('type_categories')->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 
@@ -28,6 +26,8 @@ class CreateStocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stocks');
+        Schema::table('categories', function (Blueprint $table) {
+            //
+        });
     }
 }

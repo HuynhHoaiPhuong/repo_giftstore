@@ -15,13 +15,15 @@ class CreateBillOrdersTable extends Migration
     {
         Schema::create('bill_orders', function (Blueprint $table) {
             $table->string('id_bill_order')->primary(); //primary key
-            $table->string('id_producer');//foreign key
+            $table->string('id_provider');//foreign key
+            $table->string('id_payment');//foreign key
             $table->string('id_user');//foreign key
-            $table->string('id_stock');//foreign key
-            $table->integer('quantity')->default(0);
-            $table->bigInteger('total_price')->default(0);
-            $table->string('status')->default('enabled');
+            $table->string('id_warehouse');//foreign key
+            $table->integer('total_quantity')->default(0);
+            $table->float('total_price')->default(0);
             $table->datetime('date_order');
+            $table->datetime('date_of_payment')->default('enabled');
+            $table->string('status')->default('enabled');
         });
     }
 

@@ -15,15 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->string('id_product')->primary(); //primary key
-            $table->string('id_product_list'); //foreign key
-            $table->string('id_product_cat'); //foreign key
-            $table->integer('numb')->default(0); 
+            $table->string('id_category'); //foreign key
+            $table->string('id_provider'); //foreign key
+            $table->integer('numerical_order')->default(0); 
+            $table->string('name')->unique();
             $table->string('code')->unique(); //mã sản phẩm
             $table->string('photo');
-            $table->string('name')->unique();
-            $table->string('slug')->unique()->nullable(false);
-            $table->string('description');
             $table->bigInteger('price')->nullable(false);
+            $table->string('slug')->unique()->nullable(false);
             $table->string('status')->default("enabled");
             $table->timestamps();
         });
