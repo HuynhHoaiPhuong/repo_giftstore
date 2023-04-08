@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Producer;
+use App\Models\Provider;
 use App\Models\User;
-use App\Models\Stock;
+use App\Models\WareHouse;
+use App\Models\Payment;
 
 class BillOrder extends Model
 {
@@ -14,22 +15,26 @@ class BillOrder extends Model
     public $timestamps = false;
     protected $fillable = [
         'id_bill_order',
-        'id_producer',
+        'id_provider',
+        'id_payment',
         'id_user',
-        'id_stock',
-        'quantity',        
+        'id_warehouse',
+        'total_quantity',        
         'total_price',
-        'status',
         'date_order',
+        'date_of_payment',
+        'status',
     ];
     
-    public function producer(){
-        return $this->belongsTo(Producer::class, 'id_producer', 'id_producer');
+    public function provider(){
+        return $this->belongsTo(Provider::class, 'id_provider', 'id_provider');
+    }
+    public function payment(){
+        return $this->belongsTo(Payment::class, 'id_payment', 'id_payment');
     }
     public function user(){
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
-    public function stock(){
-        return $this->belongsTo(Stock::class, 'id_stock', 'id_stock');
-    }
-}
+    public function wareHouse(){
+        return $this->belongsTo(WareHouse::class, 'id_warehouse', 'id_warehouse');
+    }}

@@ -6,74 +6,68 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
-use Carbon\Carbon;
 use App\Http\Payload;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
-    public function getAllProductByStatus($status)
-    {
-        $products = Product::where('status',$status)->get();
+    public function getAllProductByStatus($status){
+        $products = Product::where('status', $status)->get();
          if($products->isEmpty())
-            return Payload::toJson(null,"Data Not Found",404);   
-        return Payload::toJson(ProductResource::collection($products),"Request Successfully",200);
+            return Payload::toJson(null, "Data Not Found", 404);   
+
+        return Payload::toJson(ProductResource::collection($products), "Request Successfully", 200);
     }
 
-    public function saveProduct(Request $req)
-    {
-        $product= new Product();
-        $product->fill(
-            [
-                'id_product' =>  "PRODUCT".Carbon::now()->format('ymdhis').rand(1,1000),
-                'id_product_list'=>$req->id_product_list,
-                'id_product_cat'=>$req->id_product_cat,
-                'name'=>$req->name,
-                'slug'=>$req->slug,
-                'photo'=>$req->photo,
-                'numb'=>$req->numb,
-                'description'=>$req->description,
-                'price'=>$req->price,
-                'code'=>$req->code
-            ]
-        );
-        $product->save();
-        $product = Product::where('id_product',$product->id_product)->first();
-        return Payload::toJson(new ProductResource($product),"Create Successfully",201);
+    public function store(Request $request){
+        $products = new Product();
+        $products->fill([
+            'id_product' => "PRODUCT".Carbon::now()->format('ymdhis').rand(1, 1000), 
+            'id_category' => $request->id_category, 
+            'id_provider' => $request->id_provider, 
+            'numerical_order' => $request->numerical_order, 
+            'name' => $request->name, 
+            'code' => $request->code, 
+            'photo' => $request->photo, 
+            'price' => $request->price, 
+            'slug' => $request->slug,
+        ]);
+        $products->save();
+        $products = Product::where('id_product', $products->id_product)->first();
+        return Payload::toJson(new ProductResource($products), "Create Successfully", 201);
     }
 
-    public function updateProduct(Request $req)
+    public function update(Request $request)
     {
-        $result = Product::where('id_product', $req -> id_product)
-            //Key Value // Get e by array...
-            ->update(
-                [
-                    'id_product_list'=>$req->id_product_list,
-                    'id_product_cat'=>$req->id_product_cat,
-                    'name' => $req->name,
-                    'slug'=>$req->slug,
-                    'photo'=>$req->photo,
-                    'numb'=>$req->numb,
-                    'description'=>$req->description,
-                    'price'=>$req->price,
-                    'code'=>$req->code
-                ],
-            );  
+        $result = Product::where('id_product', $request->id_product)
+        ->update([
+            'id_category' => $request->id_category, 
+            'id_provider' => $request->id_provider, 
+            'numerical_order' => $request->numerical_order, 
+            'name' => $request->name, 
+            'code' => $request->code, 
+            'photo' => $request->photo, 
+            'price' => $request->price, 
+            'slug' => $request->slug, 
+        ]);  
+
         if($result == 1){
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Update Successfully",202);
+            $products = Product::where('id_product', $request->id_product)->first();
+            return Payload::toJson(new ProductResource($products), "Update Successfully", 202);
         }
-        return Payload::toJson(null,"Cannot Update",500);
+
+        return Payload::toJson(null, "Cannot Update", 500);
     }
 
-    public function removeProduct(Request $req)
-    {
-        $result = Product::where('id_product', $req -> id_product)
-             ->update(['status'=> $req -> status]);
-        if($result == 1)
-        {
-            $product = Product::where('id_product',$req->id_product)->first();
-            return Payload::toJson(new ProductResource($product),"Remove Successfully",202);
+    public function destroy(Request $request){
+        $result = Product::where('id_product', $request->id_product)
+        ->update(['status' => $request->status]);
+
+        if($result == 1){
+            $products = Product::where('id_product', $request->id_product)->first();
+            return Payload::toJson(new ProductResource($products), "Remove Successfully", 202);
         }
-        return Payload::toJson(null,"Cannot Update",500);
+
+        return Payload::toJson(null, "Cannot Update", 500);
     }
 }

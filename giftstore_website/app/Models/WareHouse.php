@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductList extends Model
+class WareHouse extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $fillable = [
-        'id_product_list',
-        'numb',
-        'photo',
-        'slug',
+        'id_warehouse',
         'name',
-        'description',
-        'created_at',
-        'updated_at'
+        'address',
+        'status'
     ];
 }

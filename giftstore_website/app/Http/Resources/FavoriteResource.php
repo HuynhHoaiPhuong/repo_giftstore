@@ -18,7 +18,7 @@ class FavoriteResource extends JsonResource
             'id_favorite' => $this->id_favorite,
             'product'=> new ProductResource($this->product),
             'member'=> new MemberResource($this->member),
-            'status' => $this->status
+            'status' => $this->status,
         ];
     }
 }

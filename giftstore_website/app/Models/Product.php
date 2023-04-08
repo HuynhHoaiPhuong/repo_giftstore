@@ -2,32 +2,33 @@
 
 namespace App\Models;
 
-use App\Models\ProductCat;
-use App\Models\ProductList;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
+use App\Models\Provider;
 
 class Product extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $fillable = [
         'id_product',
-        'id_product_list',
-        'id_product_cat',
-        'numb',
-        'photo',
-        'slug',
+        'id_category',
+        'id_provider',
+        'numerical_order',
         'name',
-        'description',
-        'price',
         'code',
+        'photo',
+        'price',
+        'slug',
+        'status',
         'created_at',
         'updated_at',
     ];
-    public function productlist(){
-        return $this->belongsTo(ProductList::class, 'id_product_list', 'id_product_list');
+    public function category(){
+        return $this->belongsTo(Category::class, 'id_category', 'id_category');
     }
-    public function productcat(){
-        return $this->belongsTo(ProductCat::class, 'id_product_cat', 'id_product_cat');
+    public function provider(){
+        return $this->belongsTo(Provider::class, 'id_provider', 'id_provider');
     }
 }

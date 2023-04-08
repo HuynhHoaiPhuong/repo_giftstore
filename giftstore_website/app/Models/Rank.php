@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Rank extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $fillable = [
         'id_rank',
         'rank_name',
-        'point',
+        'score_level',
+        'status',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

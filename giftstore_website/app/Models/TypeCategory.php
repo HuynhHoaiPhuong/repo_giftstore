@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Producer extends Model
+class TypeCategory extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
-        'id_producer',
+        'id_type_category',
+        'numerical_order',
         'name',
-        'address',
-        'phone',
-        'email',
-        'status'
+        'slug',
+        'status',
+        'created_at',
+        'updated_at'
     ];
-    
 }

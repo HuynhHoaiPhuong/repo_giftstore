@@ -78,6 +78,7 @@
 	-content: string
 	-photo: string
 	-type: string
+	-atc:string
 	-status: string
 	-date_created: datetime
 	-date_updated: datetime
@@ -113,6 +114,7 @@
 	-date_updated: datetime
 	-rank: rank
 	-status: string
+
 #table_stock (Kho)
 	-id: int
 	-name: string

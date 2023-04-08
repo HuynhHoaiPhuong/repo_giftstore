@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 
-class RateResource extends JsonResource
+class WareHouseDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +16,11 @@ class RateResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_rate' => $this->id_rate,
-            'member' => new MemberResource($this->member),
+            'id_warehouse_detail' => $this->id_warehouse_detail,
+            'warehouse' => new WareHouseResource($this->wareHouse),
             'product' => new ProductResource($this->product),
-            'number_of_stars' => $this->stanumber_of_starsr,
-            'comment' => $this->comment,
-            'like' => $this->like,
+            'price_pay' => $this->price_pay,
+            'total_price' => $this->total_price,
             'status' => $this->status,
             'created_at' => Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
             'updated_at' => Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),

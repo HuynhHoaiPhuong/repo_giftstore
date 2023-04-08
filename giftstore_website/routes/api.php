@@ -4,28 +4,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\services\RoleController;
 use App\Http\Controllers\services\RankController;
-use App\Http\Controllers\services\PhotoController;
-use App\Http\Controllers\services\ProductController;
-use App\Http\Controllers\services\ProductListController;
-use App\Http\Controllers\services\ProductCatController;
-use App\Http\Controllers\services\StaticPageController;
+use App\Http\Controllers\services\RateController;
 use App\Http\Controllers\services\CartController;
+use App\Http\Controllers\services\TypeCategoryController;
+use App\Http\Controllers\services\CategoryController;
+use App\Http\Controllers\services\ProductController;
+use App\Http\Controllers\services\WarehouseController;
+use App\Http\Controllers\services\WarehouseDetailController;
+use App\Http\Controllers\services\ProviderController;
+use App\Http\Controllers\services\BillOrderController;
+use App\Http\Controllers\services\FavoriteController;
+use App\Http\Controllers\services\StaticPageController;
 use App\Http\Controllers\services\TopicController;
 use App\Http\Controllers\services\SettingController;
-use App\Http\Controllers\services\StockController;
-use App\Http\Controllers\services\StockDetailController;
-use App\Http\Controllers\services\ProducerController;
 use App\Http\Controllers\services\VoucherController;
 use App\Http\Controllers\services\BillController;
 use App\Http\Controllers\services\BillDetailController;
-use App\Http\Controllers\services\BillOrderController;
 use App\Http\Controllers\services\BillOrderDetailController;
 use App\Http\Controllers\services\DiscountController;
-use App\Http\Controllers\services\FavoriteController;
 use App\Http\Controllers\services\ActivityHistoryController;
-use App\Http\Controllers\services\RateController;
 use App\Http\Controllers\services\UserController;
 use App\Http\Controllers\services\MemberController;
+use App\Http\Controllers\services\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,29 +41,110 @@ use App\Http\Controllers\services\MemberController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-//--------------------12 Bang cuoi--------------------------
-//Stock-Api
-Route::group(['prefix'=>'/stocks'],function() {
-    Route::get('/get-all-stock-by-status/{status}',[StockController::class,'getAllStockByStatus']);
-    Route::post('/save-stock',[StockController::class,'store']);
-    Route::post('/update-stock',[StockController::class,'update']);
-    Route::post('/remove-stock',[StockController::class,'destroy']);
+//--------------------12 Head Tables--------------------------
+//Role API
+Route::group(['prefix'=>'/roles'],function()
+{
+    Route::get('/get-all-role-by-status/{status}',[RoleController::class,'getAllRoleByStatus']);
+    Route::post('/save-role',[RoleController::class,'store']);
+    Route::post('/update-role',[RoleController::class,'update']);
+    Route::post('/remove-role',[RoleController::class,'destroy']);
 });
-//Stock-Detail-Api
-Route::group(['prefix'=>'/stock-details'],function() {
-    Route::get('/get-all-stock-detail-by-status/{status}',[StockDetailController::class,'getAllStockDetailByStatus']);
-    Route::post('/save-stock-detail',[StockDetailController::class,'store']);
-    Route::post('/update-stock-detail',[StockDetailController::class,'update']);
-    Route::post('/remove-stock-detail',[StockDetailController::class,'destroy']);
+//Rank API
+Route::group(['prefix'=>'/ranks'],function()
+{
+    Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
+    Route::post('/save-rank',[RankController::class,'store']);
+    Route::post('/update-rank',[RankController::class,'update']);
+    Route::post('/remove-rank',[RankController::class,'destroy']);
 });
-//Bill-Api
+//Type Category API
+Route::group(['prefix'=>'/type-categories'],function()
+{
+    Route::get('/get-all-type-category-by-status/{status}',[TypeCategoryController::class,'getAllTypeCategoryByStatus']);
+    Route::post('/save-type-category',[TypeCategoryController::class,'store']);
+    Route::post('/update-type-category',[TypeCategoryController::class,'update']);
+    Route::post('/remove-type-category',[TypeCategoryController::class,'destroy']);
+});
+//Category API
+Route::group(['prefix'=>'/categories'],function()
+{
+    Route::get('/get-all-category-by-status/{status}',[CategoryController::class,'getAllCategoryByStatus']);
+    Route::post('/save-category',[CategoryController::class,'store']);
+    Route::post('/update-category',[CategoryController::class,'update']);
+    Route::post('/remove-category',[CategoryController::class,'destroy']);
+});
+//Product API
+Route::group(['prefix'=>'/products'],function()
+{
+    Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
+    Route::post('/save-product',[ProductController::class,'store']);
+    Route::post('/update-product',[ProductController::class,'update']);
+    Route::post('/remove-product',[ProductController::class,'destroy']);
+});
+//Cart API
+Route::group(['prefix'=>'/carts'],function()
+{
+    Route::get('/get-all-cart-by-id-member/{id_member}',[CartController::class,'getAllCartByIdMember']);
+    Route::post('/save-cart',[CartController::class,'store']);
+    Route::post('/update-quantity-in-cart',[CartController::class,'updateQuantityInCart']);
+    Route::post('/remove-cart',[CartController::class,'removeCart']);
+    Route::post('/remove-all-cart',[CartController::class,'removeAllCart']);
+});
+//Favorite API
+Route::group(['prefix'=>'/favorites'],function() {
+    Route::get('/get-all-favorite-by-status/{status}',[FavoriteController::class,'getAllFavoriteByStatus']);
+    Route::post('/save-favorite',[FavoriteController::class,'store']);
+    Route::post('/update-favorite',[FavoriteController::class,'update']);
+    Route::post('/remove-favorite',[FavoriteController::class,'destroy']);
+});
+//Provider API
+Route::group(['prefix'=>'/providers'],function() {
+    Route::get('/get-all-provider-by-status/{status}',[ProviderController::class,'getAllProviderByStatus']);
+    Route::post('/save-provider',[ProviderController::class,'store']);
+    Route::post('/update-provider',[ProviderController::class,'update']);
+    Route::post('/remove-provider',[ProviderController::class,'destroy']);
+});
+//Rate API
+Route::group(['prefix'=>'/rates'],function() {
+    Route::get('/get-all-rate-by-status/{status}',[RateController::class,'getAllRateByStatus']);
+    Route::post('/save-rate',[RateController::class,'store']);
+    Route::post('/update-rate',[RateController::class,'update']);
+    Route::post('/remove-rate',[RateController::class,'destroy']);
+});
+//Warehouse API
+Route::group(['prefix'=>'/warehouses'],function() {
+    Route::get('/get-all-warehouse-by-status/{status}',[WarehouseController::class,'getAllWareHouseByStatus']);
+    Route::post('/save-warehouse',[WarehouseController::class,'store']);
+    Route::post('/update-warehouse',[WarehouseController::class,'update']);
+    Route::post('/remove-warehouse',[WarehouseController::class,'destroy']);
+});
+//Warehouse Detail API
+Route::group(['prefix'=>'/warehouse-details'],function() {
+    Route::get('/get-all-warehouse-detail-by-status/{status}',[WareHouseDetailController::class,'getAllWareHouseDetailByStatus']);
+    Route::post('/save-warehouse-detail',[WareHouseDetailController::class,'store']);
+    Route::post('/update-warehouse-detail',[WareHouseDetailController::class,'update']);
+    Route::post('/remove-warehouse-detail',[WareHouseDetailController::class,'destroy']);
+});
+//Bill Order API
+Route::group(['prefix'=>'/bill-orders'],function() {
+    Route::get('/get-all-bill-order-by-status/{status}',[BillOrderController::class,'getAllBillOrderByStatus']);
+    Route::post('/save-bill-order',[BillOrderController::class,'store']);
+});
+
+//--------------------End 12 Head Tables--------------------------
+
+
+
+
+//Bill API
 Route::group(['prefix'=>'/bills'],function() {
     Route::get('/get-all-bill-by-status/{status}',[BillController::class,'getAllBillByStatus']);
     Route::post('/save-bill',[BillController::class,'store']);
     // Route::post('/update-bill',[BillController::class,'update']);
     // Route::post('/remove-bill',[BillController::class,'destroy']);
 });
-//Bill-Detail-Api
+//Bill-Detail API
 Route::group(['prefix'=>'/bill-details'],function() {
     Route::get('/get-all-bill-detail-by-status/{status}',[BillDetailController::class,'getAllBillDetailByStatus']);
     Route::post('/save-bill-detail',[BillDetailController::class,'store']);
@@ -71,15 +152,7 @@ Route::group(['prefix'=>'/bill-details'],function() {
     Route::post('/remove-bill-detail',[BillDetailController::class,'destroy']);
 });
 
-//Bill-Order-Api
-Route::group(['prefix'=>'/bill-orders'],function() {
-    Route::get('/get-all-bill-order-by-status/{status}',[BillOrderController::class,'getAllBillOrderByStatus']);
-    Route::post('/save-bill-order',[BillOrderController::class,'store']);
-    Route::post('/update-bill-order',[BillOrderController::class,'update']);
-    Route::post('/remove-bill-order',[BillOrderController::class,'destroy']);
-});
-
-//Bill-Order-Detail-Api
+//Bill-Order-Detail API
 Route::group(['prefix'=>'/bill-order-details'],function() {
     Route::get('/get-all-bill-order-detail-by-status/{status}',[BillOrderDetailController::class,'getAllBillOrderDetailByStatus']);
     Route::post('/save-bill-order-detail',[BillOrderDetailController::class,'store']);
@@ -87,7 +160,7 @@ Route::group(['prefix'=>'/bill-order-details'],function() {
     Route::post('/remove-bill-order-detail',[BillOrderDetailController::class,'destroy']);
 });
 
-//Discount-Api
+//Discount API
 Route::group(['prefix'=>'/discounts'],function() {
     Route::get('/get-all-discount-by-status/{status}',[DiscountController::class,'getAllDiscountByStatus']);
     Route::post('/save-discount',[DiscountController::class,'store']);
@@ -95,31 +168,7 @@ Route::group(['prefix'=>'/discounts'],function() {
     Route::post('/remove-discount',[DiscountController::class,'destroy']);
 });
 
-//Favorite-Api
-Route::group(['prefix'=>'/favorites'],function() {
-    Route::get('/get-all-favorite-by-status/{status}',[FavoriteController::class,'getAllFavoriteByStatus']);
-    Route::post('/save-favorite',[FavoriteController::class,'store']);
-    Route::post('/update-favorite',[FavoriteController::class,'update']);
-    Route::post('/remove-favorite',[FavoriteController::class,'destroy']);
-});
-
-//Producer-Api
-Route::group(['prefix'=>'/producers'],function() {
-    Route::get('/get-all-producer-by-status/{status}',[ProducerController::class,'getAllProducerByStatus']);
-    Route::post('/save-producer',[ProducerController::class,'store']);
-    Route::post('/update-producer',[ProducerController::class,'update']);
-    Route::post('/remove-producer',[ProducerController::class,'destroy']);
-});
-
-//Rate-Api
-Route::group(['prefix'=>'/rates'],function() {
-    Route::get('/get-all-rate-by-status/{status}',[RateController::class,'getAllRateByStatus']);
-    Route::post('/save-rate',[RateController::class,'store']);
-    Route::post('/update-rate',[RateController::class,'update']);
-    Route::post('/remove-rate',[RateController::class,'destroy']);
-});
-
-//Voucher-Api
+//Voucher API
 Route::group(['prefix'=>'/vouchers'],function() {
     Route::get('/get-all-voucher-by-status/{status}',[VoucherController::class,'getAllVoucherByStatus']);
     Route::post('/save-voucher',[VoucherController::class,'store']);
@@ -127,75 +176,12 @@ Route::group(['prefix'=>'/vouchers'],function() {
     Route::post('/remove-voucher',[VoucherController::class,'destroy']);
 });
 
-//Activity-History-Api
+//Activity-History API
 Route::group(['prefix'=>'/activities-history'],function() {
     Route::get('/get-all-activity-history-by-status/{status}',[activityHistoryController::class,'getAllActivityHistoryByStatus']);
     Route::post('/save-activity-history',[activityHistoryController::class,'store']);
     Route::post('/update-activity-history',[activityHistoryController::class,'update']);
     Route::post('/remove-activity-history',[activityHistoryController::class,'détroy']);
-});
-//--------------------End 12 bang cuoi---------------------
-
-// Start 12 first table
-
-// API Role
-Route::group(['prefix'=>'/roles'],function()
-{
-    Route::get('/get-all-role-by-status/{status}',[RoleController::class,'getAllRoleByStatus']);
-   
-    Route::post('/save-role',[RoleController::class,'saveRole']);
-   
-    Route::post('/update-role',[RoleController::class,'updateRole']);
-   
-    Route::post('/remove-role',[RoleController::class,'removeRole']);
-});
-
-// API rank
-Route::group(['prefix'=>'/ranks'],function()
-{
-    Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
-   
-    Route::post('/save-rank',[RankController::class,'saveRank']);
-   
-    Route::post('/update-rank',[RankController::class,'updateRank']);
-   
-    Route::post('/remove-rank',[RankController::class,'removeRank']);
-});
-
-// API product list
-Route::group(['prefix'=>'/product_lists'],function()
-{
-    Route::get('/get-all-product-list-by-status/{status}',[ProductListController::class,'getAllProductListByStatus']);
-   
-    Route::post('/save-product-list',[ProductListController::class,'saveProductList']);
-   
-    Route::post('/update-product-list',[ProductListController::class,'updateProductList']);
-   
-    Route::post('/remove-product-list',[ProductListController::class,'removeProductList']);
-});
-
-// API product cat
-Route::group(['prefix'=>'/product_cats'],function()
-{
-    Route::get('/get-all-product-cat-by-status/{status}',[ProductCatController::class,'getAllProductCatByStatus']);
-   
-    Route::post('/save-product-cat',[ProductCatController::class,'saveProductCat']);
-   
-    Route::post('/update-product-cat',[ProductCatController::class,'updateProductCat']);
-   
-    Route::post('/remove-product-cat',[ProductCatController::class,'removeProductCat']);
-});
-
-// API product
-Route::group(['prefix'=>'/products'],function()
-{
-    Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
-   
-    Route::post('/save-product',[ProductController::class,'saveProduct']);
-   
-    Route::post('/update-product',[ProductController::class,'updateProduct']);
-   
-    Route::post('/remove-product',[ProductController::class,'removeProduct']);
 });
 
 // API user
@@ -205,16 +191,6 @@ Route::group(['prefix'=>'/users'],function()
     Route::post('/save-user',[UserController::class,'saveUser']);
     Route::post('/update-user',[UserController::class,'updateUser']);
     Route::post('/remove-user',[UserController::class,'removeUser']);
-});
-
-// API cart
-Route::group(['prefix'=>'/carts'],function()
-{
-    Route::get('/get-all-cart-by-id-member/{id_member}',[CartController::class,'getAllCartByIdMember']);
-    Route::post('/save-cart',[CartController::class,'saveCart']);
-    Route::post('/update-quantity-in-cart',[CartController::class,'updateQuantityInCart']);
-    Route::post('/remove-cart',[CartController::class,'removeCart']);
-    Route::post('/remove-all-cart',[CartController::class,'removeAllCart']);
 });
 
 // API setting
@@ -276,5 +252,3 @@ Route::group(['prefix'=>'/members'],function()
    
     Route::post('/remove-member',[MemberController::class,'removeMember']);
 });
-
-// End 12 last table
