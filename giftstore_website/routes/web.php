@@ -37,12 +37,12 @@ Route::group(['middleware' => ['hasrole']], function(){
     Route::get('/logout', [LoginController::class,'logout'])->name('logout');
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/index',[IndexController::class,'index'])->name('/index');
-        Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
-        Route::get('/static-page-management',[StaticPageController::class,'staticPageManagement'])->name('static-page-management');
-        Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
-        Route::get('/topic-management',[TopicController::class,'topicManagement'])->name('topic-management');
-        Route::get('/setting',[SettingController::class,'setting'])->name('setting');
-        Route::get('/photo-management',[PhotoController::class,'photoManagement'])->name('photo-management');
+        Route::get('/role-management',[RoleController::class,'index'])->name('role-management');
+        Route::get('/static-page-management',[StaticPageController::class,'index'])->name('static-page-management');
+        Route::get('/product-management',[ProductController::class,'index'])->name('product-management');
+        Route::get('/topic-management',[TopicController::class,'index'])->name('topic-management');
+        Route::get('/setting',[SettingController::class,'index'])->name('setting');
+        Route::get('/photo-management',[PhotoController::class,'index'])->name('photo-management');
     });
 });
 

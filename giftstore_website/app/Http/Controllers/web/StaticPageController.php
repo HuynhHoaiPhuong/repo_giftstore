@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class StaticPageController extends Controller
 {
-    public function staticPageManagement(){
+    public function index(){
         return view('admin/static_page_management/add_static_page');
     }
 }

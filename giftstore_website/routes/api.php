@@ -134,9 +134,6 @@ Route::group(['prefix'=>'/bill-orders'],function() {
 
 //--------------------End 12 Head Tables--------------------------
 
-
-
-
 //Bill API
 Route::group(['prefix'=>'/bills'],function() {
     Route::get('/get-all-bill-by-status/{status}',[BillController::class,'getAllBillByStatus']);
