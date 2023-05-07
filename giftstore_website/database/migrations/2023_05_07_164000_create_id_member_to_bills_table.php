@@ -15,6 +15,8 @@ class CreateIdMemberToBillsTable extends Migration
     {
         Schema::table('bills', function (Blueprint $table) {
             $table->foreign('id_member')->references('id_member')->on('members')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_voucher')->references('id_voucher')->on('vouchers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_payment')->references('id_payment')->on('payments')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

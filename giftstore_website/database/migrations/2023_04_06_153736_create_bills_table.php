@@ -16,13 +16,13 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->string('id_bill')->primary(); //primary key
             $table->string('id_member');//foreign key
-            $table->string('code_voucher');
+            $table->string('id_voucher');//foreign key
+            $table->string('id_payment');//foreign key
             $table->bigInteger('total_price')->default(0);
             $table->integer('total_quantity')->default(0);
-            $table->string('payment');
+            $table->datetime('order_date');
+            $table->datetime('date_of_payment');
             $table->string('status')->default('enabled');
-            $table->datetime('date_order');
-            $table->datetime('date_confirm');
         });
     }
 

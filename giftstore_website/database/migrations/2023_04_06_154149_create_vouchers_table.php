@@ -15,15 +15,16 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->string('id_voucher')->primary(); //primary key
-            $table->string('code');
-            $table->integer('max_user')->default(0);
+            $table->string('name')->unique();
+            $table->string('code')->unique();
+            $table->integer('number_of_uses')->default(0);
+            $table->float('percent_price')->default(0);
             $table->float('max_price')->default(0);
-            $table->integer('percent_price')->default(0);
-            $table->float('min_price_pay')->default(0);
+            $table->float('min_price')->default(0);
             $table->string('description')->nullable(true);
+            $table->datetime('start_day');
+            $table->datetime('expiration_date');
             $table->string('status')->default('enabled');
-            $table->datetime('date_start');
-            $table->datetime('date_end');
         });
     }
 

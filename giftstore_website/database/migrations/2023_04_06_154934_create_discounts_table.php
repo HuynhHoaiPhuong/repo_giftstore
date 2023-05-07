@@ -16,7 +16,7 @@ class CreateDiscountsTable extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->string('id_discount')->primary(); //primary key
             $table->string('id_rank');//foreign key
-            $table->string('id_product_cat');//foreign key
+            $table->string('id_category');//foreign key
             $table->float('percent_price')->default(0);
             $table->string('status')->default('enabled');
         });

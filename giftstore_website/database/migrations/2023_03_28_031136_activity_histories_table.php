@@ -18,8 +18,7 @@ class ActivityHistoriesTable extends Migration
             $table->string('id_user');//foreign key
             $table->string('activity');
             $table->string('type');
-            $table->datetime('created_at');
-            $table->datetime('updated_at');
+            $table->timestamps();
         });
     }
 
