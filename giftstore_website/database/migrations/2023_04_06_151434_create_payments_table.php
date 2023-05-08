@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaticsTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateStaticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('static_pages', function (Blueprint $table) {
-            $table->string('id_static')->primary(); //primary key
-            $table->string('photo')->nullable(true);
+        Schema::create('payments', function (Blueprint $table) {
+            $table->string('id_payment')->primary(); //primary key
             $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->string('description')->nullable(true);
-            $table->string('content')->nullable(true);
-            $table->string('type');
+            $table->string('photo')->nullable(true);
             $table->string('status')->default('enabled');
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateStaticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('static_pages');
+        Schema::dropIfExists('payments');
     }
 }

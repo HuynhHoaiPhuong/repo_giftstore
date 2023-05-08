@@ -15,12 +15,9 @@ class CreateTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->string('id_topic')->primary(); //primary key
-            $table->string('photo')->nullable(true);
             $table->string('name')->unique();
+            $table->string('photo')->nullable(true);
             $table->string('slug')->unique();
-            $table->string('description')->nullable(true);
-            $table->string('content')->nullable(true);
-            $table->string('type');
             $table->string('status')->default('enabled');
             $table->timestamps();
         });

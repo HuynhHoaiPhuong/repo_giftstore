@@ -17,12 +17,8 @@ class TopicResource extends JsonResource
         return [
             'id_topic'=>$this->id_topic,
             'name'=>$this->name,
-            'slug'=>$this->slug,
             'photo'=>$this->photo,
-            'numb'=>$this->numb,
-            'description'=>$this->description,
-            'content'=>$this->content,
-            'type'=>$this->type,
+            'slug'=>$this->slug,
             'status'=>$this->status,
             'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
             'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')

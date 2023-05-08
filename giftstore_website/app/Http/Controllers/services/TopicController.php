@@ -26,12 +26,8 @@ class TopicController extends Controller
             [
                 'id_topic' =>  "Topic".Carbon::now()->format('ymdhis').rand(1,1000),
                 'name'=>$req->name,
-                'slug'=>$req->slug,
                 'photo'=>$req->photo,
-                'numb'=>$req->numb,
-                'description'=>$req->description,
-                'content'=>$req->content,
-                'type'=>$req->type
+                'slug'=>$req->slug,
             ]
         );
         $topic->save();
@@ -46,12 +42,8 @@ class TopicController extends Controller
             ->update(
                 [
                     'name'=>$req->name,
-                    'slug'=>$req->slug,
                     'photo'=>$req->photo,
-                    'numb'=>$req->numb,
-                    'description'=>$req->description,
-                    'content'=>$req->content,
-                    'type'=>$req->type
+                    'slug'=>$req->slug,
                 ],
             );  
         if($result == 1){

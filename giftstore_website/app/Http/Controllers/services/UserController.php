@@ -69,14 +69,15 @@ class UserController extends Controller
         return Payload::toJson(null,"Cannot Update",500);
     }
 
-    public function removeUser($id)
+    public function removeUser(Request $req)
     {
-        $users = User::where('id_user',$id)->first();
-        if($users)
+        $result = User::where('id_user', $req -> id_user)
+             ->update(['status'=> $req -> status]);
+        if($result == 1)
         {
-            $users = User::where('id_user',$id)->delete();
-            return Payload::toJson(new UserResource($users),"Remove Successfully",202);
+            $user = User::where('id_user',$req->id_user)->first();
+            return Payload::toJson(new UserResource($user),"Remove Successfully",202);
         }
-        return Payload::toJson(null,"Cannot Deleted!",500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
 }

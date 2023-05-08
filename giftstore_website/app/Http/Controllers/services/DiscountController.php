@@ -20,13 +20,13 @@ class DiscountController extends Controller
         return Payload::toJson(DiscountResource::collection($discounts), 'Ok', 200);
     }
 
-    public function store(Request $request)
+    public function saveDiscount(Request $request)
     {
         $discounts = new Discount();
         $discounts->fill([
             'id_discount' => $request->id_discount, 
             'id_rank' => $request->id_rank, 
-            'id_product_cat' => $request->id_product_cat, 
+            'id_category' => $request->id_category, 
             'percent_price' => $request->percent_price, 
         ]);
         if($discounts->save() == 1){
@@ -35,7 +35,7 @@ class DiscountController extends Controller
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function update(Request $request)
+    public function updateDiscount(Request $request)
     {
         $discounts = Discount::where('id_discount', $request->id_discount)
         ->update([
@@ -43,19 +43,21 @@ class DiscountController extends Controller
             'id_product_cat' => $request->id_product_cat, 
             'percent_price' => $request->percent_price, 
         ]);
-        if($discounts == 1){
-            return Payload::toJson($discounts, 'Completed', 200);
+        if($result == 1){
+            $discounts = Discount::where('id_discount',$req->id_discount)->first();
+            return Payload::toJson(new VoucherResource($discounts),"Update Successfully",202);
         }
-        return Payload::toJson($discounts, 'Uncompleted', 500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
-    public function destroy($id)
+    public function removeDiscount(Request $req)
     {
-        $discounts = Discount::where('id_discount', $id)->first();
-        if($discounts)
+        $result = Discount::where('id_discount', $req -> id_discount)
+             ->update(['status'=> $req -> status]);
+        if($result == 1)
         {
-            $discounts = Discount::where('id_discount', $id)->delete();
-            return Payload::toJson(new DiscountResource($discounts), "Remove Successfully", 202);
+            $discount = Discount::where('id_discount',$req->id_discount)->first();
+            return Payload::toJson(new DiscountResource($discount),"Remove Successfully",202);
         }
-        return Payload::toJson(null, "Cannot Deleted!", 500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
 }

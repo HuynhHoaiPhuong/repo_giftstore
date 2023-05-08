@@ -26,7 +26,7 @@ class CreateIdUserAndIdRankToMembers extends Migration
      */
     public function down()
     {
-        Schema::table('mebers', function (Blueprint $table) {
+        Schema::table('members', function (Blueprint $table) {
             //
         });
     }

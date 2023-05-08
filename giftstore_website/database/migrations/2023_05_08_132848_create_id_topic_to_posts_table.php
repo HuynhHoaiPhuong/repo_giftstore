@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIdMemberToBillsTable extends Migration
+class CreateIdTopicToPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateIdMemberToBillsTable extends Migration
      */
     public function up()
     {
-        Schema::table('bills', function (Blueprint $table) {
-            $table->foreign('id_member')->references('id_member')->on('members')->onUpdate('cascade')->onDelete('cascade');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreign('id_topic')->references('id_topic')->on('topics')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class CreateIdMemberToBillsTable extends Migration
      */
     public function down()
     {
-        Schema::table('bills', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             //
         });
     }

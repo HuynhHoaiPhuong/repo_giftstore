@@ -17,15 +17,16 @@ class VoucherResource extends JsonResource
     {
         return [
             'id_voucher' => $this->id_voucher,
+            'name' => $this->name,
             'code' => $this->code,
-            'max_use' => $this->max_use,
-            'max_price' => $this->max_price,
+            'number_of_uses' => $this->number_of_uses,
             'percent_price' => $this->percent_price,
-            'min_price_pay' => $this->min_price_pay,
+            'max_price' => $this->max_price,
+            'min_price' => $this->min_price,
             'description' => $this->description,
+            'start_day' => Carbon::parse($this->start_day,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'expiration_date' => Carbon::parse($this->expiration_date,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
             'status' => $this->status,
-            'date_start' => Carbon::parse($this->date_start,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_end' => Carbon::parse($this->date_end,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
           ];
     }
 }

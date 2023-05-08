@@ -10,14 +10,15 @@ class Voucher extends Model
     public $timestamps = false;
     protected $fillable = [
         'id_voucher',
+        'name',
         'code',
-        'max_use',
-        'max_price',
+        'number_of_uses',
         'percent_price',
-        'min_price_pay',
+        'max_price',
+        'min_price',
         'description',
-        'status',
-        'date_start',
-        'date_end',
+        'start_day',
+        'expiration_date',
+        'status'
     ];
 }

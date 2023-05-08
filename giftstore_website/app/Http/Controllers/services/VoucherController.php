@@ -20,19 +20,20 @@ class VoucherController extends Controller
         return Payload::toJson(VoucherResource::collection($vouchers), 'Ok', 200);
     }
 
-    public function store(Request $request)
+    public function saveVoucher(Request $request)
     {
         $vouchers = new Voucher();
         $vouchers->fill([
             'id_voucher' => $request->id_voucher, 
+            'name' => $request->name, 
             'code' => $request->code, 
-            'max_user' => $request->max_user, 
-            'max_price' => $request->max_price, 
+            'number_of_uses' => $request->number_of_uses, 
             'percent_price' => $request->percent_price, 
-            'min_price_pay' => $request->min_price_pay, 
+            'max_price' => $request->max_price, 
+            'min_price' => $request->min_price, 
             'description' => $request->description, 
-            'date_start' => $request->date_start, 
-            'date_end' => $request->date_end, 
+            'start_day' => $request->start_day, 
+            'expiration_date' => $request->expiration_date, 
         ]);
         if($vouchers->save() == 1){
             $Voucher=Voucher::where('id_voucher', $vouchers->id_voucher)->first();
@@ -40,32 +41,36 @@ class VoucherController extends Controller
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function update(Request $request)
+    public function updateVoucher(Request $request)
     {
         $vouchers = Voucher::where('id_voucher', $request->id_voucher)
         ->update([
+            'name' => $request->name, 
             'code' => $request->code, 
-            'max_user' => $request->max_user, 
-            'max_price' => $request->max_price, 
+            'number_of_uses' => $request->number_of_uses, 
             'percent_price' => $request->percent_price, 
-            'min_price_pay' => $request->min_price_pay, 
+            'max_price' => $request->max_price, 
+            'min_price' => $request->min_price, 
             'description' => $request->description, 
-            'date_start' => $request->date_start, 
-            'date_end' => $request->date_end, 
+            'start_day' => $request->start_day, 
+            'expiration_date' => $request->expiration_date, 
         ]);
-        if($vouchers == 1){
-            return Payload::toJson($vouchers, 'Completed', 200);
+        
+        if($result == 1){
+            $vouchers = Voucher::where('id_voucher',$req->id_voucher)->first();
+            return Payload::toJson(new VoucherResource($vouchers),"Update Successfully",202);
         }
-        return Payload::toJson($vouchers, 'Uncompleted', 500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
-    public function destroy($id)
+    public function removeVoucher(Request $req)
     {
-        $vouchers = Voucher::where('id_voucher', $id)->first();
-        if($vouchers)
+        $result = Voucher::where('id_voucher', $req -> id_voucher)
+             ->update(['status'=> $req -> status]);
+        if($result == 1)
         {
-            $vouchers = Voucher::where('id_voucher', $id)->delete();
-            return Payload::toJson(new VoucherResource($vouchers), "Remove Successfully", 202);
+            $voucher = Voucher::where('id_voucher',$req->id_voucher)->first();
+            return Payload::toJson(new VoucherResource($voucher),"Remove Successfully",202);
         }
-        return Payload::toJson(null, "Cannot Deleted!", 500);
+        return Payload::toJson(null,"Cannot Update",500);
     }
 }

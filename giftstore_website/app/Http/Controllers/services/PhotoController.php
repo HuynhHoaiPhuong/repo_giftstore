@@ -25,11 +25,10 @@ class PhotoController extends Controller
         $photo->fill(
             [
                 'id_photo' =>  "PHOTO".Carbon::now()->format('ymdhis').rand(1,1000),
+                'numerical_order'=>$req->numerical_order,
                 'name'=>$req->name,
-                'link'=>$req->link,
                 'photo'=>$req->photo,
-                'numb'=>$req->numb,
-                'act'=>$req->act,
+                'link'=>$req->link,
                 'type'=>$req->type
             ]
         );
@@ -44,11 +43,10 @@ class PhotoController extends Controller
             //Key Value // Get e by array...
             ->update(
                 [
+                    'numerical_order'=>$req->numerical_order,
                     'name'=>$req->name,
-                    'link'=>$req->link,
                     'photo'=>$req->photo,
-                    'numb'=>$req->numb,
-                    'act'=>$req->act,
+                    'link'=>$req->link,
                     'type'=>$req->type
                 ],
             );  
