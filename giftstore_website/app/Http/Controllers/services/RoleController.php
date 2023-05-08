@@ -14,8 +14,7 @@ class RoleController extends Controller
     public function getAllRoleByStatus($status)
     {
         $roles = Role::where('status',$status)->get();
-        if($roles -> isEmpty()) 
-        {
+        if($roles->isEmpty()){
             return Payload::toJson(null,'Data Not Found',404);
         }
         return Payload::toJson(RoleResource::collection($roles),'Ok',200);
@@ -40,7 +39,7 @@ class RoleController extends Controller
         ->update(['name' => $request->name]);
         if($result == 1){
             $role = Role::where('id_role', $request->id_role)->first();
-            return Payload::toJson(new RoleResource($role),'Completed',200);
+            return Payload::toJson(new RoleResource($role),'Completed',201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
@@ -50,7 +49,7 @@ class RoleController extends Controller
         ->update(['status'=>$request->status]);
         if($result == 1){
             $role = Role::where('id_role',$request->id_role)->first();
-            return Payload::toJson(new RoleResource($role),'Completed',200);
+            return Payload::toJson(new RoleResource($role),'Completed',201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }

@@ -13,58 +13,54 @@ class RateController extends Controller
 {
     public function getAllRateByStatus($status)
     {
-        $rates = Rate::where('status', $status)->get();
-        if($rates->isEmpty())
+        $rate = Rate::where('status', $status)->get();
+        if($rate->isEmpty())
         {
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(RateResource::collection($rates), 'Ok', 200);
+        return Payload::toJson(RateResource::collection($rate), 'OK', 200);
     }
 
-    public function store(Request $request)
+    public function saveRate(Request $request)
     {
-        $rates = new Rate();
-        $rates->fill([
+        $rate = new Rate();
+        $rate->fill([
             'id_rate' => "RATE".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_member' => $request->id_member, 
             'id_product' => $request->id_product, 
             'number_of_stars' => $request->number_of_stars, 
             'comment' => $request->comment, 
-            'like' => $request->like, 
+            'likes' => $request->likes
         ]);
 
-        if($rates->save() == 1){
-            $rates = Rate::where('id_rate', $rates->id_rate)->first();
-            return Payload::toJson(new RateResource($rates), 'Completed', 201);
+        if($rate->save() == 1){
+            $rate = Rate::where('id_rate', $rate->id_rate)->first();
+            return Payload::toJson(new RateResource($rate), 'Completed', 201);
         }
-
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function update(Request $request){
-        $rates = Rate::where('id_rate', $request->id_rate)
+    public function updateRate(Request $request){
+        $result = Rate::where('id_rate', $request->id_rate)
         ->update([
             'id_member' => $request->id_member, 
             'id_product' => $request->id_product, 
             'number_of_stars' => $request->number_of_stars, 
             'comment' => $request->comment, 
-            'like' => $request->like, 
+            'likes' => $request->likes, 
         ]);
-
-        if($rates == 1){
-            return Payload::toJson($rates, 'Completed', 200);
+        if($result == 1){
+            $rate = Rate::where('id_rate',$request->id_rate)->first();
+            return Payload::toJson(new RateResource($rate),'Completed',201);
         }
-
-        return Payload::toJson($rates, 'Uncompleted', 500);
+        return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function destroy(Request $request){
+    public function removeRate(Request $request){
         $result = Rate::where('id_rate', $request->id_rate)
         ->update(['status' => $request->status]);
-
         if($result == 1){
-            $rates = Rate::where('id_rate', $request->id_rate)->first();
-            return Payload::toJson(new RateResource($rates), "Remove Successfully", 202);
+            $rate = Rate::where('id_rate', $request->id_rate)->first();
+            return Payload::toJson(new RateResource($rate), 'Completed',201);
         }
-
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "Uncompleted", 500);
     }
 }

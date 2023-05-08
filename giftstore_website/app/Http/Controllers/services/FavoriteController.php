@@ -13,49 +13,49 @@ class FavoriteController extends Controller
 {
     public function getAllFavoriteByStatus($status)
     {
-        $favorites = Favorite::where('status', $status)->get();
-        if($favorites->isEmpty())
+        $favorite = Favorite::where('status', $status)->get();
+        if($favorite->isEmpty())
         {
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(FavoriteResource::collection($favorites), 'Ok', 200);
+        return Payload::toJson(FavoriteResource::collection($favorite), 'OK', 200);
     }
 
-    public function store(Request $request)
+    public function saveFavorite(Request $request)
     {
-        $favorites = new Favorite();
-        $favorites->fill([
+        $favorite = new Favorite();
+        $favorite->fill([
             'id_favorite' => "FAV".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_product' => $request->id_product, 
             'id_member' => $request->id_member, 
         ]);
-        if($favorites->save() == 1){
-            $favorites = Favorite::where('id_favorite', $favorites->id_favorite)->first();
-            return Payload::toJson(new FavoriteResource($favorites), 'Completed', 201);
+        if($favorite->save() == 1){
+            $favorite = Favorite::where('id_favorite', $favorite->id_favorite)->first();
+            return Payload::toJson(new FavoriteResource($favorite), 'Completed', 201);
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function update(Request $request)
+    public function updateFavorite(Request $request)
     {
-        $favorites = Favorite::where('id_favorite', $request->id_favorite)
+        $result = Favorite::where('id_favorite', $request->id_favorite)
         ->update([
             'id_product' => $request->id_product, 
             'id_member' => $request->id_member, 
         ]);
-        if($favorites == 1){
-            return Payload::toJson($favorites, 'Completed', 200);
+        if($result == 1){
+            $favorite = Favorite::where('id_favorite', $request->id_favorite)->first();
+            return Payload::toJson(new FavoriteResource($favorite), "Completed", 201);
         }
-        return Payload::toJson($favorites, 'Uncompleted', 500);
+        return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function destroy(Request $request)
+    public function removeFavorite(Request $request)
     {
         $result = Favorite::where('id_favorite', $request->id_favorite)
         ->update(['status' => $request->status]);
-
         if($result == 1){
-            $favorites = Favorite::where('id_favorite', $request->id_favorite)->first();
-            return Payload::toJson(new FavoriteResource($favorites), "Remove Successfully", 202);
+            $favorite = Favorite::where('id_favorite', $request->id_favorite)->first();
+            return Payload::toJson(new FavoriteResource($favorite), "Completed", 201);
         }
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "UnCompleted", 500);
     }
 }

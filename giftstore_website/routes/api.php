@@ -46,47 +46,47 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'/roles'],function()
 {
     Route::get('/get-all-role-by-status/{status}',[RoleController::class,'getAllRoleByStatus']);
-    Route::post('/save-role',[RoleController::class,'store']);
-    Route::post('/update-role',[RoleController::class,'update']);
-    Route::post('/remove-role',[RoleController::class,'destroy']);
+    Route::post('/save-role',[RoleController::class,'saveRole']);
+    Route::post('/update-role',[RoleController::class,'updateRole']);
+    Route::post('/remove-role',[RoleController::class,'removeRole']);
 });
 //Rank API
 Route::group(['prefix'=>'/ranks'],function()
 {
     Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
-    Route::post('/save-rank',[RankController::class,'store']);
-    Route::post('/update-rank',[RankController::class,'update']);
-    Route::post('/remove-rank',[RankController::class,'destroy']);
+    Route::post('/save-rank',[RankController::class,'saveRank']);
+    Route::post('/update-rank',[RankController::class,'updateRank']);
+    Route::post('/remove-rank',[RankController::class,'removeRank']);
 });
 //Type Category API
 Route::group(['prefix'=>'/type-categories'],function()
 {
     Route::get('/get-all-type-category-by-status/{status}',[TypeCategoryController::class,'getAllTypeCategoryByStatus']);
-    Route::post('/save-type-category',[TypeCategoryController::class,'store']);
-    Route::post('/update-type-category',[TypeCategoryController::class,'update']);
-    Route::post('/remove-type-category',[TypeCategoryController::class,'destroy']);
+    Route::post('/save-type-category',[TypeCategoryController::class,'saveTypeCategory']);
+    Route::post('/update-type-category',[TypeCategoryController::class,'updateTypeCategory']);
+    Route::post('/remove-type-category',[TypeCategoryController::class,'removeTypeCategory']);
 });
 //Category API
 Route::group(['prefix'=>'/categories'],function()
 {
     Route::get('/get-all-category-by-status/{status}',[CategoryController::class,'getAllCategoryByStatus']);
-    Route::post('/save-category',[CategoryController::class,'store']);
-    Route::post('/update-category',[CategoryController::class,'update']);
-    Route::post('/remove-category',[CategoryController::class,'destroy']);
+    Route::post('/save-category',[CategoryController::class,'saveCategory']);
+    Route::post('/update-category',[CategoryController::class,'updateCategory']);
+    Route::post('/remove-category',[CategoryController::class,'removeCategory']);
 });
 //Product API
 Route::group(['prefix'=>'/products'],function()
 {
     Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
-    Route::post('/save-product',[ProductController::class,'store']);
-    Route::post('/update-product',[ProductController::class,'update']);
-    Route::post('/remove-product',[ProductController::class,'destroy']);
+    Route::post('/save-product',[ProductController::class,'saveProduct']);
+    Route::post('/update-product',[ProductController::class,'updateProduct']);
+    Route::post('/remove-product',[ProductController::class,'removeProduct']);
 });
 //Cart API
 Route::group(['prefix'=>'/carts'],function()
 {
     Route::get('/get-all-cart-by-id-member/{id_member}',[CartController::class,'getAllCartByIdMember']);
-    Route::post('/save-cart',[CartController::class,'store']);
+    Route::post('/save-cart',[CartController::class,'saveCart']);
     Route::post('/update-quantity-in-cart',[CartController::class,'updateQuantityInCart']);
     Route::post('/remove-cart',[CartController::class,'removeCart']);
     Route::post('/remove-all-cart',[CartController::class,'removeAllCart']);
@@ -94,42 +94,42 @@ Route::group(['prefix'=>'/carts'],function()
 //Favorite API
 Route::group(['prefix'=>'/favorites'],function() {
     Route::get('/get-all-favorite-by-status/{status}',[FavoriteController::class,'getAllFavoriteByStatus']);
-    Route::post('/save-favorite',[FavoriteController::class,'store']);
-    Route::post('/update-favorite',[FavoriteController::class,'update']);
-    Route::post('/remove-favorite',[FavoriteController::class,'destroy']);
+    Route::post('/save-favorite',[FavoriteController::class,'saveFavorite']);
+    Route::post('/update-favorite',[FavoriteController::class,'updateFavorite']);
+    Route::post('/remove-favorite',[FavoriteController::class,'removeFavorite']);
 });
 //Provider API
 Route::group(['prefix'=>'/providers'],function() {
     Route::get('/get-all-provider-by-status/{status}',[ProviderController::class,'getAllProviderByStatus']);
-    Route::post('/save-provider',[ProviderController::class,'store']);
-    Route::post('/update-provider',[ProviderController::class,'update']);
-    Route::post('/remove-provider',[ProviderController::class,'destroy']);
+    Route::post('/save-provider',[ProviderController::class,'saveProvider']);
+    Route::post('/update-provider',[ProviderController::class,'updateProvider']);
+    Route::post('/remove-provider',[ProviderController::class,'removeProvider']);
 });
 //Rate API
 Route::group(['prefix'=>'/rates'],function() {
     Route::get('/get-all-rate-by-status/{status}',[RateController::class,'getAllRateByStatus']);
-    Route::post('/save-rate',[RateController::class,'store']);
-    Route::post('/update-rate',[RateController::class,'update']);
-    Route::post('/remove-rate',[RateController::class,'destroy']);
+    Route::post('/save-rate',[RateController::class,'saveRate']);
+    Route::post('/update-rate',[RateController::class,'updateRate']);
+    Route::post('/remove-rate',[RateController::class,'removeRate']);
 });
 //Warehouse API
 Route::group(['prefix'=>'/warehouses'],function() {
     Route::get('/get-all-warehouse-by-status/{status}',[WarehouseController::class,'getAllWareHouseByStatus']);
-    Route::post('/save-warehouse',[WarehouseController::class,'store']);
-    Route::post('/update-warehouse',[WarehouseController::class,'update']);
-    Route::post('/remove-warehouse',[WarehouseController::class,'destroy']);
+    Route::post('/save-warehouse',[WarehouseController::class,'saveWarehouse']);
+    Route::post('/update-warehouse',[WarehouseController::class,'updateWarehouse']);
+    Route::post('/remove-warehouse',[WarehouseController::class,'removeWarehouse']);
 });
 //Warehouse Detail API
 Route::group(['prefix'=>'/warehouse-details'],function() {
     Route::get('/get-all-warehouse-detail-by-status/{status}',[WareHouseDetailController::class,'getAllWareHouseDetailByStatus']);
-    Route::post('/save-warehouse-detail',[WareHouseDetailController::class,'store']);
-    Route::post('/update-warehouse-detail',[WareHouseDetailController::class,'update']);
-    Route::post('/remove-warehouse-detail',[WareHouseDetailController::class,'destroy']);
+    Route::post('/save-warehouse-detail',[WareHouseDetailController::class,'saveWarehouseDetail']);
+    Route::post('/update-warehouse-detail',[WareHouseDetailController::class,'updateWarehouseDetail']);
+    Route::post('/remove-warehouse-detail',[WareHouseDetailController::class,'removeWarehouseDetail']);
 });
 //Bill Order API
 Route::group(['prefix'=>'/bill-orders'],function() {
     Route::get('/get-all-bill-order-by-status/{status}',[BillOrderController::class,'getAllBillOrderByStatus']);
-    Route::post('/save-bill-order',[BillOrderController::class,'store']);
+    Route::post('/save-bill-order',[BillOrderController::class,'saveBillOrder']);
 });
 
 //--------------------End 12 Head Tables--------------------------
@@ -137,46 +137,46 @@ Route::group(['prefix'=>'/bill-orders'],function() {
 //Bill API
 Route::group(['prefix'=>'/bills'],function() {
     Route::get('/get-all-bill-by-status/{status}',[BillController::class,'getAllBillByStatus']);
-    Route::post('/save-bill',[BillController::class,'store']);
+    Route::post('/save-bill',[BillController::class,'save']);
     // Route::post('/update-bill',[BillController::class,'update']);
-    // Route::post('/remove-bill',[BillController::class,'destroy']);
+    // Route::post('/remove-bill',[BillController::class,'remove']);
 });
 //Bill-Detail API
 Route::group(['prefix'=>'/bill-details'],function() {
     Route::get('/get-all-bill-detail-by-status/{status}',[BillDetailController::class,'getAllBillDetailByStatus']);
-    Route::post('/save-bill-detail',[BillDetailController::class,'store']);
+    Route::post('/save-bill-detail',[BillDetailController::class,'save']);
     Route::post('/update-bill-detail',[BillDetailController::class,'update']);
-    Route::post('/remove-bill-detail',[BillDetailController::class,'destroy']);
+    Route::post('/remove-bill-detail',[BillDetailController::class,'remove']);
 });
 
 //Bill-Order-Detail API
 Route::group(['prefix'=>'/bill-order-details'],function() {
     Route::get('/get-all-bill-order-detail-by-status/{status}',[BillOrderDetailController::class,'getAllBillOrderDetailByStatus']);
-    Route::post('/save-bill-order-detail',[BillOrderDetailController::class,'store']);
+    Route::post('/save-bill-order-detail',[BillOrderDetailController::class,'save']);
     Route::post('/update-bill-order-detail',[BillOrderDetailController::class,'update']);
-    Route::post('/remove-bill-order-detail',[BillOrderDetailController::class,'destroy']);
+    Route::post('/remove-bill-order-detail',[BillOrderDetailController::class,'remove']);
 });
 
 //Discount API
 Route::group(['prefix'=>'/discounts'],function() {
     Route::get('/get-all-discount-by-status/{status}',[DiscountController::class,'getAllDiscountByStatus']);
-    Route::post('/save-discount',[DiscountController::class,'store']);
+    Route::post('/save-discount',[DiscountController::class,'save']);
     Route::post('/update-discount',[DiscountController::class,'update']);
-    Route::post('/remove-discount',[DiscountController::class,'destroy']);
+    Route::post('/remove-discount',[DiscountController::class,'remove']);
 });
 
 //Voucher API
 Route::group(['prefix'=>'/vouchers'],function() {
     Route::get('/get-all-voucher-by-status/{status}',[VoucherController::class,'getAllVoucherByStatus']);
-    Route::post('/save-voucher',[VoucherController::class,'store']);
+    Route::post('/save-voucher',[VoucherController::class,'save']);
     Route::post('/update-voucher',[VoucherController::class,'update']);
-    Route::post('/remove-voucher',[VoucherController::class,'destroy']);
+    Route::post('/remove-voucher',[VoucherController::class,'remove']);
 });
 
 //Activity-History API
 Route::group(['prefix'=>'/activities-history'],function() {
     Route::get('/get-all-activity-history-by-status/{status}',[activityHistoryController::class,'getAllActivityHistoryByStatus']);
-    Route::post('/save-activity-history',[activityHistoryController::class,'store']);
+    Route::post('/save-activity-history',[activityHistoryController::class,'save']);
     Route::post('/update-activity-history',[activityHistoryController::class,'update']);
     Route::post('/remove-activity-history',[activityHistoryController::class,'détroy']);
 });

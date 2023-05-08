@@ -12,54 +12,49 @@ use Carbon\Carbon;
 class ProviderController extends Controller
 {
     public function getAllProviderByStatus($status){
-        $providers = Provider::where('status', $status)->get();
-        if($providers->isEmpty()){
+        $provider = Provider::where('status', $status)->get();
+        if($provider->isEmpty()){
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(ProviderResource::collection($providers), 'Ok', 200);
+        return Payload::toJson(ProviderResource::collection($provider), 'OK', 200);
     }
 
-    public function store(Request $request){
-        $providers = new Provider();
-        $providers->fill([
+    public function saveProvider(Request $request){
+        $provider = new Provider();
+        $provider->fill([
             'id_provider' => "PROVIDER".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'name' => $request->name, 
             'address' => $request->address, 
             'phone' => $request->phone, 
             'email' => $request->email, 
         ]);
-
-        if($providers->save() == 1){
-            $providers = Provider::where('id_provider', $providers->id_provider)->first();
-            return Payload::toJson(new ProviderResource($providers), 'Completed', 201);
+        if($provider->save() == 1){
+            $provider = Provider::where('id_provider', $provider->id_provider)->first();
+            return Payload::toJson(new ProviderResource($provider), 'Completed', 201);
         }
-
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function update(Request $request){
-        $providers = Provider::where('id_provider', $request->id_provider)
+    public function updateProvider(Request $request){
+        $result = Provider::where('id_provider', $request->id_provider)
         ->update([
             'name' => $request->name,
             'address' => $request->address,
             'phone' => $request->phone,
             'email' => $request->email
         ]);
-
-        if($providers == 1){
-            return Payload::toJson($providers, 'Completed', 200);
+        if($result == 1){
+            $provider = Provider::where('id_provider',$request->id_provider)->first();
+            return Payload::toJson(new ProviderResource($provider),"Completed",201);
         }
-
-        return Payload::toJson($providers, 'Uncompleted', 500);
+        return Payload::toJson(null, 'Uncompleted', 500);
     }
-    public function destroy(Request $request){
+    public function removeProvider(Request $request){
         $result = Provider::where('id_provider', $request->id_provider)
         ->update(['status'=> $request -> status]);
-        
         if($result == 1){
-            $providers = Provider::where('id_provider',$request->id_provider)->first();
-            return Payload::toJson(new ProviderResource($providers),"Remove Successfully",202);
+            $provider = Provider::where('id_provider',$request->id_provider)->first();
+            return Payload::toJson(new ProviderResource($provider),"Remove Successfully",202);
         }
-
         return Payload::toJson(null,"Cannot Update",500);
     }
 }

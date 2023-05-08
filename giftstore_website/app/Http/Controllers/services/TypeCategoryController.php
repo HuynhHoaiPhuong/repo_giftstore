@@ -11,26 +11,25 @@ use Carbon\Carbon;
 
 class TypeCategoryController extends Controller
 {
-    public function getAllTypeCategoryByStatus($status){
-        $typeCategories = TypeCategory::where('status', $status)->get();
-
-        if($typeCategories->isEmpty())
+    public function getAllTypeCategoryByStatus($status)
+    {
+        $typeCategory = TypeCategory::where('status', $status)->get();
+        if($typeCategory->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
-
-        return Payload::toJson(TypeCategoryResource::collection($typeCategories), "Request Successfully", 200);
+        return Payload::toJson(TypeCategoryResource::collection($typeCategory), "OK", 200);
     }
 
     public function saveTypeCategory(Request $request){
-        $typeCategories = new TypeCategory();
-        $typeCategories->fill([
+        $typeCategory = new TypeCategory();
+        $typeCategory->fill([
             'id_type_category' => "TYPECAT".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'numerical_order' => $request->numerical_order,
             'name' => $request->name, 
             'slug' => $request->slug, 
         ]);
-        if($typeCategories->save() == 1){
-            $typeCategories = TypeCategory::where('id_type_category',$typeCategories->id_type_category)->first();
-            return Payload::toJson(new TypeCategoryResource($typeCategories),'Completed',201);
+        if($typeCategory->save() == 1){
+            $typeCategory = TypeCategory::where('id_type_category',$typeCategory->id_type_category)->first();
+            return Payload::toJson(new TypeCategoryResource($typeCategory),'Completed',201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
@@ -42,10 +41,9 @@ class TypeCategoryController extends Controller
             'name' => $request->name, 
             'slug' => $request->slug
         ]);  
-
         if($result == 1){
-            $typeCategories = TypeCategory::where('id_type_category', $request->id_type_category)->first();
-            return Payload::toJson(new TypeCategoryResource($typeCategories), "Update Successfully", 202);
+            $typeCategory = TypeCategory::where('id_type_category', $request->id_type_category)->first();
+            return Payload::toJson(new TypeCategoryResource($typeCategory), 'Completed',201);
         }
         return Payload::toJson(null, "Cannot Update", 500);
     }
@@ -53,11 +51,10 @@ class TypeCategoryController extends Controller
     public function removeTypeCategory(Request $request){
         $result = TypeCategory::where('id_type_category', $request->id_type_category)
         ->update(['status' => $request->status]);
-
         if($result == 1){
-            $typeCategories = TypeCategory::where('id_type_category', $request->id_type_category)->first();
-            return Payload::toJson(new TypeCategoryResource($typeCategories), "Remove Successfully", 202);
+            $typeCategory = TypeCategory::where('id_type_category', $request->id_type_category)->first();
+            return Payload::toJson(new TypeCategoryResource($typeCategory), 'Completed',201);
         }
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "Uncompleted", 500);
     }
 }

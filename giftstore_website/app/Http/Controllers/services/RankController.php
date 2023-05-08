@@ -11,53 +11,51 @@ use Carbon\Carbon;
 
 class RankController extends Controller
 {
-    public function getAllRankByStatus($status){
-        $ranks = Rank::where(['status', $status])
+    public function getAllRankByStatus($status)
+    {
+        $rank = Rank::where(['status', $status])
         ->orderBy('score_level', 'asc')->get();
-
-         if($ranks->isEmpty())
+        if($rank->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
-
-        return Payload::toJson(RankResource::collection($ranks), "Request Successfully", 200);
+        return Payload::toJson(RankResource::collection($rank), "OK", 200);
     }
-    public function saveRank(Request $request){
-        $ranks = new Rank();
-        $ranks->fill([
+    public function saveRank(Request $request)
+    {
+        $rank = new Rank();
+        $rank->fill([
             'id_rank' =>  "RANK".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'rank_name' => $request->rank_name, 
             'score_level' => $request->score_level, 
         ]);
-        if($ranks->save() == 1){
-            $ranks = Rank::where('id_rank', $ranks->id_rank)->first();
-            return Payload::toJson(new RankResource($ranks), "Create Successfully", 201);
+        if($rank->save() == 1){
+            $rank = Rank::where('id_rank', $rank->id_rank)->first();
+            return Payload::toJson(new RankResource($rank), "Created!", 201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function updateRank(Request $request){
+    public function updateRank(Request $request)
+    {
         $result = Rank::where('id_rank', $request->id_rank)
         ->update([
             'rank_name' => $request->rank_name, 
             'score_level'=> $request->score_level
         ]);  
-
         if($result == 1){
-            $ranks = Rank::where('id_rank', $request->id_rank)->first();
-            return Payload::toJson(new RankResource($ranks), "Update Successfully", 202);
+            $rank = Rank::where('id_rank', $request->id_rank)->first();
+            return Payload::toJson(new RankResource($rank), "Completed", 201);
         }
-
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "Uncompleted", 500);
     }
 
-    public function removeRank(Request $request){
+    public function removeRank(Request $request)
+    {
         $result = Rank::where('id_rank', $request->id_rank)
         ->update(['status' => $request->status]);
-
         if($result == 1){
             $ranks = Rank::where('id_rank', $request->id_rank)->first();
-            return Payload::toJson(new RankResource($ranks), "Remove Successfully", 202);
+            return Payload::toJson(new RankResource($ranks), "Completed", 201);
         }
-
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "Uncompleted", 500);
     }
 }

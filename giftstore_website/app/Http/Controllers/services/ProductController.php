@@ -12,17 +12,17 @@ use Carbon\Carbon;
 class ProductController extends Controller
 {
     public function getAllProductByStatus($status){
-        $products = Product::where('status', $status)->get();
-         if($products->isEmpty())
+        $product = Product::where('status', $status)->get();
+         if($product->isEmpty())
          {
             return Payload::toJson(null, "Data Not Found", 404); 
          }  
-        return Payload::toJson(ProductResource::collection($products), "Request Successfully", 200);
+        return Payload::toJson(ProductResource::collection($product), "OK", 200);
     }
 
     public function saveProduct(Request $request){
-        $products = new Product();
-        $products->fill([
+        $product = new Product();
+        $product->fill([
             'id_product' => "PRODUCT".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_category' => $request->id_category, 
             'id_provider' => $request->id_provider, 
@@ -33,9 +33,9 @@ class ProductController extends Controller
             'price' => $request->price, 
             'slug' => $request->slug,
         ]);
-        if($products->save() == 1){
-            $products = Product::where('id_product', $products->id_product)->first();
-            return Payload::toJson(new ProductResource($products), "Completed", 201);
+        if($product->save() == 1){
+            $product = Product::where('id_product', $product->id_product)->first();
+            return Payload::toJson(new ProductResource($product), "Completed", 201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
@@ -53,10 +53,9 @@ class ProductController extends Controller
             'price' => $request->price, 
             'slug' => $request->slug, 
         ]);  
-
         if($result == 1){
-            $products = Product::where('id_product', $request->id_product)->first();
-            return Payload::toJson(new ProductResource($products), "Completed", 200);
+            $product = Product::where('id_product', $request->id_product)->first();
+            return Payload::toJson(new ProductResource($product), "Completed", 201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
@@ -64,11 +63,10 @@ class ProductController extends Controller
     public function removeProduct(Request $request){
         $result = Product::where('id_product', $request->id_product)
         ->update(['status' => $request->status]);
-
         if($result == 1){
-            $products = Product::where('id_product', $request->id_product)->first();
-            return Payload::toJson(new ProductResource($products), "Completed", 200);
+            $product = Product::where('id_product', $request->id_product)->first();
+            return Payload::toJson(new ProductResource($product), "Completed", 201);
         }
-        return Payload::toJson(null,'Uncompleted',500);
+        return Payload::toJson(null,'Uncompleted', 500);
     }
 }

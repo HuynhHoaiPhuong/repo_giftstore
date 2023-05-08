@@ -11,51 +11,49 @@ use Carbon\Carbon;
 
 class WareHouseController extends Controller
 {
-    public function getAllWareHouseByStatus($status){
-        $wareHouses = WareHouse::where('status', $status)->get();
-
-        if($wareHouses->isEmpty())
+    public function getAllWareHouseByStatus($status)
+    {
+        $wareHouse = WareHouse::where('status', $status)->get();
+        if($wareHouse->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
-
-        return Payload::toJson(WareHouseResource::collection($wareHouses), "Request Successfully", 200);
+        return Payload::toJson(WareHouseResource::collection($wareHouse), "OK", 200);
     }
 
-    public function store(Request $request){
-        $wareHouses = new WareHouse();
-        $wareHouses->fill([
+    public function saveWarehouse(Request $request)
+    {
+        $wareHouse = new WareHouse();
+        $wareHouse->fill([
             'id_warehouse' => "WAREHOUSE".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'name' => $request->name,
             'address' => $request->address,
         ]);
-
-        $wareHouses->save();
-        $wareHouses = WareHouse::where('id_warehouse', $wareHouses->id_warehouse)->first();
-        
-        return Payload::toJson(new WareHouseResource($wareHouses), "Create Successfully", 201);
+        if($wareHouse->save() == 1){
+            $wareHouse = WareHouse::where('id_warehouse', $wareHouse->id_warehouse)->first();
+            return Payload::toJson(new WareHouseResource($wareHouse), "Created!", 201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function update(Request $request){
-        $result = WareHouse::where('id_warehouse', $request->id_warehouse)->update([
+    public function updateWarehouse(Request $request){
+        $result = WareHouse::where('id_warehouse', $request->id_warehouse)
+        ->update([
             'name' => $request->name, 
             'address' => $request->address,
         ]);  
-
         if($result == 1){
-            $wareHouses = WareHouse::where('id_warehouse', $request->id_warehouse)->first();
-            return Payload::toJson(new WareHouseResource($wareHouses), "Update Successfully", 202);
+            $wareHouse = WareHouse::where('id_warehouse', $request->id_warehouse)->first();
+            return Payload::toJson(new WareHouseResource($wareHouse), "Completed", 201);
         }
-        
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "UnCompleted", 500);
     }
 
-    public function destroy(Request $request){
+    public function removeWarehouse(Request $request){
         $result = WareHouse::where('id_warehouse', $request->id_warehouse)
         ->update(['status' => $request->status]);
-
         if($result == 1){
-            $wareHouses = WareHouse::where('id_warehouse', $request->id_warehouse)->first();
-            return Payload::toJson(new WareHouseResource($wareHouses), "Remove Successfully", 202);
+            $wareHouse = WareHouse::where('id_warehouse', $request->id_warehouse)->first();
+            return Payload::toJson(new WareHouseResource($wareHouse), "Completed", 202);
         }
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null, "UnCompleted", 500);
     }
 }
