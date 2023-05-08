@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Resources\services;
-
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PaymentResource extends JsonResource
@@ -19,6 +19,8 @@ class PaymentResource extends JsonResource
             'photo' => $this->photo,
             'name' => $this->name,
             'status' => $this->status,
+            'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
         ];
     }
 }
