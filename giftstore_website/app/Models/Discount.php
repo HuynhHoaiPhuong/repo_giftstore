@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rank;
-use App\Models\ProductCat;
+use App\Models\Category;
 
 class Discount extends Model
 {
@@ -14,7 +14,7 @@ class Discount extends Model
     protected $fillable = [
         'id_discount',
         'id_rank',
-        'id_product_cat',
+        'id_category',
         'percent_price',    
         'status'
     ];
@@ -22,8 +22,8 @@ class Discount extends Model
     public function rank(){
         return $this->belongsTo(Rank::class, 'id_rank', 'id_rank');
     }
-    public function productCat(){
-        return $this->belongsTo(ProductCat::class, 'id_product_cat', 'id_product_cat');
+    public function category(){
+        return $this->belongsTo(Category::class, 'id_category', 'id_category');
     }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Bill;
 use App\Models\Product;
+use App\Models\Discount;
 
 class BillDetail extends Model
 {
@@ -15,10 +16,10 @@ class BillDetail extends Model
         'id_bill_detail',
         'id_bill',
         'id_product',
+        'id_discount',
         'quantity',
-        'price',
-        'discount',
-        'status',
+        'total_price',
+        'rate_status',
     ];
     
     public function bill(){
@@ -26,5 +27,8 @@ class BillDetail extends Model
     }
     public function product(){
         return $this->belongsTo(Product::class, 'id_product', 'id_product');
+    }
+    public function discount(){
+        return $this->belongsTo(Discount::class, 'id_discount', 'id_discount');
     }
 }

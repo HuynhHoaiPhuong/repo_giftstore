@@ -10,12 +10,11 @@ class Photo extends Model
     use HasFactory;
     protected $fillable = [
         'id_photo',
-        'numb',
+        'numerical_order',
+        'name',
         'photo',
         'link',
-        'name',
         'type',
-        'act',
         'status',
         'created_at',
         'updated_at'

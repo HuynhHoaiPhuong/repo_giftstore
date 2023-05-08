@@ -18,10 +18,10 @@ class BillDetailResource extends JsonResource
             'id_bill_detail' => $this->id_bill_detail,
             'bill' => new BillResource($this->bill),
             'product' => new ProductResource($this->product),
-            'price' => $this->price,
+            'discount' => new DiscountResource($this->discount),
             'quantity' => $this->quantity,
-            'discount' => $this->discount,
-            'status' => $this->status,
+            'total_price' => $this->total_price,
+            'rate_status' => $this->rate_status,
         ];
     }
 }

@@ -20,18 +20,18 @@ class BillController extends Controller
         return Payload::toJson(BillResource::collection($bills), 'Ok', 200);
     }
 
-    public function store(Request $request)
+    public function saveBill(Request $request)
     {
         $bills = new Bill();
         $bills->fill([
             'id_bill' => $request->id_bill, 
             'id_member' => $request->id_member, 
-            'code_voucher' => $request->code_voucher, 
-            'total_price' => $request->total_price, 
+            'id_voucher' => $request->id_voucher,
+            'id_payment' => $request->id_payment, 
             'total_quantity' => $request->total_quantity, 
-            'payment' => $request->payment, 
-            'date_order' => $request->date_order, 
-            'date_confirm' => $request->date_confirm, 
+            'total_price' => $request->total_price, 
+            'order_date' => $request->order_date, 
+            'date_of_payment' => $request->date_of_payment, 
         ]);
         if($bills->save() == 1){
             $bills = Bill::where('id_bill', $bills->id_bill)->first();
@@ -39,23 +39,4 @@ class BillController extends Controller
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    // public function update(Request $request)
-    // {
-    //     $bills= Bill::where('id_bill', $request->id_bill)
-    //     ->update(['name' => $request->name]);
-    //     if($bills == 1){
-    //         return Payload::toJson($bills, 'Completed', 200);
-    //     }
-    //     return Payload::toJson($bills, 'Uncompleted', 500);
-    // }
-    // public function destroy($id)
-    // {
-    //     $bills = Bill::where('id_bill',  $id)->first();
-    //     if($bills)
-    //     {
-    //         $bills = Bill::where('id_bill',  $id)->delete();
-    //         return Payload::toJson(new BillResource($bills), "Remove Successfully", 202);
-    //     }
-    //     return Payload::toJson(null, "Cannot Deleted!", 500);
-    // }
 }

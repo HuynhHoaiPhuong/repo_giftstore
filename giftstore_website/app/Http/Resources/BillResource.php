@@ -16,13 +16,13 @@ class BillResource extends JsonResource
         return [
             'id_bill' => $this->id_bill,
             'member' => new MemberResource($this->member),
-            'code_voucher' => $this->code_voucher,
-            'total_price' => $this->total_price,
+            'voucher' => new VoucherResource($this->voucher),
+            'payment' => new PaymentResource($this->payment),
             'total_quantity' => $this->total_quantity,
-            'payment' => $this->payment,
+            'total_price' => $this->total_price,
+            'order_date' => Carbon::parse($this->order_date,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'date_of_payment' => Carbon::parse($this->date_of_payment,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
             'status' => $this->status,
-            'date_order' => Carbon::parse($this->date_order,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_confirm' => Carbon::parse($this->date_confirm,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
         ];
     }
 }

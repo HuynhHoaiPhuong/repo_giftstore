@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-use Carbon\Carbon;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StaticPageResource extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +15,13 @@ class StaticPageResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_static'=>$this->id_static,
+            'id_post'=>$this->id_post,
+            'topic' => new TopicResource($this->topic),
             'name'=>$this->name,
-            'slug'=>$this->slug,
             'photo'=>$this->photo,
-            'numb'=>$this->numb,
+            'slug'=>$this->slug,
             'description'=>$this->description,
             'content'=>$this->content,
-            'type'=>$this->type,
             'status'=>$this->status,
             'created_at'=>Carbon::parse($this->created_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
             'updated_at'=>Carbon::parse($this->updated_at,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s')
