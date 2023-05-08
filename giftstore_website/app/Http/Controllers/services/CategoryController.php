@@ -18,7 +18,7 @@ class CategoryController extends Controller
         return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
     }
 
-    public function store(Request $request){
+    public function saveCategory(Request $request){
         $categories = new Category();
         $categories->fill([
             'id_category' => "CAT".Carbon::now()->format('ymdhis').rand(1, 1000), 
@@ -28,12 +28,14 @@ class CategoryController extends Controller
             'photo' => $request->photo, 
             'slug' => $request->slug, 
         ]);
-        $categories->save();
-        $categories = Category::where('id_category', $categories->id_category)->first();
-        return Payload::toJson(new CategoryResource($categories), "Create Successfully", 201);
+        if($categories->save() == 1){
+            $categories = Category::where('id_category', $categories->id_category)->first();
+            return Payload::toJson(new CategoryResource($categories), "Create Successfully", 201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function update(Request $request){
+    public function updateCategory(Request $request){
         $result = Category::where('id_category', $request->id_category)->update([
             'id_type_category' => $request->id_type_category, 
             'numerical_order' => $request->numerical_order,
@@ -48,7 +50,7 @@ class CategoryController extends Controller
         return Payload::toJson(null, "Cannot Update", 500);
     }
 
-    public function destroy(Request $request){
+    public function removeCategory(Request $request){
         $result = Category::where('id_category', $request->id_category)
         ->update(['status' => $request->status]);
 

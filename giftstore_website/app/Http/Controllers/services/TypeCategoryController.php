@@ -20,7 +20,7 @@ class TypeCategoryController extends Controller
         return Payload::toJson(TypeCategoryResource::collection($typeCategories), "Request Successfully", 200);
     }
 
-    public function store(Request $request){
+    public function saveTypeCategory(Request $request){
         $typeCategories = new TypeCategory();
         $typeCategories->fill([
             'id_type_category' => "TYPECAT".Carbon::now()->format('ymdhis').rand(1, 1000), 
@@ -28,29 +28,29 @@ class TypeCategoryController extends Controller
             'name' => $request->name, 
             'slug' => $request->slug, 
         ]);
-
-        $typeCategories->save();
-        $typeCategories = TypeCategory::where('id_type_category', $typeCategories->id_type_category)->first();
-        
-        return Payload::toJson(new TypeCategoryResource($typeCategories), "Create Successfully", 201);
+        if($typeCategories->save() == 1){
+            $typeCategories = TypeCategory::where('id_type_category',$typeCategories->id_type_category)->first();
+            return Payload::toJson(new TypeCategoryResource($typeCategories),'Completed',201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function update(Request $request){
-        $result = TypeCategory::where('id_type_category', $request->id_type_category)->update([
+    public function updateTypeCategory(Request $request){
+        $result = TypeCategory::where('id_type_category', $request->id_type_category)
+        ->update([
             'numerical_order' => $request->numerical_order,
             'name' => $request->name, 
-            'slug' => $request->slug,
+            'slug' => $request->slug
         ]);  
 
         if($result == 1){
             $typeCategories = TypeCategory::where('id_type_category', $request->id_type_category)->first();
             return Payload::toJson(new TypeCategoryResource($typeCategories), "Update Successfully", 202);
         }
-        
         return Payload::toJson(null, "Cannot Update", 500);
     }
 
-    public function destroy(Request $request){
+    public function removeTypeCategory(Request $request){
         $result = TypeCategory::where('id_type_category', $request->id_type_category)
         ->update(['status' => $request->status]);
 

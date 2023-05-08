@@ -20,20 +20,21 @@ class RankController extends Controller
 
         return Payload::toJson(RankResource::collection($ranks), "Request Successfully", 200);
     }
-    public function store(Request $request){
+    public function saveRank(Request $request){
         $ranks = new Rank();
         $ranks->fill([
             'id_rank' =>  "RANK".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'rank_name' => $request->rank_name, 
             'score_level' => $request->score_level, 
         ]);
-        $ranks->save();
-        $ranks = Rank::where('id_rank', $ranks->id_rank)->first();
-
-        return Payload::toJson(new RankResource($ranks), "Create Successfully", 201);
+        if($ranks->save() == 1){
+            $ranks = Rank::where('id_rank', $ranks->id_rank)->first();
+            return Payload::toJson(new RankResource($ranks), "Create Successfully", 201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function update(Request $request){
+    public function updateRank(Request $request){
         $result = Rank::where('id_rank', $request->id_rank)
         ->update([
             'rank_name' => $request->rank_name, 
@@ -48,7 +49,7 @@ class RankController extends Controller
         return Payload::toJson(null, "Cannot Update", 500);
     }
 
-    public function destroy(Request $request){
+    public function removeRank(Request $request){
         $result = Rank::where('id_rank', $request->id_rank)
         ->update(['status' => $request->status]);
 

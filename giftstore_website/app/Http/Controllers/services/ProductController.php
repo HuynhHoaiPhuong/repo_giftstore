@@ -14,12 +14,13 @@ class ProductController extends Controller
     public function getAllProductByStatus($status){
         $products = Product::where('status', $status)->get();
          if($products->isEmpty())
-            return Payload::toJson(null, "Data Not Found", 404);   
-
+         {
+            return Payload::toJson(null, "Data Not Found", 404); 
+         }  
         return Payload::toJson(ProductResource::collection($products), "Request Successfully", 200);
     }
 
-    public function store(Request $request){
+    public function saveProduct(Request $request){
         $products = new Product();
         $products->fill([
             'id_product' => "PRODUCT".Carbon::now()->format('ymdhis').rand(1, 1000), 
@@ -32,12 +33,14 @@ class ProductController extends Controller
             'price' => $request->price, 
             'slug' => $request->slug,
         ]);
-        $products->save();
-        $products = Product::where('id_product', $products->id_product)->first();
-        return Payload::toJson(new ProductResource($products), "Create Successfully", 201);
+        if($products->save() == 1){
+            $products = Product::where('id_product', $products->id_product)->first();
+            return Payload::toJson(new ProductResource($products), "Completed", 201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function update(Request $request)
+    public function updateProduct(Request $request)
     {
         $result = Product::where('id_product', $request->id_product)
         ->update([
@@ -53,21 +56,19 @@ class ProductController extends Controller
 
         if($result == 1){
             $products = Product::where('id_product', $request->id_product)->first();
-            return Payload::toJson(new ProductResource($products), "Update Successfully", 202);
+            return Payload::toJson(new ProductResource($products), "Completed", 200);
         }
-
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function destroy(Request $request){
+    public function removeProduct(Request $request){
         $result = Product::where('id_product', $request->id_product)
         ->update(['status' => $request->status]);
 
         if($result == 1){
             $products = Product::where('id_product', $request->id_product)->first();
-            return Payload::toJson(new ProductResource($products), "Remove Successfully", 202);
+            return Payload::toJson(new ProductResource($products), "Completed", 200);
         }
-
-        return Payload::toJson(null, "Cannot Update", 500);
+        return Payload::toJson(null,'Uncompleted',500);
     }
 }

@@ -14,28 +14,25 @@ class CartController extends Controller
 {
     public function getAllCartByIdMember($id){
         $carts = Cart::where('id_member',$id)->get();
-
         if($carts->isEmpty()){
             return Payload::toJson(null, "Data Not Found", 404);
         }
-
         return Payload::toJson(CartResource::collection($carts),"Request Successfully",200);
     }
-    public function store(Request $request){
+    public function saveCart(Request $request){
         $carts = new Cart();
-        $carts->fill(
-            [
+        $carts->fill([
                 'id_cart' => "CART".Carbon::now()->format('ymdhis').$request->id_product.$request->id_member,
                 'id_product' => $request->id_product,
                 'id_member' => $request->id_member,
                 'quantity' => $request->quantity,
             ]
         );
-        $carts->save();
-        $carts = Cart::where('id_cart', $carts->id_cart)->first();
-
-        return Payload::toJson(new CartResource($carts), "Create Successfully", 201); 
-
+        if($carts->save() == 1){
+            $carts = Cart::where('id_cart', $carts->id_cart)->first();
+            return Payload::toJson(new CartResource($carts),'Completed',201);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
     }
 
     public function removeCart(Request $request){
@@ -51,7 +48,16 @@ class CartController extends Controller
         {
             return Payload::toJson($carts, 'Completed', 202);
         }
-        return Payload::toJson($carts, 'Uncomleted', 500);
+        $result = Role::where('id_role',$request->id_role)
+        ->update(['name' => $request->name]);
+        if($result == 1){
+            $role = Role::where('id_role', $request->id_role)->first();
+            return Payload::toJson(new RoleResource($role),'Completed',200);
+        }
+        return Payload::toJson(null,'Uncompleted',500);
+
+
+
     }
 
     public function removeAllCart(Request $request){
