@@ -21,7 +21,7 @@ class BillOrderController extends Controller
         return Payload::toJson(BillOrderResource::collection($billOrder), 'Ok', 200);
     }
 
-    public function store(Request $request)
+    public function saveBillOrder(Request $request)
     {
         $billOrder = new BillOrder();
         $billOrder->fill([
@@ -37,7 +37,7 @@ class BillOrderController extends Controller
         ]);
         if($billOrder->save() == 1){
             $BillOrder = BillOrder::where('id_bill_order', $billOrder->id_bill_order)->first();
-            return Payload::toJson(new BillOrderResource($BillOrder), 'Completed', 201);
+            return Payload::toJson(new BillOrderResource($BillOrder), 'Created', 201);
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
