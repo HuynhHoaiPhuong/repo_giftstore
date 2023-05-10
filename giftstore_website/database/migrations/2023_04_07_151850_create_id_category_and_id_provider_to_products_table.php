@@ -15,7 +15,7 @@ class CreateIdCategoryAndIdProviderToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->foreign('id_category')->references('id_category')->on('categories')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_provider')->references('id_provider')->on('provider')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_provider')->references('id_provider')->on('providers')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
