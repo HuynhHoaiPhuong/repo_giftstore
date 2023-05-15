@@ -15,7 +15,7 @@ class CreateRanksTable extends Migration
     {
         Schema::create('ranks', function (Blueprint $table) {
             $table->string('id_rank')->primary();  //primary key
-            $table->string('name')->unique();
+            $table->string('rank_name')->unique();
             $table->integer('score_level')->default(0);
             $table->string('status')->default("enabled");
             $table->timestamps();
