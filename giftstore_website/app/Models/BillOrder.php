@@ -35,6 +35,6 @@ class BillOrder extends Model
     public function user(){
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
-    public function wareHouse(){
+    public function warehouse(){
         return $this->belongsTo(WareHouse::class, 'id_warehouse', 'id_warehouse');
     }}

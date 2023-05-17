@@ -13,10 +13,10 @@ class CategoryController extends Controller
 {
     public function getAllCategoryByStatus($status)
     {
-        $category = Category::where('status', $status)->get();
-        if($category->isEmpty())
+        $categories = Category::where('status', $status)->get();
+        if($categories->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
-        return Payload::toJson(CategoryResource::collection($category), "Request Successfully", 200);
+        return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
     }
 
     public function saveCategory(Request $request)

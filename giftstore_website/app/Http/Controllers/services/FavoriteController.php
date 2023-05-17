@@ -13,12 +13,12 @@ class FavoriteController extends Controller
 {
     public function getAllFavoriteByStatus($status)
     {
-        $favorite = Favorite::where('status', $status)->get();
-        if($favorite->isEmpty())
+        $favorites = Favorite::where('status', $status)->get();
+        if($favorites->isEmpty())
         {
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(FavoriteResource::collection($favorite), 'OK', 200);
+        return Payload::toJson(FavoriteResource::collection($favorites), 'OK', 200);
     }
 
     public function saveFavorite(Request $request)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\services\PaymentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon; 
 
@@ -20,7 +21,7 @@ class BillOrderResource extends JsonResource
             'provider' => new ProviderResource($this->provider),
             'payment' => new PaymentResource($this->payment),
             'user' => new UserResource($this->user),
-            'warehouse' => new WarehouseResource($this->wareHouse),
+            'warehouse' => new WarehouseResource($this->warehouse),
             'total_quantity' => $this->quantity,       
             'total_price' => $this->total_price,
             'date_order' => Carbon::parse($this->date_order,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 
-class WareHouseDetailResource extends JsonResource
+class WarehouseDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,7 @@ class WareHouseDetailResource extends JsonResource
     {
         return [
             'id_warehouse_detail' => $this->id_warehouse_detail,
-            'warehouse' => new WareHouseResource($this->wareHouse),
+            'warehouse' => new WareHouseResource($this->warehouse),
             'product' => new ProductResource($this->product),
             'price_pay' => $this->price_pay,
             'total_price' => $this->total_price,

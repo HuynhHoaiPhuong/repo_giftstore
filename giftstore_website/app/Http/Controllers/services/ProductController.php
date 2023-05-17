@@ -12,12 +12,12 @@ use Carbon\Carbon;
 class ProductController extends Controller
 {
     public function getAllProductByStatus($status){
-        $product = Product::where('status', $status)->get();
-         if($product->isEmpty())
+        $products = Product::where('status', $status)->get();
+         if($products->isEmpty())
          {
             return Payload::toJson(null, "Data Not Found", 404); 
          }  
-        return Payload::toJson(ProductResource::collection($product), "OK", 200);
+        return Payload::toJson(ProductResource::collection($products), "OK", 200);
     }
 
     public function saveProduct(Request $request){

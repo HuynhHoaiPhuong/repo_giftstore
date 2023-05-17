@@ -13,12 +13,12 @@ class RateController extends Controller
 {
     public function getAllRateByStatus($status)
     {
-        $rate = Rate::where('status', $status)->get();
-        if($rate->isEmpty())
+        $rates = Rate::where('status', $status)->get();
+        if($rates->isEmpty())
         {
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(RateResource::collection($rate), 'OK', 200);
+        return Payload::toJson(RateResource::collection($rates), 'OK', 200);
     }
 
     public function saveRate(Request $request)

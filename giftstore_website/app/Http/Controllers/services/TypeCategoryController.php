@@ -13,10 +13,10 @@ class TypeCategoryController extends Controller
 {
     public function getAllTypeCategoryByStatus($status)
     {
-        $typeCategory = TypeCategory::where('status', $status)->get();
-        if($typeCategory->isEmpty())
+        $typeCategories = TypeCategory::where('status', $status)->get();
+        if($typeCategories->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
-        return Payload::toJson(TypeCategoryResource::collection($typeCategory), "OK", 200);
+        return Payload::toJson(TypeCategoryResource::collection($typeCategories), "OK", 200);
     }
 
     public function saveTypeCategory(Request $request){

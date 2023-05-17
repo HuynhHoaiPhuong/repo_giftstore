@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\WareHouse;
-use App\Models\Product;
 
-class WareHouseDetail extends Model
+class WarehouseDetail extends Model
 {
     use HasFactory;
     public $timestamps = true;
@@ -21,9 +19,10 @@ class WareHouseDetail extends Model
         'created_at',
         'updated_at',
     ];
-    public function wareHouse(){
+    public function warehouse(){
         return $this->belongsTo(WareHouse::class, 'id_stock', 'id_stock');
     }
     public function product(){
         return $this->belongsTo(Product::class, 'id_product', 'id_product');
-    }}
+    }
+}

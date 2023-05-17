@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\TypeCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 
@@ -17,7 +18,7 @@ class CategoryResource extends JsonResource
     {
         return [
             'id_category' => $this->id_category,
-            'type_category' => new TypeCategoriesResource($this->typeCategories),
+            'type_category' => new TypeCategoryResource($this->typeCategory),
             'numerical_order' => $this->numerical_order,
             'name' => $this->name,
             'photo' => $this->photo,

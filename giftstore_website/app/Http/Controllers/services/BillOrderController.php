@@ -13,12 +13,12 @@ class BillOrderController extends Controller
 {
     public function getAllBillOrderByStatus($status)
     {
-        $billOrder = BillOrder::where('status', $status)->get();
-        if($billOrder->isEmpty())
+        $billOrders = BillOrder::where('status', $status)->get();
+        if($billOrders->isEmpty())
         {
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(BillOrderResource::collection($billOrder), 'Ok', 200);
+        return Payload::toJson(BillOrderResource::collection($billOrders), 'Ok', 200);
     }
 
     public function saveBillOrder(Request $request)

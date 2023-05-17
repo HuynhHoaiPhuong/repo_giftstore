@@ -12,11 +12,11 @@ use Carbon\Carbon;
 class ProviderController extends Controller
 {
     public function getAllProviderByStatus($status){
-        $provider = Provider::where('status', $status)->get();
-        if($provider->isEmpty()){
+        $providers = Provider::where('status', $status)->get();
+        if($providers->isEmpty()){
             return Payload::toJson(null, 'Data Not Found', 404);
         }
-        return Payload::toJson(ProviderResource::collection($provider), 'OK', 200);
+        return Payload::toJson(ProviderResource::collection($providers), 'OK', 200);
     }
 
     public function saveProvider(Request $request){

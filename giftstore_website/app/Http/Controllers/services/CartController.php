@@ -20,17 +20,17 @@ class CartController extends Controller
         return Payload::toJson(CartResource::collection($carts),"OK",200);
     }
     public function saveCart(Request $request){
-        $carts = new Cart();
-        $carts->fill([
+        $cart = new Cart();
+        $cart->fill([
                 'id_cart' => "CART".Carbon::now()->format('ymdhis').$request->id_product.$request->id_member,
                 'id_product' => $request->id_product,
                 'id_member' => $request->id_member,
                 'quantity' => $request->quantity,
             ]
         );
-        if($carts->save() == 1){
-            $carts = Cart::where('id_cart', $carts->id_cart)->first();
-            return Payload::toJson(new CartResource($carts),'Completed',201);
+        if($cart->save() == 1){
+            $cart = Cart::where('id_cart', $cart->id_cart)->first();
+            return Payload::toJson(new CartResource($cart),'Completed',201);
         }
         return Payload::toJson(null,'Uncompleted',500);
     }
