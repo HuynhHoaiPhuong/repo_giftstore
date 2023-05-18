@@ -27,7 +27,7 @@ class PaymentController extends Controller
         $payment = new Payment();
 
         $payment->fill([
-            'id_payment' => $req->id_payment,
+            'id_payment' => Carbon::now()->format('ymdhis').rand(1,1000),
             'photo'=>$req->photo,
             'name'=>$req->name,
         ]);

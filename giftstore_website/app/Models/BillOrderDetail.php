@@ -17,8 +17,7 @@ class BillOrderDetail extends Model
         'id_product',
         'price_order',
         'quantity',
-        'total_price',
-        'status'
+        'total_price'
     ];
     
     public function billOrder(){

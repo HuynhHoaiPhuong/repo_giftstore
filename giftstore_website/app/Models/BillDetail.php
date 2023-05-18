@@ -18,8 +18,7 @@ class BillDetail extends Model
         'id_product',
         'id_discount',
         'quantity',
-        'total_price',
-        'rate_status',
+        'total_price'
     ];
     
     public function bill(){

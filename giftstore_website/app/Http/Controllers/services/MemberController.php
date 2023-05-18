@@ -27,7 +27,7 @@ class MemberController extends Controller
         $member = new Member();
 
         $member->fill([
-            'id_member' => $req->id_member,
+            'id_member' => "MB".$req->id_user.$req->id_rank,
             'id_user'=>$req->id_user,
             'id_rank'=>$req->id_rank,
         ]);

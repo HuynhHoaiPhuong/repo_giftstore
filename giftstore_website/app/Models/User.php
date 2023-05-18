@@ -14,8 +14,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     protected $table = 'users';
-    // public $incrementing = false;
-    protected $keyType = 'string';
+    public $incrementing = false;
+    // protected $keyType = 'string';
     protected $primaryKey = 'id_user';
     public $timestamps = false;
     protected $fillable = [
@@ -29,9 +29,9 @@ class User extends Authenticatable
         'phone',
         'address',
         'gender',
-        'birthday',
-        'status'
+        'birthday'
     ];
+    
     public function role(){
         return $this->belongsTo(Role::class, 'id_role', 'id_role');
     }

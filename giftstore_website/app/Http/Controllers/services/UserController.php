@@ -59,7 +59,6 @@ class UserController extends Controller
                     'address'=>$req->address,
                     'gender'=>$req->gender,
                     'birthday'=>$req->birthday,
-                    'status'=>$req->status
                 ],
             );  
         if($result == 1){

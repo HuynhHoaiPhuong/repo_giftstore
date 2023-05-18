@@ -11,9 +11,9 @@ use App\Http\Payload;
 
 class SettingController extends Controller
 {
-    public function getAllSettingByStatus($status)
+    public function getAllSetting()
     {
-        $settings = Setting::all()->get();
+        $settings = Setting::all();
          if($settings->isEmpty())
             return Payload::toJson(null,"Data Not Found",404);   
         return Payload::toJson(SettingResource::collection($settings),"Request Successfully",200);
@@ -60,12 +60,11 @@ class SettingController extends Controller
     public function removeSetting(Request $req)
     {
         $result = Setting::where('id_setting', $req -> id_setting)
-             ->update(['status'=> $req -> status]);
+             ->delete();
         if($result == 1)
         {
-            $setting = Setting::where('id_setting',$req->id_setting)->first();
-            return Payload::toJson(new SettingResource($setting),"Remove Successfully",202);
+            return Payload::toJson(true,"Remove Successfully",202);
         }
-        return Payload::toJson(null,"Cannot Update",500);
+        return Payload::toJson(false,"Remove Uncomleted",500);
     }
 }

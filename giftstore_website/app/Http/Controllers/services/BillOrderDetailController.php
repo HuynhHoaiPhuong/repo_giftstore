@@ -24,7 +24,7 @@ class BillOrderDetailController extends Controller
     {
         $billOrderDetails = new BillOrderDetail();
         $billOrderDetails->fill([
-            'id_bill_order_detail' => $request->id_bill_order_detail, 
+            'id_bill_order_detail' => "BOD".$request->id_bill_order.$request->id_product, 
             'id_bill_order' => $request->id_bill_order, 
             'id_product' => $request->id_product,
             'quantity' => $request->quantity,
