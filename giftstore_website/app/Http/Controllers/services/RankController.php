@@ -13,8 +13,8 @@ class RankController extends Controller
 {
     public function getAllRankByStatus($status)
     {
-        $ranks = Rank::where(['status', $status])
-        ->orderBy('score_level', 'asc')->get();
+        $ranks = Rank::where('status', $status)
+        ->orderBy('score_level', 'desc')->get();
         if($ranks->isEmpty())
             return Payload::toJson(null, "Data Not Found", 404);   
         return Payload::toJson(RankResource::collection($ranks), "OK", 200);

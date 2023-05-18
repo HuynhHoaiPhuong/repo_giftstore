@@ -19,8 +19,9 @@ class CreateRatesTable extends Migration
             $table->string('id_product');//foreign key
             $table->integer('number_of_stars')->default(5);
             $table->string('comment');
-            $table->integer('like')->default(0);
+            $table->integer('likes')->default(0);
             $table->string('status')->default('enabled');
+            $table->timestamps();
         });
     }
 

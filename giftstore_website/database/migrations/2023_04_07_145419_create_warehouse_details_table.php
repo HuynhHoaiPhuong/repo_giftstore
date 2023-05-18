@@ -20,6 +20,7 @@ class CreateWarehouseDetailsTable extends Migration
             $table->float('price_pay')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
+            $table->timestamps();
         });
     }
 

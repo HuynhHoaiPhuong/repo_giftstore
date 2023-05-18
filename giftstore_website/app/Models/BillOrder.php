@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Provider;
-use App\Models\User;
-use App\Models\WareHouse;
 use App\Models\Payment;
+use App\Models\User;
+use App\Models\Warehouse;
 
 class BillOrder extends Model
 {
@@ -36,5 +36,5 @@ class BillOrder extends Model
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
     public function warehouse(){
-        return $this->belongsTo(WareHouse::class, 'id_warehouse', 'id_warehouse');
+        return $this->belongsTo(Warehouse::class, 'id_warehouse', 'id_warehouse');
     }}

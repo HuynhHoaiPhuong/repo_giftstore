@@ -30,7 +30,7 @@ class BillOrderController extends Controller
             'id_payment' => $request->id_payment, 
             'id_user' => $request->id_user, 
             'id_warehouse' => $request->id_warehouse, 
-            'total_quantity' => $request->quantity, 
+            'total_quantity' => $request->total_quantity, 
             'total_price' => $request->total_price, 
             'date_order' => $request->date_order, 
             'date_of_payment' => $request->date_of_payment, 
