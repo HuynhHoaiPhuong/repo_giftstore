@@ -23,7 +23,7 @@ class BillDetailController extends Controller
     {
         $billDetails = new BillDetail();
         $billDetails->fill([
-            'id_bill_detail' => $request->id_bill_detail, 
+            'id_bill_detail' => "BD".$request->id_bill.$request->id_product, 
             'id_bill' => $request->id_bill, 
             'id_product' => $request->id_product, 
             'id_discount' => $request->id_discount, 

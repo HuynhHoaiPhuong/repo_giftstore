@@ -20,8 +20,7 @@ class Bill extends Model
         'total_quantity',
         'total_price',
         'order_date',
-        'date_of_payment',
-        'status',
+        // 'date_of_payment'
     ];
 
     public function member(){

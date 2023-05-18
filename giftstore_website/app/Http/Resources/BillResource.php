@@ -20,8 +20,8 @@ class BillResource extends JsonResource
             'payment' => new PaymentResource($this->payment),
             'total_quantity' => $this->total_quantity,
             'total_price' => $this->total_price,
-            'order_date' => Carbon::parse($this->order_date,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
-            'date_of_payment' => Carbon::parse($this->date_of_payment,'Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s'),
+            'order_date' => $this->order_date,
+            'date_of_payment' => $this->date_of_payment,
             'status' => $this->status,
         ];
     }

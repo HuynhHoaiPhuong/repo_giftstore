@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Bill;
 use App\Http\Payload;
 use App\Http\Resources\BillResource;
+use Carbon\Carbon;
 
 class BillController extends Controller
 {
@@ -24,14 +25,14 @@ class BillController extends Controller
     {
         $bills = new Bill();
         $bills->fill([
-            'id_bill' => $request->id_bill, 
+            'id_bill' => "B".Carbon::now('Asia/Ho_Chi_Minh')->format('ymdhis').rand(1, 1000), 
             'id_member' => $request->id_member, 
             'id_voucher' => $request->id_voucher,
             'id_payment' => $request->id_payment, 
             'total_quantity' => $request->total_quantity, 
             'total_price' => $request->total_price, 
-            'order_date' => $request->order_date, 
-            'date_of_payment' => $request->date_of_payment, 
+            'order_date' => Carbon::now('Asia/Ho_Chi_Minh'), 
+            // 'date_of_payment' => $request->date_of_payment, 
         ]);
         if($bills->save() == 1){
             $bills = Bill::where('id_bill', $bills->id_bill)->first();

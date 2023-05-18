@@ -241,7 +241,7 @@ Route::group(['prefix'=>'/photos'],function()
 // API setting
 Route::group(['prefix'=>'/settings'],function()
 {
-    Route::get('/get-all-setting-by-status/{status}',[SettingController::class,'getAllSettingByStatus']);
+    Route::get('/get-all-setting',[SettingController::class,'getAllSetting']);
    
     Route::post('/save-setting',[SettingController::class,'saveSetting']);
    
