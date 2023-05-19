@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Warehouse;
+use App\Models\Product;
 
 class WarehouseDetail extends Model
 {
@@ -20,7 +22,7 @@ class WarehouseDetail extends Model
         'updated_at',
     ];
     public function warehouse(){
-        return $this->belongsTo(WareHouse::class, 'id_warehouse', 'id_warehouse');
+        return $this->belongsTo(Warehouse::class, 'id_warehouse', 'id_warehouse');
     }
     public function product(){
         return $this->belongsTo(Product::class, 'id_product', 'id_product');

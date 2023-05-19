@@ -115,14 +115,14 @@ Route::group(['prefix'=>'/rates'],function() {
 });
 //Warehouse API
 Route::group(['prefix'=>'/warehouses'],function() {
-    Route::get('/get-all-warehouse-by-status/{status}',[WarehouseController::class,'getAllWareHouseByStatus']);
+    Route::get('/get-all-warehouse-by-status/{status}',[WarehouseController::class,'getAllWarehouseByStatus']);
     Route::post('/save-warehouse',[WarehouseController::class,'saveWarehouse']);
     Route::post('/update-warehouse',[WarehouseController::class,'updateWarehouse']);
     Route::post('/remove-warehouse',[WarehouseController::class,'removeWarehouse']);
 });
 //Warehouse Detail API
 Route::group(['prefix'=>'/warehouse-details'],function() {
-    Route::get('/get-all-warehouse-detail-by-status/{status}',[WareHouseDetailController::class,'getAllWareHouseDetailByStatus']);
+    Route::get('/get-all-warehouse-detail-by-status/{status}',[WareHouseDetailController::class,'getAllWarehouseDetailByStatus']);
     Route::post('/save-warehouse-detail',[WareHouseDetailController::class,'saveWarehouseDetail']);
     Route::post('/update-warehouse-detail',[WareHouseDetailController::class,'updateWarehouseDetail']);
     Route::post('/remove-warehouse-detail',[WareHouseDetailController::class,'removeWarehouseDetail']);
