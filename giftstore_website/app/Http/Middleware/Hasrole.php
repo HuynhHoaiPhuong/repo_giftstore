@@ -11,7 +11,7 @@ class Hasrole
     public function handle($request, Closure $next)
     {   
         if(Auth::check()) {
-            if (Auth::user()->id_role == '1') {
+            if (Auth::user()->role->id_role == 'AD') {
                 return $next($request);
             }
             else {

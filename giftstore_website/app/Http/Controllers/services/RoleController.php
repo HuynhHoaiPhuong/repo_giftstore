@@ -24,7 +24,7 @@ class RoleController extends Controller
     {
         $role = new Role();
         $role->fill([
-            'id_role' => "ROLE".Carbon::now()->format('ymdhis').rand(1, 1000), 
+            'id_role' => $request->id_role, 
             'name' => $request->name,
         ]);
         if($role->save() == 1){

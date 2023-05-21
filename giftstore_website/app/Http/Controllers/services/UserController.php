@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use Carbon\Carbon;
 use App\Http\Payload;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -27,8 +28,8 @@ class UserController extends Controller
                 'id_user' => "USER".Carbon::now()->format('ymdhis').rand(1,1000),
                 'id_role'=>$req->id_role,
                 'username'=>$req->username,
-                'password'=>$req->password,
-                'user_token'=>$req->user_token,
+                'password'=>bcrypt($req->password),
+                'user_token'=> Str::random(32),
                 'photo'=>$req->photo,
                 'fullname'=>$req->fullname,
                 'phone'=>$req->phone,

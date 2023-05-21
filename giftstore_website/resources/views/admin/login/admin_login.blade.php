@@ -29,7 +29,7 @@
 					{{ session('error') }}
 			</div>
 		@endif
-			<form action="{{route('check-login')}}" method="post">
+			<form action="{{route('authenticate')}}" method="post">
 				@csrf
 				<input type="text" class="ggg" name="username" placeholder="Username" required="">
 				<input type="password" class="ggg" name="password" placeholder="Password" required="">

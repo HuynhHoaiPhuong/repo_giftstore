@@ -46,7 +46,7 @@ class PaymentController extends Controller
                 [
                     'photo'=>$req->photo,
                     'name'=>$req->name,
-                ],
+                ]
             );  
         if($result == 1){
             $payment = Payment::where('id_payment',$req->id_payment)->first();
