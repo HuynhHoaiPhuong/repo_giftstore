@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin'],function(){
 
         Route::get('/topic-management',[TopicController::class,'index'])->name('topic-management');
 
-        Route::get('/setting',[SettingController::class,'index'])->name('setting');
+        Route::get('/setting-management',[SettingController::class,'settingManagement'])->name('setting-management');
 
         Route::get('/photo-management',[PhotoController::class,'index'])->name('photo-management');
 

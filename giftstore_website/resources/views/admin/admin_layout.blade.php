@@ -308,7 +308,7 @@
                         </li>
                         
                         <li class="sub-menu">
-                            <a href="">
+                            <a href="{{route('setting-management')}}">
                                 <i class="fa fa-cog"></i>
                                 <span>Cài đặt</span>
                             </a>
