@@ -1,6 +1,5 @@
 @extends('admin/admin_layout')
-
-@section('title','Thêm sản phẩm')
+@section('title','Quản lý hạng thành viên')
 
 @section('header')
   <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -27,60 +26,86 @@
 @endsection
 
 @section('admin_content')
- <div class="row">
-    <div class="col-lg-12">
-        <section class="panel">
-            <header class="panel-heading">Thêm sản phẩm</header>
-            <div class="panel-body">
-                <div class="position-center">
-                    <form role="form" action="" enctype="multipart/form-data" method="">
-                        @csrf
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="text" name="" class="form-control" id="exampleInputEmail1" placeholder="Tên sản phẩm">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Hình ảnh</label>
-                            <input type="file" name="" class="form-control" id="exampleInputEmail1">
-                        </div> 
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Mô tả sản phẩm</label>
-                            <textarea style="resize: none;" rows="5" name="" class="form-control" id="exampleInputPassword1" placeholder="Mô tả sản phẩm"></textarea> 
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Giá</label>
-                          <input type="number" name="" class="form-control" id="exampleInputEmail1">
-                      </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Code</label>
-                            <input type="text" style="resize: none;" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group">
-                        	<label for="exampleInputPassword1">Hiển thị</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiển thị</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Danh mục sản phẩm cấp 1</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                              <option value="">Apleeeeeeeee</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Danh mục sản phẩm cấp 2</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                              <option value="">Appleeeeeeeeee</option>
-                            </select>
-                        </div>
-                        
-                        <button type="submit" name="" class="btn btn-info">Thêm sản phẩm</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+<div class="table-agile-info">
+  <div class="panel panel-default">
+    <div class="panel-heading">Danh sách hạng thành viên</div>
+    <div class="row w3-res-tb">
+      <div class="col-sm-5 m-b-xs">
+        <select class="input-sm form-control w-sm inline v-middle">
+          <option value="0">Bulk action</option>
+          <option value="1">Delete selected</option>
+          <option value="2">Bulk edit</option>
+          <option value="3">Export</option>
+        </select>
+        <button class="btn btn-sm btn-success">Apply</button>  
+        <a href="" class="btn btn-sm btn-primary">Add</a>                
+      </div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <input type="text" class="input-sm form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
     </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox"><i></i>
+              </label>
+            </th>
+            <th>Tên hạng</th>
+            <th>Điểm</th>
+            <th>Trạng thái</th>
+            <th>Ngày Created</th>
+            <th>Ngày Updated</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
+            <td>
+              <a href="" class="active styling-edit" ui-toggle-class="">
+                <i class="fa fa-pencil-square-o text-success text-active"></i>
+              </a>
+              <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
+                <i class="fa fa-times text-danger text"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-sm-5 text-center">
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+        </div>
+        <div class="col-sm-7 text-right text-center-xs">                
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
 </div>
 @endsection
 
@@ -182,3 +207,6 @@
     </script>
     <!-- //calendar -->
 @endsection
+
+
+

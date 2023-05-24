@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BillOrderController extends Controller
 {
-    public function index(){
-        return view('admin/bill_order_management/all_bill_order');
+    public function billOrderManagement(){
+        return view('admin/bill_order_management/bill_order_management');
     }
 }

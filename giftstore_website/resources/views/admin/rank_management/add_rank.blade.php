@@ -3,9 +3,7 @@
  <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
-                Thêm hạng
-            </header>
+            <header class="panel-heading">Thêm hạng</header>
             <div class="panel-body">
                 <div class="position-center">
                     <form role="form" action="{{route('save-rank')}}" method="POST">

@@ -3,9 +3,7 @@
  <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
-                Thêm Hóa Đơn Bán
-            </header>
+            <header class="panel-heading">Thêm Hóa Đơn Bán</header>
             <div class="panel-body">
                 <div class="position-center">
                     <form role="form" action="/admin/save-bill" method="POST">

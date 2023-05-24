@@ -236,17 +236,6 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
-                                <span>Quản lý sản phẩm</span>
-                            </a>
-                            <ul class="sub">
-                                <li><a href="">Danh mục cấp 1</a></li>
-                                <li><a href="">Danh mục cấp 2</a></li>
-                                <li><a href="">Sản phẩm</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="javascript:;">
                                 <i class="fa fa-file-text"></i>
                                 <span>Quản lý trang tĩnh</span>
                             </a>
@@ -266,15 +255,21 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="">
+                            <a href="{{route('bill-order-management')}}">
                                 <i class="fa fa-credit-card-alt"></i>
                                 <span>Quản lý hóa đơn nhập</span>
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="">
+                            <a href="{{route('bill-management')}}">
                                 <i class="fa fa-credit-card"></i>
                                 <span>Quản lý hóa đơn bán</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="{{route('provider-management')}}">
+                                <i class="fa fa-credit-card"></i>
+                                <span>Quản lý nhà cung cấp</span>
                             </a>
                         </li>
                         <li class="sub-menu">
@@ -288,7 +283,7 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="">
+                            <a href="{{route('role-management')}}">
                                 <i class="fa fa-users"></i>
                                 <span>Quản lý phân quyền</span>
                             </a>
@@ -298,15 +293,37 @@
                                 <i class="fa fa-user"></i>
                                 <span>Quản lý thành viên</span>
                             </a>
-
                         </li>
                         <li class="sub-menu">
-                            <a href="">
-                                <i class="fa fa-level-up"></i>
-                                <span>Quản lý hạng thành viên</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý xếp hạng thành viên</span>
                             </a>
+                            <ul class="sub">
+                                <li><a href="{{route('rank-management')}}">Xếp hạng thành viên</a></li>
+                                <li><a href="{{route('discount-management')}}">Giảm giá theo thể loại</a></li>
+                            </ul>
                         </li>
-                        
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý danh mục & thể loại</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{route('type-category-management')}}">Danh mục</a></li>
+                                <li><a href="{{route('category-management')}}">Thể loại</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý sản phẩm</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{route('product-management')}}">Sản phẩm</a></li>
+                                <li><a href="{{route('add-product')}}">Thêm sản phẩm</a></li>
+                            </ul>
+                        </li>
                         <li class="sub-menu">
                             <a href="">
                                 <i class="fa fa-cog"></i>
@@ -324,13 +341,13 @@
             <section class="wrapper">
                 @yield('admin_content')
             </section>
-         <!-- footer -->
+            <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
                     <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
                 </div>
             </div>
-          <!-- / footer -->
+            <!-- / footer -->
         </section>
         <!--main content end-->
     </section>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function index(){
-        return view('admin/role_management/all_role');
+    public function roleManagement(){
+        return view('admin/role_management/role_management');
     }
 }

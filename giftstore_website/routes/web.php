@@ -16,9 +16,13 @@ use App\Http\Controllers\web\BillController;
 use App\Http\Controllers\web\BillOrderController;
 use App\Http\Controllers\web\MemberController;
 use App\Http\Controllers\web\RankController;
+use App\Http\Controllers\web\ProviderController;
+use App\Http\Controllers\web\TypeCategoryController;
+use App\Http\Controllers\web\CategoryController;
+use App\Http\Controllers\web\DiscountController;
 use App\Http\Controllers\web\LoginController;
 
-//user
+//client
 use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
@@ -27,7 +31,8 @@ use App\Http\Controllers\user\ProductClientController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\LoginClientController;
 
-//admin
+
+//web-admin
 Route::group(['prefix' => 'admin'],function(){
 
     Route::get('/login', [LoginController::class,'login'])->name('login');
@@ -35,18 +40,14 @@ Route::group(['prefix' => 'admin'],function(){
     Route::get('/register', [LoginController::class,'register'])->name('register');
     Route::post('/save', [LoginController::class,'save'])->name('save');
     
-    //Check authenticate
+    //Check Authenticate
     Route::group(['middleware' => ['auth','hasrole']], function(){
 
         Route::get('/logout', [LoginController::class,'logout'])->name('logout');
 
         Route::get('/index',[IndexController::class,'index'])->name('index');
 
-        Route::get('/role-management',[RoleController::class,'index'])->name('role-management');
-
         Route::get('/static-page-management',[StaticPageController::class,'index'])->name('static-page-management');
-
-        Route::get('/product-management',[ProductController::class,'index'])->name('product-management');
 
         Route::get('/topic-management',[TopicController::class,'index'])->name('topic-management');
 
@@ -54,11 +55,22 @@ Route::group(['prefix' => 'admin'],function(){
 
         Route::get('/photo-management',[PhotoController::class,'index'])->name('photo-management');
 
+        Route::get('/rank-management',[RankController::class,'rankManagement'])->name('rank-management');
+        Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
+        Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
+        Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
+        Route::get('/category-management',[CategoryController::class,'categoryManagement'])->name('category-management');
+        Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
+        Route::get('/add-product',[ProductController::class,'addProduct'])->name('add-product');
+        Route::get('/bill-management',[BillController::class,'billManagement'])->name('bill-management');
+        Route::get('/bill-order-management',[BillOrderController::class,'billOrderManagement'])->name('bill-order-management');
+        Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
+
     });
 });
 
 
-//web-user
+//web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/cart', [CartController::class,'index'])->name('cart');
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');

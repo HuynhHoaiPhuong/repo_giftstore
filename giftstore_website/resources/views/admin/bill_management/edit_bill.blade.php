@@ -3,9 +3,7 @@
  <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
-                Cập Nhật Hóa Đơn Bán
-            </header>
+            <header class="panel-heading">Cập Nhật Hóa Đơn Bán</header>
             <div class="panel-body">
               @foreach($edit_bill as $key => $edit)
                 <div class="position-center">
@@ -42,8 +40,8 @@
                           <input type="datetime-local" name="date_confirm" value="{{$edit->date_confirm}}" class="form-control">
                         </div>
                         <div class="form-group">
-                        	<label>Hiển thị</label>
-                            <select  name="status" value="{{$edit->status}}" class="form-control input-sm m-bot15">
+                        	<label>Trạng thái</label>
+                            <select name="status" value="{{$edit->status}}" class="form-control input-sm m-bot15">
                                 <option value="an">Ẩn</option>
                                 <option value="hienthi">Hiển thị</option>
                                 <option value="noibat">Nổi bật</option>

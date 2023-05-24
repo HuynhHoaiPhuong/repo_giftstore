@@ -3,9 +3,7 @@
  <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
-                Cập nhật hạng
-            </header>
+            <header class="panel-heading">Cập nhật hạng</header>
             <div class="panel-body">
               @foreach($edit_rank as $key => $edit)
                 <div class="position-center">
@@ -25,7 +23,7 @@
                           </div>
                         <div class="form-group">
                           <label>Hiển thị</label>
-                          <select  name="status" class="form-control input-sm m-bot15">
+                          <select name="status" class="form-control input-sm m-bot15">
                             <option value="hienthi">Hiển thị</option>
                             <option value="an">Ẩn</option>
                         </select>
