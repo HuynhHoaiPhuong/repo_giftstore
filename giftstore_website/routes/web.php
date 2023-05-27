@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 //admin
 use App\Http\Controllers\web\IndexController;
 use App\Http\Controllers\web\RoleController;
-use App\Http\Controllers\web\StaticPageController;
+use App\Http\Controllers\web\PostController;
 use App\Http\Controllers\web\ProductController;
 use App\Http\Controllers\web\TopicController;
 use App\Http\Controllers\web\SettingController;
@@ -21,6 +21,10 @@ use App\Http\Controllers\web\TypeCategoryController;
 use App\Http\Controllers\web\CategoryController;
 use App\Http\Controllers\web\DiscountController;
 use App\Http\Controllers\web\LoginController;
+use App\Http\Controllers\web\PaymentController;
+use App\Http\Controllers\web\VoucherController;
+use App\Http\Controllers\web\WarehouseController;
+use App\Http\Controllers\web\WarehouseDetailController;
 
 //client
 use App\Http\Controllers\user\HomeController;
@@ -47,13 +51,23 @@ Route::group(['prefix' => 'admin'],function(){
 
         Route::get('/index',[IndexController::class,'index'])->name('index');
 
-        Route::get('/static-page-management',[StaticPageController::class,'index'])->name('static-page-management');
+        Route::get('/post-management/{id_topic}',[PostController::class,'postManagement'])->name('post-management');
 
-        Route::get('/topic-management',[TopicController::class,'index'])->name('topic-management');
+        Route::get('/topic-management',[TopicController::class,'topicManagement'])->name('topic-management');
 
-        Route::get('/setting',[SettingController::class,'index'])->name('setting');
+        Route::get('/setting-management',[SettingController::class,'settingManagement'])->name('setting-management');
 
-        Route::get('/photo-management',[PhotoController::class,'index'])->name('photo-management');
+        Route::get('/photo-management',[PhotoController::class,'photoManagement'])->name('photo-management');
+
+        Route::get('/payment-management',[PaymentController::class,'paymentManagement'])->name('payment-management');
+
+        Route::get('/voucher-management',[VoucherController::class,'voucherManagement'])->name('voucher-management');
+
+        Route::get('/member-management',[MemberController::class,'memberManagement'])->name('member-management');
+
+        Route::get('/warehouse-management',[WarehouseController::class,'warehouseManagement'])->name('warehouse-management');
+
+        Route::get('/warehouse-detail-management/{id_warehouse}',[WarehouseDetailController::class,'warehouseDetailManagement'])->name('warehouse-detail-management');
 
         Route::get('/rank-management',[RankController::class,'rankManagement'])->name('rank-management');
         Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
