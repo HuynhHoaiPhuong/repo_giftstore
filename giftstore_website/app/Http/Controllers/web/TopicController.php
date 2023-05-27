@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TopicController extends Controller
 {
-    public function index(){
-        return view('admin/topic_management/all_topic');
+    public function topicManagement(){
+        return view('admin/topic_management/topic');
     }
 }

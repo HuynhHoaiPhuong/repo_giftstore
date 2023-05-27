@@ -206,8 +206,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="{{asset('admin/images/2.png')}}">
-                        <span class="username">Johnny Depp
-                        </span>
+                        <span class="username">Johnny Depp</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -256,14 +255,10 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{route('topic-management')}}">
                                 <i class="fa fa-pencil-square-o"></i>
-                                <span>Quản lý bài viết</span>
+                                <span>Quản lý chủ đề</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="">Tin tức</a></li>
-                                <li><a href="">Chính sách</a></li>
-                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="">
@@ -278,14 +273,10 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{route('photo-management')}}">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản lý hình ảnh và video</span>
+                                <span>Quản lý hình ảnh</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="">Logo</a></li>
-                                <li><a href="">Slideshow</a></li>
-                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="">
@@ -294,7 +285,7 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="">
+                            <a href="{{route('member-management')}}">
                                 <i class="fa fa-user"></i>
                                 <span>Quản lý thành viên</span>
                             </a>
@@ -304,6 +295,27 @@
                             <a href="">
                                 <i class="fa fa-level-up"></i>
                                 <span>Quản lý hạng thành viên</span>
+                            </a>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="{{route('payment-management')}}">
+                                <i class="fa fa-credit-card"></i>
+                                <span>Quản lý hình thức thanh toán</span>
+                            </a>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="{{route('voucher-management')}}">
+                                <i class="fa fa-credit-card"></i>
+                                <span>Quản lý ưu đãi</span>
+                            </a>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="{{route('warehouse-management')}}">
+                                <i class="fa fa-credit-card"></i>
+                                <span>Quản lý kho</span>
                             </a>
                         </li>
                         
