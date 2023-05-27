@@ -234,16 +234,6 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-file-text"></i>
-                                <span>Quản lý trang tĩnh</span>
-                            </a>
-                            <ul class="sub">
-                                <li><a href="">Giới thiệu</a></li>
-                                <li><a href="">Footer</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
                             <a href="{{route('topic-management')}}">
                                 <i class="fa fa-pencil-square-o"></i>
                                 <span>Quản lý chủ đề</span>
@@ -268,7 +258,6 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
                             <a href="{{route('photo-management')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>Quản lý hình ảnh</span>
