@@ -21,7 +21,7 @@ class CreateBillsTable extends Migration
             $table->bigInteger('total_price')->default(0);
             $table->integer('total_quantity')->default(0);
             $table->datetime('order_date');
-            $table->datetime('date_of_payment');
+            $table->datetime('date_of_payment')->nullable(true);
             $table->string('status')->default('enabled');
         });
     }

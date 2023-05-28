@@ -11,6 +11,16 @@ use App\Http\Payload;
 
 class PaymentController extends Controller
 {
+    public function getAllPayment()
+    {
+        $payments= Payment::all();
+        if($payments->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(PaymentResource::collection($payments),'Request Successfully',200);
+    }
+
     public function getAllPaymentByStatus ($status)
     {
         $payments= Payment::where('status',$status)
@@ -19,7 +29,7 @@ class PaymentController extends Controller
         {
             return Payload::toJson(null,'Data Not Found',404);
         }
-        return Payload::toJson(PaymentResource::collection($payments),'Ok',200);
+        return Payload::toJson(PaymentResource::collection($payments),'Request Successfully',200);
     }
 
     public function savePayment(Request $req)
