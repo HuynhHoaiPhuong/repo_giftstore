@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class RoleController extends Controller
 {
+    public function getAllRole()
+    {
+        $roles = Role::all();
+        if($roles->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(RoleResource::collection($roles), 'Request Successfully', 200);
+    }
     public function getAllRoleByStatus($status)
     {
         $roles = Role::where('status',$status)->get();

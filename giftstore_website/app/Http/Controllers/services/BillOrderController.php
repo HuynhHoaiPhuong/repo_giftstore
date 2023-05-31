@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class BillOrderController extends Controller
 {
+    public function getAllBillOrder()
+    {
+        $billOrders = BillOrder::all();
+        if($billOrders->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(BillOrderResource::collection($billOrders), 'Request Successfully', 200);
+    }
     public function getAllBillOrderByStatus($status)
     {
         $billOrders = BillOrder::where('status', $status)->get();

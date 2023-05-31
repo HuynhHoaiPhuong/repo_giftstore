@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class TypeCategoryController extends Controller
 {
+    public function getAllTypeCategory()
+    {
+        $type_cats = TypeCategory::all();
+        if($type_cats->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(TypeCategoryResource::collection($type_cats), 'Request Successfully', 200);
+    }
     public function getAllTypeCategoryByStatus($status)
     {
         $typeCategories = TypeCategory::where('status', $status)->get();

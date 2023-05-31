@@ -61,6 +61,7 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>STT</th>
             <th>ID NSX</th>
             <th>ID PTTT</th>
             <th>ID Khách hàng</th>
@@ -74,17 +75,21 @@
           </tr>
         </thead>
         <tbody>
+          @if($billOrders != [])
+          <?php $i = 1; ?>
+          @foreach($billOrders as $key => $billOrder)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$billOrder->id_provider}}</td>
+            <td>{{$billOrder->id_payment}}</td>
+            <td>{{$billOrder->id_user}}</td>
+            <td>{{$billOrder->id_warehouse}}</td>
+            <td>{{$billOrder->total_quantity}}</td>
+            <td>{{$billOrder->total_price}}</td>
+            <td>{{$billOrder->date_order}}</td>
+            <td>{{$billOrder->date_of_payment}}</td>
+            <td>{{$billOrder->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -94,6 +99,10 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>

@@ -57,11 +57,11 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
+            <th>STT</th>
             <th>ID Danh mục</th>
-            <th>Số thứ tự</th>
             <th>Tên thể loại</th>
             <th>Hình ảnh</th>
             <th>Slug</th>
@@ -70,14 +70,17 @@
           </tr>
         </thead>
         <tbody>
+          @if($categories != [])
+          <?php $i = 1; ?>
+          @foreach($categories as $key => $category)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$category->id_type_category}}</td>
+            <td>{{$category->name}}</td>
+            <td>{{$category->photo}}</td>
+            <td>{{$category->slug}}</td>
+            <td>{{$category->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -87,6 +90,10 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>
@@ -99,9 +106,6 @@
           <ul class="pagination pagination-sm m-t-none m-b-none">
             <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
             <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
             <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
           </ul>
         </div>

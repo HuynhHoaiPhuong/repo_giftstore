@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
+    public function getAllCategory()
+    {
+        $categories = Category::all();
+        if($categories->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(CategoryResource::collection($categories), 'Request Successfully', 200);
+    }
     public function getAllCategoryByStatus($status)
     {
         $categories = Category::where('status', $status)->get();

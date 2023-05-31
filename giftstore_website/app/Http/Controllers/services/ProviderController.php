@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class ProviderController extends Controller
 {
+    public function getAllProvider()
+    {
+        $providers = Provider::all();
+        if($providers->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(ProviderResource::collection($providers), 'Request Successfully', 200);
+    }
     public function getAllProviderByStatus($status){
         $providers = Provider::where('status', $status)->get();
         if($providers->isEmpty()){

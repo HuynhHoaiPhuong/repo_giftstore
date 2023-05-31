@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class RankController extends Controller
 {
+    public function getAllRank()
+    {
+        $ranks = Rank::all();
+        if($ranks->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(RankResource::collection($ranks), 'Request Successfully', 200);
+    }
     public function getAllRankByStatus($status)
     {
         $ranks = Rank::where('status', $status)

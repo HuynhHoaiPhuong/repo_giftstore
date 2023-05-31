@@ -60,6 +60,7 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>STT</th>
             <th>Tên hạng</th>
             <th>Điểm</th>
             <th>Trạng thái</th>
@@ -69,13 +70,17 @@
           </tr>
         </thead>
         <tbody>
+          @if($ranks != [])
+          <?php $i = 1; ?>
+          @foreach($ranks as $key => $rank)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
+            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td> 
+            <td>{{$i++}}</td>
+            <td>{{$rank->rank_name}}</td>
+            <td>{{$rank->score_level}}</td>
+            <td>{{$rank->status}}</td>
+            <td>{{$rank->created_at}}</td>
+            <td>{{$rank->updated_at}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -85,6 +90,10 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>

@@ -61,7 +61,8 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Tên nhà cung cấp</th>
+            <th>STT</th>
+            <th>Nhà cung cấp</th>
             <th>Địa chỉ</th>
             <th>Số điện thoại</th>
             <th>Email</th>
@@ -70,13 +71,17 @@
           </tr>
         </thead>
         <tbody>
+          @if($providers != [])
+          <?php $i = 1; ?>
+          @foreach($providers as $key => $provider)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$provider->name}}</td>
+            <td>{{$provider->address}}</td>
+            <td>{{$provider->phone}}</td>
+            <td>{{$provider->email}}</td>
+            <td>{{$provider->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -86,12 +91,15 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>

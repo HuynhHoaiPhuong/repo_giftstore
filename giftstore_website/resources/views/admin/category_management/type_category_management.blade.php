@@ -57,10 +57,10 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
-            <th>Số thứ tự</th>
+            <th>STT</th>
             <th>Tên danh mục</th>
             <th>Slug</th>
             <th>Trạng thái</th>
@@ -68,12 +68,15 @@
           </tr>
         </thead>
         <tbody>
+          @if($type_cats != [])
+          <?php $i = 1; ?>
+          @foreach($type_cats as $key => $type_cat)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$type_cat->name}}</td>
+            <td>{{$type_cat->slug}}</td>
+            <td>{{$type_cat->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -83,6 +86,10 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>

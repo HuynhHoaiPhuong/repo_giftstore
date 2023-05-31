@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class ProductController extends Controller
 {
+    public function getAllProduct()
+    {
+        $products = Product::all();
+        if($products->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(ProductResource::collection($products), 'Request Successfully', 200);
+    }
     public function getAllProductByStatus($status){
         $products = Product::where('status', $status)->get();
          if($products->isEmpty())

@@ -61,22 +61,20 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Tên hạng</th>
-            <th>Điểm</th>
+            <th>Tên Role</th>
             <th>Trạng thái</th>
-            <th>Ngày Created</th>
-            <th>Ngày Upadted</th>
             <th>Thao tác</th>
           </tr>
         </thead>
         <tbody>
+          @if($roles != [])
+          <?php $i = 1; ?>
+          @foreach($roles as $key => $role)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>Đồng</td>
-            <td>14214</td>
-            <td>dd-mm-yy</td>
-            <td>dd-mm-yy</td>
-            <td>abc</td>
+            <td>{{$i++}}</td>
+            <td>{{$role->name}}</td>
+            <td>{{$role->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -85,8 +83,11 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
-            <td></td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
 
       </table>

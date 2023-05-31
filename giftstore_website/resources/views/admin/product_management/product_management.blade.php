@@ -58,12 +58,12 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
+            <th>STT</th>
             <th>ID Thể loại</th>
             <th>ID NSX</th>
-            <th>Số thứ tự</th>
             <th>Tên sản phẩm</th>
             <th>Code</th>
             <th>Hình ảnh</th>
@@ -74,17 +74,20 @@
           </tr>
         </thead>
         <tbody>
+          @if($products != [])
+          <?php $i = 1; ?>
+          @foreach($products as $key => $product)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
+            <td>{{$i++}}</td>
+            <td>{{$product->id_category}}</td>
+            <td>{{$product->id_provider}}</td>
+            <td>{{$product->name}}</td>
+            <td>{{$product->code}}</td>
+            <td>{{$product->photo}}</td>
+            <td>{{$product->price}}</td>
+            <td>{{$product->slug}}</td>
+            <td>{{$product->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -93,8 +96,11 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
-            <td></td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>
@@ -108,9 +114,6 @@
           <ul class="pagination pagination-sm m-t-none m-b-none">
             <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
             <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
             <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
           </ul>
         </div>

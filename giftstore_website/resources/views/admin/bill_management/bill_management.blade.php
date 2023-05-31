@@ -56,9 +56,10 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
+            <th>STT</th>
             <th>ID Thành viên</th>
             <th>ID Voucher</th>
             <th>ID PTTT</th>
@@ -70,19 +71,26 @@
           </tr>
         </thead>
         <tbody>
+          @if($bills != [])
+          <?php $i = 1; ?>
+          @foreach($bills as $key => $bill)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$bill->id_member}}</td>
+            <td>{{$bill->id_voucher}}</td>
+            <td>{{$bill->id_payment}}</td>
+            <td>{{$bill->total_price}}</td>
+            <td>{{$bill->total_quantity}}</td>
+            <td>{{$bill->order_date}}</td>
+            <td>{{$bill->date_of_payment}}</td>
+            <td>{{$bill->status}}</td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
-
       </table>
     </div>
     <footer class="panel-footer">

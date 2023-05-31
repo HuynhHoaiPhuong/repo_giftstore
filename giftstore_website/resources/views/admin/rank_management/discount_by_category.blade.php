@@ -60,6 +60,7 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>STT</th>
             <th>ID Xếp hạng</th>
             <th>ID Thể loại</th>
             <th>Phần trăm giảm</th>
@@ -68,12 +69,16 @@
           </tr>
         </thead>
         <tbody>
+          @if($discounts != [])
+          <?php $i = 1; ?>
+          @foreach($discounts as $key => $discount)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$i++}}</td>
+            <td>{{$discount->id_rank}}</td>
+            <td>{{$discount->id_category}}</td>
+            <td>{{$discount->percent_price}}%</td>
+            <td>{{$discount->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -83,6 +88,10 @@
               </a>
             </td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+          @endif
         </tbody>
       </table>
     </div>
@@ -95,9 +104,6 @@
           <ul class="pagination pagination-sm m-t-none m-b-none">
             <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
             <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
             <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
           </ul>
         </div>

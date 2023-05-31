@@ -11,6 +11,15 @@ use Carbon\Carbon;
 
 class BillController extends Controller
 {
+    public function getAllBill()
+    {
+        $bills = Bill::all();
+        if($bills->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(BillResource::collection($bills), 'Request Successfully', 200);
+    }
     public function getAllBillByStatus($status)
     {
         $bills = Bill::where('status', $status)->get();
