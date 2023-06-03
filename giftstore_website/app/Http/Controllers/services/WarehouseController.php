@@ -11,6 +11,14 @@ use Carbon\Carbon;
 
 class WarehouseController extends Controller
 {
+    public function getAllWarehouse()
+    {
+        $warehouses = Warehouse::all();
+        if($warehouses->isEmpty())
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(WarehouseResource::collection($warehouses), "OK", 200);
+    }
+
     public function getAllWarehouseByStatus($status)
     {
         $warehouses = Warehouse::where('status', $status)->get();

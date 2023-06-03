@@ -11,6 +11,14 @@ use App\Http\Payload;
 
 class PhotoController extends Controller
 {
+    public function getAllPhoto()
+    {
+        $photos = Photo::all();
+         if($photos->isEmpty())
+            return Payload::toJson(null,"Data Not Found",404);   
+        return Payload::toJson(PhotoResource::collection($photos),"Request Successfully",200);
+    }
+
     public function getAllPhotoByStatus($status)
     {
         $photos = Photo::where('status',$status)->get();

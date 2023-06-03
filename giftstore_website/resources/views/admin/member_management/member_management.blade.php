@@ -1,6 +1,6 @@
 @extends('admin/admin_layout')
 
-@section('title','Quản lý kho')
+@section('title','Quản lý thành viên')
 
 @section('header')
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -30,7 +30,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách kho
+      Danh sách thành viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -41,7 +41,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                 
+        <a href="" class="btn btn-sm btn-primary">Add</a>               
       </div>
       <div class="col-sm-4">
       </div>
@@ -65,31 +65,34 @@
             </th>
             <th>STT</th>
             <th>ID</th>
-            <th>Tên</th>
-            <th>Địa chỉ</th>
+            <th>Họ tên</th>
+            <th>Hạng</th>
+            <th>Số điểm</th>
+            <th>Ngày đăng ký</th>
+            <th>Ngày chỉnh sửa gần nhất</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-        @if($warehouses != [])
-          @foreach($warehouses as $i => $warehouse)
+        @if($members != [])
+          @foreach($members as $i => $member)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $warehouse->id_warehouse }}</td>
-            <td>{{ $warehouse->name }}</td>
-            <td>{{ $warehouse->address }}</td>
-            <td>{{ $warehouse->status }}</td>
+            <td>{{ $member->id_member }}</td>
+            <td>{{ $member->user->username }}</td>
+            <td>{{ $member->rank->rank_name }}</td>
+            <td>{{ $member->current_point }}</td>
+            <td>{{ $member->created_at }}</td>
+            <td>{{ $member->updated_at }}</td>
+            <td>{{ $member->status }}</td>
             <td>
-              <a href="{{route('warehouse-detail-management',['id_warehouse'=>$warehouse->id_warehouse])}}" class="active styling-edit" title="Xem chi tiết kho">
-                <i class="fa fa-eye text-primary text-active"></i>
-              </a>
-              <a href="" class="active styling-edit" title="Chỉnh sửa">
+              <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" title="Xóa">
+              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
@@ -100,7 +103,6 @@
               <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
           @endif
         </tbody>
-
       </table>
     </div>
     <footer class="panel-footer">
@@ -133,7 +135,7 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {

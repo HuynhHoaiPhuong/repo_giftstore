@@ -1,6 +1,6 @@
 @extends('admin/admin_layout')
 
-@section('title','Quản lý bài viết')
+@section('title','Quản lý hình ảnh')
 
 @section('header')
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -30,7 +30,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách bài viết
+      Danh sách hình ảnh
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -41,7 +41,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                 
+        <a href="" class="btn btn-sm btn-primary">Add</a>                  
       </div>
       <div class="col-sm-4">
       </div>
@@ -63,29 +63,29 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>STT</th>
             <th>ID</th>
+            <th>Tên</th>
             <th>Hình ảnh</th>
-            <th>Mô tả</th>
-            <th>Nội dung</th>
+            <th>Liên kết</th>
             <th>Loại</th>
-            <th>Ngày Created</th>
-            <th>Ngày Updated</th>
-            <th>Hiển thị</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
+        @if($photos != [])
+          @foreach($photos as $i => $photo)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>pic1</td>
-            <td>adasd</td>
-            <td>àaf</td>
-            <td>1</td>
-            <td>dd-mm-yy</td>
-            <td>dd-mm-yy</td>
-            <td>check</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $photo->id_photo }}</td>
+            <td>{{ $photo->name }}</td>
+            <td>{{ $photo->photo }}</td>
+            <td>{{ $photo->link }}</td>
+            <td>{{ $photo->type }}</td>
+            <td>{{ $photo->status }}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -96,13 +96,15 @@
             </td>
             <td></td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
+          @endif
         </tbody>
-
       </table>
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
@@ -122,7 +124,6 @@
 </div>
 @endsection
 
-
 <!-- JavaScript -->
 @section('java-script')
 <script src="{{asset('admin/js/bootstrap.js')}}"></script>
@@ -130,7 +131,7 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {

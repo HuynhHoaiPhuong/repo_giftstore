@@ -34,14 +34,7 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>               
+        <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addPayment"><strong>Thêm Mới</strong></a>               
       </div>
       <div class="col-sm-4">
       </div>
@@ -67,27 +60,26 @@
             <th>ID</th>
             <th>Hình ảnh</th>
             <th>Tên</th>
-            <th>Hiển thị</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           @if($payments != [])
-          {{$i=1}}
-          @foreach($payments as $payment)
+          @foreach($payments as $i => $payment)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>{{ $i++ }}</td>
+            <td>{{ ++$i }}</td>
             <td>{{ $payment->id_payment }}</td>
             <td>{{ $payment->photo }}</td>
             <td>{{ $payment->name }}</td>
-            <td>checkbox</td>
+            <td>{{ $payment->status }}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a data-toggle="modal" data-target="#deletePayment" href="#" class="active styling-edit">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
@@ -95,7 +87,7 @@
           </tr>
           @endforeach
           @else
-              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Danh sách trống</td></tr>
+              <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
           @endif
         </tbody>
       </table>
@@ -119,6 +111,55 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal Add payment -->
+<div class="modal fade" id="addPayment" tabindex="-1" role="dialog" aria-labelledby="addPayment" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm hình thức thanh toán</strong></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-payment')}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputAddNamePayment">Tên hình thức</label>
+                        <input type="text" placeholder="Tên hình thức" name="name"
+                            id="inputAddNamePayment" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_payment btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Delete Payment -->
+<div class="modal fade" id="deletePayment" tabindex="-1" role="dialog" aria-labelledby="deletePayment" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePayment">Xoá hình thức thanh toán</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="font-weight-normal">Bạn có muốn chuyển hình thức thanh toán này vào thùng rác không?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" id="" class="btn_remove_rank btn btn-primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 
@@ -129,7 +170,7 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {

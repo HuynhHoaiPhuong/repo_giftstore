@@ -13,6 +13,7 @@ class WarehouseDetail extends Model
         'id_warehouse_detail',
         'id_warehouse',
         'id_product',
+        'quantity',
         'price_pay',
         'total_price',
         'status',

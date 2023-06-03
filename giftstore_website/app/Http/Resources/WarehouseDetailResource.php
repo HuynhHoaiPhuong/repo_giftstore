@@ -19,6 +19,7 @@ class WarehouseDetailResource extends JsonResource
             'id_warehouse_detail' => $this->id_warehouse_detail,
             'warehouse' => new WarehouseResource($this->warehouse),
             'product' => new ProductResource($this->product),
+            'quantity' => $this->quantity,
             'price_pay' => $this->price_pay,
             'total_price' => $this->total_price,
             'status' => $this->status,

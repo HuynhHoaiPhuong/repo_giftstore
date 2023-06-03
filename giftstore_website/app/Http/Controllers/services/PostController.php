@@ -11,6 +11,14 @@ use App\Http\Payload;
 
 class PostController extends Controller
 {
+    public function getAllPostByIdTopic($id_topic)
+    {
+        $posts = Post::where('id_topic',$id_topic)->get();
+         if($posts->isEmpty())
+            return Payload::toJson(null,"Data Not Found",404);   
+        return Payload::toJson(PostResource::collection($posts),"Request Successfully",200);
+    }
+
     public function getAllPostByStatus($status)
     {
         $posts = Post::where('status',$status)->get();
