@@ -23,13 +23,22 @@ class PaymentController extends Controller
 
     public function getAllPaymentByStatus ($status)
     {
-        $payments= Payment::where('status',$status)
-        ->get();
+        $payments= Payment::where('status',$status)->get();
         if($payments->isEmpty())
         {
             return Payload::toJson(null,'Data Not Found',404);
         }
         return Payload::toJson(PaymentResource::collection($payments),'Request Successfully',200);
+    }
+
+    public function getPaymentById ($id_payment)
+    {
+        $payment= Payment::where('id_payment',$id_payment)->first();
+        if(!$payment)
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(new PaymentResource($payment),'Request Successfully',200);
     }
 
     public function savePayment(Request $req)
@@ -74,5 +83,21 @@ class PaymentController extends Controller
             return Payload::toJson(new PaymentResource($payment),'Completed',200);
         }
         return Payload::toJson(null,'Uncompleted',500);
+    }
+
+    public function deletePayment(Request $req)
+    {
+        if($req->id_payment){
+            $result = Payment::where('id_payment', $req->id_payment)->delete();
+            if($result) return Payload::toJson(true, "Remove Successfully", 202);
+        }
+        return Payload::toJson(false, "Cannot Deleted!", 500);
+    }
+
+    public function clearPayment(Request $req)
+    {
+        $result = Payment::where('status', 'disabled')->delete();
+        if($result) return Payload::toJson(true, "Remove Successfully", 202);
+        return Payload::toJson(false, "Cannot Deleted!", 500);
     }
 }

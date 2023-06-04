@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin'],function(){
 
         Route::get('/payment-management',[PaymentController::class,'paymentManagement'])->name('payment-management');
         Route::post('/add-payment',[PaymentController::class,'addPayment'])->name('add-payment');
+        Route::post('/update-payment',[PaymentController::class,'updatePayment'])->name('update-payment');
+        Route::get('/recycle-payment',[PaymentController::class,'recyclePayment'])->name('recycle-payment');
 
         Route::get('/voucher-management',[VoucherController::class,'voucherManagement'])->name('voucher-management');
 
