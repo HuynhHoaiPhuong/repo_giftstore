@@ -11,6 +11,16 @@ use App\Http\Payload;
 
 class MemberController extends Controller
 {
+    public function getAllMember ()
+    {
+        $members= Member::all();
+        if($members->isEmpty())
+        {
+            return Payload::toJson(null,'Data Not Found',404);
+        }
+        return Payload::toJson(MemberResource::collection($members),'Ok',200);
+    }
+
     public function getAllMemberByStatus ($status)
     {
         $members= Member::where('status',$status)

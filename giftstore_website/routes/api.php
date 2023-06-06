@@ -157,9 +157,12 @@ Route::group(['prefix'=>'/bill-details'],function() {
 //API payment
 Route::group(['prefix'=>'/payments'],function() {
     Route::get('/get-all-payment-by-status/{status}',[PaymentController::class,'getAllPaymentByStatus']);
+    Route::get('/get-payment-by-id/{id_payment}',[PaymentController::class,'getPaymentById']);
     Route::post('/save-payment',[PaymentController::class,'savePayment']);
     Route::post('/update-payment',[PaymentController::class,'updatePayment']);
     Route::post('/remove-payment',[PaymentController::class,'removePayment']);
+    Route::post('/delete-payment',[PaymentController::class,'deletePayment']);
+    Route::post('/clear-payment',[PaymentController::class,'clearPayment']);
 });
 
 //Voucher API

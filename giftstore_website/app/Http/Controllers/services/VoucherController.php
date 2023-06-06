@@ -10,6 +10,16 @@ use App\Http\Resources\VoucherResource;
 
 class VoucherController extends Controller
 {
+    public function getAllVoucher()
+    {
+        $vouchers = Voucher::all();
+        if($vouchers->isEmpty())
+        {
+            return Payload::toJson(null, 'Data Not Found', 404);
+        }
+        return Payload::toJson(VoucherResource::collection($vouchers), 'Ok', 200);
+    }
+
     public function getAllVoucherByStatus ($status)
     {
         $vouchers = Voucher::where('status', $status)->get();

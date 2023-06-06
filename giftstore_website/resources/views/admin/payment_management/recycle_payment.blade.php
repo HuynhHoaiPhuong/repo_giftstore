@@ -1,6 +1,6 @@
 @extends('admin/admin_layout')
 
-@section('title','Quản lý hình thức thanh toán')
+@section('title','Thùng rác hình thức thanh toán')
 
 @section('header')
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -30,12 +30,12 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách hình thức thanh toán
+      Thùng rác (hình thức thanh toán)
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">   
-        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addPayment"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
-        <a href="{{route('recycle-payment')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a>
+        <a href="#" class="clearPayment btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa tất cả</a>          
+        <a href="{{route('payment-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Thoát</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -77,11 +77,11 @@
             <td>{{ $payment->created_at }}</td>
             <td>{{ $payment->updated_at }}</td>
             <td>
-              <a data-id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#updatePayment" href="#" class="updatePayment active styling-edit" title="Sửa">
-                <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="removePayment active styling-edit">
+              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="deletePayment active styling-edit">
                 <i class="fa fa-times text-danger text"></i>
+              </a>
+              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#restorePayment" href="#" class="restorePayment active styling-edit">
+                <i class="fa fa-repeat text-success text"></i>
               </a>
             </td>
             <td></td>
@@ -94,7 +94,7 @@
       </table>
     </div>
     <footer class="panel-footer">
-      <div class="row">
+      <div class="row m-b-3">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
@@ -113,61 +113,6 @@
   </div>
 </div>
 
-<!-- /Modal Add payment -->
-<div class="modal fade" id="addPayment" tabindex="-1" role="dialog" aria-labelledby="addPayment" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-dark">
-                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm hình thức thanh toán</strong></h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('add-payment')}}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="inputAddNamePayment">Tên hình thức</label>
-                        <input type="text" placeholder="Tên hình thức" name="name"
-                            id="inputAddNamePayment" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn_submit_add_payment btn-primary btn-block mr-10" type="submit">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- /Modal update payment -->
-<div class="modal fade" id="updatePayment" tabindex="-1" role="dialog" aria-labelledby="updatePayment" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header bg-dark">
-                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('update-payment')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="id_payment" id="inputUpdatePaymetId">
-                    <div class="form-group">
-                        <label for="inputUpdatePaymentName">Tên hình thức</label>
-                        <input type="text" placeholder="Tên hình thức" name="name"
-                            id="inputUpdatePaymentName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn_submit_update_payment btn-primary btn-block mr-10" type="submit">Lưu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- /Modal Delete Payment -->
 <div class="modal fade" id="deletePayment" tabindex="-1" role="dialog" aria-labelledby="deletePayment" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -179,11 +124,32 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h5 class="font-weight-normal">Bạn có muốn chuyển hình thức thanh toán này vào thùng rác không?</h5>
+                <h5 class="font-weight-normal">Bạn có muốn xóa vĩnh viễn hình thức thanh toán này không?</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
-                <button type="button" id="" class="btn_remove_payment btn btn-primary">Đồng ý</button>
+                <button type="button" id="" class="btn_delete_payment btn btn-primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Restore Payment -->
+<div class="modal fade" id="restorePayment" tabindex="-1" role="dialog" aria-labelledby="restorePayment" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="restorePayment">Khôi phục hình thức thanh toán</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="font-weight-normal">Bạn có muốn khôi phục hình thức thanh toán này không?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" id="" class="btn_restore_payment btn btn-primary">Đồng ý</button>
             </div>
         </div>
     </div>
@@ -215,18 +181,17 @@
       });
 
       // Remove Payment
-      $('.removePayment').on('click', function() {
+      $('.deletePayment').on('click', function() {
         $id_payment = $(this).attr('id');
-        $('.btn_remove_payment').attr('id', $id_payment);
+        $('.btn_delete_payment').attr('id', $id_payment);
       });
-      $('.btn_remove_payment').on('click', function() {
+      $('.btn_delete_payment').on('click', function() {
           $id_payment = $(this).attr('id');
           $.ajax({
               type: 'POST',
-              url: '/api/payments/remove-payment',
+              url: '/api/payments/delete-payment',
               data: {
                   'id_payment': $id_payment,
-                  'status': 'disabled',
               },
               success: function(data) {
                   location.reload(false);
@@ -237,25 +202,44 @@
           });
       });
 
-      // Update Payment
-      $('.updatePayment').on('click', function() {
-        $id_payment = $(this).attr('data-id');
-        $.ajax({
-            type: 'GET',
-            url: '/api/payments/get-payment-by-id/' + $id_payment,
-            success: function(data) {
-                $payment = data.data;
+      // Restore Payment
+      $('.restorePayment').on('click', function() {
+        $id_payment = $(this).attr('id');
+        $('.btn_restore_payment').attr('id', $id_payment);
+      });
+      $('.btn_restore_payment').on('click', function() {
+          $id_payment = $(this).attr('id');
+          $.ajax({
+              type: 'POST',
+              url: '/api/payments/remove-payment',
+              data: {
+                  'id_payment': $id_payment,
+                  'status': 'enabled',
+              },
+              success: function(data) {
+                  location.reload(false);
+              },
+              error: function() {
 
-                $('#updatePayment #inputUpdatePaymetId').val($payment.id_payment);
+              }
+          });
+      });
 
-                $('#updatePayment #inputUpdatePaymentName').val($payment.name);
+      // Remove all payment
+      $('.clearPayment').on('click', function() {
+          $.ajax({
+              type: 'POST',
+              url: '/api/payments/clear-payment',
+              data: {
+              },
+              success: function(data) {
+                  location.reload(false);
+              },
+              error: function() {
+              }
+          });
+      });
 
-            },
-            error: function() {
-
-            }
-        })
-    });
   });
 </script>
 <!-- calendar -->

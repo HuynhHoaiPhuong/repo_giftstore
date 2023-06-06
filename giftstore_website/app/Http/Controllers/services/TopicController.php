@@ -11,6 +11,14 @@ use App\Http\Payload;
 
 class TopicController extends Controller
 {
+    public function getAllTopic()
+    {
+        $topics = Topic::all();
+         if($topics->isEmpty())
+            return Payload::toJson(null,"Data Not Found",404);   
+        return Payload::toJson(TopicResource::collection($topics),"Request Successfully",200);
+    }
+
     public function getAllTopicByStatus($status)
     {
         $topics = Topic::where('status',$status)->get();

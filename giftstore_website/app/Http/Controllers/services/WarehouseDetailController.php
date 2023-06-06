@@ -11,6 +11,13 @@ use Carbon\Carbon;
 
 class WarehouseDetailController extends Controller
 {
+    public function getAllWarehouseDetailByIdWarehouse($id_warehouse){
+        $warehouseDetails = WarehouseDetail::where('id_warehouse', $id_warehouse)->get();
+        if($warehouseDetails->isEmpty())
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(WarehouseDetailResource::collection($warehouseDetails), "OK", 200);
+    }
+
     public function getAllWarehouseDetailByStatus($status){
         $warehouseDetails = WarehouseDetail::where('status', $status)->get();
         if($warehouseDetails->isEmpty())
@@ -24,6 +31,7 @@ class WarehouseDetailController extends Controller
             'id_warehouse_detail' => "WAREDETAIL".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_warehouse' => $request->id_warehouse,
             'id_product' => $request->id_product,
+            'quantity' => $request->quantity,
             'price_pay' => $request->price_pay,
             'total_price' => $request->total_price,
         ]);

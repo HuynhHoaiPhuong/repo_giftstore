@@ -1,6 +1,6 @@
 @extends('admin/admin_layout')
 
-@section('title','Quản lý hình ảnh')
+@section('title','Quản lý bài viết')
 
 @section('header')
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -30,7 +30,9 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Slideshow
+      @if($posts != [])
+      <span>Danh sách {{$posts[0]->topic->name}}</span>
+      @endif
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -41,7 +43,7 @@
           <option value="3">Export</option>
         </select>
         <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                  
+        <a href="" class="btn btn-sm btn-primary">Add</a>                 
       </div>
       <div class="col-sm-4">
       </div>
@@ -63,27 +65,31 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
+            <th>STT</th>
             <th>ID</th>
-            <th>Tên</th>
             <th>Hình ảnh</th>
-            <th>Liên kết</th>
-            <th>Loại</th>
-            <th>Tác giả</th>
-            <th>Hiển thị</th>
+            <th>Tên</th>
+            <th>Đường dẫn</th>
+            <th>Ngày tạo</th>
+            <th>Ngày cập nhật</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
+        @if($posts != [])
+          @foreach($posts as $i => $post)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>1</td>
-            <td>photo1</td>
-            <td>photo</td>
-            <td>123455</td>
-            <td>1</td>
-            <td>ABC</td>
-            <td>check</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $post->id_post }}</td>
+            <td>{{ $post->photo }}</td>
+            <td>{{ $post->name }}</td>
+            <td>{{ $post->slug }}</td>
+            <td>{{ $post->created_at}}</td>
+            <td>{{ $post->updated_at }}</td>
+            <td>{{ $post->status }}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -94,6 +100,10 @@
             </td>
             <td></td>
           </tr>
+          @endforeach
+          @else
+              <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
+          @endif
         </tbody>
 
       </table>
@@ -120,6 +130,7 @@
 </div>
 @endsection
 
+
 <!-- JavaScript -->
 @section('java-script')
 <script src="{{asset('admin/js/bootstrap.js')}}"></script>
@@ -127,7 +138,7 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {
