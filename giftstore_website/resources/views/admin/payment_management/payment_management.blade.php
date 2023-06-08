@@ -3,35 +3,33 @@
 @section('title','Quản lý hình thức thanh toán')
 
 @section('header')
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- bootstrap-css -->
+  <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
 
-<!-- Custom CSS -->
-<link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
+  <!-- Custom CSS -->
+  <link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
+  <link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
 
-<!-- Font-Awesome-->
-<link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
-<link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
+  <!-- Font-Awesome-->
+  <link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
+  <link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
 
-<link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
-<link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
+  <link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
 
-<!-- Fonts -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-<script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
-<script src="{{asset('admin/js/raphael-min.js')}}"></script>
-<script src="{{asset('admin/js/morris.js')}}"></script>
+  <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
+  <script src="{{asset('admin/js/raphael-min.js')}}"></script>
+  <script src="{{asset('admin/js/morris.js')}}"></script>
 @endsection
 
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Danh sách hình thức thanh toán
-    </div>
+    <div class="panel-heading">Danh sách phương thức thanh toán</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">   
         <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addPayment"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
@@ -115,10 +113,10 @@
 
 <!-- /Modal Add payment -->
 <div class="modal fade" id="addPayment" tabindex="-1" role="dialog" aria-labelledby="addPayment" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
-                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm hình thức thanh toán</strong></h6>
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm phương thức thanh toán</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -127,12 +125,15 @@
                 <form action="{{route('add-payment')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="inputAddNamePayment">Tên hình thức</label>
-                        <input type="text" placeholder="Tên hình thức" name="name"
-                            id="inputAddNamePayment" class="form-control">
+                        <label for="inputAddNamePayment">Tên phương thức</label>
+                        <input type="text" placeholder="Tên phương thức" name="name" id="inputAddNamePayment" class="form-control">
                     </div>
+                    {{-- <div class="form-group">
+                      <label for="">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="photo" id="" class="form-control">
+                    </div> --}}
                     <div class="form-group">
-                        <button class="btn_submit_add_payment btn-primary btn-block mr-10" type="submit">Lưu</button>
+                        <button class="btn_submit_add_payment btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
                     </div>
                 </form>
             </div>
@@ -142,10 +143,10 @@
 
 <!-- /Modal update payment -->
 <div class="modal fade" id="updatePayment" tabindex="-1" role="dialog" aria-labelledby="updatePayment" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
-                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h6>
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -155,12 +156,15 @@
                     @csrf
                     <input type="hidden" name="id_payment" id="inputUpdatePaymetId">
                     <div class="form-group">
-                        <label for="inputUpdatePaymentName">Tên hình thức</label>
-                        <input type="text" placeholder="Tên hình thức" name="name"
-                            id="inputUpdatePaymentName" class="form-control">
+                        <label for="inputUpdatePaymentName">Tên phương thức</label>
+                        <input type="text" placeholder="Tên phương thức" name="name" id="inputUpdatePaymentName" class="form-control">
                     </div>
+                    {{-- <div class="form-group">
+                      <label for="">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="name" id="" class="form-control">
+                    </div> --}}
                     <div class="form-group">
-                        <button class="btn_submit_update_payment btn-primary btn-block mr-10" type="submit">Lưu</button>
+                        <button class="btn_submit_update_payment btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
                     </div>
                 </form>
             </div>
