@@ -61,7 +61,6 @@
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
             <th>Thao tác</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +69,7 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $payment->photo }}</td>
+            <td><img src="../admin/images/payments/{{ $payment->photo }}" alt="Not found!" width="40"></td>
             <td>{{ $payment->name }}</td>
             <td>{{ $payment->created_at }}</td>
             <td>{{ $payment->updated_at }}</td>
@@ -82,7 +81,6 @@
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
-            <td></td>
           </tr>
           @endforeach
           @else
@@ -122,18 +120,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('add-payment')}}" method="POST">
+                <form action="{{route('add-payment')}}" id="addPaymentForm" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="inputAddNamePayment">Tên phương thức</label>
                         <input type="text" placeholder="Tên phương thức" name="name" id="inputAddNamePayment" class="form-control">
                     </div>
-                    {{-- <div class="form-group">
-                      <label for="">Hình ảnh</label>
-                      <input type="file" placeholder="Thêm tập tin" name="photo" id="" class="form-control">
-                    </div> --}}
                     <div class="form-group">
-                        <button class="btn_submit_add_payment btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
+                      <label for="">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="photo" id="inputAddPhotoPayment" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_payment btn-primary btn-block mr-10 btn-add" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
                     </div>
                 </form>
             </div>
@@ -152,17 +150,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('update-payment')}}" method="POST">
+                <form action="{{route('update-payment')}}" id="updatePaymentForm" method="POST">
                     @csrf
-                    <input type="hidden" name="id_payment" id="inputUpdatePaymetId">
+                    <input type="hidden" name="id_payment" id="inputUpdatePaymentId">
                     <div class="form-group">
                         <label for="inputUpdatePaymentName">Tên phương thức</label>
                         <input type="text" placeholder="Tên phương thức" name="name" id="inputUpdatePaymentName" class="form-control">
                     </div>
-                    {{-- <div class="form-group">
-                      <label for="">Hình ảnh</label>
-                      <input type="file" placeholder="Thêm tập tin" name="name" id="" class="form-control">
-                    </div> --}}
+                    <div class="form-group">
+                      <label for="inputUpdatePaymentPhoto">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="photo" id="inputUpdatePaymentPhoto" class="form-control">
+                    </div>
                     <div class="form-group">
                         <button class="btn_submit_update_payment btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
                     </div>
@@ -218,6 +216,26 @@
         return false;
       });
 
+      //Add Payment
+      $(document).on('click','.btn-add', function(e){
+        e.preventDefault();
+        let formData = new FormData($("form#addPaymentForm")[0]);
+        $.ajax({
+          type: "post",
+          url: '/api/payments/save-payment',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response){
+            $('#addPaymentForm')[0].reset(); 
+            $("#addPayment").modal('hide');
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        })
+      })
+
       // Remove Payment
       $('.removePayment').on('click', function() {
         $id_payment = $(this).attr('id');
@@ -250,16 +268,14 @@
             success: function(data) {
                 $payment = data.data;
 
-                $('#updatePayment #inputUpdatePaymetId').val($payment.id_payment);
+                $('#updatePayment #inputUpdatePaymentId').val($payment.id_payment);
 
                 $('#updatePayment #inputUpdatePaymentName').val($payment.name);
 
+                $('#updatePayment #inputUpdatePaymentPhoto').val($payment.photo);
             },
-            error: function() {
-
-            }
         })
-    });
+      });
   });
 </script>
 <!-- calendar -->

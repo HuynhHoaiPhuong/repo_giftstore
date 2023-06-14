@@ -44,10 +44,17 @@ class PaymentController extends Controller
     public function savePayment(Request $req)
     {
         $payment = new Payment();
-
+        $newName = '';
+        if($req->hasFile('photo')){
+            $photo = $req->file('photo');
+            $name = $photo->getClientOriginalName();
+            $originalName = current(explode('.',$name));
+            $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
+            $photo->move('admin/images/payments', $newName);
+        }
         $payment->fill([
             'id_payment' => Carbon::now()->format('ymdhis').rand(1,1000),
-            'photo'=>$req->photo,
+            'photo'=>$newName,
             'name'=>$req->name,
         ]);
         if($payment->save()==1){
@@ -59,10 +66,20 @@ class PaymentController extends Controller
 
     public function updatePayment(Request $req)
     {
+        // $payment = new Payment();
+        // $newName = '';
+        // if($req->hasFile('photo')){
+        //     $photo = $req->file('photo');
+        //     $name = $photo->getClientOriginalName();
+        //     $originalName = current(explode('.',$name));
+        //     $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
+        //     $photo->move('admin/images/payments', $newName);
+        // }
         $result = Payment::where('id_payment', $req -> id_payment)
             //Key Value // Get e by array...
             ->update(
                 [
+                    // 'photo'=>$newName,
                     'photo'=>$req->photo,
                     'name'=>$req->name,
                 ]
