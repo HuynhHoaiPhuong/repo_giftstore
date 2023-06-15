@@ -34,14 +34,8 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>               
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addVoucher"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
+        <a href="{{route('recycle-voucher')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a>               
       </div>
       <div class="col-sm-4">
       </div>
@@ -64,17 +58,11 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID</th>
-            <th>Tên</th>
+            <th>Tiêu đề</th>
             <th>Code</th>
-            <th>Số lượt dùng</th>
             <th>Phần trăm giảm</th>
-            <th>Mức giảm tối đa</th>
-            <th>Mức giảm tối thiểu</th>
-            <th>Mô tả</th>
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
-            <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -84,22 +72,16 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $voucher->id_voucher }}</td>
             <td>{{ $voucher->name }}</td>
             <td>{{ $voucher->code }}</td>
-            <td>{{ $voucher->number_of_uses }}</td>
-            <td>{{ $voucher->percent_price }}</td>
-            <td>{{ $voucher->max_price }}</td>
-            <td>{{ $voucher->min_price }}</td>
-            <td>{{ $voucher->description }}</td>
+            <td>{{ $voucher->percent_price }}%</td>
             <td>{{ $voucher->start_day }}</td>
             <td>{{ $voucher->expiration_date }}</td>
-            <td>{{ $voucher->status }}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a data-id="{{ $voucher->id_voucher }}" data-toggle="modal" data-target="#updateVoucher" href="#" class="updateVoucher active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a id="{{ $voucher->id_voucher }}" data-toggle="modal" data-target="#deleteVoucher" href="#" class="removeVoucher active styling-edit" title="Xóa">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
@@ -131,6 +113,167 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal Add voucher -->
+<div class="modal fade" id="addVoucher" tabindex="-1" role="dialog" aria-labelledby="addVoucher" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm ưu đãi</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-voucher')}}" method="POST">
+                    @csrf
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddNameVoucher">Tiêu đề</label>
+                          <input type="text" placeholder="Tiêu đề" name="name"
+                              id="inputAddNameVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddCodeVoucher">Mã giảm giá</label>
+                          <input type="text" placeholder="Mã giảm giá" name="code"
+                              id="inputAddCodeVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddNumbVoucher">Số lượt dùng</label>
+                          <input type="number" placeholder="Số lượt dùng" name="number_of_uses"
+                            id="inputAddNumbVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddPercentVoucher">Phần trăm giảm(%)</label>
+                          <input type="number" placeholder="Phần trăm giảm" name="percent_price"
+                              id="inputAddPercentVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddMinPriceVoucher">Giảm tối thiểu</label>
+                          <input type="text" placeholder="Giảm tối thiểu" name="min_price"
+                            id="inputAddMinPriceVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputAddMaxPriceVoucher">Giảm tối đa</label>
+                          <input type="text" placeholder="Giảm tối đa" name="max_price"
+                              id="inputAddMaxPriceVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                            <label for="inputAddDateStartVoucher">Ngày bắt đầu</label>
+                            <input type="date" placeholder="Ngày bắt đầu" name="start_day"
+                              id="inputAddDateStartVoucher" class="form-control text-sm">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="inputAddDateEndVoucher">Ngày kết thúc</label>
+                            <input type="date" placeholder="Ngày kết thúc" name="expiration_date"
+                                id="inputAddDateEndVoucher" class="form-control text-sm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddDescVoucher">Mô tả</label>
+                        <textarea rows="4" cols="50" type="text" placeholder="Mô tả" name="description"
+                            id="inputAddDescVoucher" class="form-control text-sm"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_voucher btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal update voucher -->
+<div class="modal fade" id="updateVoucher" tabindex="-1" role="dialog" aria-labelledby="updateVoucher" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('update-voucher')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_voucher" id="inputUpdateIdVoucher">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateNameVoucher">Tiêu đề</label>
+                          <input type="text" placeholder="Tiêu đề" name="name"
+                              id="inputUpdateNameVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateCodeVoucher">Mã giảm giá</label>
+                          <input type="text" placeholder="Mã giảm giá" name="code"
+                              id="inputUpdateCodeVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateNumbVoucher">Số lượt dùng</label>
+                          <input type="number" placeholder="Số lượt dùng" name="number_of_uses"
+                            id="inputUpdateNumbVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdatePercentVoucher">Phần trăm giảm(%)</label>
+                          <input type="number" placeholder="Phần trăm giảm" name="percent_price"
+                              id="inputUpdatePercentVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateMinPriceVoucher">Giảm tối thiểu</label>
+                          <input type="text" placeholder="Giảm tối thiểu" name="min_price"
+                            id="inputUpdateMinPriceVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateMaxPriceVoucher">Giảm tối đa</label>
+                          <input type="text" placeholder="Giảm tối đa" name="max_price"
+                              id="inputUpdateMaxPriceVoucher" class="form-control text-sm">
+                      </div>
+                      <div class="form-group col-sm-6">
+                            <label for="inputUpdateDateStartVoucher">Ngày bắt đầu</label>
+                            <input type="datetime-local"  name="start_day"
+                              id="inputUpdateDateStartVoucher" class="form-control text-sm">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="inputUpdateDateEndVoucher">Ngày kết thúc</label>
+                            <input type="datetime-local" name="expiration_date"
+                                id="inputUpdateDateEndVoucher" class="form-control text-sm">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUpdateDescVoucher">Mô tả</label>
+                        <textarea rows="4" cols="50" type="text" placeholder="Mô tả" name="description"
+                            id="inputUpdateDescVoucher" class="form-control text-sm"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_update_voucher btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Delete Voucher -->
+<div class="modal fade" id="deleteVoucher" tabindex="-1" role="dialog" aria-labelledby="deleteVoucher" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteVoucher">Xoá ưu đãi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="font-weight-normal">Bạn có muốn chuyển ưu đãi này vào thùng rác không?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" id="" class="btn_remove_voucher btn btn-primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 
@@ -156,6 +299,64 @@
           return false;
        });
 
+       // Remove Voucher
+      $('.removeVoucher').on('click', function() {
+        $id_voucher = $(this).attr('id');
+        $('.btn_remove_voucher').attr('id', $id_voucher);
+      });
+      $('.btn_remove_voucher').on('click', function() {
+          $id_voucher = $(this).attr('id');
+          $.ajax({
+              type: 'POST',
+              url: '/api/vouchers/remove-voucher',
+              data: {
+                  'id_voucher': $id_voucher,
+                  'status': 'disabled',
+              },
+              success: function(data) {
+                  location.reload(false);
+              },
+              error: function() {
+
+              }
+          });
+      });
+
+      // Update Voucher
+      $('.updateVoucher').on('click', function() {
+        $id_voucher = $(this).attr('data-id');
+        $.ajax({
+            type: 'GET',
+            url: '/api/vouchers/get-voucher-by-id/' + $id_voucher,
+            success: function(data) {
+                $voucher = data.data;
+
+                $('#updateVoucher #inputUpdateIdVoucher').val($voucher.id_voucher);
+
+                $('#updateVoucher #inputUpdateNameVoucher').val($voucher.name);
+
+                $('#updateVoucher #inputUpdateCodeVoucher').val($voucher.code);
+
+                $('#updateVoucher #inputUpdateNumbVoucher').val($voucher.number_of_use);
+
+                $('#updateVoucher #inputUpdatePercentVoucher').val($voucher.percent_price);
+
+                $('#updateVoucher #inputUpdateMinPriceVoucher').val($voucher.min_price);
+
+                $('#updateVoucher #inputUpdateMaxPriceVoucher').val($voucher.max_price);
+
+                $('#updateVoucher #inputUpdateDateStartVoucher').val($voucher.start_day);
+
+                $('#updateVoucher #inputUpdateDateEndVoucher').val($voucher.expiration_date);
+
+                $('#updateVoucher #inputUpdateDescVoucher').val($voucher.description);
+
+            },
+            error: function() {
+
+            }
+        });
+    });
         
        
     });

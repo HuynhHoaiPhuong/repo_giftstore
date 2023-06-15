@@ -65,6 +65,9 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/recycle-payment',[PaymentController::class,'recyclePayment'])->name('recycle-payment');
 
         Route::get('/voucher-management',[VoucherController::class,'voucherManagement'])->name('voucher-management');
+        Route::post('/add-voucher',[VoucherController::class,'addVoucher'])->name('add-voucher');
+        Route::post('/update-voucher',[VoucherController::class,'updateVoucher'])->name('update-voucher');
+        Route::get('/recycle-voucher',[VoucherController::class,'recycleVoucher'])->name('recycle-voucher');
 
         Route::get('/member-management',[MemberController::class,'memberManagement'])->name('member-management');
 
