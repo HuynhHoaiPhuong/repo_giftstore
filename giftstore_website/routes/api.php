@@ -55,9 +55,12 @@ Route::group(['prefix'=>'/roles'],function()
 Route::group(['prefix'=>'/ranks'],function()
 {
     Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
+    Route::get('/get-rank-by-id/{id_rank}',[RankController::class,'getRankById']);
     Route::post('/save-rank',[RankController::class,'saveRank']);
     Route::post('/update-rank',[RankController::class,'updateRank']);
     Route::post('/remove-rank',[RankController::class,'removeRank']);
+    Route::post('/delete-rank',[RankController::class,'deleteRank']);
+    Route::post('/clear-rank',[RankController::class,'clearRank']);
 });
 //Type Category API
 Route::group(['prefix'=>'/type-categories'],function()

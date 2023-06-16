@@ -31,14 +31,8 @@
     <div class="panel-heading">Danh sách hạng thành viên</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRank"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
+        <a href="{{route('recycle-rank')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -57,15 +51,15 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
             <th>STT</th>
             <th>Tên hạng</th>
             <th>Điểm</th>
             <th>Trạng thái</th>
-            <th>Ngày Created</th>
-            <th>Ngày Updated</th>
+            <th>Ngày tạo</th>
+            <th>Ngày cập nhật</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -82,10 +76,10 @@
             <td>{{$rank->created_at}}</td>
             <td>{{$rank->updated_at}}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a data-id="{{$rank->id_rank}}" data-toggle="modal" data-target="#updateRank" href="#" class="updateRank active styling-edit" title="Sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
+              <a id="{{$rank->id_rank}}" data-toggle="modal" data-target="#deleteRank" href="#" class="removeRank active styling-edit">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
@@ -116,6 +110,88 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal Add Rank -->
+<div class="modal fade" id="addRank" tabindex="-1" role="dialog" aria-labelledby="addRank" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+          <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm hạng thành viên</strong></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form action="{{route('add-rank')}}" method="POST">
+                  @csrf
+                  <div class="form-group">
+                      <label for="inputAddRankName">Tên bậc hạng</label>
+                      <input type="text" placeholder="Tên hạng" name="rank_name" id="inputAddRankName" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputAddScoreLevel">Điểm</label>
+                    <input type="text" placeholder="Nhập mức điểm theo bậc" name="score_level" id="inputAddScoreLevel" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <button class="btn_submit_add_rank btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- /Modal update rank -->
+<div class="modal fade" id="updateRank" tabindex="-1" role="dialog" aria-labelledby="updateRank" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+          <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form action="{{route('update-rank')}}" method="POST">
+                  @csrf
+                  <input type="hidden" name="id_rank" id="inputUpdateRankId">
+                  <div class="form-group">
+                      <label for="inputUpdateRankName">Tên bậc hạng</label>
+                      <input type="text" placeholder="Vd: Bạch kim" name="rank_name" id="inputUpdateRankName" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputUpdateScoreLevel">Điểm</label>
+                    <input type="text" placeholder="Nhập mức điểm theo bậc" name="score_level" id="inputUpdateScoreLevel" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <button class="btn_submit_update_rank btn-primary btn-block mr-10" type="submit" style="width: auto; margin-left: auto; border: none; padding: 5px 15px 5px 15px;">Lưu</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- /Modal Delete Rank -->
+<div class="modal fade" id="deleteRank" tabindex="-1" role="dialog" aria-labelledby="deleteRank" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="deleteRank">Xoá hạng</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <h5 class="font-weight-normal">Bạn có muốn chuyển bậc xếp hạng này vào thùng rác không?</h5>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
+              <button type="button" class="btn_remove_rank btn btn-primary">Đồng ý</button>
+          </div>
+      </div>
+  </div>
+</div>
 @endsection
 
 <!-- JavaScript -->
@@ -129,92 +205,92 @@
   <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
-      $(document).ready(function() {
-          //BOX BUTTON SHOW AND CLOSE
+    $(document).ready(function() {
+        //BOX BUTTON SHOW AND CLOSE
         jQuery('.small-graph-box').hover(function() {
-            jQuery(this).find('.box-button').fadeIn('fast');
+          jQuery(this).find('.box-button').fadeIn('fast');
         }, function() {
-            jQuery(this).find('.box-button').fadeOut('fast');
+          jQuery(this).find('.box-button').fadeOut('fast');
         });
         jQuery('.small-graph-box .box-close').click(function() {
-            jQuery(this).closest('.small-graph-box').fadeOut(200);
-            return false;
+          jQuery(this).closest('.small-graph-box').fadeOut(200);
+          return false;
         });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
-          });
-          
-        
+  
+        // Remove Rank
+        $('.removeRank').on('click', function() {
+          $id_rank = $(this).attr('id');
+          $('.btn_remove_rank').attr('id', $id_rank);
+        });
+        $('.btn_remove_rank').on('click', function() {
+            $id_rank = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                url: '/api/ranks/remove-rank',
+                data: {
+                    'id_rank': $id_rank,
+                    'status': 'disabled',
+                },
+                success: function(data) {
+                    location.reload(false);
+                },
+                error: function() {
+  
+                }
+            });
+        });
+  
+        // Update Rank
+        $('.updateRank').on('click', function() {
+          $id_rank = $(this).attr('data-id');
+          $.ajax({
+              type: 'GET',
+              url: '/api/ranks/get-rank-by-id/' + $id_rank,
+              success: function(data) {
+                  $rank = data.data;
+                  $('#updateRank #inputUpdateRankId').val($rank.id_rank);
+                  $('#updateRank #inputUpdateRankName').val($rank.name);
+                  $('#updateRank #inputUpdateRankScoreLevel').val($rank.score_level);
+              },
+              error: function() {
+  
+              }
+          })
       });
-      </script>
+    });
+  </script>
   <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
+  <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
+  <script type="text/javascript">
+      $(window).load( function() {
 
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
+          $('#mycalendar').monthly({
+              mode: 'event',
+              
+          });
 
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
+          $('#mycalendar2').monthly({
+              mode: 'picker',
+              target: '#mytarget',
+              setWidth: '250px',
+              startHidden: true,
+              showTrigger: '#mytarget',
+              stylePast: true,
+              disablePast: true
+          });
 
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
+      switch(window.location.protocol) {
+      case 'http:':
+      case 'https:':
+      // running on a server, should be good.
+      break;
+      case 'file:':
+      alert('Just a heads-up, events will not work when run locally.');
+      }
 
-        });
-    </script>
-    <!-- //calendar -->
+      });
+  </script>
+  <!-- //calendar -->
 @endsection
 
 

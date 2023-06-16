@@ -73,6 +73,11 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/warehouse-detail-management/{id_warehouse}',[WarehouseDetailController::class,'warehouseDetailManagement'])->name('warehouse-detail-management');
 
         Route::get('/rank-management',[RankController::class,'rankManagement'])->name('rank-management');
+        Route::post('/add-rank',[RankController::class,'addrank'])->name('add-rank');
+        Route::post('/update-rank',[RankController::class,'updaterank'])->name('update-rank');
+        Route::get('/recycle-rank',[RankController::class,'recyclerank'])->name('recycle-rank');
+
+
         Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
         Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
         Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
