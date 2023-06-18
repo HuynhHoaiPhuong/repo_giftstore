@@ -168,9 +168,12 @@ Route::group(['prefix'=>'/payments'],function() {
 //Voucher API
 Route::group(['prefix'=>'/vouchers'],function() {
     Route::get('/get-all-voucher-by-status/{status}',[VoucherController::class,'getAllVoucherByStatus']);
+    Route::get('/get-voucher-by-id/{id_voucher}',[VoucherController::class,'getVoucherById']);
     Route::post('/save-voucher',[VoucherController::class,'saveVoucher']);
     Route::post('/update-voucher',[VoucherController::class,'updateVoucher']);
     Route::post('/remove-voucher',[VoucherController::class,'removeVoucher']);
+    Route::post('/delete-voucher',[VoucherController::class,'deleteVoucher']);
+    Route::post('/clear-voucher',[VoucherController::class,'clearVoucher']);
 });
 
 //Discount API
