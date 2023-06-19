@@ -240,22 +240,14 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="{{route('bill-order-management')}}">
-                                <i class="fa fa-credit-card-alt"></i>
-                                <span>Quản lý hóa đơn nhập</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý hóa đơn</span>
                             </a>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="{{route('bill-management')}}">
-                                <i class="fa fa-credit-card"></i>
-                                <span>Quản lý hóa đơn bán</span>
-                            </a>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="{{route('provider-management')}}">
-                                <i class="fa fa-credit-card"></i>
-                                <span>Quản lý nhà cung cấp</span>
-                            </a>
+                            <ul class="sub">
+                                <li><a href="{{route('bill-order-management')}}">Hóa đơn nhập</a></li>
+                                <li><a href="{{route('bill-management')}}">Hóa đơn bán</a></li>
+                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('photo-management')}}">
@@ -264,16 +256,15 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="{{route('role-management')}}">
-                                <i class="fa fa-users"></i>
-                                <span>Quản lý phân quyền</span>
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý tài khoản</span>
                             </a>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="{{route('member-management')}}">
-                                <i class="fa fa-user"></i>
-                                <span>Quản lý thành viên</span>
-                            </a>
+                            <ul class="sub">
+                                <li><a href="{{route('role-management')}}">Nhóm quyền</a></li>
+                                <li><a href="#">Tài khoản admin</a></li>
+                                <li><a href="{{route('member-management')}}">Tài khoản thành viên</a></li>
+                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
@@ -288,11 +279,11 @@
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản lý danh mục & thể loại</span>
+                                <span>Quản lý danh mục sản phẩm</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{route('type-category-management')}}">Danh mục</a></li>
-                                <li><a href="{{route('category-management')}}">Thể loại</a></li>
+                                <li><a href="{{route('type-category-management')}}">Loại danh mục</a></li>
+                                <li><a href="{{route('category-management')}}">Dạnh mục</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -304,6 +295,12 @@
                                 <li><a href="{{route('product-management')}}">Sản phẩm</a></li>
                                 <li><a href="{{route('add-product')}}">Thêm sản phẩm</a></li>
                             </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="{{route('provider-management')}}">
+                                <i class="fa fa-credit-card"></i>
+                                <span>Quản lý nhà cung cấp</span>
+                            </a>
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('payment-management')}}">
