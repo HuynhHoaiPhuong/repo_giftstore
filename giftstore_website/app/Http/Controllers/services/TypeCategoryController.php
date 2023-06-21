@@ -32,7 +32,7 @@ class TypeCategoryController extends Controller
         $typeCategory = new TypeCategory();
         $typeCategory->fill([
             'id_type_category' => "TYPECAT".Carbon::now()->format('ymdhis').rand(1, 1000), 
-            'numerical_order' => $request->numerical_order,
+            // 'numerical_order' => $request->numerical_order,
             'name' => $request->name, 
             'slug' => $request->slug, 
         ]);
@@ -46,7 +46,7 @@ class TypeCategoryController extends Controller
     public function updateTypeCategory(Request $request){
         $result = TypeCategory::where('id_type_category', $request->id_type_category)
         ->update([
-            'numerical_order' => $request->numerical_order,
+            // 'numerical_order' => $request->numerical_order,
             'name' => $request->name, 
             'slug' => $request->slug
         ]);  

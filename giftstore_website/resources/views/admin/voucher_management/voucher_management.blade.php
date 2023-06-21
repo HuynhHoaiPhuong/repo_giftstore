@@ -337,7 +337,7 @@
 
                 $('#updateVoucher #inputUpdateCodeVoucher').val($voucher.code);
 
-                $('#updateVoucher #inputUpdateNumbVoucher').val($voucher.number_of_use);
+                $('#updateVoucher #inputUpdateNumbVoucher').val($voucher.number_of_uses);
 
                 $('#updateVoucher #inputUpdatePercentVoucher').val($voucher.percent_price);
 

@@ -76,16 +76,27 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/warehouse-detail-management/{id_warehouse}',[WarehouseDetailController::class,'warehouseDetailManagement'])->name('warehouse-detail-management');
 
         Route::get('/rank-management',[RankController::class,'rankManagement'])->name('rank-management');
-        Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
-        Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
-        Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
-        Route::get('/category-management',[CategoryController::class,'categoryManagement'])->name('category-management');
-        Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
-        Route::get('/add-product',[ProductController::class,'addProduct'])->name('add-product');
-        Route::get('/bill-management',[BillController::class,'billManagement'])->name('bill-management');
-        Route::get('/bill-order-management',[BillOrderController::class,'billOrderManagement'])->name('bill-order-management');
-        Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
 
+        Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
+
+        Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
+
+        Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
+        Route::post('/add-type-category',[TypeCategoryController::class,'addTypeCategory'])->name('add-type-category');
+
+        Route::get('/category-management',[CategoryController::class,'categoryManagement'])->name('category-management');
+        Route::post('/add-category',[CategoryController::class,'addCategory'])->name('add-category');
+
+        Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
+        Route::get('/product-management/add-product-management',[ProductController::class,'addproductManagement'])->name('add-product-management');
+        Route::post('/add-product',[ProductController::class,'addProduct'])->name('add-product');
+
+        Route::get('/bill-management',[BillController::class,'billManagement'])->name('bill-management');
+
+        Route::get('/bill-order-management',[BillOrderController::class,'billOrderManagement'])->name('bill-order-management');
+
+        Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
+        Route::post('/add-provider',[ProviderController::class,'addProvider'])->name('add-provider');
     });
 });
 

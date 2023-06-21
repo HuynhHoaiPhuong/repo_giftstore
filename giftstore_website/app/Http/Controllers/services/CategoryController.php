@@ -28,16 +28,16 @@ class CategoryController extends Controller
         return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
     }
 
-    public function saveCategory(Request $request)
+    public function saveCategory(Request $req)
     {
         $category = new Category();
         $category->fill([
             'id_category' => "CAT".Carbon::now()->format('ymdhis').rand(1, 1000), 
-            'id_type_category' => $request->id_type_category, 
-            'numerical_order' => $request->numerical_order,
-            'name' => $request->name, 
-            'photo' => $request->photo, 
-            'slug' => $request->slug, 
+            'id_type_category' => $req->id_type_category, 
+            // 'numerical_order' => $req->numerical_order,
+            'name' => $req->name, 
+            'photo' => $req->photo, 
+            'slug' => $req->slug, 
         ]);
         if($category->save() == 1){
             $category = Category::where('id_category', $category->id_category)->first();

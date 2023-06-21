@@ -11,7 +11,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="{{url('/')}}" class="logo"> MANAGER</a>
+            <a href="" class="logo"> MANAGER</a>
             <div class="sidebar-toggle-box"><div class="fa fa-bars"></div></div>
         </div>
         <!--logo end-->
@@ -197,7 +197,7 @@
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
                 <li>
-                    <a href="" class="form-control reply"><i class="fa fa-reply"></i> </a>
+                    <a target="_blank" href="{{url('/')}}" class="form-control reply"><i class="fa fa-reply"></i> </a>
                 </li>
                 <li>
                     <a href="{{route('logout')}}" class="form-control logout"><i class="fa fa-sign-out"></i> </a>
@@ -283,7 +283,7 @@
                             </a>
                             <ul class="sub">
                                 <li><a href="{{route('type-category-management')}}">Loại danh mục</a></li>
-                                <li><a href="{{route('category-management')}}">Dạnh mục</a></li>
+                                <li><a href="{{route('category-management')}}">Danh mục</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -293,7 +293,6 @@
                             </a>
                             <ul class="sub">
                                 <li><a href="{{route('product-management')}}">Sản phẩm</a></li>
-                                <li><a href="{{route('add-product')}}">Thêm sản phẩm</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">

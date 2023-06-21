@@ -33,48 +33,49 @@
             <header class="panel-heading">Thêm sản phẩm</header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="" enctype="multipart/form-data" method="">
+                    <form action="{{route('add-product')}}" id="addProductForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên</label>
-                            <input type="text" name="" class="form-control" id="exampleInputEmail1" placeholder="Tên sản phẩm">
+                            <label for="addPhotoProduct">Hình ảnh</label>
+                            <input type="file" name="photo" class="form-control" id="addPhotoProduct">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Hình ảnh</label>
-                            <input type="file" name="" class="form-control" id="exampleInputEmail1">
-                        </div> 
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea style="resize: none;" rows="5" name="" class="form-control" id="exampleInputPassword1" placeholder="Mô tả sản phẩm"></textarea> 
+                            <label for="addSlugProduct">Đường dẫn</label>
+                            <input type="text" name="slug" class="form-control" id="addSlugProduct" placeholder="Đường dẫn">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Giá</label>
-                          <input type="number" name="" class="form-control" id="exampleInputEmail1">
-                      </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Code</label>
-                            <input type="text" style="resize: none;" class="form-control" id="exampleInputPassword1">
+                            <label for="addNameProduct">Tên</label>
+                            <input type="text" name="name" class="form-control" id="addNameProduct" placeholder="Tên sản phẩm">
                         </div>
                         <div class="form-group">
-                        	<label for="exampleInputPassword1">Trạng thái</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                                <option value="0">Ẩn</option>
-                                <option value="1">Hiển thị</option>
+                            <label for="addCodeProduct">Mã sản phẩm</label>
+                            <input type="text" name="code" class="form-control" id="addCodeProduct">
+                        </div>
+                        <div class="form-group">
+                            <label for="addIdProviderProduct">Nhà cung cấp</label>
+                            <select id="addIdProviderProduct" name="id_provider" class="form-control">
+                                @foreach($providers as $key => $pvd)
+                                    <option value="{{$pvd->id_provider}}">{{$pvd->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Danh mục sản phẩm</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                              <option value="">Apleeeeeeeee</option>
+                            <label for="addCategoryProduct">Danh mục sản phẩm</label>
+                            <select  id="addCategoryProduct" name="id_category" class="form-control">
+                                @foreach($categories as $key => $category)
+                                    <option value="{{$category->id_category}}">{{$category->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Thể loại</label>
-                            <select  name="" class="form-control input-sm m-bot15">
-                              <option value="">Appleeeeeeeeee</option>
-                            </select>
+                          <label for="addPriceProduct">Giá</label>
+                          <input type="number" name="price" class="form-control" id="addPriceProduct">
                         </div>
-                        <button type="submit" name="" class="btn btn-info">Thêm</button>
+                        <div class="form-group">
+                            <label for="addDescProduct">Mô tả</label>
+                            <textarea style="resize: none;" rows="5" name="description" class="form-control" id="addDescProduct" placeholder="Mô tả sản phẩm"></textarea> 
+                        </div>
+                        <button type="submit" class="btn btn-info" {{($categories != [] && $providers != []) ? '' : 'disabled' }}>Lưu</button>
                     </form>
                 </div>
             </div>

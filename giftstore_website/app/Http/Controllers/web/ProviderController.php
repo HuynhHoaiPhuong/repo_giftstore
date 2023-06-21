@@ -16,4 +16,16 @@ class ProviderController extends Controller
             $providers = $data_provider['data']->collection;
         return view('admin/provider_management/provider_management', ['providers' => $providers]);
     }
+
+    public function addProvider(Request $req){
+        $providerController = new ServicesProviderController();
+        if($req->name==null){
+            return back()->withErrors('error','Tạo thất bại');
+        }
+        $result = $providerController->saveProvider($req);
+        if($result==null){
+            return back()->withErrors('error','Tạo thất bại');
+        }
+        return redirect(route('provider-management'));
+    }
 }

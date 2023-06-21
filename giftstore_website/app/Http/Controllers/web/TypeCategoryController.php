@@ -9,11 +9,23 @@ use App\Http\Controllers\services\TypeCategoryController as ServicesTypeCategory
 class TypeCategoryController extends Controller
 {
     public function typeCategoryManagement(){
-        $type_catController = new ServicesTypeCategoryController();
-        $data_type_cat = $type_catController->getAllTypeCategory();
-        $type_cats = [];
+        $typeCategoryController = new ServicesTypeCategoryController();
+        $data_type_cat = $typeCategoryController->getAllTypeCategory();
+        $typeCategories = [];
         if($data_type_cat['data']!=null)
-            $type_cats = $data_type_cat['data']->collection;
-        return view('admin/category_management/type_category_management', ['type_cats' => $type_cats]);
+            $typeCategories = $data_type_cat['data']->collection;
+        return view('admin/category_management/type_category_management', ['typeCategories' => $typeCategories]);
+    }
+
+    public function addTypeCategory(Request $req){
+        $typeCategoryController = new ServicesTypeCategoryController();
+        if($req->name==null){
+            return back()->withErrors('error','Tạo thất bại');
+        }
+        $result = $typeCategoryController->saveTypeCategory($req);
+        if($result==null){
+            return back()->withErrors('error','Tạo thất bại');
+        }
+        return redirect(route('type-category-management'));
     }
 }

@@ -32,14 +32,7 @@
     <div class="panel-heading">Danh sách sản phẩm</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="{{route('add-product')}}" class="btn btn-sm btn-primary">Add</a>               
+        <a href="{{route('add-product-management')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -62,14 +55,12 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID Thể loại</th>
-            <th>ID NSX</th>
-            <th>Tên sản phẩm</th>
-            <th>Code</th>
             <th>Hình ảnh</th>
+            <th>Tên</th>
+            <th>Mã sản phẩm</th>
+            <th>NSX</th>
+            <th>Danh mục</th>
             <th>Giá</th>
-            <th>Slug</th>
-            <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -80,14 +71,16 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$product->id_category}}</td>
-            <td>{{$product->id_provider}}</td>
+            @if($product->photo != 'noimage.png' && $product->photo != '')
+            <td><img src="../admin/images/product/{{ $product->photo }}" alt="{{$product->name}}" width="40"></td>
+            @else
+            <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
+            @endif
             <td>{{$product->name}}</td>
             <td>{{$product->code}}</td>
-            <td>{{$product->photo}}</td>
+            <td>{{$product->provider->name}}</td>
+            <td>{{$product->category->name}}</td>
             <td>{{$product->price}}</td>
-            <td>{{$product->slug}}</td>
-            <td>{{$product->status}}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>

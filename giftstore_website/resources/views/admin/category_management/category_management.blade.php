@@ -31,14 +31,7 @@
     <div class="panel-heading">Danh sách thể loại</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>
-        <a href="" class="btn btn-sm btn-primary">Add</a>
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addCategory"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -61,11 +54,10 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID Danh mục</th>
-            <th>Tên thể loại</th>
             <th>Hình ảnh</th>
-            <th>Slug</th>
-            <th>Trạng thái</th>
+            <th>Tên danh mục</th>
+            <th>Loại danh mục</th>
+            <!-- <th>Slug</th> -->
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -76,11 +68,14 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$category->id_type_category}}</td>
+            @if($category->photo != 'noimage.png' && $category->photo != '')
+            <td><img src="../admin/images/category/{{ $category->photo }}" alt="{{$category->name}}" width="40"></td>
+            @else
+            <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
+            @endif
             <td>{{$category->name}}</td>
-            <td>{{$category->photo}}</td>
-            <td>{{$category->slug}}</td>
-            <td>{{$category->status}}</td>
+            <td>{{$category->typeCategory->name}}</td>
+            <!-- <td>{{$category->slug}}</td> -->
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -113,6 +108,49 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal Add Category -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="addCategory" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm danh mục</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-category')}}" id="addCategoryForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                      <label for="inputAddPhotoCategory">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="photo" id="inputAddPhotoCategory" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="addIdTypeCategory">Loại danh mục</label>
+                      <select id="addIdTypeCategory" name="id_type_category" class="form-control">
+                        @foreach($typeCategories as $key => $typeCat)
+                          <option value="{{$typeCat->id_type_category}}">{{$typeCat->name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddSlugCategory">Đường dẫn</label>
+                        <input type="text" placeholder="Đường dẫn" name="slug" id="inputAddSlugCategory" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddNameCategory">Tên</label>
+                        <input type="text" placeholder="Tên loại sản phẩm" name="name" id="inputAddNameCategory" class="form-control" require>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_category btn btn-primary btn-block mr-10" type="submit" {{($typeCategories != []) ? '' : 'disabled' }}>Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->

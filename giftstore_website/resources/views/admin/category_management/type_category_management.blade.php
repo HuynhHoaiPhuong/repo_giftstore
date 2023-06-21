@@ -28,17 +28,10 @@
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">Danh sách danh mục</div>
+    <div class="panel-heading">Danh sách loại danh mục sản phẩm</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addTypeCategory"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -62,21 +55,19 @@
             </th>
             <th>STT</th>
             <th>Tên danh mục</th>
-            <th>Slug</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
+            <!-- <th>Slug</th> -->
+            <th style="width:10%;">Thao tác</th>
           </tr>
         </thead>
         <tbody>
-          @if($type_cats != [])
+          @if($typeCategories != [])
           <?php $i = 1; ?>
-          @foreach($type_cats as $key => $type_cat)
+          @foreach($typeCategories as $key => $typeCat)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$type_cat->name}}</td>
-            <td>{{$type_cat->slug}}</td>
-            <td>{{$type_cat->status}}</td>
+            <td>{{$typeCat->name}}</td>
+            <!-- <td>{{$typeCat->slug}}</td> -->
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -112,6 +103,37 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal Add TypeCategory -->
+<div class="modal fade" id="addTypeCategory" tabindex="-1" role="dialog" aria-labelledby="addTypeCategory" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm loại danh mục</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-type-category')}}" id="addTypeCategoryForm" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputAddSlugTypeCategory">Đường dẫn</label>
+                        <input type="text" placeholder="Đường dẫn" name="slug" id="inputAddSlugTypeCategory" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddNameTypeCategory">Tên</label>
+                        <input type="text" placeholder="Tên loại sản phẩm" name="name" id="inputAddNameTypeCategory" class="form-control" require>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_type_category btn btn-primary btn-block mr-10" type="submit" >Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->
@@ -125,92 +147,21 @@
   <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
-      $(document).ready(function() {
-          //BOX BUTTON SHOW AND CLOSE
-        jQuery('.small-graph-box').hover(function() {
-            jQuery(this).find('.box-button').fadeIn('fast');
-        }, function() {
-            jQuery(this).find('.box-button').fadeOut('fast');
-        });
-        jQuery('.small-graph-box .box-close').click(function() {
-            jQuery(this).closest('.small-graph-box').fadeOut(200);
-            return false;
-        });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
-          });
-          
-        
+    $(document).ready(function() {
+        //BOX BUTTON SHOW AND CLOSE
+      jQuery('.small-graph-box').hover(function() {
+          jQuery(this).find('.box-button').fadeIn('fast');
+      }, function() {
+          jQuery(this).find('.box-button').fadeOut('fast');
       });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
-        });
-    </script>
-    <!-- //calendar -->
+      jQuery('.small-graph-box .box-close').click(function() {
+          jQuery(this).closest('.small-graph-box').fadeOut(200);
+          return false;
+      });
+      
+    });
+  </script>
+  
 @endsection
 
 

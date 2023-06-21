@@ -35,7 +35,7 @@ class ProductController extends Controller
             'id_product' => "PRODUCT".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_category' => $request->id_category, 
             'id_provider' => $request->id_provider, 
-            'numerical_order' => $request->numerical_order, 
+            // 'numerical_order' => $request->numerical_order, 
             'name' => $request->name, 
             'code' => $request->code, 
             'photo' => $request->photo, 
