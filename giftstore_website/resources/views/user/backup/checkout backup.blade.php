@@ -1,6 +1,5 @@
 @extends('user.layout')
 @section('web_content')
-
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
