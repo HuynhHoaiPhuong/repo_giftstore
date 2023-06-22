@@ -31,7 +31,7 @@ use App\Http\Controllers\user\HomeController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Controllers\user\ContactController;
-use App\Http\Controllers\user\ProductClientController;
+use App\Http\Controllers\user\ProductController as userProductController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\LoginClientController;
 
@@ -103,9 +103,10 @@ Route::group(['prefix' => 'admin'],function(){
 
 //web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
+Route::get('/product/{id}', [userProductController::class,'productDetail'])->name('productDetail');
 Route::get('/cart', [CartController::class,'index'])->name('cart');
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
 Route::get('/contact', [ContactController::class,'index'])->name('contact');
-Route::get('/product', [ProductClientController::class,'index'])->name('product');
+Route::get('/product', [userProductController::class,'product'])->name('product');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 Route::get('/log-in', [LoginClientController::class,'index'])->name('log-in');
