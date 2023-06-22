@@ -3,8 +3,6 @@
 @section('title','Trang Chủ')
 
 @section('header')
-<!-- Favicon -->
-<link href="user/img/favicon.ico" rel="icon">
 
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">

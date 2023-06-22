@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class LoginClientController extends Controller
 {
     public function index(){
-        return view('user.login');
+        return view('user/templates/login');
     }
 }

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function product(){
-        return view('user.product');
-    }
+    // public function product(){
+    //     return view('user/templates/product');
+    // }
 
-    public function productDetail($slug){
-        return view('user.product');
+    public function productDetail(){
+        return view('user/templates/product');
     }
 }
