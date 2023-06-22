@@ -1,11 +1,12 @@
 @extends('user.layout')
 @section('web_content')
+
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Danh mục sản phẩm</h6>
+                    <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
@@ -40,21 +41,21 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                            <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                            <a href="{{route('/')}}" class="nav-item nav-link">Home</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Shop</a>
                             {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                            {{-- <div class="nav-item dropdown">
+                            <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{{route('cart')}}" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="{{route('checkout')}}" class="dropdown-item">Thanh toán</a>
+                                    <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
                                 </div>
-                            </div> --}}
-                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                            </div>
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng ký</a>
+                            <a href="{{route('log-in')}}" class="nav-item nav-link">Login</a>
+                            <a href="{{route('log-in')}}" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
                 </nav>
@@ -67,11 +68,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Thông tin thanh toán</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="{{route('/')}}">Trang chủ</a></p>
+                <p class="m-0"><a href="{{route('/')}}">Home</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Thông tin thanh toán</p>
+                <p class="m-0">Checkout</p>
             </div>
         </div>
     </div>
@@ -83,25 +84,33 @@
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Thông tin khách hàng</h4>
+                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label>Họ và tên</label>
-                            <input class="form-control" type="text" placeholder="Nhập tên">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" placeholder="John">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Số điện thoại</label>
-                            <input class="form-control" type="text" placeholder="Nhập số điện thoại">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" placeholder="Doe">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Địa chỉ</label>
-                            <input class="form-control" type="text" placeholder="Nhập địa chỉ">
+                            <label>E-mail</label>
+                            <input class="form-control" type="text" placeholder="example@email.com">
                         </div>
-                        {{-- <div class="col-md-6 form-group">
+                        <div class="col-md-6 form-group">
+                            <label>Mobile No</label>
+                            <input class="form-control" type="text" placeholder="+123 456 789">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Address Line 1</label>
+                            <input class="form-control" type="text" placeholder="123 Street">
+                        </div>
+                        <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
                             <input class="form-control" type="text" placeholder="123 Street">
-                        </div> --}}
-                        {{-- <div class="col-md-6 form-group">
+                        </div>
+                        <div class="col-md-6 form-group">
                             <label>Country</label>
                             <select class="custom-select">
                                 <option selected>United States</option>
@@ -133,10 +142,10 @@
                                 <input type="checkbox" class="custom-control-input" id="shipto">
                                 <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
-                {{-- <div class="collapse mb-4" id="shipping-address">
+                <div class="collapse mb-4" id="shipping-address">
                     <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
                     <div class="row">
                         <div class="col-md-6 form-group">
@@ -185,15 +194,15 @@
                             <input class="form-control" type="text" placeholder="123">
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
+                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
                     </div>
                     <div class="card-body">
-                        <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
+                        <h5 class="font-weight-medium mb-3">Products</h5>
                         <div class="d-flex justify-content-between">
                             <p>Colorful Stylish Shirt 1</p>
                             <p>$150</p>
@@ -208,24 +217,24 @@
                         </div>
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Tạm tính</h6>
+                            <h6 class="font-weight-medium">Subtotal</h6>
                             <h6 class="font-weight-medium">$150</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                            <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">$10</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Tổng tiền</h5>
+                            <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">$160</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card border-secondary mb-5">
-                    {{-- <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
+                    <div class="card-header bg-secondary border-0">
+                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -246,9 +255,9 @@
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán</button>
+                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                     </div>
                 </div>
             </div>
