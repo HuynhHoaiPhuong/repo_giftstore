@@ -8,7 +8,7 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
     <!-- Favicon -->
-    <link href="user/img/favicon.ico" rel="icon">
+    <link href="{{asset('user/img/favicon.ico')}}" rel="icon">
     @yield('header')
 </head>
 
