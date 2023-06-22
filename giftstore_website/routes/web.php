@@ -103,10 +103,10 @@ Route::group(['prefix' => 'admin'],function(){
 
 //web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
-Route::get('/product/{id}', [userProductController::class,'productDetail'])->name('productDetail');
+Route::get('/product/{id}', [userProductController::class,'productDetail']);
 Route::get('/cart', [CartController::class,'index'])->name('cart');
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
 Route::get('/contact', [ContactController::class,'index'])->name('contact');
-Route::get('/product', [userProductController::class,'product'])->name('product');
+// Route::get('/product', [userProductController::class,'product'])->name('product');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 Route::get('/log-in', [LoginClientController::class,'index'])->name('log-in');

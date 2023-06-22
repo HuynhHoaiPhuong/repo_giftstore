@@ -1,4 +1,27 @@
-@extends('user.layout')
+@extends('user/layout')
+
+@section('title','Chi tiết sản phẩm')
+
+@section('header')
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="user/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+<!-- Customized Bootstrap Stylesheet -->
+<link href="user/css/style.css" rel="stylesheet">
+
+<!-- Log-in Css -->
+<link rel="stylesheet" href="user/css/login.css">
+
+@endsection
+
 @section('web_content')
     <!-- Navbar Start -->
     <div class="container-fluid">
@@ -400,4 +423,24 @@
         </div>
     </div>
     <!-- Products End -->
+@endsection
+
+<!-- JavaScript -->
+@section('java-script')
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="user/lib/easing/easing.min.js"></script>
+<script src="user/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="user/mail/jqBootstrapValidation.min.js"></script>
+<script src="user/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="user/js/main.js"></script>
+
+<!-- Login Template Javascript -->
+<script src="user/js/login.js"></script>
+
 @endsection
