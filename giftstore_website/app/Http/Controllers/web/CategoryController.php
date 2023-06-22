@@ -38,7 +38,7 @@ class CategoryController extends Controller
             $name = $photo->getClientOriginalName();
             $originalName = current(explode('.',$name));
             $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
-            $photo->move('admin/images/category', $newName);
+            $photo->move('upload/category', $newName);
         }
         $req->photo = $newName;
         $result = $categoryController->saveCategory($req);

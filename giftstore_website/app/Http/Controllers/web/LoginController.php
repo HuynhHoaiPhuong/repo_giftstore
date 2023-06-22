@@ -11,7 +11,11 @@ use Illuminate\Auth\Events\Login;
 class LoginController extends Controller
 {
     public function login(){
-        return view('admin/login/admin_login');
+        if (Auth::check()) {
+            return redirect()->intended('admin/index');
+        } else {
+            return view('admin/login/admin_login');
+        }
     }
 
     public function authenticate(Request $request)

@@ -50,12 +50,13 @@ class ProductController extends Controller
             return back()->withErrors('error','Tạo thất bại');
         }
         $newName = 'noimage.png';
+        // var_dump($req->file('photo'));die('XXX');
         if($req->hasFile('photo')){
             $photo = $req->file('photo');
             $name = $photo->getClientOriginalName();
             $originalName = current(explode('.',$name));
             $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
-            $photo->move('admin/images/product', $newName);
+            $photo->move('upload/product', $newName);
         }
         $req->photo = $newName;
         $result = $productController->saveProduct($req);

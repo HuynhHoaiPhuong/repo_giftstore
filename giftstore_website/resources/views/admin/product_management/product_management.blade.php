@@ -72,7 +72,7 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
             @if($product->photo != 'noimage.png' && $product->photo != '')
-            <td><img src="../admin/images/product/{{ $product->photo }}" alt="{{$product->name}}" width="40"></td>
+            <td><img src="../upload/product/{{ $product->photo }}" alt="{{$product->name}}" width="40"></td>
             @else
             <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
             @endif

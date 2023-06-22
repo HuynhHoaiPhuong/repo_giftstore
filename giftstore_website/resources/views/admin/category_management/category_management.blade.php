@@ -28,7 +28,7 @@
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">Danh sách thể loại</div>
+    <div class="panel-heading">Danh sách danh mục sản phẩm</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addCategory"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>
@@ -69,7 +69,7 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
             @if($category->photo != 'noimage.png' && $category->photo != '')
-            <td><img src="../admin/images/category/{{ $category->photo }}" alt="{{$category->name}}" width="40"></td>
+            <td><img src="../upload/category/{{ $category->photo }}" alt="{{$category->name}}" width="40"></td>
             @else
             <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
             @endif
