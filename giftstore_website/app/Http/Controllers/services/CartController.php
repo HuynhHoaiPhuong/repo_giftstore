@@ -35,12 +35,10 @@ class CartController extends Controller
         return Payload::toJson(null,'Uncompleted',500);
     }
 
-    // public function removeCart(Request $request){
-    // }
-
-    // public function updateQuantityInCart(Request $request){
-    // }
-
-    // public function removeAllCart(Request $request){
-    // }
+    public function clearCartByIdMember($id_member)
+    {
+        $result = Cart::where('id_member', $id_member)->delete();
+        if($result) return Payload::toJson(true, "Remove Successfully", 202);
+        return Payload::toJson(false, "Cannot Deleted!", 500);
+    }
 }

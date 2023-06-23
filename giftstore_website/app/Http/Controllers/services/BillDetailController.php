@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\BillDetail;
 use App\Http\Payload;
 use App\Http\Resources\BillDetailResource;
+use Carbon\Carbon;
+
 class BillDetailController extends Controller
 {
     public function getAllBillDetailByStatus ($status)
@@ -23,7 +25,7 @@ class BillDetailController extends Controller
     {
         $billDetails = new BillDetail();
         $billDetails->fill([
-            'id_bill_detail' => "BD".$request->id_bill.$request->id_product, 
+            'id_bill_detail' => "BD".Carbon::now('Asia/Ho_Chi_Minh')->format('ymdhis').rand(1, 1000), 
             'id_bill' => $request->id_bill, 
             'id_product' => $request->id_product, 
             'id_discount' => $request->id_discount, 

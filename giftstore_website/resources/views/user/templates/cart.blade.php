@@ -101,7 +101,8 @@
 
 
     <!-- Cart Start -->
-    <form action="{{ route('pay-bill') }}" id="formBillPay" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('pay-bill') }}" id="formBillPay" method="POST">
+        @csrf
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
                 <div class="col-lg-8 table-responsive mb-5">
@@ -121,13 +122,13 @@
                             @foreach($carts as $key => $cart)
                             <tr>
                                 <td class="align-middle">
-                                    <input type="hidden" id="idProduct" name="data['product']['id_product']" value="{{$cart->product->id_product}}">
+                                    <input type="hidden" id="idProduct" name="dataProduct[{{$key}}][id_product]" value="{{$cart->product->id_product}}">
                                     {{$cart->product->name}}
                                 </td>
                                 <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
                                 <td class="align-middle">
-                                    <input type="hidden" id="priceProduct" name="data['product']['price']" value="{{$cart->product->price}}">
-                                    {{$cart->product->price}}đ
+                                    <input type="hidden" id="priceProduct" name="dataProduct[{{$key}}][price]" value="{{$cart->product->price}}">
+                                    {{$cart->product->price}}vnđ
                                 </td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -136,7 +137,7 @@
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" id="quantityProduct" name="data['product']['quantity']" class="form-control form-control-sm bg-secondary text-center" value="1">
+                                        <input type="text" id="quantityProduct" name="dataProduct[{{$key}}][quantity]" class="form-control form-control-sm bg-secondary text-center" value="1">
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-primary btn-plus">
                                                 <i class="fa fa-plus"></i>
@@ -144,8 +145,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle">{{$tmpPrice += ($cart->product->price).($cart->quantity)}}</td>
+                                <td class="align-middle">{{($cart->product->price*$cart->quantity)}}vnđ</td>
                                 <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                                <span class="d-none">{{($tmpPrice += $cart->product->price*$cart->quantity)}}</span>
                             </tr>
                             @endforeach
                         </tbody>
@@ -187,7 +189,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Tạm tính</h6>
-                                    <h6 class="font-weight-medium">{{$tmpPrice}}</h6>
+                                    <h6 class="font-weight-medium">{{$tmpPrice}}vnđ</h6>
                                 </div>
                                 {{--<div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Phí vận chuyển</h6>
@@ -195,7 +197,7 @@
                                 </div>--}}
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Tổng tiền</h6>
-                                    <h6 class="font-weight-medium">{{$tmpPrice}}</h6>
+                                    <h6 class="font-weight-medium">{{$tmpPrice}}vnđ</h6>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
