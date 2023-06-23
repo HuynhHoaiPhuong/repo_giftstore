@@ -101,87 +101,78 @@
 
 
     <!-- Cart Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>Sản phảm</th>
-                            <th>Hình ảnh</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Tổng tiền</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    @if($carts != [])
-                    <tbody class="align-middle">
-                        @foreach($carts as $key => $cart)
-                        <tr>
-                            <td class="align-middle">{{$cart->product->name}}</td>
-                            <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
-                            <td class="align-middle">{{$cart->product->price}}đ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
+    <form action="{{ route('pay-bill') }}" id="formBillPay" method="POST" enctype="multipart/form-data">
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <div class="col-lg-8 table-responsive mb-5">
+                    <table class="table table-bordered text-center mb-0">
+                        <thead class="bg-secondary text-dark">
+                            <tr>
+                                <th>Sản phảm</th>
+                                <th>Hình ảnh</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        @if($carts != [])
+                        <tbody class="align-middle">
+                            @foreach($carts as $key => $cart)
+                            <tr>
+                                <td class="align-middle">
+                                    <input type="hidden" id="idProduct" name="data['product']['id_product']" value="{{$cart->product->id_product}}">
+                                    {{$cart->product->name}}
+                                </td>
+                                <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
+                                <td class="align-middle">
+                                    <input type="hidden" id="priceProduct" name="data['product']['price']" value="{{$cart->product->price}}">
+                                    {{$cart->product->price}}đ
+                                </td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-minus" >
+                                            <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" id="quantityProduct" name="data['product']['quantity']" class="form-control form-control-sm bg-secondary text-center" value="1">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">{{($cart->product->price).($cart->quantity)}}</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    @endif
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <form action="" method="">
-                    {{-- <form class="mb-5" action="">
-                        <div class="input-group">
+                                </td>
+                                <td class="align-middle">{{$tmpPrice += ($cart->product->price).($cart->quantity)}}</td>
+                                <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        @endif
+                    </table>
+                </div>
+                <div class="col-lg-4">
+                    {{--<div class="input-group">
                             <input type="text" class="form-control p-4" placeholder="Coupon Code">
                             <div class="input-group-append">
                                 <button class="btn btn-primary">Apply Coupon</button>
                             </div>
-                        </div>
-                    </form> --}}
-                    <div class="card border-secondary mb-5">
-                        <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 pt-1">
-                                <h6 class="font-weight-medium">Tạm tính</h6>
-                                <h6 class="font-weight-medium">$150</h6>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                                <h6 class="font-weight-medium">$10</h6>
-                            </div>
-                        </div>
+                        </div>--}}
+                        
                         @if($payments != [])
                         <div class="card border-secondary mb-5">
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body parentIdPaymentRadio">
                                 @foreach($payments as $key => $payment)
                                 <div class="form-group">
-                                    <div class="custom-control custom-radio">
+                                    <div class="custom-control custom-radio idPaymentRadio">
                                         {{-- <input type="radio" class="custom-control-input" name="name" id="name" value="{{$payment->id_payment}}">
                                         <label class="custom-control-label" for="name">{{$payment->name}}</label> --}}
                                         
-                                        <input type="radio" name="name" id="name" value="{{$payment->id_payment}}">
+                                        <input type="radio" name="id_payment" id="idPayment" value="{{$payment->id_payment}}">
                                         <label for="name">{{$payment->name}}</label>
                                     </div>
                                 </div>
@@ -189,18 +180,31 @@
                             </div>
                         </div>
                         @endif
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold">Tổng tiền</h5>
-                                <h5 class="font-weight-bold">$160</h5>
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
                             </div>
-                            <button class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-3 pt-1">
+                                    <h6 class="font-weight-medium">Tạm tính</h6>
+                                    <h6 class="font-weight-medium">{{$tmpPrice}}</h6>
+                                </div>
+                                {{--<div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                                    <h6 class="font-weight-medium">$10</h6>
+                                </div>--}}
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-medium">Tổng tiền</h6>
+                                    <h6 class="font-weight-medium">{{$tmpPrice}}</h6>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- Cart End -->
 @endsection
 
@@ -219,7 +223,20 @@
 <!-- Template Javascript -->
 <script src="{{ asset('user/js/main.js') }}"></script>
 
+<script>
+    $(document).ready(function () {
+        $('.idPaymentRadio').on('click',function(){
+            $('.idPaymentRadio input').prop('disabled', true);
+            $('.idPaymentRadio input').prop('checked', false);
+            $(this).find('input').prop('disabled', false);
+            $(this).find('input').prop('checked', true);
+        });
+    });
+</script>
+
 <!-- Login Template Javascript -->
 <script src="{{ asset('user/js/login.js') }}"></script>
+
+
 
 @endsection

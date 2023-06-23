@@ -30,7 +30,9 @@ class CartController extends Controller
             if($data_payment['data']!=null)
                 $payments = $data_payment['data']->collection;
 
-            return view('user/templates/cart', ['carts' => $carts, 'payments' => $payments]);
+            $tmpPrice = 0;
+
+            return view('user/templates/cart', ['carts' => $carts, 'payments' => $payments, 'tmpPrice' => $tmpPrice]);
         }
         return null; 
     }

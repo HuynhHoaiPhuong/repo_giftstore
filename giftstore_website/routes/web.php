@@ -32,6 +32,7 @@ use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\ProductController as userProductController;
+use App\Http\Controllers\user\BillController as userBillController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\LoginClientController;
 
@@ -115,6 +116,10 @@ Route::get('/product/{id}', [userProductController::class,'productDetail']);
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/{id_member?}', [CartController::class,'cart'])->name('cart');
     Route::get('/buy-now/{id}', [CartController::class,'buyNow'])->name('buy-now');
+});
+
+Route::group(['prefix' => 'bill'],function(){
+    Route::post('/pay-bill', [userBillController::class,'payBill'])->name('pay-bill');
 });
 
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
