@@ -197,10 +197,10 @@
             <!--search & user info start-->
             <ul class="nav pull-right top-menu">
                 <li>
-                    <a target="_blank" href="{{url('/')}}" class="form-control reply"><i class="fa fa-reply"></i> </a>
+                    <a target="_blank" href="{{url('/')}}" class="form-control reply"><i class="fa fa-reply"></i></a>
                 </li>
                 <li>
-                    <a href="{{route('logout')}}" class="form-control logout"><i class="fa fa-sign-out"></i> </a>
+                    <a href="{{route('logout')}}" class="form-control logout"><i class="fa fa-sign-out"></i></a>
                 </li>
                 <!-- user login dropdown start-->
                 <li class="dropdown">

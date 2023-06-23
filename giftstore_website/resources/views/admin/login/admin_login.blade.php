@@ -35,8 +35,8 @@
 				<input type="password" class="ggg" name="password" placeholder="Password" required="">
 				<span><input type="checkbox" />Remember Me</span>
 				<h6><a href="#">Forgot Password?</a></h6>
-					<div class="clearfix"></div>
-					<input type="submit" value="Sign In" >
+				<div class="clearfix"></div>
+				<input type="submit" value="Sign In" >
 			</form>
 			<p>Don't Have an Account ?<a href="{{route('register')}}">Create an account</a></p>
 	</div>

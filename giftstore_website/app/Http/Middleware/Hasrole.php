@@ -19,7 +19,6 @@ class Hasrole
                 return redirect('admin/login')->with('error', 'Permission denied');
             }
         }
-        // abort(403);
         return redirect('admin/login')->with('error', 'Permission denied');
     }
 }

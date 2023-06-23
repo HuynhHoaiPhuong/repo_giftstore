@@ -3,11 +3,11 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Session;
-// use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\Login;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     public function login(){
@@ -44,7 +44,8 @@ class LoginController extends Controller
     //     $datenow = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d h:i:s');
     //     $data = array();
     //     $data['id_user'] = $request->id_role.$datenow;
-    //     $data['id_role'] = $request->id_role;
+    //     // $data['id_role'] = $request->id_role;
+    //     $data['id_role'] = 'USER';
     //     $data['username'] = $request->username;
     //     $data['password'] = bcrypt($request->password);
     //     $data['user_token'] = Str::random(32);

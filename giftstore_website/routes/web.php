@@ -103,10 +103,19 @@ Route::group(['prefix' => 'admin'],function(){
 
 //web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
-Route::get('/product/{id}', [userProductController::class,'productDetail']);
-Route::get('/cart', [CartController::class,'index'])->name('cart');
-Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
-Route::get('/contact', [ContactController::class,'index'])->name('contact');
-// Route::get('/product', [userProductController::class,'product'])->name('product');
-Route::get('/shop', [ShopController::class,'index'])->name('shop');
-Route::get('/log-in', [LoginClientController::class,'index'])->name('log-in');
+
+Route::group(['prefix' => '/'],function(){
+    Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
+    Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
+    // Route::post('/log-out', [LoginClientController::class, 'logout'])->name('log-out');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::post('/log-out', [LoginClientController::class, 'logout'])->name('log-out');
+    });
+
+    Route::get('/product/{id}', [userProductController::class,'productDetail']);
+    Route::get('/cart', [CartController::class,'index'])->name('cart');
+    Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
+    Route::get('/contact', [ContactController::class,'index'])->name('contact');
+    // Route::get('/product', [userProductController::class,'product'])->name('product');
+    Route::get('/shop', [ShopController::class,'index'])->name('shop');
+});
