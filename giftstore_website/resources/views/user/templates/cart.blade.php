@@ -115,11 +115,13 @@
                             <th>Xóa</th>
                         </tr>
                     </thead>
+                    @if($carts != [])
                     <tbody class="align-middle">
+                        @foreach($carts as $key => $cart)
                         <tr>
-                            <td class="align-middle">Colorful Stylish Shirt</td>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="image" style="width: 50px;"></td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle">{{$cart->product->name}}</td>
+                            <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
+                            <td class="align-middle">{{$cart->product->price}}đ</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -135,134 +137,67 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle">{{($cart->product->price).($cart->quantity)}}</td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
-                        <tr>
-                            <td class="align-middle">Colorful Stylish Shirt</td>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="image" style="width: 50px;"></td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Colorful Stylish Shirt</td>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="image" style="width: 50px;"></td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle">Colorful Stylish Shirt</td>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="image" style="width: 50px;"></td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
+                        @endforeach
                     </tbody>
+                    @endif
                 </table>
             </div>
             <div class="col-lg-4">
-                {{-- <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                <form action="" method="">
+                    {{-- <form class="mb-5" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">Apply Coupon</button>
+                            </div>
                         </div>
-                    </div>
-                </form> --}}
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Tạm tính</h6>
-                            <h6 class="font-weight-medium">$150</h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div>
-                    </div>
+                    </form> --}}
                     <div class="card border-secondary mb-5">
                         <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
+                            <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                    <label class="custom-control-label" for="paypal">Tiền mặt</label>
-                                </div>
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Tạm tính</h6>
+                                <h6 class="font-weight-medium">$150</h6>
                             </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                    <label class="custom-control-label" for="directcheck">Ví điện tử</label>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                    <label class="custom-control-label" for="banktransfer">Chuyển khoản</label>
-                                </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                                <h6 class="font-weight-medium">$10</h6>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Tổng tiền</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                        @if($payments != [])
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
+                            </div>
+                            <div class="card-body">
+                                @foreach($payments as $key => $payment)
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        {{-- <input type="radio" class="custom-control-input" name="name" id="name" value="{{$payment->id_payment}}">
+                                        <label class="custom-control-label" for="name">{{$payment->name}}</label> --}}
+                                        
+                                        <input type="radio" name="name" id="name" value="{{$payment->id_payment}}">
+                                        <label for="name">{{$payment->name}}</label>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
+                        @endif
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Tổng tiền</h5>
+                                <h5 class="font-weight-bold">$160</h5>
+                            </div>
+                            <button class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
