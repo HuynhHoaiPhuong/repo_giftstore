@@ -112,7 +112,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/product/{id}', [userProductController::class,'productDetail']);
 
-Route::get('/cart', [CartController::class,'index'])->name('cart');
+Route::group(['prefix' => 'cart'],function(){
+    Route::get('/', [CartController::class,'cart'])->name('cart');
+    Route::get('/buy-now/{id}', [CartController::class,'buyNow'])->name('buy-now');
+});
 
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
 

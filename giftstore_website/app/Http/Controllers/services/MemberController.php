@@ -32,6 +32,11 @@ class MemberController extends Controller
         return Payload::toJson(MemberResource::collection($members),'Ok',200);
     }
 
+    public function getIdMemberByIdUser($id)
+    {
+        return $member= Member::select('id_member')->where('id_user',$id)->first();
+    }
+
     public function saveMember(Request $req)
     {
         $member = new Member();
