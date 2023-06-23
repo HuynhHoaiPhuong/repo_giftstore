@@ -22,7 +22,7 @@ class LoginClientController extends Controller
             $username = $request->input('username');
             Session::put('username', $username);
 
-            return view('user.templates.index');
+            return redirect()->route('/');
         }
         return redirect()->route('log-in')->with('error', 'Tài khoản hoặc mật khẩu không hợp lệ');
     }
@@ -36,6 +36,6 @@ class LoginClientController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->session()->flush();
-        return redirect('user/templates/login');
+        return redirect()->route('log-in');
     }
 }

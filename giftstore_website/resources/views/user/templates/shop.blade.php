@@ -22,8 +22,6 @@
 
 @endsection
 
-@endsection
-
 @section('web_content')
 
     <!-- Navbar Start -->
