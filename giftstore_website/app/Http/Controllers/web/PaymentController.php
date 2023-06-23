@@ -22,6 +22,16 @@ class PaymentController extends Controller
         if($req->name==null){
             return back()->withErrors('error','Tạo thất bại');
         }
+        $newName = 'noimage.png';
+        // var_dump($req->file('photo'));die('XXX');
+        if($req->hasFile('photo')){
+            $photo = $req->file('photo');
+            $name = $photo->getClientOriginalName();
+            $originalName = current(explode('.',$name));
+            $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
+            $photo->move('upload/payment', $newName);
+        }
+        $req->photo = $newName;
         $result = $paymentController->savePayment($req);
         if($result==null){
             return back()->withErrors('error','Tạo thất bại');

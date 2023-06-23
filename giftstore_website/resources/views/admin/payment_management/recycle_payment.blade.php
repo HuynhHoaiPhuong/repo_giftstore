@@ -30,11 +30,11 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Thùng rác (hình thức thanh toán)
+      Danh sách các phương thức hỗ trợ
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">   
-        <a href="#" class="clearPayment btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa tất cả</a>          
+        <!-- <a href="#" class="clearPayment btn btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa tất cả</a>           -->
         <a href="{{route('payment-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Thoát</a>
       </div>
       <div class="col-sm-4">
@@ -72,15 +72,19 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $payment->photo }}</td>
+            @if($payment->photo != 'noimage.png' && $payment->photo != '')
+            <td><img src="../upload/payment/{{ $payment->photo }}" alt="{{$payment->name}}" width="40"></td>
+            @else
+            <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
+            @endif
             <td>{{ $payment->name }}</td>
             <td>{{ $payment->created_at }}</td>
             <td>{{ $payment->updated_at }}</td>
             <td>
-              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="deletePayment active styling-edit">
+              <!-- <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="deletePayment active styling-edit">
                 <i class="fa fa-times text-danger text"></i>
-              </a>
-              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#restorePayment" href="#" class="restorePayment active styling-edit">
+              </a> -->
+              <a id="{{ $payment->id_payment }}" title="Khôi phục" data-toggle="modal" data-target="#restorePayment" href="#" class="restorePayment active styling-edit">
                 <i class="fa fa-repeat text-success text"></i>
               </a>
             </td>

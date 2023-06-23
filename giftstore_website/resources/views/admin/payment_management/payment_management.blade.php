@@ -32,8 +32,9 @@
     <div class="panel-heading">Danh sách phương thức thanh toán</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">   
-        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addPayment"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
-        <a href="{{route('recycle-payment')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a>
+        <!-- <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addPayment"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>-->
+        <!-- <a href="{{route('recycle-payment')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a> -->
+        <a href="{{route('recycle-payment')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm mới</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -69,17 +70,23 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td><img src="../admin/images/payments/{{ $payment->photo }}" alt="Not found!" width="40"></td>
+            @if($payment->photo != 'noimage.png' && $payment->photo != '')
+            <td><img src="../upload/payment/{{ $payment->photo }}" alt="{{$payment->name}}" width="40"></td>
+            @else
+            <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
+            @endif
             <td>{{ $payment->name }}</td>
             <td>{{ $payment->created_at }}</td>
             <td>{{ $payment->updated_at }}</td>
             <td>
-              <a data-id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#updatePayment" href="#" class="updatePayment active styling-edit" title="Sửa">
-                <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="removePayment active styling-edit">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
+              @if($payment->id_payment != '230623030323634')
+                <a data-id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#updatePayment" href="#" class="updatePayment active styling-edit" title="Sửa">
+                  <i class="fa fa-pencil-square-o text-success text-active"></i>
+                </a>
+                <a id="{{ $payment->id_payment }}" data-toggle="modal" data-target="#deletePayment" href="#" class="removePayment active styling-edit">
+                  <i class="fa fa-times text-danger text"></i>
+                </a>
+              @endif
             </td>
           </tr>
           @endforeach
@@ -120,7 +127,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('add-payment')}}" id="addPaymentForm" method="POST">
+                <form action="{{route('add-payment')}}" id="addPaymentForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="inputAddNamePayment">Tên phương thức</label>
@@ -175,13 +182,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deletePayment">Xoá hình thức thanh toán</h5>
+                <h5 class="modal-title" id="deletePayment">Tắt hình thức thanh toán</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h5 class="font-weight-normal">Bạn có muốn chuyển hình thức thanh toán này vào thùng rác không?</h5>
+                <h5 class="font-weight-normal">Bạn có muốn tắt hình thức thanh toán này không?</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
@@ -215,26 +222,6 @@
         jQuery(this).closest('.small-graph-box').fadeOut(200);
         return false;
       });
-
-      //Add Payment
-      $(document).on('click','.btn-add', function(e){
-        e.preventDefault();
-        let formData = new FormData($("form#addPaymentForm")[0]);
-        $.ajax({
-          type: "post",
-          url: '/api/payments/save-payment',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response){
-            $('#addPaymentForm')[0].reset(); 
-            $("#addPayment").modal('hide');
-          },
-          error: function(error) {
-            console.log(error);
-          }
-        })
-      })
 
       // Remove Payment
       $('.removePayment').on('click', function() {
