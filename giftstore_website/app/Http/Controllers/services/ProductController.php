@@ -37,7 +37,6 @@ class ProductController extends Controller
             'id_provider' => $request->id_provider, 
             // 'numerical_order' => $request->numerical_order, 
             'name' => $request->name, 
-            'code' => $request->code, 
             'photo' => $request->photo, 
             'price' => $request->price, 
             'slug' => $request->slug,

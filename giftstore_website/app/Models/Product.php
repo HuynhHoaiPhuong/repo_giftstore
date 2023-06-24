@@ -17,7 +17,6 @@ class Product extends Model
         'id_provider',
         'numerical_order',
         'name',
-        'code',
         'photo',
         'price',
         'slug',

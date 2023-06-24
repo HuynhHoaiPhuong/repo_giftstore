@@ -21,7 +21,6 @@ class ProductResource extends JsonResource
             'provider' => new ProviderResource($this->provider),
             'numerical_order' => $this->numerical_order,
             'name' => $this->name,
-            'code' => $this->code,
             'photo' => $this->photo,
             'price' => $this->price,
             'slug' => $this->slug,

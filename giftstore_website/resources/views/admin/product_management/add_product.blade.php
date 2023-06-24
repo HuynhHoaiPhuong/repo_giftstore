@@ -47,10 +47,7 @@
                             <label for="addNameProduct">Tên</label>
                             <input type="text" name="name" class="form-control" id="addNameProduct" placeholder="Tên sản phẩm">
                         </div>
-                        <div class="form-group">
-                            <label for="addCodeProduct">Mã sản phẩm</label>
-                            <input type="text" name="code" class="form-control" id="addCodeProduct">
-                        </div>
+                        
                         <div class="form-group">
                             <label for="addIdProviderProduct">Nhà cung cấp</label>
                             <select id="addIdProviderProduct" name="id_provider" class="form-control">

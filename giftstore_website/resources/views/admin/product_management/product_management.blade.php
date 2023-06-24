@@ -32,7 +32,7 @@
     <div class="panel-heading">Danh sách sản phẩm</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <a href="{{route('add-product-management')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>           
+        <a href="{{route('add-product-management')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>        
       </div>
       <div class="col-sm-4">
       </div>
@@ -57,8 +57,7 @@
             <th>STT</th>
             <th>Hình ảnh</th>
             <th>Tên</th>
-            <th>Mã sản phẩm</th>
-            <th>NSX</th>
+            <th>Nhà sản xuất</th>
             <th>Danh mục</th>
             <th>Giá</th>
             <th>Thao tác</th>
@@ -77,7 +76,6 @@
             <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
             @endif
             <td>{{$product->name}}</td>
-            <td>{{$product->code}}</td>
             <td>{{$product->provider->name}}</td>
             <td>{{$product->category->name}}</td>
             <td>{{$product->price}}</td>

@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->string('id_provider'); //foreign key
             $table->integer('numerical_order')->default(0); 
             $table->string('name')->unique();
-            $table->string('code')->unique(); //mã sản phẩm
             $table->string('photo');
             $table->bigInteger('price')->nullable(false);
             $table->string('slug')->unique()->nullable(false);

@@ -50,7 +50,6 @@ class ProductController extends Controller
             return back()->withErrors('error','Tạo thất bại');
         }
         $newName = 'noimage.png';
-        // var_dump($req->file('photo'));die('XXX');
         if($req->hasFile('photo')){
             $photo = $req->file('photo');
             $name = $photo->getClientOriginalName();

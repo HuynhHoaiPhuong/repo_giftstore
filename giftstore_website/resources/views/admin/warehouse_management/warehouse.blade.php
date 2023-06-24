@@ -30,18 +30,11 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách kho
+      Danh sách kho hàng
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                 
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addWarehouse"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm kho hàng</strong></a>                                 
       </div>
       <div class="col-sm-4">
       </div>
@@ -64,7 +57,6 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID</th>
             <th>Tên</th>
             <th>Địa chỉ</th>
             <th>Trạng thái</th>
@@ -78,10 +70,9 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $warehouse->id_warehouse }}</td>
             <td>{{ $warehouse->name }}</td>
             <td>{{ $warehouse->address }}</td>
-            <td>{{ $warehouse->status }}</td>
+            <td>{{ ($warehouse->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>
             <td>
               <a href="{{route('warehouse-detail-management',['id_warehouse'=>$warehouse->id_warehouse])}}" class="active styling-edit" title="Xem chi tiết kho">
                 <i class="fa fa-eye text-primary text-active"></i>
