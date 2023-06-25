@@ -78,6 +78,7 @@ Route::group(['prefix'=>'/categories'],function()
 //Product API
 Route::group(['prefix'=>'/products'],function()
 {
+    Route::get('/get-product-by-id/{id_product}',[ProductController::class,'getProductByIdProduct']);
     Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
     Route::post('/save-product',[ProductController::class,'saveProduct']);
     Route::post('/update-product',[ProductController::class,'updateProduct']);

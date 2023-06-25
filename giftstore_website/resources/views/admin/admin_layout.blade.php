@@ -99,7 +99,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/3.png"></span>
+                                <span class="photo"><img alt="avatar" src="{{asset('admin/images/3.png')}}"></span>
                                         <span class="subject">
                                         <span class="from">Jonathan Smith</span>
                                         <span class="time">Just now</span>
@@ -111,7 +111,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/1.png"></span>
+                                <span class="photo"><img alt="avatar" src="{{asset('admin/images/1.png')}}"></span>
                                         <span class="subject">
                                         <span class="from">Jane Doe</span>
                                         <span class="time">2 min ago</span>
@@ -123,7 +123,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/3.png"></span>
+                                <span class="photo"><img alt="avatar" src="{{asset('admin/images/3.png')}}"></span>
                                         <span class="subject">
                                         <span class="from">Tasi sam</span>
                                         <span class="time">2 days ago</span>
@@ -135,7 +135,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="images/2.png"></span>
+                                <span class="photo"><img alt="avatar" src="{{asset('admin/images/2.png')}}"></span>
                                         <span class="subject">
                                         <span class="from">Mr. Perfect</span>
                                         <span class="time">2 hour ago</span>
@@ -240,14 +240,10 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="javascript:;">
+                            <a href="{{route('bill-management')}}">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản lý hóa đơn</span>
+                                <span>Quản lý hóa đơn bán</span>
                             </a>
-                            <ul class="sub">
-                                <li><a href="{{route('bill-order-management')}}">Hóa đơn nhập</a></li>
-                                <li><a href="{{route('bill-management')}}">Hóa đơn bán</a></li>
-                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('photo-management')}}">
@@ -284,15 +280,7 @@
                             <ul class="sub">
                                 <li><a href="{{route('type-category-management')}}">Loại danh mục</a></li>
                                 <li><a href="{{route('category-management')}}">Danh mục</a></li>
-                            </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="javascript:;">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Quản lý sản phẩm</span>
-                            </a>
-                            <ul class="sub">
-                                <li><a href="{{route('product-management')}}">Sản phẩm</a></li>
+                                <li><a href="{{route('product-management')}}">Quản lý sản phẩm</a></li>
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -314,7 +302,16 @@
                                 <span>Quản lý ưu đãi</span>
                             </a>
                         </li>
-
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý nhập kho</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="#">Nhập hàng</a></li>
+                                <li><a href="{{route('bill-order-management')}}">Hóa đơn nhập</a></li>
+                            </ul>
+                        </li>
                         <li class="sub-menu">
                             <a href="{{route('warehouse-management')}}">
                                 <i class="fa fa-credit-card"></i>

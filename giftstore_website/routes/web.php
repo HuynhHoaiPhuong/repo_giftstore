@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
         Route::get('/product-management/add-product-management',[ProductController::class,'addproductManagement'])->name('add-product-management');
         Route::post('/add-product',[ProductController::class,'addProduct'])->name('add-product');
+        Route::post('/update-product',[ProductController::class,'updateProduct'])->name('update-product');
 
         Route::get('/bill-management',[BillController::class,'billManagement'])->name('bill-management');
 

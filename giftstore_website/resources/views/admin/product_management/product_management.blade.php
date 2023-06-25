@@ -80,7 +80,7 @@
             <td>{{$product->category->name}}</td>
             <td>{{$product->price}}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a data-id="{{ $product->id_product }}" data-toggle="modal" data-target="#updateProduct" href="#" class="updateProduct active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
@@ -97,7 +97,6 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
@@ -112,6 +111,75 @@
     </footer>
   </div>
 </div>
+
+<!-- /Modal update Product -->
+<div class="modal fade" id="updateProduct" tabindex="-1" role="dialog" aria-labelledby="updateProduct" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title  text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('update-product')}}" id="updateProductForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_product" id="inputUpdateIdProduct">
+                    <div class="row">
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateIdProviderProduct">Nhà cung cấp</label>
+                          <select id="inputUpdateIdProviderProduct" name="id_provider" class="form-control">
+                            @if($providers != [])
+                              @foreach($providers as $key => $pvd)
+                                  <option class="pvd-{{$pvd->id_provider}}" value="{{$pvd->id_provider}}">{{$pvd->name}}</option>
+                              @endforeach
+                            @endif
+                          </select>
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateCategoryProduct">Danh mục sản phẩm</label>
+                          <select  id="inputUpdateCategoryProduct" name="id_category" class="form-control">
+                            @if($categories != [])
+                              @foreach($categories as $key => $category)
+                                  <option class="cat-{{$category->id_category}}" value="{{$category->id_category}}">{{$category->name}}</option>
+                              @endforeach
+                            @endif
+                          </select>
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdatePhotoProduct">Hình ảnh</label>
+                          <input type="file" name="photo" class="form-control" id="inputUpdatePhotoProduct">
+                      </div>
+                      <input type="hidden" name="photoCurrent" id="inputUpdatePhotoCurrentProduct">
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateSlugProduct">Đường dẫn</label>
+                          <input type="text" name="slug" class="form-control" id="inputUpdateSlugProduct" placeholder="Đường dẫn">
+                      </div>
+                      <div class="form-group col-sm-6">
+                          <label for="inputUpdateNameProduct">Tên</label>
+                          <input type="text" name="name" class="form-control" id="inputUpdateNameProduct" placeholder="Tên sản phẩm">
+                      </div>
+                      
+                      <div class="form-group col-sm-6">
+                        <label for="inputUpdatePriceProduct">Giá</label>
+                        <input type="number" name="price" class="form-control" id="inputUpdatePriceProduct">
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="inputUpdateDescProduct">Mô tả</label>
+                        <textarea rows="4" cols="50" type="text" placeholder="Mô tả" name="description"
+                            id="inputUpdateDescProduct" class="form-control text-sm"></textarea>
+                    </div> -->
+                    <div class="form-group">
+                        <button class="btn_submit_update_product btn btn-primary btn-block mr-10" type="submit" {{($categories != [] && $providers != []) ? '' : 'disabled' }} >Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->
@@ -121,8 +189,7 @@
   <script src="{{asset('admin/js/scripts.js')}}"></script>
   <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-  <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
       $(document).ready(function() {
@@ -136,80 +203,40 @@
             jQuery(this).closest('.small-graph-box').fadeOut(200);
             return false;
         });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
+
+        // Update Product
+        $('.updateProduct').on('click', function() {
+          $id_product = $(this).attr('data-id');
+          $.ajax({
+              type: 'GET',
+              url: '/api/products/get-product-by-id/' + $id_product,
+              success: function(data) {
+                $product = data.data;
+
+                $('#updateProduct #inputUpdateIdProduct').val($product.id_product);
+
+                $('#updateProduct #inputUpdateNameProduct').val($product.name);
+
+                $('#updateProduct #inputUpdateSlugProduct').val($product.slug);
+
+                console.log($product.photo);
+                $('#updateProduct #inputUpdatePhotoCurrentProduct').val($product.photo);
+
+                $('#updateProduct #inputUpdateIdProviderProduct').val($product.provider.id_provider).change();
+
+                $('#updateProduct #inputUpdateCategoryProduct').val($product.category.id_category).change();
+
+                $('#updateProduct #inputUpdatePriceProduct').val($product.price);
+
+                // $('#updateProduct #inputUpdateDescProduct').val($product.description);
+
+            },
+            error: function() {
+
+            }
           });
-          
-        
-      });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
         });
-    </script>
-    <!-- //calendar -->
+      });
+  </script>
 @endsection
 

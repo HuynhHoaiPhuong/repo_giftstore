@@ -20,6 +20,14 @@ class ProductController extends Controller
         }
         return Payload::toJson(ProductResource::collection($products), 'Request Successfully', 200);
     }
+    public function getProductByIdProduct($id_product){
+        $product = Product::where('id_product', $id_product)->first();
+         if(!$product)
+         {
+            return Payload::toJson(null, "Data Not Found", 404); 
+         }  
+        return Payload::toJson(new ProductResource($product), "OK", 200);
+    }
     public function getAllProductByStatus($status){
         $products = Product::where('status', $status)->get();
          if($products->isEmpty())
@@ -54,9 +62,8 @@ class ProductController extends Controller
         ->update([
             'id_category' => $request->id_category, 
             'id_provider' => $request->id_provider, 
-            'numerical_order' => $request->numerical_order, 
+            // 'numerical_order' => $request->numerical_order, 
             'name' => $request->name, 
-            'code' => $request->code, 
             'photo' => $request->photo, 
             'price' => $request->price, 
             'slug' => $request->slug, 
