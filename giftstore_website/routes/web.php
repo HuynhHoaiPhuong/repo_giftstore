@@ -92,10 +92,13 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/product-management/add-product-management',[ProductController::class,'addproductManagement'])->name('add-product-management');
         Route::post('/add-product',[ProductController::class,'addProduct'])->name('add-product');
         Route::post('/update-product',[ProductController::class,'updateProduct'])->name('update-product');
+        Route::get('/recycle-product',[ProductController::class,'recycleProduct'])->name('recycle-product');
 
         Route::get('/bill-management',[BillController::class,'billManagement'])->name('bill-management');
 
         Route::get('/bill-order-management',[BillOrderController::class,'billOrderManagement'])->name('bill-order-management');
+        Route::get('/add-bill-order-management',[BillOrderController::class,'addBillOrderManagement'])->name('add-bill-order-management');
+        Route::post('/save-bill-order',[BillOrderController::class,'saveBillOrder'])->name('save-bill-order');
 
         Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
         Route::post('/add-provider',[ProviderController::class,'addProvider'])->name('add-provider');

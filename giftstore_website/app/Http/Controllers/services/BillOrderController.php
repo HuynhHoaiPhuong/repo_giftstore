@@ -41,8 +41,8 @@ class BillOrderController extends Controller
             'id_warehouse' => $request->id_warehouse, 
             'total_quantity' => $request->total_quantity, 
             'total_price' => $request->total_price, 
-            'date_order' => $request->date_order, 
-            'date_of_payment' => $request->date_of_payment, 
+            'date_order' => Carbon::now()->format('ymdhis'), 
+            // 'date_of_payment' => $request->date_of_payment, 
         ]);
         if($billOrder->save() == 1){
             $BillOrder = BillOrder::where('id_bill_order', $billOrder->id_bill_order)->first();

@@ -20,7 +20,7 @@ class CreateBillOrdersTable extends Migration
             $table->string('id_user');//foreign key
             $table->string('id_warehouse');//foreign key
             $table->integer('total_quantity')->default(0);
-            $table->float('total_price')->default(0);
+            $table->bigInteger('total_price')->default(0);
             $table->datetime('date_order');
             $table->datetime('date_of_payment');
             $table->string('status')->default('enabled');

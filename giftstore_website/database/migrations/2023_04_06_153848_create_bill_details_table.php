@@ -17,7 +17,7 @@ class CreateBillDetailsTable extends Migration
             $table->string('id_bill_detail')->primary(); //primary key
             $table->string('id_bill');//foreign key
             $table->string('id_product');//foreign key
-            $table->string('id_discount');//foreign key
+            $table->string('id_discount')->nullable(true);//foreign key
             $table->integer('quantity')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('rate_status')->default('enabled');

@@ -16,9 +16,9 @@ class ProductController extends Controller
         $categoryController = new ServicesCategoryController();
         $providerController = new ServicesProviderController();
 
-        $data_category = $categoryController->getAllCategory();
-        $data_provider = $providerController->getAllProvider();
-        $data_product = $productController->getAllProduct();
+        $data_category = $categoryController->getAllCategoryByStatus('enabled');
+        $data_provider = $providerController->getAllProviderByStatus('enabled');
+        $data_product = $productController->getAllProductByStatus('enabled');
 
         $categories = [];
         if($data_category['data']!=null)
@@ -96,7 +96,7 @@ class ProductController extends Controller
                 unlink('upload/product/'.$req->photoCurrent);
             }else{
                 // dd('File does not exists.');
-                return back()->withErrors('error','Chỉnh sửa thất bại');
+                return back()->withErrors('error','Xóa ảnh thất bại');
             }
             $photo = $req->file('photo');
             $name = $photo->getClientOriginalName();
@@ -112,5 +112,14 @@ class ProductController extends Controller
             return back()->withErrors('error','Chỉnh sửa thất bại');
         }
         return redirect(route('product-management'));
+    }
+
+    public function recycleProduct(){
+        $productController = new ServicesProductController();
+        $data_product = $productController->getAllProductByStatus('disabled');
+        $products = [];
+        if($data_product['data']!=null)
+        $products = $data_product['data']->collection;
+        return view('admin/product_management/recycle_product',['products'=>$products]);
     }
 }

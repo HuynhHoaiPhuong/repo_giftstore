@@ -206,7 +206,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt="" src="{{asset('admin/images/2.png')}}">
-                        <span class="username">Johnny Depp</span>
+                        <span class="username">{{Auth::user()->fullname}}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
@@ -240,12 +240,6 @@
                             </a>
                         </li>
                         <li class="sub-menu">
-                            <a href="{{route('bill-management')}}">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Quản lý hóa đơn bán</span>
-                            </a>
-                        </li>
-                        <li class="sub-menu">
                             <a href="{{route('photo-management')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>Quản lý hình ảnh</span>
@@ -275,19 +269,14 @@
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản lý danh mục sản phẩm</span>
+                                <span>Group sản phẩm</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{route('type-category-management')}}">Loại danh mục</a></li>
-                                <li><a href="{{route('category-management')}}">Danh mục</a></li>
+                                <li><a href="{{route('provider-management')}}">Quản lý nhà cung cấp</a></li>
+                                <li><a href="{{route('type-category-management')}}">Quản lý loại danh mục</a></li>
+                                <li><a href="{{route('category-management')}}">Quản lý danh mục sản phẩm</a></li>
                                 <li><a href="{{route('product-management')}}">Quản lý sản phẩm</a></li>
                             </ul>
-                        </li>
-                        <li class="sub-menu">
-                            <a href="{{route('provider-management')}}">
-                                <i class="fa fa-credit-card"></i>
-                                <span>Quản lý nhà cung cấp</span>
-                            </a>
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('payment-management')}}">
@@ -303,12 +292,18 @@
                             </a>
                         </li>
                         <li class="sub-menu">
+                            <a href="{{route('bill-management')}}">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Quản lý hóa đơn bán</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-picture-o"></i>
-                                <span>Quản lý nhập kho</span>
+                                <span>Quản lý nhập hàng</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="#">Nhập hàng</a></li>
+                                <li><a href="{{route('add-bill-order-management')}}">Nhập hàng</a></li>
                                 <li><a href="{{route('bill-order-management')}}">Hóa đơn nhập</a></li>
                             </ul>
                         </li>
@@ -338,7 +333,7 @@
             <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
-                    <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                    <p>© 2023 Copyright Gift Store. All rights reserved | Designed by B17P19</p>
                 </div>
             </div>
             <!-- / footer -->

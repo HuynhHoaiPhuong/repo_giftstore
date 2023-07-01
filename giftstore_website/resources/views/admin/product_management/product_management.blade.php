@@ -33,6 +33,7 @@
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <a href="{{route('add-product-management')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>        
+        <a href="{{route('recycle-product')}}" class="btn btn-sm btn-warning"><i class="fa fa-recycle" aria-hidden="true"></i> Thùng rác</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -83,14 +84,14 @@
               <a data-id="{{ $product->id_product }}" data-toggle="modal" data-target="#updateProduct" href="#" class="updateProduct active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
+              <a id="{{ $product->id_product }}" data-toggle="modal" data-target="#deleteProduct" href="#" class="removeProduct active styling-edit" title="Xóa">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
           </tr>
           @endforeach
           @else
-              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+              <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
           @endif
         </tbody>
       </table>
@@ -180,6 +181,27 @@
     </div>
 </div>
 
+<!-- /Modal Delete Product -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="deleteProduct" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProduct">Xoá sản phẩm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="font-weight-normal">Bạn có muốn chuyển sản phẩm này vào thùng rác không?</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Huỷ bỏ</button>
+                <button type="button" id="" class="btn_remove_product btn btn-primary">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->
@@ -204,6 +226,29 @@
             return false;
         });
 
+        // Remove Product
+        $('.removeProduct').on('click', function() {
+          $id_product = $(this).attr('id');
+          $('.btn_remove_product').attr('id', $id_product);
+        });
+        $('.btn_remove_product').on('click', function() {
+            $id_product = $(this).attr('id');
+            $.ajax({
+                type: 'POST',
+                url: '/api/products/remove-product',
+                data: {
+                    'id_product': $id_product,
+                    'status': 'disabled',
+                },
+                success: function(data) {
+                    location.reload(false);
+                },
+                error: function() {
+
+                }
+            });
+        });
+
         // Update Product
         $('.updateProduct').on('click', function() {
           $id_product = $(this).attr('data-id');
@@ -219,7 +264,6 @@
 
                 $('#updateProduct #inputUpdateSlugProduct').val($product.slug);
 
-                console.log($product.photo);
                 $('#updateProduct #inputUpdatePhotoCurrentProduct').val($product.photo);
 
                 $('#updateProduct #inputUpdateIdProviderProduct').val($product.provider.id_provider).change();

@@ -23,7 +23,7 @@
 <body>
 	<div class="log-w3">
 	<div class="w3layouts-main">
-		<h2>Sign In Now</h2>
+		<h2>Đăng nhập hệ thống</h2>
 		@if(session('error'))
 			<div class="alert alert-danger">
 					{{ session('error') }}
@@ -31,14 +31,14 @@
 		@endif
 			<form action="{{route('authenticate')}}" method="post">
 				@csrf
-				<input type="text" class="ggg" name="username" placeholder="Username" required="">
-				<input type="password" class="ggg" name="password" placeholder="Password" required="">
+				<input type="text" class="ggg" name="username" placeholder="Tài khoản" required="">
+				<input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
 				<span><input type="checkbox" />Remember Me</span>
-				<h6><a href="#">Forgot Password?</a></h6>
+				<!-- <h6><a href="#">Forgot Password?</a></h6> -->
 				<div class="clearfix"></div>
-				<input type="submit" value="Sign In" >
+				<input type="submit" class="btn" value="Đăng nhập" >
 			</form>
-			<p>Don't Have an Account ?<a href="{{route('register')}}">Create an account</a></p>
+		<div class="text-center"><a href="{{route('/')}}" class="turn-back-index text-decoration-none text-while" title="Xem website"><i class="fa fa-reply" aria-hidden="true"></i> Trở về</a></div>
 	</div>
 	</div>
 	<script src="{{asset('admin/js/bootstrap.js')}}"></script>

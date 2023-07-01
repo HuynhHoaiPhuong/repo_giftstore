@@ -56,16 +56,11 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
             <th>STT</th>
-            <th>ID NSX</th>
-            <th>ID PTTT</th>
-            <th>ID Khách hàng</th>
-            <th>ID Kho</th>
+            <th>NSX</th>
+            <th>PTTT</th>
+            <th>Người mua</th>
+            <th>Kho</th>
             <th>Tổng số lượng</th>
             <th>Tổng tiền</th>
             <th>Ngày nhập hàng</th>
@@ -79,12 +74,11 @@
           <?php $i = 1; ?>
           @foreach($billOrders as $key => $billOrder)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$billOrder->id_provider}}</td>
-            <td>{{$billOrder->id_payment}}</td>
-            <td>{{$billOrder->id_user}}</td>
-            <td>{{$billOrder->id_warehouse}}</td>
+            <td>{{$billOrder->provider->name}}</td>
+            <td>{{$billOrder->payment->name}}</td>
+            <td>{{$billOrder->user->fullname}}</td>
+            <td>{{$billOrder->warehouse->name}}</td>
             <td>{{$billOrder->total_quantity}}</td>
             <td>{{$billOrder->total_price}}</td>
             <td>{{$billOrder->date_order}}</td>
@@ -94,14 +88,11 @@
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
             </td>
           </tr>
           @endforeach
           @else
-              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+            <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
           @endif
         </tbody>
       </table>
@@ -135,7 +126,6 @@
   <script src="{{asset('admin/js/scripts.js')}}"></script>
   <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
@@ -150,79 +140,6 @@
             jQuery(this).closest('.small-graph-box').fadeOut(200);
             return false;
         });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
-          });
-          
-        
       });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
-        });
-    </script>
-    <!-- //calendar -->
+  </script>
 @endsection

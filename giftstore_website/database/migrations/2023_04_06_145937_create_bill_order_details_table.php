@@ -18,7 +18,7 @@ class CreateBillOrderDetailsTable extends Migration
             $table->string('id_bill_order'); //foreign key
             $table->string('id_product'); //foreign key
             $table->integer('quantity')->default(0);
-            $table->float('purchase_price')->default(0);
+            $table->bigInteger('purchase_price')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
             $table->timestamps();

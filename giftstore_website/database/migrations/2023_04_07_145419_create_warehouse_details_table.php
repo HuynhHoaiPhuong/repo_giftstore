@@ -18,7 +18,7 @@ class CreateWarehouseDetailsTable extends Migration
             $table->string('id_warehouse'); //foreign key
             $table->string('id_product'); //foreign key
             $table->bigInteger('quantity')->default(0);
-            $table->float('price_pay')->default(0);
+            $table->bigInteger('price_pay')->default(0);
             $table->bigInteger('total_price')->default(0);
             $table->string('status')->default('enabled');
             $table->timestamps();

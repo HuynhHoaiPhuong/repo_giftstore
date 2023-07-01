@@ -36,14 +36,7 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>               
+        <a href="{{route('warehouse-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Thoát</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -136,56 +129,22 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
-    $(document).ready(function() {
-        //BOX BUTTON SHOW AND CLOSE
-       jQuery('.small-graph-box').hover(function() {
-          jQuery(this).find('.box-button').fadeIn('fast');
-       }, function() {
-          jQuery(this).find('.box-button').fadeOut('fast');
-       });
-       jQuery('.small-graph-box .box-close').click(function() {
-          jQuery(this).closest('.small-graph-box').fadeOut(200);
-          return false;
-       });
-
-        
-       
-    });
-    </script>
-<!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
-        });
-    </script>
-    <!-- //calendar -->
+  $(document).ready(function() {
+      //BOX BUTTON SHOW AND CLOSE
+      jQuery('.small-graph-box').hover(function() {
+        jQuery(this).find('.box-button').fadeIn('fast');
+      }, function() {
+        jQuery(this).find('.box-button').fadeOut('fast');
+      });
+      jQuery('.small-graph-box .box-close').click(function() {
+        jQuery(this).closest('.small-graph-box').fadeOut(200);
+        return false;
+      });
+      
+  });
+</script>
 @endsection
 

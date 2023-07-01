@@ -83,6 +83,8 @@ Route::group(['prefix'=>'/products'],function()
     Route::post('/save-product',[ProductController::class,'saveProduct']);
     Route::post('/update-product',[ProductController::class,'updateProduct']);
     Route::post('/remove-product',[ProductController::class,'removeProduct']);
+    Route::post('/delete-product',[ProductController::class,'deleteProduct']);
+    Route::post('/clear-product',[ProductController::class,'clearProduct']);
 });
 //Cart API
 Route::group(['prefix'=>'/carts'],function()
