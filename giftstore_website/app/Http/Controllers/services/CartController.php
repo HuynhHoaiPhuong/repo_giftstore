@@ -6,19 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Http\Resources\CartResource;
-use App\Models\Member;
 use App\Http\Payload;
 use Carbon\Carbon;
 
 class CartController extends Controller
 {
     public function getAllCartByIdMember($id){
-        $carts = Cart::where('id_member',$id)->get();
+        $carts = Cart::where('id_member', $id)->get();
         if($carts->isEmpty()){
             return Payload::toJson(null, "Data Not Found", 404);
         }
         return Payload::toJson(CartResource::collection($carts),"OK",200);
     }
+
     public function saveCart(Request $request){
         $cart = new Cart();
         $cart->fill([
@@ -35,10 +35,25 @@ class CartController extends Controller
         return Payload::toJson(null,'Uncompleted',500);
     }
 
-    public function clearCartByIdMember($id_member)
-    {
+    public function clearCartByIdMember($id_member){
         $result = Cart::where('id_member', $id_member)->delete();
         if($result) return Payload::toJson(true, "Remove Successfully", 202);
         return Payload::toJson(false, "Cannot Deleted!", 500);
+    }
+
+    public function removeItem($id_product){
+        $result = Cart::where('id_product', $id_product)->delete();
+        if($result) 
+            return Payload::toJson(true, "Remove Successfully", 202);
+        return Payload::toJson(false, "Cannot Deleted!", 500);
+    }
+
+    public function getCartItem($memberId, $productId) {
+        $cartItem = Cart::where('id_member', $memberId)->where('id_product', $productId)->first();
+        return $cartItem;
+    }
+
+    public function updateCartItem($cartItem) {
+        Cart::where('id_cart', $cartItem['id_cart'])->update(['quantity' => $cartItem['quantity']]);
     }
 }

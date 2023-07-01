@@ -3,21 +3,21 @@
 @section('title','Giỏ hàng')
 
 @section('header')
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
 
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-<!-- Libraries Stylesheet -->
-<link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-<!-- Customized Bootstrap Stylesheet -->
-<link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
-<!-- Log-in Css -->
-<link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+    <!-- Log-in Css -->
+    <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
 
 @endsection
 
@@ -99,9 +99,9 @@
     </div>
     <!-- Page Header End -->
 
-
     <!-- Cart Start -->
-    <form action="{{ route('pay-bill') }}" id="formBillPay" method="POST">
+    <form action="{{route('pay-bill')}}" id="formBillPay" method="POST">
+    {{-- <form action=""> --}}
         @csrf
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
@@ -109,8 +109,8 @@
                     <table class="table table-bordered text-center mb-0">
                         <thead class="bg-secondary text-dark">
                             <tr>
-                                <th>Sản phảm</th>
                                 <th>Hình ảnh</th>
+                                <th>Sản phảm</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
                                 <th>Tổng tiền</th>
@@ -120,39 +120,53 @@
                         @if($carts != [])
                         <tbody class="align-middle">
                             @foreach($carts as $key => $cart)
-                            <tr>
-                                <td class="align-middle">
-                                    <input type="hidden" id="idProduct" name="dataProduct[{{$key}}][id_product]" value="{{$cart->product->id_product}}">
-                                    {{$cart->product->name}}
-                                </td>
+                            {{-- <tr>
                                 <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
-                                <td class="align-middle">
-                                    <input type="hidden" id="priceProduct" name="dataProduct[{{$key}}][price]" value="{{$cart->product->price}}">
-                                    {{$cart->product->price}}vnđ
-                                </td>
+                                <td class="align-middle"><input type="hidden" id="idProduct" name="dataProduct[{{$key}}][id_product]" value="{{$cart->product->id_product}}">{{$cart->product->name}}</td>
+                                <td class="align-middle"><input type="hidden" id="priceProduct" name="dataProduct[{{$key}}][price]" value="{{$cart->product->price}}">{{number_format($cart->product->price, 0, ',', '.')}} VNĐ</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
+                                            <button class="btn btn-sm btn-primary btn-minus" ><i class="fa fa-minus"></i></button>
                                         </div>
                                         <input type="text" id="quantityProduct" name="dataProduct[{{$key}}][quantity]" class="form-control form-control-sm bg-secondary text-center" value="1">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                            <button class="btn btn-sm btn-primary btn-plus"><i class="fa fa-plus"></i></button>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle">{{($cart->product->price*$cart->quantity)}}vnđ</td>
+                                <td class="align-middle">{{ number_format($cart->product->price*$cart->quantity, 0, ',', '.') }} VNĐ</td>
                                 <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                                <span class="d-none">{{($tmpPrice += $cart->product->price*$cart->quantity)}}</span>
+                                <span class="d-none">{{($tempPrice += $cart->product->price*$cart->quantity)}}</span>
+                            </tr> --}}
+
+
+                            {{-- ---------------demo-------------- --}}
+                            <tr>
+                                <td class="align-middle"><img src="upload/product/{{$cart->product->photo}}" alt="image" style="width: 50px;"></td>
+                                <td class="align-middle"><input type="hidden" id="idProduct" name="dataProduct[{{$key}}][id_product]" value="{{$cart->product->id_product}}">{{$cart->product->name}}</td>
+                                <td class="align-middle"><input type="hidden" id="priceProduct" name="dataProduct[{{$key}}][price]" value="{{$cart->product->price}}">{{number_format($cart->product->price, 0, ',', '.')}} VNĐ</td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <a class="btn btn-sm btn-primary btn-minus decrease" data-product-id="{{$cart->id_product}}"><i class="fa fa-minus"></i></a>
+                                        </div>
+                                        {{-- <input type="text" id="quantityProduct" name="quantity" class="form-control form-control-sm bg-secondary text-center" value="{{$cart->quantity}}"> --}}
+                                        <input type="text" id="quantityProduct" name="dataProduct[{{$key}}][quantity]" class="form-control form-control-sm bg-secondary text-center" value="{{$cart->quantity}}" min="1">
+                                        <div class="input-group-btn">
+                                            <a class="btn btn-sm btn-primary btn-plus increase" data-product-id="{{$cart->id_product}}"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">{{ number_format($cart->product->price*$cart->quantity, 0, ',', '.') }} VNĐ</td>
+                                <td class="align-middle"><a class="btn btn-sm btn-primary delete-item-btn" data-product-id="{{$cart->id_product}}"><i class="fa fa-times"></i></a></td>
+                                <span class="d-none">{{($tempPrice += $cart->product->price*$cart->quantity)}}</span>
                             </tr>
                             @endforeach
                         </tbody>
                         @endif
                     </table>
+                    {{-- <button class="btn btn-sm btn-primary">Cập nhật số lượng</button> --}}
                 </div>
                 <div class="col-lg-4">
                     {{--<div class="input-group">
@@ -171,9 +185,6 @@
                                 @foreach($payments as $key => $payment)
                                 <div class="form-group">
                                     <div class="custom-control custom-radio idPaymentRadio">
-                                        {{-- <input type="radio" class="custom-control-input" name="name" id="name" value="{{$payment->id_payment}}">
-                                        <label class="custom-control-label" for="name">{{$payment->name}}</label> --}}
-                                        
                                         <input type="radio" name="id_payment" id="idPayment" value="{{$payment->id_payment}}">
                                         <label for="name">{{$payment->name}}</label>
                                     </div>
@@ -182,6 +193,7 @@
                             </div>
                         </div>
                         @endif
+
                         <div class="card border-secondary mb-5">
                             <div class="card-header bg-secondary border-0">
                                 <h4 class="font-weight-semi-bold m-0">Hóa đơn</h4>
@@ -189,7 +201,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Tạm tính</h6>
-                                    <h6 class="font-weight-medium">{{$tmpPrice}}vnđ</h6>
+                                    <h6 class="font-weight-medium">{{ number_format($tempPrice, 0, ',', '.') }} VNĐ</h6>
                                 </div>
                                 {{--<div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Phí vận chuyển</h6>
@@ -197,7 +209,7 @@
                                 </div>--}}
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Tổng tiền</h6>
-                                    <h6 class="font-weight-medium">{{$tmpPrice}}vnđ</h6>
+                                    <h6 class="font-weight-medium">{{ number_format($tempPrice, 0, ',', '.') }} VNĐ</h6>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-block btn-primary my-3 py-3">Thanh toán</button>
@@ -212,33 +224,99 @@
 
 <!-- JavaScript -->
 @section('java-script')
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<!-- Contact Javascript File -->
-<script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
-<script src="{{ asset('user/mail/contact.js') }}"></script>
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('user/mail/contact.js') }}"></script>
 
-<!-- Template Javascript -->
-<script src="{{ asset('user/js/main.js') }}"></script>
+    <!-- Template Javascript -->
+    <script src="{{ asset('user/js/main.js') }}"></script>
 
-<script>
-    $(document).ready(function () {
-        $('.idPaymentRadio').on('click',function(){
-            $('.idPaymentRadio input').prop('disabled', true);
-            $('.idPaymentRadio input').prop('checked', false);
-            $(this).find('input').prop('disabled', false);
-            $(this).find('input').prop('checked', true);
+    <script>
+        $(document).ready(function () {
+            $('.idPaymentRadio').on('click',function(){
+                $('.idPaymentRadio input').prop('disabled', true);
+                $('.idPaymentRadio input').prop('checked', false);
+                $(this).find('input').prop('disabled', false);
+                $(this).find('input').prop('checked', true);
+            });
         });
-    });
-</script>
+    </script>    
 
-<!-- Login Template Javascript -->
-<script src="{{ asset('user/js/login.js') }}"></script>
+    <!-- Login Template Javascript -->
+    <script src="{{ asset('user/js/login.js') }}"></script>
 
+    <script>
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $(document).ready(function() {
+            $('.increase').click(function() {
+                var productId = $(this).data('product-id');
+                var input = $(this).closest('.quantity').find('input');
+                var currentValue = parseInt(input.val()); 
+                var updatedValue = currentValue + 1;
+                $.ajax({
+                    url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + productId,
+                    method: 'POST', 
+                    data: {
+                        _token: csrfToken,
+                        quantity: updatedValue,
+                    },
+                    success: function(response) {
+                        input.val(updatedValue);
+                    },
+                    error: function(xhr) {
+                    }
+                });
+            });
 
+            $('.decrease').click(function() {
+                var productId = $(this).data('product-id');
+                var input = $(this).closest('.quantity').find('input'); 
+                var currentValue = parseInt(input.val());
 
+                if (currentValue > 1) {
+                    var updatedValue = currentValue - 1;
+
+                    $.ajax({
+                        url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + productId,
+                        method: 'POST',
+                        data: {
+                            _token: csrfToken,
+                            quantity: updatedValue,
+                        },
+                        success: function(response) {
+                            input.val(updatedValue);
+                        },
+                        error: function(xhr) {
+                        }
+                    });
+                }
+            });
+
+            $('.delete-item-btn').click(function() {
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '{{ route('remove-item', ['id' => '']) }}'+ '/' + productId,
+                type: 'POST',
+                data: {
+                    _token: csrfToken,
+                },
+                success: function(response) {
+                    // Handle the success response (if needed)
+                },
+                error: function(xhr, status, error) {
+                    // Handle the error response (if needed)
+                }
+            });
+        });
+        });
+        
+        
+    </script>
+    
 @endsection

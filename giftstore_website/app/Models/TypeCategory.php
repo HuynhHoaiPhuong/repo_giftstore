@@ -18,4 +18,8 @@ class TypeCategory extends Model
         'created_at',
         'updated_at'
     ];
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'id_type_category', 'id_type_category');
+    }
 }

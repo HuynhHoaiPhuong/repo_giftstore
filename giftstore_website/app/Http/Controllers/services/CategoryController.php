@@ -27,6 +27,10 @@ class CategoryController extends Controller
             return Payload::toJson(null, "Data Not Found", 404);   
         return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
     }
+    public function getAllCategoryByTypeCategory($id)
+    {
+        return $category = Category::select('id_category')->where('id_type_category',$id)->first();
+    }
 
     public function saveCategory(Request $req)
     {
