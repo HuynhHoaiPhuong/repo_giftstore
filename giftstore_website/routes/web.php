@@ -108,26 +108,21 @@ Route::group(['prefix' => 'admin'],function(){
 
 //web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
-
+Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
+Route::get('/contact', [ContactController::class,'index'])->name('contact');
+Route::get('/shop', [ShopController::class,'index'])->name('shop');
+Route::get('/product/{id}', [userProductController::class,'productDetail']);
 Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
 Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/log-out', [LoginClientController::class, 'logout'])->name('log-out');
 });
-
-Route::get('/product/{id}', [userProductController::class,'productDetail']);
-
 Route::group(['prefix' => 'cart'],function(){
     Route::get('/{id_member?}', [CartController::class,'cart'])->name('cart');
-    Route::get('/buy-now/{id}', [CartController::class,'buyNow'])->name('buy-now');
+    Route::post('/buy-now/{id?}', [CartController::class,'buyNow'])->name('buy-now');
+    Route::post('/update-quantity/{id?}', [CartController::class,'updateQuantity'])->name('update-quantity');
+    Route::post('/remove-item/{id?}', [CartController::class,'removeItem'])->name('remove-item');
 });
-
 Route::group(['prefix' => 'bill'],function(){
     Route::post('/pay-bill', [userBillController::class,'payBill'])->name('pay-bill');
 });
-
-Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
-
-Route::get('/contact', [ContactController::class,'index'])->name('contact');
-
-Route::get('/shop', [ShopController::class,'index'])->name('shop');

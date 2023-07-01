@@ -14,35 +14,31 @@ class BillController extends Controller
 {
     public function payBill(Request $req){
         $billController = new ServicesBillController();
-
         $billDetailController = new ServicesBillDetailController();
-
         $memberController = new ServicesMemberController();
-
         $cartController = new ServicesCartController();
 
         $member = $memberController->getIdMemberByIdUser(Auth::id());
-
+        // 
         $totalPrice = 0;
         $totalQuantity = 0;
         foreach($req->dataProduct as $product){
             $totalPrice += $product['price']*$product['quantity'];
             $totalQuantity += $product['quantity'];
         }
-
+        //
         $reqBill = new Request([
             'id_member'=>$member['id_member'],
             'id_payment'=>$req->id_payment,
             'total_price'=>$totalPrice,
             'total_quantity'=>$totalQuantity
         ]);
-
-        
+        // 
         $data_bill = $billController->saveBill($reqBill);
         $bill = [];
         if($data_bill['data']!=null)
             $bill = $data_bill['data'];
-
+        //
         $billDetail = [];
         foreach($req->dataProduct as $key => $product){
             $reqBillDetail = new Request([
