@@ -27,6 +27,7 @@
 @endsection
 
 @section('admin_content')
+
 <div class="table-agile-info">
   <div class="panel panel-default">
         <header class="panel-heading">
@@ -95,7 +96,7 @@
                             <td>{{$product->name}}</td>
                             <td>{{$product->provider->name}}</td>
                             <td>{{$product->category->name}}</td>
-                            <td>{{$product->price}}</td>
+                            <td>{{number_format($product->price, 0, ',','.')}}đ</td>
                             <td><input type="number" min="1" value="1" class="quantity-select form-control"></td>
                             <td><button type="button" data-q="1" data-id="{{$product->id_product}}" class="add-pro btn btn-info">Thêm</button></td>
                         </tr>
@@ -160,7 +161,7 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label class="m-b-xs">Tổng tiền:</label>
-                        <span id="total-price">10k</span>
+                        <span id="total-price">0</span>vnđ
                     </div>
                     <div class="form-group col-sm-12">
                         <button type="submit" class="btn btn-info">Thanh toán</button>
@@ -182,7 +183,27 @@
   <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
-      $(document).ready(function() {
+        $(document).ready(function() {
+            number_format = function(number, decimals, dec_point, thousands_sep) {
+            number = number.toFixed(decimals);
+
+            var nstr = number.toString();
+            nstr += '';
+            x = nstr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? dec_point + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+            return x1 + x2;
+        }
+
+        if(Session::has('errors'))
+        alert("{{Session::get('errors')}}");
+       
+
           //BOX BUTTON SHOW AND CLOSE
         jQuery('.small-graph-box').hover(function() {
             jQuery(this).find('.box-button').fadeIn('fast');
@@ -220,6 +241,7 @@
         $('.add-pro').on('click', function() {
           $id_product = $(this).attr('data-id');
           var quantity = $(this).attr('data-q');
+          var totalold = $('#total-price').html();
           $.ajax({
               type: 'GET',
               url: '/api/products/get-product-by-id/' + $id_product,
@@ -234,7 +256,7 @@
                 apstr += '<td>'+product.name+'</td>\
                                 <td>'+product.provider.name+'</td>\
                                 <td>'+product.category.name+'</td>\
-                                <td>'+product.price+'<input type="hidden" name="dataProduct['+product.id_product+'][price]" value="'+product.price+'"> </td>\
+                                <td>'+number_format(product.price, 0, ',','.')+'đ<input type="hidden" name="dataProduct['+product.id_product+'][price]" value="'+product.price+'"> </td>\
                                 <td><input type="number" value="'+quantity+'" name="dataProduct['+product.id_product+'][quantity]" class="quantity-selected form-control"></td>\
                                 <td>\
                                     <a data-id="'+product.id_product+'" class="removeProduct show text-center active styling-edit" title="Xóa">\
@@ -244,6 +266,8 @@
                             </tr>';
                 $('.append-pro-selected').append(apstr);
                 $('.append-pro-selected .dataTables_empty').remove();
+                var totalnew = parseInt(product.price*quantity) + parseInt(totalold);
+                $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
             },
             error: function() {
 

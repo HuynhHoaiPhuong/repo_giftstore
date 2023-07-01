@@ -15,7 +15,7 @@ class BillOrderDetail extends Model
         'id_bill_order_detail',
         'id_bill_order',
         'id_product',
-        'price_order',
+        'purchase_price',
         'quantity',
         'total_price'
     ];

@@ -20,6 +20,16 @@ class BillOrderDetailController extends Controller
         return Payload::toJson(BillOrderDetailResource::collection($billOrderDetails), 'Ok', 200);
     }
 
+    public function getAllBillOrderDetailByIdBillOrder ($id_bill_order)
+    {
+        $billOrderDetails = BillOrderDetail::where('id_bill_order', $id_bill_order)->get();
+        if($billOrderDetails->isEmpty())
+        {
+            return Payload::toJson(null, 'Data Not Found', 404);
+        }
+        return Payload::toJson(BillOrderDetailResource::collection($billOrderDetails), 'Ok', 200);
+    }
+
     public function saveBillOrderDetail(Request $request)
     {
         $billOrderDetails = new BillOrderDetail();
@@ -27,6 +37,7 @@ class BillOrderDetailController extends Controller
             'id_bill_order_detail' => "BOD".$request->id_bill_order.$request->id_product, 
             'id_bill_order' => $request->id_bill_order, 
             'id_product' => $request->id_product,
+            'purchase_price' => $request->purchase_price,
             'quantity' => $request->quantity,
             'total_price' => $request->total_price, 
             'status' => $request->status
