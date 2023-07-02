@@ -161,7 +161,7 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label class="m-b-xs">Tổng tiền:</label>
-                        <span id="total-price">0</span>vnđ
+                        <span id="total-price">0</span>đ
                     </div>
                     <div class="form-group col-sm-12">
                         <button type="submit" class="btn btn-info">Thanh toán</button>
@@ -199,10 +199,6 @@
 
             return x1 + x2;
         }
-
-        if(Session::has('errors'))
-        alert("{{Session::get('errors')}}");
-       
 
           //BOX BUTTON SHOW AND CLOSE
         jQuery('.small-graph-box').hover(function() {
