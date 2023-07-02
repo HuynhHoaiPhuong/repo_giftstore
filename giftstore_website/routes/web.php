@@ -14,6 +14,7 @@ use App\Http\Controllers\web\SettingController;
 use App\Http\Controllers\web\PhotoController;
 use App\Http\Controllers\web\BillController;
 use App\Http\Controllers\web\BillOrderController;
+use App\Http\Controllers\web\BillOrderDetailController;
 use App\Http\Controllers\web\MemberController;
 use App\Http\Controllers\web\RankController;
 use App\Http\Controllers\web\ProviderController;
@@ -99,6 +100,8 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/bill-order-management',[BillOrderController::class,'billOrderManagement'])->name('bill-order-management');
         Route::get('/add-bill-order-management',[BillOrderController::class,'addBillOrderManagement'])->name('add-bill-order-management');
         Route::post('/save-bill-order',[BillOrderController::class,'saveBillOrder'])->name('save-bill-order');
+
+        Route::get('/bill-order-detail-management/{id_bill_order}',[BillOrderDetailController::class,'billOrderDetailManagement'])->name('bill-order-detail-management');
 
         Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
         Route::post('/add-provider',[ProviderController::class,'addProvider'])->name('add-provider');

@@ -1,6 +1,6 @@
 @extends('admin/admin_layout')
 
-@section('title','Quản lý hóa đơn nhập')
+@section('title','Chi tiết hóa đơn nhập')
 
 @section('header')
   <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -29,9 +29,10 @@
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">Danh sách hóa đơn nhập</div>
+    <div class="panel-heading">Chi tiết hóa đơn nhập</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
+        <a href="{{route('bill-order-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Thoát</a>           
       </div>
       <div class="col-sm-4">
       </div>
@@ -49,38 +50,24 @@
         <thead>
           <tr>
             <th>STT</th>
-            <th>NSX</th>
-            <th>PTTT</th>
-            <th>Người mua</th>
-            <th>Kho</th>
-            <th>Tổng số lượng</th>
+            <th>Mã hóa đơn</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá nhập</th>
+            <th>Số lượng</th>
             <th>Tổng tiền</th>
-            <th>Ngày nhập hàng</th>
-            <th>Ngày thanh toán</th>
-            <th>Trạng thái</th>
-            <th>Thao tác</th>
           </tr>
         </thead>
         <tbody>
-          @if($billOrders != [])
+          @if($billOrderDetails != [])
           <?php $i = 1; ?>
-          @foreach($billOrders as $key => $billOrder)
+          @foreach($billOrderDetails as $key => $billOrderDetail)
           <tr>
             <td>{{$i++}}</td>
-            <td>{{$billOrder->provider->name}}</td>
-            <td>{{$billOrder->payment->name}}</td>
-            <td>{{$billOrder->user->fullname}}</td>
-            <td>{{$billOrder->warehouse->name}}</td>
-            <td>{{$billOrder->total_quantity}}</td>
-            <td>{{$billOrder->total_price}}</td>
-            <td>{{$billOrder->date_order}}</td>
-            <td>{{$billOrder->date_of_payment}}</td>
-            <td>{{$billOrder->status}}</td>
-            <td>
-              <a href="{{route('bill-order-detail-management',['id_bill_order'=>$billOrder->id_bill_order])}}" class="active styling-edit" title="Xem chi tiết kho">
-                <i class="fa fa-eye text-primary text-active"></i>
-              </a>
-            </td>
+            <td>{{$billOrderDetail->id_bill_order}}</td>
+            <td>{{$billOrderDetail->product->name}}</td>
+            <td>{{$billOrderDetail->purchase_price}}</td>
+            <td>{{$billOrderDetail->quantity}}</td>
+            <td>{{$billOrderDetail->total_price}}</td>
           </tr>
           @endforeach
           @else
