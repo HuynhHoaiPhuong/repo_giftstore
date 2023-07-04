@@ -27,6 +27,19 @@ class WarehouseDetailController extends Controller
 
     public function saveWarehouseDetail(Request $request){
         $warehouseDetail = new WarehouseDetail();
+        $checkWarehouse = WarehouseDetail::select('id_warehouse_detail', 'quantity')->where('id_warehouse', $request->id_warehouse)->where('id_product', $request->id_product)->first();
+        if($checkWarehouse){
+            $result = WarehouseDetail::where('id_warehouse_detail', $checkWarehouse->id_warehouse_detail)
+            ->update([
+                'quantity' => (int)$checkWarehouse->quantity + (int)$request->quantity,
+                'total_price' => ((int)$checkWarehouse->quantity + (int)$request->quantity)*(int)$request->price_pay,
+            ]);  
+            if($result == 1){
+                $warehouseDetail = WarehouseDetail::where('id_warehouse_detail', $checkWarehouse->id_warehouse_detail)->first();
+                return Payload::toJson(new WarehouseDetailResource($warehouseDetail), "Completed", 202);
+            }
+            return Payload::toJson(null, "UnCompleted", 500);
+        }
         $warehouseDetail->fill([
             'id_warehouse_detail' => "WAREDETAIL".Carbon::now()->format('ymdhis').rand(1, 1000), 
             'id_warehouse' => $request->id_warehouse,

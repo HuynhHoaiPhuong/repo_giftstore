@@ -66,12 +66,7 @@
                     <table class="table table-striped b-t b-light">
                         <thead>
                         <tr>
-                            <th style="width:20px;">
-                            <label class="i-checks m-b-none">
-                                <input type="checkbox">
-                            </label>
-                            </th>
-                            <th>STT</th>
+                            <th style="width:20px;">STT</th>
                             <th>Hình ảnh</th>
                             <th>Tên</th>
                             <th>Nhà sản xuất</th>
@@ -86,7 +81,6 @@
                         <?php $i = 1; ?>
                         @foreach($products as $key => $product)
                         <tr class="item-product">
-                            <td><label class="i-checks m-b-none"><input type="checkbox"></label></td>
                             <td>{{$i++}}</td>
                             @if($product->photo != 'noimage.png' && $product->photo != '')
                             <td><img src="../upload/product/{{ $product->photo }}" alt="{{$product->name}}" width="40"></td>
@@ -106,9 +100,6 @@
                         @endif
                         </tbody>
                     </table>
-                </div>
-                <div class="form-group col-sm-12">
-                    <button type="button" class="btn btn-info">Thêm đã chọn</button>
                 </div>
             </div>
             <div class="product-input-content">
@@ -161,7 +152,7 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <label class="m-b-xs">Tổng tiền:</label>
-                        <span id="total-price">0</span>đ
+                        <span data-total="0" id="total-price">0</span>đ
                     </div>
                     <div class="form-group col-sm-12">
                         <button type="submit" class="btn btn-info">Thanh toán</button>
@@ -183,8 +174,8 @@
   <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
-        $(document).ready(function() {
-            number_format = function(number, decimals, dec_point, thousands_sep) {
+    $(document).ready(function() {
+        number_format = function(number, decimals, dec_point, thousands_sep) {
             number = number.toFixed(decimals);
 
             var nstr = number.toString();
@@ -230,47 +221,70 @@
                 $(this).parent('td').parent('.item-product').find('.add-pro').attr('data-q',quantity);
             else{
                 $(this).parent('td').parent('.item-product').find('.add-pro').attr('data-q', 1);
-                $(this).val(1)
+                $(this).val(1);
             }
         });
 
         $('.add-pro').on('click', function() {
           $id_product = $(this).attr('data-id');
           var quantity = $(this).attr('data-q');
-          var totalold = $('#total-price').html();
-          $.ajax({
-              type: 'GET',
-              url: '/api/products/get-product-by-id/' + $id_product,
-              success: function(data) {
-                var product = data.data;
-                var apstr = '<tr> <input type="hidden" name="dataProduct['+product.id_product+'][id_product]" value="'+product.id_product+'">';
-                if(product.photo != 'noimage.png' && product.photo != ''){ 
-                    apstr += '<td><img src="../upload/product/'+product.photo+'" alt="'+product.name+'" width="40"></td>'
-                }else{
-                    apstr += '<td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>'
+          var totalold = $('#total-price').attr('data-total');
+          if($('.append-pro-selected').find('tr').hasClass('item-product'+$id_product)){
+            var totalq = parseInt(parseInt($('.item-product'+$id_product).find('.quantity-selected').val()) + parseInt(quantity));
+            $('.item-product'+$id_product).find('.quantity-selected').val(totalq);
+            var pricetmp = $('.item-product'+$id_product).find('.price-pro input').val();
+            var totalnew = parseInt(pricetmp*quantity) + parseInt(totalold);
+            $('#total-price').attr('data-total',totalnew);
+            $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
+          }
+          else{
+            $.ajax({
+                type: 'GET',
+                url: '/api/products/get-product-by-id/' + $id_product,
+                success: function(data) {
+                    var product = data.data;
+                    var apstr = '<tr class="item-product item-product'+product.id_product+'"> <input type="hidden" name="dataProduct['+product.id_product+'][id_product]" value="'+product.id_product+'">';
+                    if(product.photo != 'noimage.png' && product.photo != ''){ 
+                        apstr += '<td><img src="../upload/product/'+product.photo+'" alt="'+product.name+'" width="40"></td>'
+                    }else{
+                        apstr += '<td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>'
+                    }
+                    apstr += '<td>'+product.name+'</td>\
+                                    <td>'+product.provider.name+'</td>\
+                                    <td>'+product.category.name+'</td>\
+                                    <td class="price-pro">'+number_format(product.price, 0, ',','.')+'đ<input type="hidden" name="dataProduct['+product.id_product+'][price]" value="'+product.price+'"> </td>\
+                                    <td><input type="number" value="'+quantity+'" name="dataProduct['+product.id_product+'][quantity]" class="quantity-selected form-control" readonly></td>\
+                                    <td>\
+                                        <a data-id="'+product.id_product+'" onclick="deletePro()" class="removeProduct show text-center active styling-edit" title="Xóa">\
+                                            <i class="fa fa-times text-danger text"></i>\
+                                        </a>\
+                                    </td>\
+                                </tr>';
+                    $('.append-pro-selected').append(apstr);
+                    $('.append-pro-selected .dataTables_empty').remove();
+                    var totalnew = parseInt(product.price*quantity) + parseInt(totalold);
+                    $('#total-price').attr('data-total',totalnew);
+                    $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
+                },
+                error: function() {
+
                 }
-                apstr += '<td>'+product.name+'</td>\
-                                <td>'+product.provider.name+'</td>\
-                                <td>'+product.category.name+'</td>\
-                                <td>'+number_format(product.price, 0, ',','.')+'đ<input type="hidden" name="dataProduct['+product.id_product+'][price]" value="'+product.price+'"> </td>\
-                                <td><input type="number" value="'+quantity+'" name="dataProduct['+product.id_product+'][quantity]" class="quantity-selected form-control"></td>\
-                                <td>\
-                                    <a data-id="'+product.id_product+'" class="removeProduct show text-center active styling-edit" title="Xóa">\
-                                        <i class="fa fa-times text-danger text"></i>\
-                                    </a>\
-                                </td>\
-                            </tr>';
-                $('.append-pro-selected').append(apstr);
-                $('.append-pro-selected .dataTables_empty').remove();
-                var totalnew = parseInt(product.price*quantity) + parseInt(totalold);
-                $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
-            },
-            error: function() {
-
-            }
-          });
+            });
+          }
         });
-
-      });
+    });
+    
+    function deletePro(){
+        var id_product = $(this).attr('data-id');
+        var quantity = parseInt($('.item-product'+$id_product).find('.quantity-selected').val());
+        var totalold = $('#total-price').attr('data-total');
+        var pricetmp = $('.item-product'+$id_product).find('.price-pro input').val();
+        var totalnew = parseInt(totalold) - parseInt(pricetmp*quantity);
+        $('#total-price').attr('data-total',totalnew);
+        $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
+        $('.item-product'+$id_product).remove();
+        if(!$('.append-pro-selected').find('tr').hasClass('item-product'))
+            $('.append-pro-selected').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
+    };
   </script>
 @endsection

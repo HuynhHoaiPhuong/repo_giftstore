@@ -59,7 +59,6 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID</th>
             <th>Kho</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
@@ -76,12 +75,11 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $warehouseDetail->id_warehouseDetail }}</td>
             <td>{{ $warehouseDetail->warehouse->name }}</td>
             <td>{{ $warehouseDetail->product->name }}</td>
             <td>{{ $warehouseDetail->quantity }}</td>
-            <td>{{ $warehouseDetail->price_pay}}</td>
-            <td>{{ $warehouseDetail->total_price }}</td>
+            <td>{{ number_format($warehouseDetail->price_pay, 0, ',','.')}}đ</td>
+            <td>{{ number_format($warehouseDetail->quantity*$warehouseDetail->price_pay, 0, ',','.')}}đ</td>
             <td>{{ $warehouseDetail->status }}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
@@ -133,6 +131,21 @@
 <!-- morris JavaScript -->  
 <script>
   $(document).ready(function() {
+      number_format = function(number, decimals, dec_point, thousands_sep) {
+        number = number.toFixed(decimals);
+
+        var nstr = number.toString();
+        nstr += '';
+        x = nstr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? dec_point + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+
+        while (rgx.test(x1))
+            x1 = x1.replace(rgx, '$1' + thousands_sep + '$2');
+
+        return x1 + x2;
+      }
       //BOX BUTTON SHOW AND CLOSE
       jQuery('.small-graph-box').hover(function() {
         jQuery(this).find('.box-button').fadeIn('fast');
