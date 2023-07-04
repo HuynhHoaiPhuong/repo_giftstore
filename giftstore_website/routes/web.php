@@ -104,7 +104,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/add-bill-order-management',[BillOrderController::class,'addBillOrderManagement'])->name('add-bill-order-management');
         Route::post('/save-bill-order',[BillOrderController::class,'saveBillOrder'])->name('save-bill-order');
 
-        Route::post('/bill-order-detail-management/{id_bill_order}',[BillOrderDetailController::class,'billOrderDetailManagement'])->name('bill-order-detail-management');
+        Route::get('/bill-order-detail-management/{id_bill_order}',[BillOrderDetailController::class,'billOrderDetailManagement'])->name('bill-order-detail-management');
 
         Route::get('/provider-management',[ProviderController::class,'providerManagement'])->name('provider-management');
         Route::post('/add-provider',[ProviderController::class,'addProvider'])->name('add-provider');

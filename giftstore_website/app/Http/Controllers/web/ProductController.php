@@ -92,11 +92,13 @@ class ProductController extends Controller
         $newName = $req->photoCurrent;
         // var_dump((file_exists('upload/product/'.$req->photoCurrent)) ? 'true' : 'false');die('XXX');
         if($req->hasFile('photo')){
-            if(file_exists('upload/product/'.$req->photoCurrent)){
-                unlink('upload/product/'.$req->photoCurrent);
-            }else{
-                // dd('File does not exists.');
-                return back()->withErrors('error','Xóa ảnh thất bại');
+            if($req->photoCurrent != 'noimage.png'){
+                if(file_exists('upload/product/'.$req->photoCurrent)){
+                    unlink('upload/product/'.$req->photoCurrent);
+                }else{
+                    // dd('File does not exists.');
+                    return back()->withErrors('error','Xóa ảnh thất bại');
+                }
             }
             $photo = $req->file('photo');
             $name = $photo->getClientOriginalName();
