@@ -4,9 +4,9 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\BillDetailResource;
 use App\Models\BillDetail;
 use App\Http\Payload;
-use App\Http\Resources\BillDetailResource;
 use Carbon\Carbon;
 
 class BillDetailController extends Controller
@@ -39,5 +39,11 @@ class BillDetailController extends Controller
         }
         return Payload::toJson(null, 'Uncompleted', 500);
     }
-    
+
+    public function getAllBillDetailByIdBill($id_bill){
+        $billDetails = BillDetail::where('id_bill', $id_bill)->get();
+        if($billDetails->isEmpty())
+            return Payload::toJson(null,'Data Not Found', 404);
+        return Payload::toJson(BillDetailResource::collection($billDetails), 'Request Successfully', 200);
+    }
 }

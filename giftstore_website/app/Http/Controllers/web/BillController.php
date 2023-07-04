@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\services\BillController as ServicesBillController;
+use App\Http\Controllers\services\BillDetailController as ServicesBillDetailController;
 
 class BillController extends Controller
 {
@@ -14,4 +15,6 @@ class BillController extends Controller
             $bills = $data_bill['data']->collection;
         return view('admin/bill_management/bill_management', ['bills' => $bills]);
     }
+
+    
 }

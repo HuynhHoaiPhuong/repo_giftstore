@@ -148,12 +148,14 @@ Route::group(['prefix'=>'/bill-order-details'],function() {
 //Bill API
 Route::group(['prefix'=>'/bills'],function() {
     Route::get('/get-all-bill-by-status/{status}',[BillController::class,'getAllBillByStatus']);
+    Route::post('/update-bill',[BillController::class,'updateBillStatus']);
     Route::post('/save-bill',[BillController::class,'saveBill']);
 });
 
 //Bill-Detail API
 Route::group(['prefix'=>'/bill-details'],function() {
     Route::get('/get-all-bill-detail-by-status/{status}',[BillDetailController::class,'getAllBillDetailByStatus']);
+    Route::get('/get-all-bill-detail-by-id-bill/{id_bill}',[BillDetailController::class,'getAllBillDetailByIdBill']);
     Route::post('/save-bill-detail',[BillDetailController::class,'saveBillDetail']);
 });
 

@@ -4,21 +4,21 @@
 
 @section('header')
 
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
 
-<!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-<!-- Libraries Stylesheet -->
-<link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-<!-- Customized Bootstrap Stylesheet -->
-<link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
-<!-- Log-in Css -->
-<link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+    <!-- Log-in Css -->
+    <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
 
 @endsection
 
@@ -90,11 +90,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Cửa hàng của chúng tôi</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="{{route('/')}}">Home</a></p>
+                <p class="m-0"><a href="{{route('/')}}">Trang chủ</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Shop</p>
+                <p class="m-0">Cửa hàng</p>
             </div>
         </div>
     </div>
@@ -108,11 +108,11 @@
             <div class="col-lg-3 col-md-12">
                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                     <form>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                             <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">All Price</label>
+                            <label class="custom-control-label" for="price-all">Tất cả</label>
                             <span class="badge border font-weight-normal">1000</span>
                         </div>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -145,7 +145,7 @@
                 <!-- Price End -->
                 
                 <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
+                {{-- <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
                     <form>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -179,11 +179,11 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <!-- Color End -->
 
                 <!-- Size Start -->
-                <div class="mb-5">
+                {{-- <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
                     <form>
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
@@ -217,7 +217,7 @@
                             <span class="badge border font-weight-normal">168</span>
                         </div>
                     </form>
-                </div>
+                </div> --}}
                 <!-- Size End -->
             </div>
             <!-- Shop Sidebar End -->
@@ -230,7 +230,7 @@
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <form action="">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search by name">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
@@ -240,9 +240,7 @@
                             </form>
                             <div class="dropdown ml-4">
                                 <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                            Sort by
-                                        </button>
+                                        aria-expanded="false">Sắp xếp theo</button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
                                     <a class="dropdown-item" href="#">Latest</a>
                                     <a class="dropdown-item" href="#">Popularity</a>
@@ -251,159 +249,29 @@
                             </div>
                         </div>
                     </div>
+                    @foreach($products as $key => $product)
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-1.jpg" alt="">
-                            </div>
+                                @if($product->photo != 'noimage.png' && $product->photo != '')
+                                    <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
+                                @else
+                                    <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
+                                @endif                            </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                                <h6 class="text-truncate mb-3">{{$product->name}}</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    <h6>{{ number_format($product->price, 0, ',', '.') }} VNĐ</h6>
+                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                                <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$product->id_product}}">Mua ngay</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-2.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-3.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-4.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-5.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-6.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-7.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-8.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="user/img/product-1.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                     <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                           <ul class="pagination justify-content-center mb-3">
@@ -436,20 +304,20 @@
 
 <!-- JavaScript -->
 @section('java-script')
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<!-- Contact Javascript File -->
-<script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
-<script src="{{ asset('user/mail/contact.js') }}"></script>
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('user/mail/contact.js') }}"></script>
 
-<!-- Template Javascript -->
-<script src="{{ asset('user/js/main.js') }}"></script>
+    <!-- Template Javascript -->
+    <script src="{{ asset('user/js/main.js') }}"></script>
 
-<!-- Login Template Javascript -->
-<script src="{{ asset('user/js/login.js') }}"></script>
+    <!-- Login Template Javascript -->
+    <script src="{{ asset('user/js/login.js') }}"></script>
 
 @endsection

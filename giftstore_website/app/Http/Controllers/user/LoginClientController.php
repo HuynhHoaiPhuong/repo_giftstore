@@ -14,8 +14,7 @@ class LoginClientController extends Controller
         else return view('user/templates/login');
     }
 
-    public function authenticate(Request $request)
-    {        
+    public function authenticate(Request $request){        
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
             Session::put('userLogin', Auth::id());

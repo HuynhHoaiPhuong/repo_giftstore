@@ -75,8 +75,8 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$discount->id_rank}}</td>
-            <td>{{$discount->id_category}}</td>
+            <td>{{$discount->rank->rank_name}}</td>
+            <td>{{$discount->category->name}}</td>
             <td>{{$discount->percent_price}}%</td>
             <td>{{$discount->status}}</td>
             <td>

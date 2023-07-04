@@ -27,91 +27,111 @@
 @endsection
 
 @section('admin_content')
-<div class="table-agile-info">
-  <div class="panel panel-default">
-    <div class="panel-heading">Danh sách hóa đơn bán</div>
-    <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Theo ngày</option>
-          <option value="1">Mới nhất</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        {{-- <a href="/admin/add-bill" class="btn btn-sm btn-primary">Add</a>                 --}}
-      </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
+  <div class="table-agile-info">
+    <div class="panel panel-default">
+      <div class="panel-heading">Danh sách hóa đơn bán</div>
+      <div class="row w3-res-tb">
+        <div class="col-sm-5 m-b-xs">
+          <select class="input-sm form-control w-sm inline v-middle">
+            <option value="0">Theo ngày</option>
+            <option value="1">Mới nhất</option>
+          </select>
+          <button class="btn btn-sm btn-success">Apply</button>  
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input type="text" class="input-sm form-control" placeholder="Search">
+            <span class="input-group-btn">
+              <button class="btn btn-sm btn-default" type="button">Go!</button>
+            </span>
+          </div>
         </div>
       </div>
+      <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+          <thead>
+            <tr>
+              <th style="width:20px;">
+                <label class="i-checks m-b-none">
+                  <input type="checkbox">
+                </label>
+              </th>
+              <th>STT</th>
+              <th>Tên KH</th>
+              <th>Mã giảm giá</th>
+              <th>PTTT</th>
+              <th>Tổng tiền</th>
+              <th>Tổng số lượng</th>
+              <th>Ngày đặt</th>
+              <th>Ngày thanh toán</th>
+              <th>Trạng thái</th>
+              <th>Xem chi tiết</th>
+            </tr>
+          </thead>
+          <tbody>
+            <form action="">
+              @csrf
+              @if($bills != [])
+              <?php $i = 1; ?>
+              @foreach($bills as $key => $bill)
+              <tr>
+                <input type="hidden" value="{{$bill->id_bill}}">
+                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
+                <td>{{$i++}}</td>
+                <td>{{$bill->member->user->fullname}}</td>
+                @if($bill->voucher == null)
+                  <td>Không</td>
+                @else
+                  <td>{{$bill->voucher->name}}</td>
+                @endif
+                <td>{{$bill->payment->name}}</td>
+                <td>{{number_format($bill->total_price, 0, ',', '.')}} đ</td>
+                <td>{{$bill->total_quantity}}</td>
+                <td>{{$bill->order_date}}</td>
+                <td>{{$bill->date_of_payment}}</td>
+                <td>
+                  <select name="status" class="form-control updateBillStatus" data-id="{{$bill->id_bill}}" style="width: 100px;">
+                    <option value="1" {{($bill->status == '1') ? 'selected' : '' }}>Chờ duyệt</option>
+                    <option value="2" {{($bill->status == '2') ? 'selected' : '' }}>Đang giao</option>
+                    <option value="3" {{($bill->status == '3') ? 'selected' : '' }}>Đã giao</option>
+                    <option value="4" {{($bill->status == '4') ? 'selected' : '' }}>Đã hủy</option>
+                  </select>
+                </td>
+                <td>
+                  {{-- <a href="{{route('bill-detail-management', $bill->id_bill)}}" class="active styling-edit" title="Xem chi tiết hóa đơn"> --}}
+                  <a href="{{route('bill-detail-management', ['id_bill' => $bill->id_bill])}}" class="active styling-edit">
+                    <i class="fa fa-eye text-primary text-active"></i>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
+              @else
+                  <tr class="odd"><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+              @endif
+            </form>
+          </tbody>
+        </table>
+      </div>
+      <footer class="panel-footer">
+        <div class="row">
+          <div class="col-sm-5 text-center">
+            <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          </div>
+          <div class="col-sm-7 text-right text-center-xs">                
+            <ul class="pagination pagination-sm m-t-none m-b-none">
+              <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+              <li><a href="">1</a></li>
+              <li><a href="">2</a></li>
+              <li><a href="">3</a></li>
+              <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
-    <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
-        <thead>
-          <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox">
-              </label>
-            </th>
-            <th>STT</th>
-            <th>ID Thành viên</th>
-            <th>ID Voucher</th>
-            <th>ID PTTT</th>
-            <th>Tổng tiền</th>
-            <th>Tổng số lượng</th>
-            <th>Ngày đặt hàng</th>
-            <th>Ngày thanh toán</th>
-            <th>Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>
-          @if($bills != [])
-          <?php $i = 1; ?>
-          @foreach($bills as $key => $bill)
-          <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
-            <td>{{$i++}}</td>
-            <td>{{$bill->id_member}}</td>
-            <td>{{$bill->id_voucher}}</td>
-            <td>{{$bill->id_payment}}</td>
-            <td>{{$bill->total_price}}</td>
-            <td>{{$bill->total_quantity}}</td>
-            <td>{{$bill->order_date}}</td>
-            <td>{{$bill->date_of_payment}}</td>
-            <td>{{$bill->status}}</td>
-          </tr>
-          @endforeach
-          @else
-              <tr class="odd "><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
-          @endif
-        </tbody>
-      </table>
-    </div>
-    <footer class="panel-footer">
-      <div class="row">
-        <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-        </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
   </div>
-</div>
 @endsection
 
 <!-- JavaScript -->
@@ -122,7 +142,7 @@
   <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-  <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
       $(document).ready(function() {
@@ -136,80 +156,31 @@
             jQuery(this).closest('.small-graph-box').fadeOut(200);
             return false;
         });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
-          });
-          
-        
       });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
+  </script>
 
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
-        });
-    </script>
-    <!-- //calendar -->
+  <script>
+    $(document).ready(function(){
+      $('.updateBillStatus').on('change',function(){
+        $id_bill = $(this).attr('data-id');
+        var status = $(this).val();
+        $.ajax({
+          type: 'POST',
+          url: '/api/bills/update-bill/',
+          data: {
+            id_bill : $id_bill,
+            status: status,
+          },  
+          success: function(data){
+            if(data.data == true)
+            alert('Cap nhat thanh cong!');
+            else
+            return alert('Cap nhat khong thanh cong!');
+          }
+        })
+      });
+    })
+    
+  </script>
 @endsection
 

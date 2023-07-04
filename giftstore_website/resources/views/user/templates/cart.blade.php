@@ -18,7 +18,6 @@
 
     <!-- Log-in Css -->
     <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
-
 @endsection
 
 @section('web_content')

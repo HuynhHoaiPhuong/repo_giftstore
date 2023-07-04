@@ -247,7 +247,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-users"></i>
                                 <span>Quản lý tài khoản</span>
                             </a>
                             <ul class="sub">
@@ -258,8 +258,8 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Quản lý xếp hạng thành viên</span>
+                                <i class="fa fa-trophy"></i>
+                                <span>Quản lý xếp hạng</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{route('rank-management')}}">Xếp hạng thành viên</a></li>
@@ -268,7 +268,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-dropbox"></i>
                                 <span>Group sản phẩm</span>
                             </a>
                             <ul class="sub">
@@ -281,25 +281,25 @@
                         <li class="sub-menu">
                             <a href="{{route('payment-management')}}">
                                 <i class="fa fa-credit-card"></i>
-                                <span>Quản lý hình thức thanh toán</span>
+                                <span>Quản lý phương thức thanh toán</span>
                             </a>
                         </li>
 
                         <li class="sub-menu">
                             <a href="{{route('voucher-management')}}">
-                                <i class="fa fa-credit-card"></i>
+                                <i class="fa fa-ticket"></i>
                                 <span>Quản lý ưu đãi</span>
                             </a>
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('bill-management')}}">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-file-text-o"></i>
                                 <span>Quản lý hóa đơn bán</span>
                             </a>
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-object-group"></i>
                                 <span>Quản lý nhập hàng</span>
                             </a>
                             <ul class="sub">
@@ -309,7 +309,7 @@
                         </li>
                         <li class="sub-menu">
                             <a href="{{route('warehouse-management')}}">
-                                <i class="fa fa-credit-card"></i>
+                                <i class="fa fa-archive"></i>
                                 <span>Quản lý kho</span>
                             </a>
                         </li>

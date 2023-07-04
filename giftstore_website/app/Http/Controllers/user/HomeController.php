@@ -55,6 +55,4 @@ class HomeController extends Controller
             'allCategories' => $allCategories,
         ]);
     }
-
-    
 }

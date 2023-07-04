@@ -4,15 +4,14 @@ namespace App\Http\Controllers\services;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\BillResource;
 use App\Models\Bill;
 use App\Http\Payload;
-use App\Http\Resources\BillResource;
 use Carbon\Carbon;
 
 class BillController extends Controller
 {
-    public function getAllBill()
-    {
+    public function getAllBill(){
         $bills = Bill::all();
         if($bills->isEmpty())
         {
@@ -20,8 +19,8 @@ class BillController extends Controller
         }
         return Payload::toJson(BillResource::collection($bills), 'Request Successfully', 200);
     }
-    public function getAllBillByStatus($status)
-    {
+    
+    public function getAllBillByStatus($status){
         $bills = Bill::where('status', $status)->get();
         if($bills->isEmpty())
         {
@@ -30,8 +29,7 @@ class BillController extends Controller
         return Payload::toJson(BillResource::collection($bills), 'Ok', 200);
     }
 
-    public function saveBill(Request $request)
-    {
+    public function saveBill(Request $request){
         $bills = new Bill();
         $bills->fill([
             'id_bill' => "B".Carbon::now('Asia/Ho_Chi_Minh')->format('ymdhis').rand(1, 1000), 
@@ -48,5 +46,14 @@ class BillController extends Controller
             return Payload::toJson(new BillResource($bills), 'Completed', 201);
         }
         return Payload::toJson(null, 'Uncompleted', 500);
+    }
+
+    public function updateBillStatus(Request $request){
+        $result = Bill::where('id_bill', $request->id_bill)
+        ->update(['status' => $request->status]);
+        if($result == 1){
+            return Payload::toJson(true,"Update Successfully",202);
+        }
+        return Payload::toJson(false,"Cannot Update",500);
     }
 }
