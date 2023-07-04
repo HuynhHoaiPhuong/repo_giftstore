@@ -27,7 +27,7 @@
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Danh mục</h6>
+                    <h6 class="m-0">Danh mục sản phẩm</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 @if($typeCategories != [])
@@ -52,62 +52,61 @@
             </div>
             <div class="col-lg-9">
                 @if (Session::has('userLogin') != null)
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                            <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
-                            {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                            {{-- <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                    <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div> --}}
-                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
+                                {{-- <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                    <div class="dropdown-menu rounded-0 m-0">
+                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
+                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
+                                    </div>
+                                </div> --}}
+                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                            </div>
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="" class="nav-item nav-link">{{ session('username') }}</a>
+                                <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
+                            </div>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">{{ session('username') }}</a>
-                            <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
-                        </div>
-                    </div>
-                </nav>
-
+                    </nav>
                 @else
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                            <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
-                            {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                            {{-- <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                    <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div> --}}
-                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
+                                {{-- <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                    <div class="dropdown-menu rounded-0 m-0">
+                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
+                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
+                                    </div>
+                                </div> --}}
+                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                            </div>
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng nhập</a>
+                                <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng ký</a>
+                            </div>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng ký</a>
-                        </div>
-                    </div>
-                </nav>
+                    </nav>
                 @endif
 
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -246,12 +245,12 @@
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{$product->name}}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>{{ number_format($product->price, 0, ',', '.') }} VNĐ</h6>
+                            <h6>{{ number_format($product->price, 0, ',', '.') }} đ</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$product->id_product}}">Mua ngay</a>
+                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-id="{{$product->id_product}}">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -294,20 +293,20 @@
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                         <!-- <img class="img-fluid w-100" src="user/img/product-1.jpg" alt=""> -->
                         @if($product->photo != 'noimage.png' && $product->photo != '')
-                        <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
+                            <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
                         @else
-                        <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
+                            <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
                         @endif
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{$product->name}}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>{{ number_format($product->price, 0, ',', '.') }} VNĐ</h6>
+                            <h6>{{ number_format($product->price, 0, ',', '.') }} đ</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$product->id_product}}">Mua ngay</a>
+                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-id="{{$product->id_product}}">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -384,14 +383,13 @@
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         $(document).on('click', '.buy-now-btn', function(e) {
             e.preventDefault();
-            var productId = $(this).data('product-id');
+            $id_product = $(this).data('id');
             $.ajax({
-                url: '{{ route('buy-now', ['id' => '']) }}' + '/' + productId,
+                url: '{{ route('buy-now', ['id' => '']) }}' + '/' + $id_product,
                 type: 'POST',
-                dataType: 'json',
                 data: { _token: csrfToken,},
                 success: function(response) {
-                    if(response.success) {
+                    if(response.success == true) {
                         alert("Thêm giỏ hàng thành công.");
                     } else {
                         alert("Thêm vào giỏ hàng không thành công. Vui lòng thử lại sau.");
@@ -422,11 +420,11 @@
             }
         
             var msgIcon = $("<i />", {
-                "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+                "class": iconMap[severity]
             });
         
             var msg = $("<div />", {
-                "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+                "class": alertClasses.join(" ") 
             });
         
             if (title) {
@@ -465,7 +463,7 @@
         
             if (dismissible) {
                 var msgClose = $("<span />", {
-                    "class": "close", // you need to quote "class" since it's a reserved keyword
+                    "class": "close",
                     "data-dismiss": "alert",
                     html: "<i class='fa fa-times-circle'></i>"
                 }).appendTo(msg);

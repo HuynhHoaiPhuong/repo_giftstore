@@ -1,6 +1,6 @@
 @extends('user/layout')
 
-@section('title','Sản phẩm')
+@section('title','Tìm kiếm')
 
 @section('header')
 
@@ -118,11 +118,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Cửa hàng của chúng tôi</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Kết quả tìm kiếm cho: <label style="text-transform: capitalize;">'{{$keyword}}'<label></h1>
             <div class="d-inline-flex">
                 <p class="m-0"><a href="{{route('/')}}">Trang chủ</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Cửa hàng</p>
+                <p class="m-0">Tìm kiếm</p>
             </div>
         </div>
     </div>
@@ -277,50 +277,62 @@
                             </div>
                         </div>
                     </div>
-                    @foreach($products as $key => $product)
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                @if($product->photo != 'noimage.png' && $product->photo != '')
-                                    <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
-                                @else
-                                    <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
-                                @endif                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{$product->name}}</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>{{ number_format($product->price, 0, ',', '.') }} VNĐ</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                    {{-- @if ($lists != []) --}}
+                    @if (count($lists) > 0)
+                        @foreach($lists as $key => $list)
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    @if($list->photo != 'noimage.png' && $list->photo != '')
+                                        <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $list->photo }}" alt="{{$list->name}}">
+                                    @else
+                                        <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
+                                    @endif                            
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">{{$list->name}}</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>{{ number_format($list->price, 0, ',', '.') }} đ</h6>
+                                        <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="product/{{$list->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                                    <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$list->id_product}}">Mua ngay</a>
                                 </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                                <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$product->id_product}}">Mua ngay</a>
+                        </div>
+                        @endforeach  
+                        <div class="col-12 pb-1">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center mb-3">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    @else
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="">Không tìm thấy sản phẩm</h6>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    <div class="col-12 pb-1">
-                        <nav aria-label="Page navigation">
-                          <ul class="pagination justify-content-center mb-3">
-                            <li class="page-item disabled">
-                              <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>
-                    </div>
+                    @endif
                 </div>
             </div>
             <!-- Shop Product End -->

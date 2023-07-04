@@ -53,13 +53,16 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form action="{{route('search')}}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm sản phẩm">
+                        <input type="text" name="keyword" class="form-control" placeholder="Tìm sản phẩm">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            {{-- <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </span> --}}
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
