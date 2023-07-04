@@ -20,9 +20,25 @@ class UserController extends Controller
         return Payload::toJson(UserResource::collection($users),"Request Successfully",200);
     }
 
+    public function getUserByIdUser($id_user)
+    {
+        $users = User::where('id_user',$id_user)->get();
+         if($users->isEmpty())
+            return Payload::toJson(null,"Data Not Found",404);   
+        return Payload::toJson(UserResource::collection($users),"Request Successfully",200);
+    }
+
     public function saveUser(Request $req)
     {
         $users= new User();
+        $checkUsername = User::where('username',$req->username)->first();
+        $checkFullname = User::where('fullname',$req->fullname)->first();
+        if($checkUsername){
+            return Payload::toJson(null,'username đã tồn tại',500);
+        }
+        if($checkFullname){
+            return Payload::toJson(null,'Họ tên người dùng đã tồn tại',500);
+        }
         $users->fill(
             [
                 'id_user' => "USER".Carbon::now()->format('ymdhis').rand(1,1000),
@@ -39,9 +55,11 @@ class UserController extends Controller
                 'status'=>$req->status
             ]
         );
-        $users->save();
-        $users = User::where('id_user',$users->id_user)->first();
-        return Payload::toJson(new UserResource($users),"Create Successfully",201);
+        if($users->save() == 1){
+            $users = User::where('id_user',$users->id_user)->first();
+            return Payload::toJson(new UserResource($users),"Create Successfully",201);
+        }
+        return Payload::toJson(null,'Create account fail',500);
     }
 
     public function updateUser(Request $req)

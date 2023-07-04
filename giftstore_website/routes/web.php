@@ -119,6 +119,7 @@ Route::get('/contact', [ContactController::class,'index'])->name('contact');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 Route::get('/product/{id}', [userProductController::class,'productDetail']);
 Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
+Route::post('/register-member', [LoginClientController::class,'register'])->name('register-member');
 Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/log-out', [LoginClientController::class, 'logout'])->name('log-out');

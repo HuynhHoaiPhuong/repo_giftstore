@@ -23,19 +23,21 @@
 @section('web_content')
 <div class="container login" id="container">
 	<div class="form-container sign-up-container">
-		<form action="">
+		<form action="{{route('register-member')}}" method="post">
 			@csrf
 			<h1>Tạo tài khoản</h1>
-			<div class="social-container">
-				{{-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a> --}}
-				{{-- <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> --}}
-				{{-- <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> --}}
+			{{-- <div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
 			</div>
-			{{-- <span>hoặc đăng nhập với Google</span> --}}
-			<input type="text" placeholder="Họ tên" required=""/>
-			<input type="username" placeholder="Tên dăng nhập" required=""/>
-			<input type="password" placeholder="Mật khẩu" required=""/>
-			<button style="margin-top: 1.5rem;">Đăng ký</button>
+			<span>hoặc đăng nhập với Google</span> --}}
+			<input type="text" name="fullname" placeholder="Họ tên" required=""/>
+			<input type="text" name="username" placeholder="Tên đăng nhập" required=""/>
+			<input type="password" name="password" placeholder="Mật khẩu" required=""/>
+			<input type="phone" name="phone" placeholder="Số điện thoại" required=""/>
+			<input type="text" name="address" placeholder="Địa chỉ" required=""/>
+			<button type="submit" style="margin-top: 0;">Đăng ký</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
