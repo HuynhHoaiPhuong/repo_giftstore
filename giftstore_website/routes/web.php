@@ -36,6 +36,7 @@ use App\Http\Controllers\user\ContactController;
 use App\Http\Controllers\user\ProductController as userProductController;
 use App\Http\Controllers\user\BillController as userBillController;
 use App\Http\Controllers\user\ShopController;
+use App\Http\Controllers\user\SearchController;
 use App\Http\Controllers\user\LoginClientController;
 
 
@@ -119,6 +120,7 @@ Route::get('/contact', [ContactController::class,'index'])->name('contact');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 Route::get('/product/{id}', [userProductController::class,'productDetail']);
 Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
+Route::get('/search', [SearchController::class,'search'])->name('search');
 Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/log-out', [LoginClientController::class, 'logout'])->name('log-out');

@@ -163,13 +163,13 @@
     $(document).ready(function(){
       $('.updateBillStatus').on('change',function(){
         $id_bill = $(this).attr('data-id');
-        var status = $(this).val();
+        $status = $(this).val();
         $.ajax({
           type: 'POST',
           url: '/api/bills/update-bill/',
           data: {
             id_bill : $id_bill,
-            status: status,
+            status: $status,
           },  
           success: function(data){
             if(data.data == true)
