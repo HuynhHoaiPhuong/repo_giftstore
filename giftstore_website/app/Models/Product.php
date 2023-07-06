@@ -20,6 +20,7 @@ class Product extends Model
         'photo',
         'price',
         'slug',
+        'description',
         'status',
         'created_at',
         'updated_at',

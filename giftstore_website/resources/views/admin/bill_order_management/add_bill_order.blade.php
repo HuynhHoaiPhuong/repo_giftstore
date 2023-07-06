@@ -255,7 +255,7 @@
                                     <td class="price-pro">'+number_format(product.price, 0, ',','.')+'đ<input type="hidden" name="dataProduct['+product.id_product+'][price]" value="'+product.price+'"> </td>\
                                     <td><input type="number" value="'+quantity+'" name="dataProduct['+product.id_product+'][quantity]" class="quantity-selected form-control" readonly></td>\
                                     <td>\
-                                        <a data-id="'+product.id_product+'" onclick="deletePro()" class="removeProduct show text-center active styling-edit" title="Xóa">\
+                                        <a data-id="'+product.id_product+'" class="removeProduct show text-center active styling-edit" title="Xóa">\
                                             <i class="fa fa-times text-danger text"></i>\
                                         </a>\
                                     </td>\
@@ -274,17 +274,17 @@
         });
     });
     
-    function deletePro(){
+    $("body").on("click",".removeProduct",function(){
         var id_product = $(this).attr('data-id');
-        var quantity = parseInt($('.item-product'+$id_product).find('.quantity-selected').val());
+        var quantity = parseInt($('.item-product'+id_product).find('.quantity-selected').val());
         var totalold = $('#total-price').attr('data-total');
-        var pricetmp = $('.item-product'+$id_product).find('.price-pro input').val();
+        var pricetmp = $('.item-product'+id_product).find('.price-pro input').val();
         var totalnew = parseInt(totalold) - parseInt(pricetmp*quantity);
         $('#total-price').attr('data-total',totalnew);
         $('#total-price').html(number_format(parseInt(totalnew), 0, ',','.'));
-        $('.item-product'+$id_product).remove();
+        $('.item-product'+id_product).remove();
         if(!$('.append-pro-selected').find('tr').hasClass('item-product'))
             $('.append-pro-selected').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
-    };
+    });
   </script>
 @endsection

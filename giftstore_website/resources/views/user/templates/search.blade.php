@@ -64,7 +64,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
                                 {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
                                 {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
@@ -92,7 +92,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
                                 {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
                                 {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>

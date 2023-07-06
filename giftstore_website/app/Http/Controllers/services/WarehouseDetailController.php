@@ -11,6 +11,13 @@ use Carbon\Carbon;
 
 class WarehouseDetailController extends Controller
 {
+    public function getWarehouseDetailByIdWarehouseDetail($id_warehouse_detail){
+        $warehouseDetail = WarehouseDetail::where('id_warehouse_detail', $id_warehouse_detail)->first();
+        if($warehouseDetail==null)
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(new WarehouseDetailResource($warehouseDetail), "OK", 200);
+    }
+
     public function getAllWarehouseDetailByIdWarehouse($id_warehouse){
         $warehouseDetails = WarehouseDetail::where('id_warehouse', $id_warehouse)->get();
         if($warehouseDetails->isEmpty())

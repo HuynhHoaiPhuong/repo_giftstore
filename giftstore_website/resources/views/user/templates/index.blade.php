@@ -65,7 +65,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
                                 {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
                                 {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
@@ -93,7 +93,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Cửa hàng</a>
+                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
                                 {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
                                 {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
@@ -228,32 +228,32 @@
     <!-- Offer End -->
 
     <!-- Products Start -->
-    @if($products != [])
+    @if($warehouseDetails != [])
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm đang giảm giá</span></h2>
+            <h2 class="section-title px-5"><span class="px-2">Sản phẩm của chúng tôi</span></h2>
         </div>
         <div class="row px-xl-5 pb-3">
-            @foreach($products as $key => $product)
+            @foreach($warehouseDetails as $key => $warehouseDetail)
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                         <!-- <img class="img-fluid w-100" src="user/img/product-1.jpg" alt=""> -->
-                        @if($product->photo != 'noimage.png' && $product->photo != '')
-                        <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
+                        @if($warehouseDetail->product->photo != 'noimage.png' && $warehouseDetail->product->photo != '')
+                        <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $warehouseDetail->product->photo }}" alt="{{$warehouseDetail->product->name}}">
                         @else
                         <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
                         @endif
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">{{$product->name}}</h6>
+                        <h6 class="text-truncate mb-3">{{$warehouseDetail->product->name}}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>{{ number_format($product->price, 0, ',', '.') }} đ</h6>
+                            <h6>{{ number_format($warehouseDetail->product->price, 0, ',', '.') }} đ</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-id="{{$product->id_product}}">Mua ngay</a>
+                        <a href="product/{{$warehouseDetail->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-id="{{$warehouseDetail->product->id_product}}">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -283,40 +283,6 @@
         </div>
     </div>
     <!-- Subscribe End -->
-
-    <!-- Products Start -->
-    <div class="container-fluid pt-5">
-        <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm mới</span></h2>
-        </div>
-        <div class="row px-xl-5 pb-3">
-            @foreach($products as $key => $product)
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="card product-item border-0 mb-4">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <!-- <img class="img-fluid w-100" src="user/img/product-1.jpg" alt=""> -->
-                        @if($product->photo != 'noimage.png' && $product->photo != '')
-                            <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
-                        @else
-                            <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
-                        @endif
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">{{$product->name}}</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>{{ number_format($product->price, 0, ',', '.') }} đ</h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-id="{{$product->id_product}}">Mua ngay</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <!-- Products End -->
 
     <!-- Vendor Start -->
     <div class="container-fluid py-5">

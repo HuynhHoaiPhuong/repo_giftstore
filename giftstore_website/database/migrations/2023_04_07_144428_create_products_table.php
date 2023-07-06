@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('numerical_order')->default(0); 
             $table->string('name')->unique();
             $table->string('photo');
+            $table->mediumText('description')->nullable(true);
             $table->bigInteger('price')->nullable(false);
             $table->string('slug')->unique()->nullable(false);
             $table->string('status')->default("enabled");

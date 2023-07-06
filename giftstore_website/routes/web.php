@@ -118,7 +118,7 @@ Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
 Route::get('/contact', [ContactController::class,'index'])->name('contact');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
-Route::get('/product/{id}', [userProductController::class,'productDetail']);
+Route::get('/product/{id?}', [userProductController::class,'productDetail'])->name('product-detail');
 Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
 Route::post('/register-member', [LoginClientController::class,'register'])->name('register-member');
 Route::get('/search', [SearchController::class,'search'])->name('search');
