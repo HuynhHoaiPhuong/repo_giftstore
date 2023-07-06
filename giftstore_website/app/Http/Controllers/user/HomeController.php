@@ -5,19 +5,19 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\services\ProductController as ServicesProductController;
+use App\Http\Controllers\services\WarehouseDetailController as ServicesWarehouseDetailController;
 
 class HomeController extends Controller
 {
     public function index(){
-        //Get Product
-        $productController = new ServicesProductController();
-        $data_product = $productController->getAllProductByStatus('enabled');
-        $products = [];
-        if($data_product['data']!=null)
-            $products = $data_product['data']->collection;
+        $warehouseDetailController = new ServicesWarehouseDetailController();
+        $data_warehouseDetail = $warehouseDetailController->getAllWarehouseDetailByStatus('enabled');
+        $warehouseDetails = [];
+        if($data_warehouseDetail['data']!=null)
+            $warehouseDetails = $data_warehouseDetail['data']->collection;
 
         return view('user/templates/index', [
-            'products' => $products, 
+            'warehouseDetails' => $warehouseDetails, 
         ]);
     }
 

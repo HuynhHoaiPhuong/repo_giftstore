@@ -48,6 +48,7 @@ class ProductController extends Controller
             'photo' => $request->photo, 
             'price' => $request->price, 
             'slug' => $request->slug,
+            'description' => $request->description,
         ]);
         $checkName = Product::where('name', $product->name)->first();
         if($checkName) return Payload::toJson(null,'Duplicate product name!',500);
@@ -70,7 +71,8 @@ class ProductController extends Controller
             'name' => $request->name, 
             'photo' => $request->photo, 
             'price' => $request->price, 
-            'slug' => $request->slug, 
+            'slug' => $request->slug,
+            'description' => $request->description,
         ]); 
         if($result == 1){
             $product = Product::where('id_product', $request->id_product)->first();

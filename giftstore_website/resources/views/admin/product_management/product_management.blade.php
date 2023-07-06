@@ -167,11 +167,11 @@
                         <input type="number" name="price" class="form-control" id="inputUpdatePriceProduct">
                       </div>
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="inputUpdateDescProduct">Mô tả</label>
                         <textarea rows="4" cols="50" type="text" placeholder="Mô tả" name="description"
                             id="inputUpdateDescProduct" class="form-control text-sm"></textarea>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <button class="btn_submit_update_product btn btn-primary btn-block mr-10" type="submit" {{($categories != [] && $providers != []) ? '' : 'disabled' }} >Lưu</button>
                     </div>
@@ -272,7 +272,7 @@
 
                 $('#updateProduct #inputUpdatePriceProduct').val($product.price);
 
-                // $('#updateProduct #inputUpdateDescProduct').val($product.description);
+                $('#updateProduct #inputUpdateDescProduct').val($product.description);
 
             },
             error: function() {
