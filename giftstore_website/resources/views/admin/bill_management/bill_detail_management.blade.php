@@ -36,7 +36,7 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <a href="{{route('bill-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Thoát</a>
+        <a href="{{route('bill-management')}}" class="btn btn-sm btn-info"><i class="fa fa-reply" aria-hidden="true"></i> Quay về</a>
       </div>
       <div class="col-sm-4">
       </div>

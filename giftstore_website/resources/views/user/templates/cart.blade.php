@@ -18,9 +18,13 @@
 
     <!-- Log-in Css -->
     <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 @endsection
 
 @section('web_content')
+
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -193,7 +197,7 @@
                         </tbody>
                         @endif
                     </table>
-                    {{-- <button class="btn btn-sm btn-primary">Cập nhật số lượng</button> --}}
+                    <div id="cart-container"></div>
                 </div>
                 <div class="col-lg-4">
                     {{--<div class="input-group">
@@ -264,6 +268,11 @@
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <!-- Login Template Javascript -->
+    <script src="{{ asset('user/js/login.js') }}"></script>
+
     <script>
         $(document).ready(function () {
             $('.idPaymentRadio').on('click',function(){
@@ -273,21 +282,19 @@
                 $(this).find('input').prop('checked', true);
             });
         });
-    </script>    
 
-    <!-- Login Template Javascript -->
-    <script src="{{ asset('user/js/login.js') }}"></script>
-
-    <script>
+        toastr.options = {positionClass: 'toast-bottom-right'};
+        
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function() {
             $('.increase').click(function() {
-                var productId = $(this).data('product-id');
+                var id_product = $(this).data('product-id');
                 var input = $(this).closest('.quantity').find('input');
                 var currentValue = parseInt(input.val()); 
                 var updatedValue = currentValue + 1;
+
                 $.ajax({
-                    url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + productId,
+                    url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + id_product,
                     method: 'POST', 
                     data: {
                         _token: csrfToken,
@@ -295,14 +302,16 @@
                     },
                     success: function(response) {
                         input.val(updatedValue);
+                        location.reload();
                     },
                     error: function(xhr) {
+
                     }
                 });
             });
 
             $('.decrease').click(function() {
-                var productId = $(this).data('product-id');
+                var id_product = $(this).data('product-id');
                 var input = $(this).closest('.quantity').find('input'); 
                 var currentValue = parseInt(input.val());
 
@@ -310,7 +319,7 @@
                     var updatedValue = currentValue - 1;
 
                     $.ajax({
-                        url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + productId,
+                        url: '{{ route('update-quantity', ['id' => '']) }}'+ '/' + id_product,
                         method: 'POST',
                         data: {
                             _token: csrfToken,
@@ -318,32 +327,56 @@
                         },
                         success: function(response) {
                             input.val(updatedValue);
+                            location.reload();
                         },
                         error: function(xhr) {
+
                         }
                     });
                 }
             });
 
             $('.delete-item-btn').click(function() {
-            var productId = $(this).data('product-id');
+                var id_product = $(this).data('product-id');
+                var cartContainer = $('#cart-container');
+                $.ajax({
+                    url: '{{ route('remove-item', ['id' => '']) }}'+ '/' + id_product,
+                    type: 'POST',
+                    data: {
+                        _token: csrfToken,
+                    },
+                    success: function(response) {
+                        if(response){
+                            toastr.success('Đã xóa!');
+                            loadCart(cartContainer);
+                        }
+                        else
+                            toastr.error('Xóa thất bại!');
+                    },
+                    error: function(xhr, status, error) {
+                        
+                    }
+                });
+            });
+        });
+
+        function loadCart() {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
             $.ajax({
-                url: '{{ route('remove-item', ['id' => '']) }}'+ '/' + productId,
-                type: 'POST',
+                url: '{{ route('cart') }}',
+                type: 'GET',
                 data: {
                     _token: csrfToken,
                 },
-                success: function(response) {
-                    // Handle the success response (if needed)
+                success: function (response) {
+                    $('#cart-container').html(response);
                 },
-                error: function(xhr, status, error) {
-                    // Handle the error response (if needed)
-                }
+                error: function (xhr, status, error) {
+                   
+                },
             });
-        });
-        });
-        
-        
+        }
     </script>
     
 @endsection

@@ -65,12 +65,12 @@ class CartController extends Controller
                 ]);
                 $this->cartController->saveCart($requestCart);
             }
-            session()->flash('success', 'Đã thêm vào giỏ hàng');
-            return Payload::toJson(true, "Add Successfully", 202);
+            return response()->json(['success' => true]);
+            // return Payload::toJson(true, "Add Successfully", 202);
         } 
-        return Payload::toJson(false, "Cannot Add!", 500);
+        return response()->json(['success' => false]);
+        // return Payload::toJson(false, "Cannot Add!", 500);
     }
-
 
     public function updateQuantity(Request $request, $id_product)
     {
@@ -86,9 +86,10 @@ class CartController extends Controller
         }
         return response()->json(['success' => false]);
     }
+
     public function removeItem($id_product)
     {
         $this->cartController->removeItem($id_product);
-
+        return response()->json(['success' => true]);
     }
 }

@@ -24,6 +24,8 @@
   <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
   <script src="{{asset('admin/js/raphael-min.js')}}"></script>
   <script src="{{asset('admin/js/morris.js')}}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 @endsection
 
 @section('admin_content')
@@ -143,6 +145,8 @@
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
   <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
   <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
   <!-- morris JavaScript -->  
   <script>
       $(document).ready(function() {
@@ -160,6 +164,10 @@
   </script>
 
   <script>
+    toastr.options = {
+        positionClass: 'toast-bottom-right'
+    };
+
     $(document).ready(function(){
       $('.updateBillStatus').on('change',function(){
         $id_bill = $(this).attr('data-id');
@@ -173,9 +181,9 @@
           },  
           success: function(data){
             if(data.data == true)
-            alert('Cap nhat thanh cong!');
+              toastr.success('Cập nhật trạng thái thành công');
             else
-            return alert('Cap nhat khong thanh cong!');
+              toastr.error('Vui lòng thử lại');
           }
         })
       });

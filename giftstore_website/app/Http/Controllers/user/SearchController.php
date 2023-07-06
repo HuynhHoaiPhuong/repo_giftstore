@@ -17,7 +17,6 @@ class SearchController extends Controller
             $lists = WarehouseDetail::join('products', 'warehouse_details.id_product', '=', 'products.id_product')
             ->where("products.name", "like", "%$keyword%")->get();
         }
-        // dd($lists);
         return view('user.templates.search', ['keyword' => $keyword , 'lists' => $lists]);
     }
 }

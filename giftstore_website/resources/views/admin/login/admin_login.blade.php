@@ -33,7 +33,7 @@
 				@csrf
 				<input type="text" class="ggg" name="username" placeholder="Tài khoản" required="">
 				<input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
-				<span><input type="checkbox" />Remember Me</span>
+				<span><input type="checkbox"/> Ghi nhớ</span>
 				<!-- <h6><a href="#">Forgot Password?</a></h6> -->
 				<div class="clearfix"></div>
 				<input type="submit" class="btn" value="Đăng nhập" >

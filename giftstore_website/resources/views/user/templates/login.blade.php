@@ -46,12 +46,10 @@
         <span class="error-message">{{ session('error') }}</span>
     </div>
 		@endif
-		{{-- test popup --}}
 		<form action="{{route('client-authenticate')}}" method="POST">
 			@csrf
 			<h1>Đăng nhập</h1>
-			<div class="social-container">
-			</div>
+			<div class="social-container"></div>
 			<span>Hoặc sử dụng tài khoản của bạn</span>
 			<input type="username" name="username" placeholder="Tên đăng nhập" required="" />
 			<input type="password" name="password" placeholder="Mật khẩu" required="" />
@@ -115,12 +113,12 @@
 
 	<script>
 		window.addEventListener('DOMContentLoaded', () => {
-				const errorPopup = document.querySelector('.error-popup');
-				if (errorPopup) {
-						setTimeout(() => {
-								errorPopup.style.display = 'none';
-						}, 5000);
-				}
+			const errorPopup = document.querySelector('.error-popup');
+			if (errorPopup) {
+				setTimeout(() => {
+						errorPopup.style.display = 'none';
+				}, 5000);
+			}
 		});
 	</script>
 	{{-- Popup --}}

@@ -3,7 +3,7 @@
 @section('title','Trang Chủ')
 
 @section('header')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
@@ -19,6 +19,9 @@
 
     <!-- Log-in Css -->
     <link rel="stylesheet" href="{{asset('user/css/login.css')}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 @endsection
 
 @section('web_content')
@@ -349,15 +352,6 @@
         </div>
     </div>
     <!-- Vendor End -->
-    {{-- @if(session('success'))
-        <div id="pageMessages"></div>
-        <div class="container">
-            <button class="btn btn-danger" onclick="createAlert('Opps!','Something went wrong','Here is a bunch of text about some stuff that happened.','danger',true,false,'pageMessages');">Add Danger Alert</button>
-            <button class="btn btn-success" onclick="createAlert('','Nice Work!','Here is a bunch of text about some stuff that happened.','success',true,true,'pageMessages');">Add Success Alert</button>
-            <button class="btn btn-info" onclick="createAlert('BTDubs','','Here is a bunch of text about some stuff that happened.','info',false,true,'pageMessages');">Add Info Alert</button>
-            <button class="btn btn-warning" onclick="createAlert('','','Here is a bunch of text about some stuff that happened.','warning',false,true,'pageMessages');">Add Warning Alert</button>
-        </div>
-    @endif --}}
 @endsection
 
 <!-- JavaScript -->
@@ -378,9 +372,17 @@
     <!-- Login Template Javascript -->
     <script src="{{ asset('user/js/login.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
     {{-- Add To Cart --}}
     <script>
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        toastr.options = {
+            positionClass: 'toast-bottom-right'
+        };
+
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');   
+        console.log(csrfToken);
         $(document).on('click', '.buy-now-btn', function(e) {
             e.preventDefault();
             $id_product = $(this).data('id');
@@ -390,97 +392,15 @@
                 data: { _token: csrfToken,},
                 success: function(response) {
                     if(response.success == true) {
-                        alert("Thêm giỏ hàng thành công.");
+                        toastr.success('Đã thêm');
                     } else {
-                        alert("Thêm vào giỏ hàng không thành công. Vui lòng thử lại sau.");
+                        toastr.error('Thêm thất bại!');
                     }
-                    return false;
                 },
                 error: function(xhr) {}
             });
         });
 
-                
-        // Alert Message
-        function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
-            var iconMap = {
-                info: "fa fa-info-circle",
-                success: "fa fa-thumbs-up",
-                warning: "fa fa-exclamation-triangle",
-                danger: "fa ffa fa-exclamation-circle"
-            };
-        
-            var iconAdded = false;
-        
-            var alertClasses = ["alert", "animated", "flipInX"];
-            alertClasses.push("alert-" + severity.toLowerCase());
-        
-            if (dismissible) {
-                alertClasses.push("alert-dismissible");
-            }
-        
-            var msgIcon = $("<i />", {
-                "class": iconMap[severity]
-            });
-        
-            var msg = $("<div />", {
-                "class": alertClasses.join(" ") 
-            });
-        
-            if (title) {
-                var msgTitle = $("<h4 />", {
-                    html: title
-                }).appendTo(msg);
-            
-                if(!iconAdded){
-                    msgTitle.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-        
-            if (summary) {
-                var msgSummary = $("<strong />", {
-                    html: summary
-                }).appendTo(msg);
-                
-                if(!iconAdded){
-                    msgSummary.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-        
-            if (details) {
-                var msgDetails = $("<p />", {
-                    html: details
-                }).appendTo(msg);
-                
-                if(!iconAdded){
-                    msgDetails.prepend(msgIcon);
-                    iconAdded = true;
-                }
-            }
-            
-        
-            if (dismissible) {
-                var msgClose = $("<span />", {
-                    "class": "close",
-                    "data-dismiss": "alert",
-                    html: "<i class='fa fa-times-circle'></i>"
-                }).appendTo(msg);
-            }
-            
-            $('#' + appendToId).prepend(msg);
-            
-            if(autoDismiss){
-                setTimeout(function(){
-                    msg.addClass("flipOutX");
-                    setTimeout(function(){
-                    msg.remove();
-                    },1000);
-                }, 5000);
-            }
-        }
-        
     </script>
         
 @endsection

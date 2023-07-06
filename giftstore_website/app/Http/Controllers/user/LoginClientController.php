@@ -22,7 +22,6 @@ class LoginClientController extends Controller
             Session::put('userLogin', Auth::id());
             $username = $request->input('username');
             Session::put('username', $username);
-
             return redirect()->route('/');
         }
         return redirect()->route('log-in')->with('error', 'Tài khoản hoặc mật khẩu không hợp lệ');
