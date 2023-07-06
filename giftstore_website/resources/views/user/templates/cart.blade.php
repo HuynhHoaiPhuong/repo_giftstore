@@ -342,13 +342,11 @@
                 $.ajax({
                     url: '{{ route('remove-item', ['id' => '']) }}'+ '/' + id_product,
                     type: 'POST',
-                    data: {
-                        _token: csrfToken,
-                    },
+                    data: {_token: csrfToken},
                     success: function(response) {
                         if(response){
                             toastr.success('Đã xóa!');
-                            loadCart(cartContainer);
+                            // loadCart(cartContainer);
                         }
                         else
                             toastr.error('Xóa thất bại!');
@@ -360,23 +358,21 @@
             });
         });
 
-        function loadCart() {
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        // function loadCart() {
+        //     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            $.ajax({
-                url: '{{ route('cart') }}',
-                type: 'GET',
-                data: {
-                    _token: csrfToken,
-                },
-                success: function (response) {
-                    $('#cart-container').html(response);
-                },
-                error: function (xhr, status, error) {
+        //     $.ajax({
+        //         url: '{{ route('cart') }}',
+        //         type: 'GET',
+        //         data: {_token: csrfToken},
+        //         success: function (response) {
+        //             $('#cart-container').html(response);
+        //         },
+        //         error: function (xhr, status, error) {
                    
-                },
-            });
-        }
+        //         },
+        //     });
+        // }
     </script>
     
 @endsection
