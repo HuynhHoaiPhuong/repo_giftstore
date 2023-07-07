@@ -12,8 +12,7 @@ class ShopController extends Controller
         $productController = new ServicesProductController();
         $data_product = $productController->getAllProductByStatus('enabled');
 
-        if($data_product['data'] != null)
-        $products = $data_product['data']->collection;
+       
 
         $products = collect([]);
         $perPage = 12;
@@ -21,6 +20,8 @@ class ShopController extends Controller
 
         $offset = ($currentPage - 1) * $perPage;
 
+        if($data_product['data'] != null)
+        $products = $data_product['data']->collection;
         $paginatedContacts = collect($products)->slice($offset, $perPage);
 
         $lastPage = ceil($products->count() / $perPage);
