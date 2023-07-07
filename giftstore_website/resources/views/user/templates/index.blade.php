@@ -336,7 +336,7 @@
     <script src="{{ asset('user/js/main.js') }}"></script>
 
     <!-- Login Template Javascript -->
-    <script src="{{ asset('user/js/login.js') }}"></script>
+    <!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -348,7 +348,7 @@
         };
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');   
-        console.log(csrfToken);
+        // console.log(csrfToken);
         $(document).on('click', '.buy-now-btn', function(e) {
             e.preventDefault();
             $id_product = $(this).data('id');

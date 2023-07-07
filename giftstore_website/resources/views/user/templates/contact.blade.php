@@ -200,6 +200,6 @@
 <script src="{{ asset('user/js/main.js') }}"></script>
 
 <!-- Login Template Javascript -->
-<script src="{{ asset('user/js/login.js') }}"></script>
+<!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
 
 @endsection
