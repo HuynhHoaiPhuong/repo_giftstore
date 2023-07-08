@@ -17,4 +17,16 @@ class RoleController extends Controller
         $roles = $data_role['data']->collection;
         return view('admin/role_management/role_management', ['roles' => $roles]);
     }
+
+    public function addRole(Request $req){
+        $roleController = new ServicesRoleController();
+        if($req->name==null){
+            return back()->with('error','Tạo thất bại');
+        }
+        $result = $roleController->saveRole($req);
+        if($result==null){
+            return back()->with('error','Tạo thất bại');
+        }
+        return redirect(route('role-management'));
+    }
 }

@@ -71,15 +71,13 @@ class BillOrderController extends Controller
 
     public function saveBillOrder(Request $req){
         if(!$req->id_provider){
-            return back()->withErrors('errors',"Vui lòng chọn nhà cung cấp!");
+            return back()->with('error',"Vui lòng chọn nhà cung cấp!");
         }
         $billOrderController = new ServicesBillOrderController();
 
         $billOrderDetailController = new ServicesBillOrderDetailController();
 
         $warehouseDetailController = new ServicesWarehouseDetailController();
-
-        // var_dump($req->dataProduct);die();
 
         $totalPrice = 0;
         $totalQuantity = 0;

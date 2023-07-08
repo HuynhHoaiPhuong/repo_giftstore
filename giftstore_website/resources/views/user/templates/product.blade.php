@@ -162,7 +162,7 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">{{ number_format($warehouseDetail->product->price, 0, ',', '.') }} đ</h3>
+                <h3 class="font-weight-semi-bold mb-4">{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</h3>
                 <p class="mb-4">{{$warehouseDetail->product->description}}</p>
                 
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -202,9 +202,9 @@
         </div>
         <div class="row px-xl-5">
             <div class="col">
-                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                <div class="nav nav-tabs justify-content-start border-secondary mb-4">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Thông tin chi tiết</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Đánh giá (0)</a>
+                    {{--<a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Đánh giá (0)</a>--}}
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
@@ -245,7 +245,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-2">
+                    {{--<div class="tab-pane fade" id="tab-pane-2">
                         <div class="row">
                             <div class="col-md-6">
                                 <h4 class="mb-4">1 đánh giá cho "{{$warehouseDetail->product->name}}"</h4>
@@ -296,7 +296,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>
@@ -324,7 +324,7 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">{{$value->product->name}}</h6>
                             <div class="d-flex justify-content-center">
-                                <h6>{{ number_format($value->product->price, 0, ',', '.') }} đ</h6>
+                                <h6>{{ number_format($value->price_pay, 0, ',', '.') }} đ</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">

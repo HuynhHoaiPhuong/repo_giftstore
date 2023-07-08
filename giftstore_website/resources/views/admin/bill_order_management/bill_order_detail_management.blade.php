@@ -65,9 +65,9 @@
             <td>{{$i++}}</td>
             <td>{{$billOrderDetail->id_bill_order}}</td>
             <td>{{$billOrderDetail->product->name}}</td>
-            <td>{{$billOrderDetail->purchase_price}}</td>
+            <td>{{number_format($billOrderDetail->purchase_price, 0, ',','.')}}đ</td>
             <td>{{$billOrderDetail->quantity}}</td>
-            <td>{{$billOrderDetail->total_price}}</td>
+            <td>{{number_format($billOrderDetail->total_price, 0, ',','.')}}đ</td>
           </tr>
           @endforeach
           @else
@@ -76,7 +76,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 text-center">
@@ -93,7 +93,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 @endsection

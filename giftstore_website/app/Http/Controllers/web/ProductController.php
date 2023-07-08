@@ -97,7 +97,7 @@ class ProductController extends Controller
                     unlink('upload/product/'.$req->photoCurrent);
                 }else{
                     // dd('File does not exists.');
-                    return back()->withErrors('error','Xóa ảnh thất bại');
+                    return back()->with('error','Xóa ảnh thất bại');
                 }
             }
             $photo = $req->file('photo');
@@ -111,7 +111,7 @@ class ProductController extends Controller
         $result = $productController->updateProduct($req);
 
         if($result==null){
-            return back()->withErrors('error','Chỉnh sửa thất bại');
+            return back()->with('error','Chỉnh sửa thất bại');
         }
         return redirect(route('product-management'));
     }

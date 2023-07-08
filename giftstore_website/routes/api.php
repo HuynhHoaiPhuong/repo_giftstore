@@ -62,6 +62,7 @@ Route::group(['prefix'=>'/ranks'],function()
 //Type Category API
 Route::group(['prefix'=>'/type-categories'],function()
 {
+    Route::get('/get-type-category-by-id/{id_type_category}',[TypeCategoryController::class,'getTypeCategoryByIdTypeCategory']);
     Route::get('/get-all-type-category-by-status/{status}',[TypeCategoryController::class,'getAllTypeCategoryByStatus']);
     Route::post('/save-type-category',[TypeCategoryController::class,'saveTypeCategory']);
     Route::post('/update-type-category',[TypeCategoryController::class,'updateTypeCategory']);
@@ -70,6 +71,7 @@ Route::group(['prefix'=>'/type-categories'],function()
 //Category API
 Route::group(['prefix'=>'/categories'],function()
 {
+    Route::get('/get-category-by-id/{id_category}',[CategoryController::class,'getCategoryByIdCategory']);
     Route::get('/get-all-category-by-status/{status}',[CategoryController::class,'getAllCategoryByStatus']);
     Route::post('/save-category',[CategoryController::class,'saveCategory']);
     Route::post('/update-category',[CategoryController::class,'updateCategory']);
@@ -118,6 +120,7 @@ Route::group(['prefix'=>'/rates'],function() {
 });
 //Warehouse API
 Route::group(['prefix'=>'/warehouses'],function() {
+    Route::get('/get-warehouse-by-id/{id_warehouse}',[WarehouseController::class,'getWarehouseByIdWarehouse']);
     Route::get('/get-all-warehouse-by-status/{status}',[WarehouseController::class,'getAllWareHouseByStatus']);
     Route::post('/save-warehouse',[WarehouseController::class,'saveWarehouse']);
     Route::post('/update-warehouse',[WarehouseController::class,'updateWarehouse']);

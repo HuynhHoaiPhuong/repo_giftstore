@@ -76,6 +76,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/member-management',[MemberController::class,'memberManagement'])->name('member-management');
 
         Route::get('/warehouse-management',[WarehouseController::class,'warehouseManagement'])->name('warehouse-management');
+        Route::post('/update-warehouse',[WarehouseController::class,'updateWarehouse'])->name('update-warehouse');
 
         Route::get('/warehouse-detail-management/{id_warehouse}',[WarehouseDetailController::class,'warehouseDetailManagement'])->name('warehouse-detail-management');
 
@@ -84,12 +85,14 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
 
         Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
+        Route::post('/add-role',[RoleController::class,'addRole'])->name('add-role');
 
         Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
         Route::post('/add-type-category',[TypeCategoryController::class,'addTypeCategory'])->name('add-type-category');
 
         Route::get('/category-management',[CategoryController::class,'categoryManagement'])->name('category-management');
         Route::post('/add-category',[CategoryController::class,'addCategory'])->name('add-category');
+        Route::post('/update-category',[CategoryController::class,'updateCategory'])->name('update-category');
 
         Route::get('/product-management',[ProductController::class,'productManagement'])->name('product-management');
         Route::get('/product-management/add-product-management',[ProductController::class,'addproductManagement'])->name('add-product-management');

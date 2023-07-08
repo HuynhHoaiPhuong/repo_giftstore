@@ -21,6 +21,24 @@
   <!-- Fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+  <!-- Message error css -->
+    <style>
+        .error-popup {
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: popupAnimation 0.5s ease-in-out;
+        }
+        @keyframes popupAnimation {
+                0% { opacity: 0; transform: translateY(-20px); }
+                100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
   <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
   <script src="{{asset('admin/js/raphael-min.js')}}"></script>
   <script src="{{asset('admin/js/morris.js')}}"></script>
@@ -105,7 +123,7 @@
             <div class="product-input-content">
                 <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <label>Sản phẩm đã chọn mua:</label>
+                        <label>Danh sách sản phẩm nhập vào kho:</label>
                     </div>
                     <div class="col-sm-4">
                     </div>
@@ -155,13 +173,20 @@
                         <span data-total="0" id="total-price">0</span>đ
                     </div>
                     <div class="form-group col-sm-12">
-                        <button type="submit" class="btn btn-info">Thanh toán</button>
+                        <button type="submit" class="btn btn-info">Hoàn tất</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+@if(session('error'))
+    <div class="error-popup">
+        <span class="error-message">{{ session('error') }}</span>
+    </div>
+@endif
+
 @endsection
 
 <!-- JavaScript -->
@@ -285,6 +310,17 @@
         $('.item-product'+id_product).remove();
         if(!$('.append-pro-selected').find('tr').hasClass('item-product'))
             $('.append-pro-selected').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
+    });
+  </script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const errorPopup = document.querySelector('.error-popup');
+        if (errorPopup) {
+            setTimeout(() => {
+                    errorPopup.style.display = 'none';
+            }, 5000);
+        }
     });
   </script>
 @endsection

@@ -32,14 +32,7 @@
     <div class="panel-heading">Danh sách quyền</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                 
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRole"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>                 
       </div>
       <div class="col-sm-4">
       </div>
@@ -77,14 +70,16 @@
             <td>{{$i++}}</td>
             <td>{{$role->id_role}}</td>
             <td>{{$role->name}}</td>
-            <td>{{$role->status}}</td>
+            <td>{{ ($role->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>
             <td>
+              @if($role->id_role != 'AD' && $role->id_role != 'MB')
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
+              @endif
             </td>
           </tr>
           @endforeach
@@ -94,7 +89,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 text-center">
@@ -111,9 +106,43 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
+
+
+<!-- /Modal Add Role -->
+<div class="modal fade" id="addRole" tabindex="-1" role="dialog" aria-labelledby="addRole" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm nhóm quyền</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-role')}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputAddIdRole">ID quyền</label>
+                        <input type="text" placeholder="ID quyền" name="id_role"
+                            id="inputAddIdRole" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddNameRole">Tên quyền</label>
+                        <input type="text" placeholder="Tên quyền" name="name"
+                            id="inputAddNameRole" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_role btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->

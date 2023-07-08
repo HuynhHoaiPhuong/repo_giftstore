@@ -80,7 +80,7 @@
             <td>{{ $warehouseDetail->quantity }}</td>
             <td>{{ number_format($warehouseDetail->price_pay, 0, ',','.')}}đ</td>
             <td>{{ number_format($warehouseDetail->quantity*$warehouseDetail->price_pay, 0, ',','.')}}đ</td>
-            <td>{{ $warehouseDetail->status }}</td>
+            <td>{{ ($warehouseDetail->status == 'enabled') ? 'Còn hàng' : 'Hết hàng' }}</td>
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
@@ -98,7 +98,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 text-center">
@@ -115,7 +115,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 @endsection
@@ -156,6 +156,8 @@
         jQuery(this).closest('.small-graph-box').fadeOut(200);
         return false;
       });
+
+      
       
   });
 </script>

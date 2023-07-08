@@ -20,6 +20,13 @@ class CategoryController extends Controller
         }
         return Payload::toJson(CategoryResource::collection($categories), 'Request Successfully', 200);
     }
+    public function getCategoryByIdCategory($id_category)
+    {
+        $categorie = Category::where('id_category', $id_category)->first();
+        if(!$categorie)
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(new CategoryResource($categorie), "Request Successfully", 200);
+    }
     public function getAllCategoryByStatus($status)
     {
         $categories = Category::where('status', $status)->get();

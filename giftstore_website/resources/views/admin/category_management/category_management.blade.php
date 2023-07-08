@@ -77,7 +77,7 @@
             <td>{{$category->typeCategory->name}}</td>
             <!-- <td>{{$category->slug}}</td> -->
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a data-id="{{ $category->id_category }}" data-toggle="modal" data-target="#updateCategory" href="#" class="updateCategory active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
@@ -92,7 +92,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
@@ -105,7 +105,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 
@@ -151,6 +151,50 @@
     </div>
 </div>
 
+<!-- /Modal Update Category -->
+<div class="modal fade" id="updateCategory" tabindex="-1" role="dialog" aria-labelledby="updateCategory" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Chỉnh sửa danh mục</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('update-category')}}" id="updateCategoryForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_category" id="inputUpdateIdCategory">
+                    <div class="form-group">
+                      <label for="inputUpdatePhotoCategory">Hình ảnh</label>
+                      <input type="file" placeholder="Thêm tập tin" name="photo" id="inputUpdatePhotoCategory" class="form-control">
+                    </div>
+                    <input type="hidden" name="photoCurrent" id="inputUpdatePhotoCurrentCategory">
+                    <div class="form-group">
+                      <label for="addIdTypeCategory">Loại danh mục</label>
+                      <select id="addIdTypeCategory" name="id_type_category" class="form-control">
+                        @foreach($typeCategories as $key => $typeCat)
+                          <option class="typeCat-{{$typeCat->id_type_category}}" value="{{$typeCat->id_type_category}}">{{$typeCat->name}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUpdateSlugCategory">Đường dẫn</label>
+                        <input type="text" placeholder="Đường dẫn" name="slug" id="inputUpdateSlugCategory" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUpdateNameCategory">Tên</label>
+                        <input type="text" placeholder="Tên loại sản phẩm" name="name" id="inputUpdateNameCategory" class="form-control" require>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_update_category btn btn-primary btn-block mr-10" type="submit" {{($typeCategories != []) ? '' : 'disabled' }}>Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 <!-- JavaScript -->
@@ -160,8 +204,7 @@
   <script src="{{asset('admin/js/scripts.js')}}"></script>
   <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-  <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
       $(document).ready(function() {
@@ -176,80 +219,36 @@
             return false;
         });
         
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
           
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
+        // Update Category
+        $('.updateCategory').on('click', function() {
+          $id_category = $(this).attr('data-id');
+          $.ajax({
+              type: 'GET',
+              url: '/api/categorys/get-category-by-id/' + $id_category,
+              success: function(data) {
+                $category = data.data;
+
+                $('#updateCategory #inputUpdateIdCategory').val($category.id_category);
+
+                $('#updateCategory #inputUpdateNameCategory').val($category.name);
+
+                $('#updateCategory #inputUpdateSlugCategory').val($category.slug);
+
+                $('#updateCategory #inputUpdatePhotoCurrentCategory').val($category.photo);
+
+                $('#updateCategory #inputUpdateTypeCategory').val($category.typeCategory.id_type_category).change();
+
+                $('#updateCategory #inputUpdateDescCategory').val($category.description);
+
+            },
+            error: function() {
+
+            }
           });
-          
-        
-      });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
         });
-    </script>
-    <!-- //calendar -->
+      });
+  </script>
 @endsection
 
 

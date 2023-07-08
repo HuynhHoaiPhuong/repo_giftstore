@@ -16,4 +16,18 @@ class WarehouseController extends Controller
         $warehouses = $data_warehouse['data']->collection;
         return view('admin/warehouse_management/warehouse',['warehouses'=>$warehouses]);
     }
+
+    public function updateWarehouse(Request $req){
+        if(!$req->id_warehouse){
+            return back()->withErrors('error','Chỉnh sửa thất bại');
+        }
+        $warehouseController = new ServicesWarehouseController();
+
+        $result = $warehouseController->updateWarehouse($req);
+
+        if($result==null){
+            return back()->withErrors('error','Chỉnh sửa thất bại');
+        }
+        return redirect(route('warehouse-management'));
+    }
 }

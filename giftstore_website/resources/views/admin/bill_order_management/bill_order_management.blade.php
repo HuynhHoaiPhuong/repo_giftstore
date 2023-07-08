@@ -55,7 +55,7 @@
             <th>Kho</th>
             <th>Tổng số lượng</th>
             <th>Tổng tiền</th>
-            <th>Ngày nhập hàng</th>
+            <th>Ngày đặt hàng</th>
             <th>Ngày thanh toán</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
@@ -72,10 +72,10 @@
             <td>{{$billOrder->user->fullname}}</td>
             <td>{{$billOrder->warehouse->name}}</td>
             <td>{{$billOrder->total_quantity}}</td>
-            <td>{{$billOrder->total_price}}</td>
+            <td>{{number_format($billOrder->total_price, 0, ',','.')}}đ</td>
             <td>{{$billOrder->date_order}}</td>
             <td>{{$billOrder->date_of_payment}}</td>
-            <td>{{$billOrder->status}}</td>
+            <td>{{($billOrder->status == 'enabled') ? 'Đã nhận hàng' : 'Đã hủy' }}</td>
             <td>
               <a href="{{route('bill-order-detail-management',['id_bill_order'=>$billOrder->id_bill_order])}}" class="active styling-edit" title="Xem chi tiết kho">
                 <i class="fa fa-eye text-primary text-active"></i>
@@ -89,9 +89,8 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
@@ -106,7 +105,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 @endsection

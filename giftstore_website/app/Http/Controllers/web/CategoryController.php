@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function addCategory(Request $req){
         $categoryController = new ServicesCategoryController();
         if($req->name==null || $req->id_type_category == null){
-            return back()->withErrors('error','Tạo thất bại');
+            return back()->with('error','Tạo thất bại');
         }
         $newName = 'noimage.png';
         // var_dump($req->file('photo'));die('XXX');
@@ -43,7 +43,36 @@ class CategoryController extends Controller
         $req->photo = $newName;
         $result = $categoryController->saveCategory($req);
         if($result==null){
-            return back()->withErrors('error','Tạo thất bại');
+            return back()->with('error','Tạo thất bại');
+        }
+        return redirect(route('category-management'));
+    }
+
+    public function updateCategory(Request $req){
+        $categoryController = new ServicesCategoryController();
+        $newName = $req->photoCurrent;
+        // var_dump((file_exists('upload/product/'.$req->photoCurrent)) ? 'true' : 'false');die('XXX');
+        if($req->hasFile('photo')){
+            if($req->photoCurrent != 'noimage.png'){
+                if(file_exists('upload/category/'.$req->photoCurrent)){
+                    unlink('upload/category/'.$req->photoCurrent);
+                }else{
+                    // dd('File does not exists.');
+                    return back()->with('error','Xóa ảnh thất bại');
+                }
+            }
+            $photo = $req->file('photo');
+            $name = $photo->getClientOriginalName();
+            $originalName = current(explode('.',$name));
+            $newName = $originalName . rand(0,99) . '.' . $photo->getClientOriginalExtension(); 
+            $photo->move('upload/category', $newName);
+        }
+        $req->photo = $newName;
+
+        $result = $categoryController->updateCategory($req);
+
+        if($result==null){
+            return back()->with('error','Chỉnh sửa thất bại');
         }
         return redirect(route('category-management'));
     }

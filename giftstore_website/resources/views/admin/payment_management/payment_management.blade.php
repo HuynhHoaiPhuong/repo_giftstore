@@ -96,7 +96,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
@@ -112,7 +112,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 
@@ -265,37 +265,5 @@
       });
   });
 </script>
-<!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
-        });
-    </script>
-    <!-- //calendar -->
 @endsection
 

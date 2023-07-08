@@ -19,6 +19,14 @@ class WarehouseController extends Controller
         return Payload::toJson(WarehouseResource::collection($warehouses), "OK", 200);
     }
 
+    public function getWarehouseByIdWarehouse($id_warehouse)
+    {
+        $warehouse = Warehouse::where('id_warehouse', $id_warehouse)->first();
+        if(!$warehouse)
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(new WarehouseResource($warehouse), "OK", 200);
+    }
+
     public function getAllWarehouseByStatus($status)
     {
         $warehouses = Warehouse::where('status', $status)->get();

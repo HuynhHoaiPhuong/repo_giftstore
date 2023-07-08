@@ -34,7 +34,7 @@
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addWarehouse"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm kho hàng</strong></a>                                 
+        {{--<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addWarehouse"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm kho hàng</strong></a>--}}              
       </div>
       <div class="col-sm-4">
       </div>
@@ -61,7 +61,6 @@
             <th>Địa chỉ</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -77,14 +76,13 @@
               <a href="{{route('warehouse-detail-management',['id_warehouse'=>$warehouse->id_warehouse])}}" class="active styling-edit" title="Xem chi tiết kho">
                 <i class="fa fa-eye text-primary text-active"></i>
               </a>
-              <a href="" class="active styling-edit" title="Chỉnh sửa">
+              <a data-id="{{ $warehouse->id_warehouse }}" data-toggle="modal" data-target="#updateWarehouse" href="#" class="updateWarehouse active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" title="Xóa">
+              {{--<a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" title="Xóa">
                 <i class="fa fa-times text-danger text"></i>
-              </a>
+              </a>--}}
             </td>
-            <td></td>
           </tr>
           @endforeach
           @else
@@ -94,7 +92,7 @@
 
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 text-center">
@@ -111,9 +109,44 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
+
+
+<!-- /Modal update Warehouse -->
+<div class="modal fade" id="updateWarehouse" tabindex="-1" role="dialog" aria-labelledby="updateWarehouse" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Chỉnh sửa thông tin</strong></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('update-warehouse')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_warehouse" id="inputUpdateIdWarehouse">
+                    <div class="form-group">
+                        <label for="inputUpdateNameWarehouse">Tên kho</label>
+                        <input type="text" placeholder="Tên kho" name="name"
+                            id="inputUpdateNameWarehouse" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUpdateAddressWarehouse">Địa chỉ kho</label>
+                        <input type="text" placeholder="Địa chỉ kho" name="address"
+                            id="inputUpdateAddressWarehouse" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_update_warehouse btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 
@@ -124,7 +157,7 @@
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->  
 <script>
     $(document).ready(function() {
@@ -139,41 +172,28 @@
           return false;
        });
 
-        
-       
-    });
-    </script>
-<!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
+        // Update Warehouse
+      $('.updateWarehouse').on('click', function() {
+        $id_warehouse = $(this).attr('data-id');
+        $.ajax({
+            type: 'GET',
+            url: '/api/warehouses/get-warehouse-by-id/' + $id_warehouse,
+            success: function(data) {
+                $warehouse = data.data;
 
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
+                $('#updateWarehouse #inputUpdateIdWarehouse').val($warehouse.id_warehouse);
 
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
+                $('#updateWarehouse #inputUpdateNameWarehouse').val($warehouse.name);
 
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
+                $('#updateWarehouse #inputUpdateAddressWarehouse').val($warehouse.address);
 
+            },
+            error: function() {
+
+            }
         });
-    </script>
-    <!-- //calendar -->
+      });
+    });
+</script>
 @endsection
 

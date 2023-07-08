@@ -105,7 +105,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{--<footer class="panel-footer">
       <div class="row">
         
         <div class="col-sm-5 text-center">
@@ -122,7 +122,7 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer>--}}
   </div>
 </div>
 @endsection
@@ -130,61 +130,29 @@
 
 <!-- JavaScript -->
 @section('java-script')
-<script src="{{asset('admin/js/bootstrap.js')}}"></script>
-<script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-<script src="{{asset('admin/js/scripts.js')}}"></script>
-<script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
-<script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
-<!-- morris JavaScript -->  
-<script>
-    $(document).ready(function() {
-        //BOX BUTTON SHOW AND CLOSE
-       jQuery('.small-graph-box').hover(function() {
-          jQuery(this).find('.box-button').fadeIn('fast');
-       }, function() {
-          jQuery(this).find('.box-button').fadeOut('fast');
-       });
-       jQuery('.small-graph-box .box-close').click(function() {
-          jQuery(this).closest('.small-graph-box').fadeOut(200);
-          return false;
-       });
-
-        
-       
-    });
-    </script>
-<!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
-
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
-
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
-
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
-
+  <script src="{{asset('admin/js/bootstrap.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+  <script src="{{asset('admin/js/scripts.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
+  <!-- morris JavaScript -->  
+  <script>
+      $(document).ready(function() {
+          //BOX BUTTON SHOW AND CLOSE
+        jQuery('.small-graph-box').hover(function() {
+            jQuery(this).find('.box-button').fadeIn('fast');
+        }, function() {
+            jQuery(this).find('.box-button').fadeOut('fast');
         });
-    </script>
-    <!-- //calendar -->
+        jQuery('.small-graph-box .box-close').click(function() {
+            jQuery(this).closest('.small-graph-box').fadeOut(200);
+            return false;
+        });
+
+          
+        
+      });
+  </script>
 @endsection
 
