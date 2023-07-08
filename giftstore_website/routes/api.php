@@ -27,6 +27,7 @@ use App\Http\Controllers\services\UserController;
 use App\Http\Controllers\services\MemberController;
 use App\Http\Controllers\services\PhotoController;
 use App\Http\Controllers\services\PaymentController;
+use App\Http\Controllers\services\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -272,3 +273,8 @@ Route::group(['prefix'=>'/activities-history'],function()
     
     Route::post('/remove-activity-history',[activityHistoryController::class,'détroy']);
 });
+
+
+ //Google Sign In
+ Route::post('/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl'])->name('google');
+ Route::get('/callback', [GoogleController::class, 'loginCallback']);

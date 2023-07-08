@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\services\GoogleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -135,3 +136,4 @@ Route::group(['prefix' => 'cart'],function(){
 Route::group(['prefix' => 'bill'],function(){
     Route::post('/pay-bill', [userBillController::class,'payBill'])->name('pay-bill');
 });
+

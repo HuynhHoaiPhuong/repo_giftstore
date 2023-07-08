@@ -67,4 +67,5 @@ class LoginClientController extends Controller
         $request->session()->flush();
         return redirect()->route('log-in');
     }
+
 }
