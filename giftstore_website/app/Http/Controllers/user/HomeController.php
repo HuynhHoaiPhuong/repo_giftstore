@@ -14,7 +14,7 @@ class HomeController extends Controller
         $data_warehouseDetail = $warehouseDetailController->getAllWarehouseDetailByStatus('enabled');
         $warehouseDetails = [];
         if($data_warehouseDetail['data']!=null)
-            $warehouseDetails = $data_warehouseDetail['data']->collection;
+            $warehouseDetails = $data_warehouseDetail['data']->collection->take(12);;
 
         return view('user/templates/index', [
             'warehouseDetails' => $warehouseDetails, 

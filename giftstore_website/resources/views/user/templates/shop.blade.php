@@ -277,25 +277,24 @@
                             </div>
                         </div>
                     </div>
-                    @foreach($products as $key => $product)
+                    @foreach($warehouseDetails as $key => $warehouseDetail)
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                @if($product->photo != 'noimage.png' && $product->photo != '')
-                                    <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $product->photo }}" alt="{{$product->name}}">
+                                @if($warehouseDetail->product->photo != 'noimage.png' && $warehouseDetail->product->photo != '')
+                                    <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $warehouseDetail->product->photo }}" alt="{{$warehouseDetail->product->name}}">
                                 @else
                                     <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
                                 @endif                            </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{$product->name}}</h6>
+                                <h6 class="text-truncate mb-3">{{$warehouseDetail->product->name}}</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6>{{ number_format($product->price, 0, ',', '.') }} VNĐ</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    <h6>{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="product/{{$product->id_product}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                                <a class="btn btn-sm text-dark p-0 buy-now-btn" href="javascript:" data-product-id="{{$product->id_product}}">Mua ngay</a>
+                                <a href="product/{{$warehouseDetail->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
+                                <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>                                
                             </div>
                         </div>
                     </div>
