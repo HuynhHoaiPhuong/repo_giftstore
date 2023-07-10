@@ -37,8 +37,8 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>
+        <button class="btn btn-sm btn-success">Áp dụng</button>  
+        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addDiscount">Thêm</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -46,7 +46,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -61,8 +61,8 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID Xếp hạng</th>
-            <th>ID Thể loại</th>
+            <th>Xếp hạng</th>
+            <th>Thể loại</th>
             <th>Phần trăm giảm</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
@@ -78,9 +78,9 @@
             <td>{{$discount->rank->rank_name}}</td>
             <td>{{$discount->category->name}}</td>
             <td>{{$discount->percent_price}}%</td>
-            <td>{{$discount->status}}</td>
+            <td>{{ ($discount->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>            
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="" class="active styling-edit" ui-toggle-class="" data-toggle="modal" data-target="#editDiscount">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
@@ -95,7 +95,7 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{-- <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
@@ -108,7 +108,95 @@
           </ul>
         </div>
       </div>
-    </footer>
+    </footer> --}}
+  </div>
+</div>
+
+<!-- /Modal Edit  Discount -->
+<div class="modal fade" id="editDiscount" tabindex="-1" role="dialog" aria-labelledby="editDiscount" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Sửa giảm giá</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+              @csrf
+              <div class="form-group">
+                  <label for="inputAddIdRank">Tên hạng</label>
+                  {{-- <input type="text" placeholder="" name="" id="" class="form-control text-sm"> --}}
+                  <select name="" id="" class="form-control text-sm">
+                    <option value="">Đồng</option>
+                    <option value="">Bạc</option>
+                    <option value="">Vàng</option>
+                    <option value="">Bạch kim</option>
+                    <option value="">Kim cương</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="inputAddIdRank">Loại sản phẩm</label>
+                  {{-- <input type="text" placeholder="" name="" id="" class="form-control text-sm"> --}}
+                  <select name="" id="" class="form-control text-sm">
+                    <option value="">Gấu bông to</option>
+                    <option value="">Cầu tuyết</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="inputAddIdRank">Phần trăm giảm</label>
+                  <input type="text" placeholder="" name="" id="" class="form-control text-sm">
+              </div>
+              <div class="form-group">
+                  <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+              </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="addDiscount" tabindex="-1" role="dialog" aria-labelledby="addDiscount" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm giảm giá cho thể loại</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+              @csrf
+              <div class="form-group">
+                  <label for="inputAddIdRank">Tên hạng</label>
+                  {{-- <input type="text" placeholder="" name="" id="" class="form-control text-sm"> --}}
+                  <select name="" id="" class="form-control text-sm">
+                    <option value="">Đồng</option>
+                    <option value="">Bạc</option>
+                    <option value="">Vàng</option>
+                    <option value="">Bạch kim</option>
+                    <option value="">Kim cương</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="inputAddIdRank">Loại sản phẩm</label>
+                  {{-- <input type="text" placeholder="" name="" id="" class="form-control text-sm"> --}}
+                  <select name="" id="" class="form-control text-sm">
+                    <option value="">Gấu bông to</option>
+                    <option value="">Cầu tuyết</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="inputAddIdRank">Phần trăm giảm</label>
+                  <input type="text" placeholder="" name="" id="" class="form-control text-sm">
+              </div>
+              <div class="form-group">
+                  <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+              </div>
+          </form>
+        </div>
+      </div>
   </div>
 </div>
 @endsection

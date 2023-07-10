@@ -75,7 +75,7 @@
                         <div class="input-group">
                         <input type="text" class="input-sm form-control" placeholder="Search">
                         <span class="input-group-btn">
-                            <button class="btn btn-sm btn-default" type="button">Go!</button>
+                            <button class="btn btn-sm btn-default" type="button">Tìm</button>
                         </span>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                             <th style="width:20px;">STT</th>
                             <th>Hình ảnh</th>
                             <th>Tên</th>
-                            <th>Nhà sản xuất</th>
+                            <th>Nhà cung cấp</th>
                             <th>Danh mục</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
@@ -137,7 +137,7 @@
                         <tr>
                             <th>Hình ảnh</th>
                             <th>Tên</th>
-                            <th>Nhà sản xuất</th>
+                            <th>Nhà cung cấp</th>
                             <th>Danh mục</th>
                             <th>Giá</th>
                             <th>Số lượng</th>

@@ -41,7 +41,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -79,7 +79,7 @@
             <td>{{$product->name}}</td>
             <td>{{$product->provider->name}}</td>
             <td>{{$product->category->name}}</td>
-            <td>{{$product->price}}</td>
+            <td>{{ number_format($product->price, 0, ',', '.') }} đ</td>
             <td>
               <a data-id="{{ $product->id_product }}" data-toggle="modal" data-target="#updateProduct" href="#" class="updateProduct active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>

@@ -118,8 +118,8 @@
                             <img class="img-fluid" src="user/img/slideshow/chuseok_korean_thanksgiving_day_theme_pt_templates_423137.jpg" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
+                                    {{-- <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4> --}}
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Quà tặng sinh nhật</h3>
                                     <a href="" class="btn btn-light py-2 px-3">Mua ngay</a>
                                 </div>
                             </div>
@@ -128,8 +128,8 @@
                             <img class="img-fluid" src="user/img/slideshow/korea_new_year_s_day_gift_powerpoint_design_ideas_312209.jpg" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
+                                    {{-- <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4> --}}
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Lọ thủy tinh trang trí</h3>
                                     <a href="" class="btn btn-light py-2 px-3">Mua ngay</a>
                                 </div>
                             </div>
@@ -204,22 +204,22 @@
     <div class="container-fluid offer pt-5">
         <div class="row px-xl-5">
             <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                    <img src="user/img/offer-1.png" alt="">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5" style="height: 200px;">
+                    <img src="user/img/banner/gau-dau.png" height="200" alt="">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        {{-- <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5> --}}
+                        <h1 class="mb-4 font-weight-semi-bold">Thú nhồi bông</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
-                    <img src="user/img/offer-2.png" alt="">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5" style="height: 200px;">
+                    <img src="user/img/banner/globle-snow.png" height="200" alt="">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        {{-- <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5> --}}
+                        <h1 class="mb-4 font-weight-semi-bold">Quả cầu tuyết</h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Mua ngay</a>
                     </div>
                 </div>
             </div>

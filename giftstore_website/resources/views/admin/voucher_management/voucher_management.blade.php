@@ -3,35 +3,33 @@
 @section('title','Quản lý ưu đãi')
 
 @section('header')
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- bootstrap-css -->
+  <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
 
-<!-- Custom CSS -->
-<link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
+  <!-- Custom CSS -->
+  <link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
+  <link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
 
-<!-- Font-Awesome-->
-<link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
-<link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
+  <!-- Font-Awesome-->
+  <link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
+  <link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
 
-<link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
-<link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
+  <link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
 
-<!-- Fonts -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-<script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
-<script src="{{asset('admin/js/raphael-min.js')}}"></script>
-<script src="{{asset('admin/js/morris.js')}}"></script>
+  <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
+  <script src="{{asset('admin/js/raphael-min.js')}}"></script>
+  <script src="{{asset('admin/js/morris.js')}}"></script>
 @endsection
 
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Danh sách ưu đãi
-    </div>
+    <div class="panel-heading">Danh sách ưu đãi</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addVoucher"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>               
@@ -43,7 +41,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -59,7 +57,7 @@
             </th>
             <th>STT</th>
             <th>Tiêu đề</th>
-            <th>Code</th>
+            <th>Mã</th>
             <th>Phần trăm giảm</th>
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>

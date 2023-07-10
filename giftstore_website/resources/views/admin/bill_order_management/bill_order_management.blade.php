@@ -39,7 +39,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -49,7 +49,7 @@
         <thead>
           <tr>
             <th>STT</th>
-            <th>NSX</th>
+            <th>Nhà cung cấp</th>
             <th>PTTT</th>
             <th>Người mua</th>
             <th>Kho</th>
@@ -72,7 +72,7 @@
             <td>{{$billOrder->user->fullname}}</td>
             <td>{{$billOrder->warehouse->name}}</td>
             <td>{{$billOrder->total_quantity}}</td>
-            <td>{{number_format($billOrder->total_price, 0, ',','.')}}đ</td>
+            <td>{{number_format($billOrder->total_price, 0, ',','.')}} đ</td>
             <td>{{$billOrder->date_order}}</td>
             <td>{{$billOrder->date_of_payment}}</td>
             <td>{{($billOrder->status == 'enabled') ? 'Đã nhận hàng' : 'Đã hủy' }}</td>

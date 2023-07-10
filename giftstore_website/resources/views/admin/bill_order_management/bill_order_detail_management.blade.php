@@ -40,7 +40,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -65,9 +65,9 @@
             <td>{{$i++}}</td>
             <td>{{$billOrderDetail->id_bill_order}}</td>
             <td>{{$billOrderDetail->product->name}}</td>
-            <td>{{number_format($billOrderDetail->purchase_price, 0, ',','.')}}đ</td>
+            <td>{{number_format($billOrderDetail->purchase_price, 0, ',','.')}} đ</td>
             <td>{{$billOrderDetail->quantity}}</td>
-            <td>{{number_format($billOrderDetail->total_price, 0, ',','.')}}đ</td>
+            <td>{{number_format($billOrderDetail->total_price, 0, ',','.')}} đ</td>
           </tr>
           @endforeach
           @else

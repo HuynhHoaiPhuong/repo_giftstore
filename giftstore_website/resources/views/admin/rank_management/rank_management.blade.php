@@ -37,8 +37,8 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>                
+        <button class="btn btn-sm btn-success">Áp dụng</button>  
+        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRank"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</a>
       </div>
       <div class="col-sm-4">
       </div>
@@ -46,7 +46,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -57,15 +57,15 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
             <th>STT</th>
             <th>Tên hạng</th>
             <th>Điểm</th>
             <th>Trạng thái</th>
-            <th>Ngày Created</th>
-            <th>Ngày Updated</th>
+            <th>Ngày tạo</th>
+            <th>Ngày cập nhật</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -78,11 +78,11 @@
             <td>{{$i++}}</td>
             <td>{{$rank->rank_name}}</td>
             <td>{{$rank->score_level}}</td>
-            <td>{{$rank->status}}</td>
+            <td>{{ ($rank->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>            
             <td>{{$rank->created_at}}</td>
             <td>{{$rank->updated_at}}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="" class="active styling-edit" ui-toggle-class="" data-toggle="modal" data-target="#editRank">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
@@ -114,6 +114,66 @@
         </div>
       </div>
     </footer>--}}
+  </div>
+</div>
+
+<!-- /Modal Add Rank -->
+<div class="modal fade" id="addRank" tabindex="-1" role="dialog" aria-labelledby="addRank" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm hạng</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+              @csrf
+              <div class="form-group">
+                  <label for="inputAddIdRank">Tên hạng</label>
+                  <input type="text" placeholder="Tên hạng" name="" id="" class="form-control text-sm">
+              </div>
+              <div class="form-group">
+                  <label for="inputAddIdRank">Điểm</label>
+                  <input type="text" placeholder="Điểm" name="" id="" class="form-control text-sm">
+              </div>
+              <div class="form-group">
+                  <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+              </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- /Modal Edit Rank -->
+<div class="modal fade" id="editRank" tabindex="-1" role="dialog" aria-labelledby="editRank" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+            <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Sửa xếp hạng</strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+              @csrf
+              <div class="form-group">
+                  <label for="">Tên hạng</label>
+                  <input type="text" name="" id="" class="form-control text-sm" placeholder="">
+              </div>
+              <div class="form-group">
+                  <label for="">Điểm</label>
+                  <input type="text" name="" id="" class="form-control" placeholder="">
+              </div>
+              <div class="form-group">
+                  <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+              </div>
+          </form>
+        </div>
+      </div>
   </div>
 </div>
 @endsection

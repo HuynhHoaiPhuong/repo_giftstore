@@ -32,7 +32,7 @@
     <div class="panel-heading">Danh sách quyền</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRole"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>                 
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRole"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm mới</strong></a>                 
       </div>
       <div class="col-sm-4">
       </div>
@@ -40,7 +40,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -51,11 +51,10 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+                <input type="checkbox">
               </label>
             </th>
             <th>STT</th>
-            <th>ID</th>
             <th>Tên</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
@@ -68,12 +67,11 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{$i++}}</td>
-            <td>{{$role->id_role}}</td>
             <td>{{$role->name}}</td>
             <td>{{ ($role->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>
             <td>
               @if($role->id_role != 'AD' && $role->id_role != 'MB')
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="" class="active styling-edit" ui-toggle-class=""  data-toggle="modal" data-target="#editRole">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
@@ -91,7 +89,6 @@
     </div>
     {{--<footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
@@ -113,10 +110,10 @@
 
 <!-- /Modal Add Role -->
 <div class="modal fade" id="addRole" tabindex="-1" role="dialog" aria-labelledby="addRole" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
-                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel"><strong>Thêm nhóm quyền</strong></h5>
+                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm nhóm quyền</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -126,13 +123,37 @@
                     @csrf
                     <div class="form-group">
                         <label for="inputAddIdRole">ID quyền</label>
-                        <input type="text" placeholder="ID quyền" name="id_role"
-                            id="inputAddIdRole" class="form-control text-sm">
+                        <input type="text" placeholder="ID quyền" name="id_role" id="inputAddIdRole" class="form-control text-sm">
                     </div>
                     <div class="form-group">
                         <label for="inputAddNameRole">Tên quyền</label>
-                        <input type="text" placeholder="Tên quyền" name="name"
-                            id="inputAddNameRole" class="form-control text-sm">
+                        <input type="text" placeholder="Tên quyền" name="name" id="inputAddNameRole" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_role btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Edit Role -->
+<div class="modal fade" id="editRole" tabindex="-1" role="dialog" aria-labelledby="editRole" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm nhóm quyền</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-role')}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputAddNameRole">Tên quyền</label>
+                        <input type="text" placeholder="User" name="name" id="inputEditNameRole" class="form-control text-sm">
                     </div>
                     <div class="form-group">
                         <button class="btn_submit_add_role btn btn-primary btn-block mr-10" type="submit">Lưu</button>

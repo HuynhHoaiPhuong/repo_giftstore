@@ -49,12 +49,12 @@
 		<form action="{{route('client-authenticate')}}" method="POST">
 			@csrf
 			<h1>Đăng nhập</h1>
-			<div class="social-container">
+			{{-- <div class="social-container">
 				<div>
 					<label>Hoặc sử dụng tài khoản Google</label>
 				</div>
 				<a href="{{route('google')}}" class="social btn-google" style="background-color: #ff2b2b; border-radius: 100px; width: 60px; height: 40px; color:#fff"><i class="fab fa-google-plus-g" style="font-size: 30px"></i></a>
-			</div>
+			</div> --}}
 			<input type="username" name="username" placeholder="Tên đăng nhập" required="" />
 			<input type="password" name="password" placeholder="Mật khẩu" required="" />
 			<a href="#">Quên tài khoản?</a>

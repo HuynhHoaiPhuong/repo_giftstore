@@ -44,7 +44,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -82,7 +82,7 @@
                 <td>{{ $billDetail->discount->percent_price }}</td>
                 @endif
                 <td>{{ $billDetail->quantity}}</td>
-                <td>{{ $billDetail->total_price }}</td>
+                <td>{{ number_format($billDetail->total_price, 0, ',', '.') }} đ</td>
                 <td>{{ $billDetail->rate_status }}</td>
             </tr>
             @endforeach

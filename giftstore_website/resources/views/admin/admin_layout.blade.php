@@ -11,7 +11,7 @@
         <header class="header fixed-top clearfix">
         <!--logo start-->
         <div class="brand">
-            <a href="" class="logo"> MANAGER</a>
+            <a href="" class="logo"> Gift Store</a>
             <div class="sidebar-toggle-box"><div class="fa fa-bars"></div></div>
         </div>
         <!--logo end-->
@@ -19,7 +19,7 @@
             <!--  notification start -->
             <ul class="nav top-menu">
                 <!-- settings start -->
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="fa fa-tasks"></i>
                         <span class="badge bg-success">8</span>
@@ -85,10 +85,10 @@
                             <a href="#">See All Tasks</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <!-- settings end -->
                 <!-- inbox dropdown start-->
-                <li id="header_inbox_bar" class="dropdown">
+                {{-- <li id="header_inbox_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="fa fa-envelope-o"></i>
                         <span class="badge bg-important">4</span>
@@ -100,56 +100,56 @@
                         <li>
                             <a href="#">
                                 <span class="photo"><img alt="avatar" src="{{asset('admin/images/3.png')}}"></span>
-                                        <span class="subject">
-                                        <span class="from">Jonathan Smith</span>
-                                        <span class="time">Just now</span>
-                                        </span>
-                                        <span class="message">
-                                            Hello, this is an example msg.
-                                        </span>
+                                <span class="subject">
+                                <span class="from">Jonathan Smith</span>
+                                <span class="time">Just now</span>
+                                </span>
+                                <span class="message">
+                                    Hello, this is an example msg.
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="photo"><img alt="avatar" src="{{asset('admin/images/1.png')}}"></span>
-                                        <span class="subject">
-                                        <span class="from">Jane Doe</span>
-                                        <span class="time">2 min ago</span>
-                                        </span>
-                                        <span class="message">
-                                            Nice admin template
-                                        </span>
+                                <span class="subject">
+                                <span class="from">Jane Doe</span>
+                                <span class="time">2 min ago</span>
+                                </span>
+                                <span class="message">
+                                    Nice admin template
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="photo"><img alt="avatar" src="{{asset('admin/images/3.png')}}"></span>
-                                        <span class="subject">
-                                        <span class="from">Tasi sam</span>
-                                        <span class="time">2 days ago</span>
-                                        </span>
-                                        <span class="message">
-                                            This is an example msg.
-                                        </span>
+                                <span class="subject">
+                                <span class="from">Tasi sam</span>
+                                <span class="time">2 days ago</span>
+                                </span>
+                                <span class="message">
+                                    This is an example msg.
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="photo"><img alt="avatar" src="{{asset('admin/images/2.png')}}"></span>
-                                        <span class="subject">
-                                        <span class="from">Mr. Perfect</span>
-                                        <span class="time">2 hour ago</span>
-                                        </span>
-                                        <span class="message">
-                                            Hi there, its a test
-                                        </span>
+                                <span class="subject">
+                                <span class="from">Mr. Perfect</span>
+                                <span class="time">2 hour ago</span>
+                                </span>
+                                <span class="message">
+                                    Hi there, its a test
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">See all messages</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <!-- inbox dropdown end -->
                 <!-- notification dropdown start-->
                 <li id="header_notification_bar" class="dropdown">
@@ -159,22 +159,20 @@
                         <span class="badge bg-warning">3</span>
                     </a>
                     <ul class="dropdown-menu extended notification">
-                        <li>
-                            <p>Notifications</p>
-                        </li>
+                        <li><p>Thông báo</p></li>
                         <li>
                             <div class="alert alert-info clearfix">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                                 <div class="noti-info">
-                                    <a href="#"> Kí đầu giờ chứ xem =)).</a>
+                                    <a href="#"> Bạn có đơn hàng mới</a>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="alert alert-danger clearfix">
+                            <div class="alert alert-danger clearfix" style="display: flex;">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                                <div class="noti-info">
-                                    <a href="#"> 1 phút trước.</a>
+                                <div class="noti-info" >
+                                    <a href="#">Đơn hàng #B230708040115768 bị hủy </a>
                                 </div>
                             </div>
                         </li>
@@ -182,7 +180,7 @@
                             <div class="alert alert-success clearfix">
                                 <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                                 <div class="noti-info">
-                                    <a href="#"> Đăng ký nhận tin.</a>
+                                    <a href="#"> Bạn có tin nhắn từ liên hệ mới</a>
                                 </div>
                             </div>
                         </li>
@@ -210,8 +208,8 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
-                        <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                        <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                        <li><a href="#"><i class=" fa fa-suitcase"></i>Cá nhân</a></li>
+                        <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
                     </ul>
                 </li>
                 <!-- user login dropdown end -->
@@ -228,23 +226,23 @@
                 <div class="leftside-navigation">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="{{url('/')}}">
+                            <a class="active" href="{{route('index')}}">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Tổng quan</span>
                             </a>
                         </li>
-                        <li class="sub-menu">
+                        {{-- <li class="sub-menu">
                             <a href="{{route('topic-management')}}">
                                 <i class="fa fa-pencil-square-o"></i>
                                 <span>Quản lý chủ đề</span>
                             </a>
-                        </li>
-                        <li class="sub-menu">
+                        </li> --}}
+                        {{-- <li class="sub-menu">
                             <a href="{{route('photo-management')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>Quản lý hình ảnh</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-users"></i>
@@ -252,7 +250,7 @@
                             </a>
                             <ul class="sub">
                                 <li><a href="{{route('role-management')}}">Nhóm quyền</a></li>
-                                <li><a href="#">Tài khoản admin</a></li>
+                                {{-- <li><a href="#">Tài khoản admin</a></li> --}}
                                 <li><a href="{{route('member-management')}}">Tài khoản thành viên</a></li>
                             </ul>
                         </li>
@@ -333,7 +331,7 @@
             <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
-                    <p>© 2023 Copyright Gift Store. All rights reserved | Designed by B17P19</p>
+                    <p>© 2023 Copyright Gift Store. Designed by B17P19</p>
                 </div>
             </div>
             <!-- / footer -->

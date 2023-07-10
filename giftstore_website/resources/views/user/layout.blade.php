@@ -97,28 +97,36 @@
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
+                    <style>
+                        div.row a {
+                            text-decoration: none;
+                        }
+                        div.row .col-md-4 .mb-5 div a:hover {
+                            color: #ff4d29;
+                        }
+                    </style>
                     <div class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Về chúng tôi</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-dark mb-2" href="{{route('/')}}"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
                             <a class="text-dark mb-2" href="{{route('shop')}}"><i class="fa fa-angle-right mr-2"></i>Cửa hàng của chúng tôi</a>
                             <a class="text-dark mb-2" href="{{route('cart')}}"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
-                            <a class="text-dark mb-2" href="{{route('checkout')}}"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a>
+                            {{-- <a class="text-dark mb-2" href="{{route('checkout')}}"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a> --}}
                             <a class="text-dark" href="{{route('contact')}}"><i class="fa fa-angle-right mr-2"></i>Liên hệ</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Về chúng tôi</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Lý do chọn chúng tôi</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="{{route('/')}}"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
-                            <a class="text-dark mb-2" href="{{route('shop')}}"><i class="fa fa-angle-right mr-2"></i>Cửa hàng của chúng tôi</a>
-                            <a class="text-dark mb-2" href="{{route('cart')}}"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
-                            <a class="text-dark mb-2" href="{{route('checkout')}}"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a>
-                            <a class="text-dark" href="{{route('contact')}}"><i class="fa fa-angle-right mr-2"></i>Liên hệ</a>
+                            {{-- <a class="text-dark mb-2" href="{{route('/')}}"></a> --}}
+                            <a class="text-dark mb-2">Sản phẩm chất lượng</a>
+                            <a class="text-dark mb-2">Miễn phí vận chuyển</a>
+                            <a class="text-dark mb-2">Đổi trả trong vòng 14 ngày</a>
+                            <a class="text-dark mb-2">Hỗ trợ khách hàng 24/7</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Nhận tin</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Nhắn tin cho chúng tôi</h5>
                         <form action="">
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 py-4" placeholder="Nhập tên của bạn" required="required" />
@@ -128,7 +136,7 @@
                                     required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Theo dõi ngay</button>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Gửi ngay</button>
                             </div>
                         </form>
                     </div>

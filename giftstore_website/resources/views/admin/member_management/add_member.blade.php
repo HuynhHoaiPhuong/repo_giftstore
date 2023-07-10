@@ -3,9 +3,7 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
-            <header class="panel-heading">
-                Thêm Mới Thành Viên
-            </header>
+            <header class="panel-heading">Thêm Mới Thành Viên</header>
             <div class="panel-body">
                 <div class="position-center">
                     <form role="form" action="{{route('save-member')}}" method="POST">
@@ -40,7 +38,7 @@
                         </div> --}}
                         <div class="form-group">
                         	<label>Hiển thị</label>
-                            <select  name="status" class="form-control input-sm m-bot15">
+                            <select name="status" class="form-control input-sm m-bot15">
                                 <option value="hienthi">Hiển thị</option>
                                 <option value="an">Ẩn</option>
                                 <option value="noibat">Nổi bật</option>

@@ -3,35 +3,33 @@
 @section('title','Quản lý thành viên')
 
 @section('header')
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- bootstrap-css -->
+  <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
 
-<!-- Custom CSS -->
-<link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
+  <!-- Custom CSS -->
+  <link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
+  <link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
 
-<!-- Font-Awesome-->
-<link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
-<link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
+  <!-- Font-Awesome-->
+  <link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
+  <link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
 
-<link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
-<link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
+  <link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
 
-<!-- Fonts -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
-<script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
-<script src="{{asset('admin/js/raphael-min.js')}}"></script>
-<script src="{{asset('admin/js/morris.js')}}"></script>
+  <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
+  <script src="{{asset('admin/js/raphael-min.js')}}"></script>
+  <script src="{{asset('admin/js/morris.js')}}"></script>
 @endsection
 
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      Danh sách thành viên
-    </div>
+    <div class="panel-heading">Danh sách thành viên</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
@@ -40,8 +38,8 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-success">Apply</button>  
-        <a href="" class="btn btn-sm btn-primary">Add</a>               
+        <button class="btn btn-sm btn-success">Áp dụng</button>  
+        {{-- <a href="" class="btn btn-sm btn-primary">Thêm mới</a> --}}
       </div>
       <div class="col-sm-4">
       </div>
@@ -49,7 +47,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -64,12 +62,11 @@
               </label>
             </th>
             <th>STT</th>
-            <th>ID</th>
             <th>Họ tên</th>
             <th>Hạng</th>
             <th>Số điểm</th>
             <th>Ngày đăng ký</th>
-            <th>Ngày chỉnh sửa gần nhất</th>
+            <th>Ngày cập nhật</th>
             <th>Trạng thái</th>
             <th>Thao tác</th>
             <th></th>
@@ -81,13 +78,12 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"></label></td>
             <td>{{ ++$i }}</td>
-            <td>{{ $member->id_member }}</td>
-            <td>{{ $member->user->username }}</td>
+            <td>{{ $member->user->fullname }}</td>
             <td>{{ $member->rank->rank_name }}</td>
             <td>{{ $member->current_point }}</td>
             <td>{{ $member->created_at }}</td>
             <td>{{ $member->updated_at }}</td>
-            <td>{{ $member->status }}</td>
+            <td>{{ ($member->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>            
             <td>
               <a href="" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>

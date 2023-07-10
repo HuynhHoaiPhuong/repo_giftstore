@@ -39,7 +39,7 @@
         <div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
+            <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
         </div>
       </div>
@@ -69,7 +69,7 @@
             <td>{{$typeCat->name}}</td>
             <!-- <td>{{$typeCat->slug}}</td> -->
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a href="" class="active styling-edit" ui-toggle-class="" data-toggle="modal" data-target="#editTypeCategory">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
@@ -110,6 +110,36 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Thêm loại danh mục</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('add-type-category')}}" id="addTypeCategoryForm" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="inputAddSlugTypeCategory">Đường dẫn</label>
+                        <input type="text" placeholder="Đường dẫn" name="slug" id="inputAddSlugTypeCategory" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddNameTypeCategory">Tên</label>
+                        <input type="text" placeholder="Tên loại sản phẩm" name="name" id="inputAddNameTypeCategory" class="form-control" require>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_add_type_category btn btn-primary btn-block mr-10" type="submit" >Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Modal Edit TypeCategory -->
+<div class="modal fade" id="editTypeCategory" tabindex="-1" role="dialog" aria-labelledby="editTypeCategory" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h5 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Sửa loại danh mục</strong></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
