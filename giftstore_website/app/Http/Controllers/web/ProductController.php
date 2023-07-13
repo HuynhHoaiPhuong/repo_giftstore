@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function addProduct(Request $req){
         $productController = new ServicesProductController();
         if($req->name==null || $req->id_provider==null || $req->id_category==null){
-            return back()->withErrors('error','Tạo thất bại');
+            return back()->with('error','Tạo thất bại');
         }
         $newName = 'noimage.png';
         if($req->hasFile('photo')){
@@ -81,8 +81,8 @@ class ProductController extends Controller
         }
         $req->photo = $newName;
         $result = $productController->saveProduct($req);
-        if($result==null){
-            return back()->withErrors('error','Tạo thất bại');
+        if($result['data']==null){
+            return back()->with('error','Tạo thất bại');
         }
         return redirect(route('product-management'));
     }
@@ -110,7 +110,7 @@ class ProductController extends Controller
 
         $result = $productController->updateProduct($req);
 
-        if($result==null){
+        if($result['data']==null){
             return back()->with('error','Chỉnh sửa thất bại');
         }
         return redirect(route('product-management'));

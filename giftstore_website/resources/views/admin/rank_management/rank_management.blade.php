@@ -31,13 +31,6 @@
     <div class="panel-heading">Danh sách hạng thành viên</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Áp dụng</button>  
         <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRank"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</a>
       </div>
       <div class="col-sm-4">
@@ -62,10 +55,10 @@
             </th>
             <th>STT</th>
             <th>Tên hạng</th>
-            <th>Điểm</th>
-            <th>Trạng thái</th>
+            <th>Hạng mức điểm</th>
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
+            <th>Trạng thái</th>
             <th>Thao tác</th>
           </tr>
         </thead>
@@ -78,11 +71,11 @@
             <td>{{$i++}}</td>
             <td>{{$rank->rank_name}}</td>
             <td>{{$rank->score_level}}</td>
-            <td>{{ ($rank->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>            
             <td>{{$rank->created_at}}</td>
             <td>{{$rank->updated_at}}</td>
+            <td>{{ ($rank->status == 'enabled') ? 'Đang hoạt động' : 'Ngừng hoạt động'  }}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="" data-toggle="modal" data-target="#editRank">
+              <a data-id="{{ $rank->id_rank }}" data-toggle="modal" data-target="#updateRank" href="#" class="updateRank active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
               </a>
               <a href="" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" class="active styling-edit" ui-toggle-class="">
@@ -147,8 +140,8 @@
   </div>
 </div>
 
-<!-- /Modal Edit Rank -->
-<div class="modal fade" id="editRank" tabindex="-1" role="dialog" aria-labelledby="editRank" aria-hidden="true">
+<!-- /Modal Update Rank -->
+<div class="modal fade" id="updateRank" tabindex="-1" role="dialog" aria-labelledby="updateRank" aria-hidden="true">
   <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header bg-dark">
@@ -158,18 +151,19 @@
             </button>
         </div>
         <div class="modal-body">
-          <form action="" method="POST">
+          <form action="{{route('update-rank')}}" method="POST">
               @csrf
+              <input type="hidden" name="id_rank" id="inputUpdateIdRank">
               <div class="form-group">
                   <label for="">Tên hạng</label>
-                  <input type="text" name="" id="" class="form-control text-sm" placeholder="">
+                  <input type="text" name="rank_name" id="inputUpdateNameRank" class="form-control text-sm" placeholder="">
               </div>
               <div class="form-group">
-                  <label for="">Điểm</label>
-                  <input type="text" name="" id="" class="form-control" placeholder="">
+                  <label for="">Hạng mức điểm</label>
+                  <input type="text" name="score_level" id="inputUpdateScoreLevelRank" class="form-control" placeholder="">
               </div>
               <div class="form-group">
-                  <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                  <button class="btn_submit_update_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
               </div>
           </form>
         </div>
@@ -185,96 +179,46 @@
   <script src="{{asset('admin/js/scripts.js')}}"></script>
   <script src="{{asset('admin/js/jquery.slimscroll.js')}}"></script>
   <script src="{{asset('admin/js/jquery.nicescroll.js')}}"></script>
-  <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-  <script src="{{asset('js/jquery.scrollTo.js')}}"></script>
+  <script src="{{asset('admin/js/jquery.scrollTo.js')}}"></script>
   <!-- morris JavaScript -->  
   <script>
-      $(document).ready(function() {
-          //BOX BUTTON SHOW AND CLOSE
-        jQuery('.small-graph-box').hover(function() {
-            jQuery(this).find('.box-button').fadeIn('fast');
-        }, function() {
-            jQuery(this).find('.box-button').fadeOut('fast');
-        });
-        jQuery('.small-graph-box .box-close').click(function() {
-            jQuery(this).closest('.small-graph-box').fadeOut(200);
-            return false;
-        });
-        
-          //CHARTS
-          function gd(year, day, month) {
-              return new Date(year, month - 1, day).getTime();
-          }
-          
-          graphArea2 = Morris.Area({
-              element: 'hero-area',
-              padding: 10,
-          behaveLikeLine: true,
-          gridEnabled: false,
-          gridLineColor: '#dddddd',
-          axes: true,
-          resize: true,
-          smooth:true,
-          pointSize: 0,
-          lineWidth: 0,
-          fillOpacity:0.85,
-              data: [
-                  {period: '2015 Q1', iphone: 2668, ipad: null, itouch: 2649},
-                  {period: '2015 Q2', iphone: 15780, ipad: 13799, itouch: 12051},
-                  {period: '2015 Q3', iphone: 12920, ipad: 10975, itouch: 9910},
-                  {period: '2015 Q4', iphone: 8770, ipad: 6600, itouch: 6695},
-                  {period: '2016 Q1', iphone: 10820, ipad: 10924, itouch: 12300},
-                  {period: '2016 Q2', iphone: 9680, ipad: 9010, itouch: 7891},
-                  {period: '2016 Q3', iphone: 4830, ipad: 3805, itouch: 1598},
-                  {period: '2016 Q4', iphone: 15083, ipad: 8977, itouch: 5185},
-                  {period: '2017 Q1', iphone: 10697, ipad: 4470, itouch: 2038},
-              
-              ],
-              lineColors:['#eb6f6f','#926383','#eb6f6f'],
-              xkey: 'period',
-              redraw: true,
-              ykeys: ['iphone', 'ipad', 'itouch'],
-              labels: ['All Visitors', 'Returning Visitors', 'Unique Visitors'],
-              pointSize: 2,
-              hideHover: 'auto',
-              resize: true
-          });
-          
-        
+    $(document).ready(function() {
+        //BOX BUTTON SHOW AND CLOSE
+      jQuery('.small-graph-box').hover(function() {
+          jQuery(this).find('.box-button').fadeIn('fast');
+      }, function() {
+          jQuery(this).find('.box-button').fadeOut('fast');
       });
-      </script>
-  <!-- calendar -->
-    <script type="text/javascript" src="{{asset('admin/js/monthly.js')}}"></script>
-    <script type="text/javascript">
-        $(window).load( function() {
+      jQuery('.small-graph-box .box-close').click(function() {
+          jQuery(this).closest('.small-graph-box').fadeOut(200);
+          return false;
+      });
+      
+      // Update Rank
+      $('.updateRank').on('click', function() {
+        $id_rank = $(this).attr('data-id');
+        $.ajax({
+            type: 'GET',
+            url: '/api/ranks/get-rank-by-id/' + $id_rank,
+            success: function(data) {
+                $rank = data.data;
 
-            $('#mycalendar').monthly({
-                mode: 'event',
-                
-            });
+                $('#updateRank #inputUpdateIdRank').val($rank.id_rank);
 
-            $('#mycalendar2').monthly({
-                mode: 'picker',
-                target: '#mytarget',
-                setWidth: '250px',
-                startHidden: true,
-                showTrigger: '#mytarget',
-                stylePast: true,
-                disablePast: true
-            });
+                $('#updateRank #inputUpdateNameRank').val($rank.rank_name);
 
-        switch(window.location.protocol) {
-        case 'http:':
-        case 'https:':
-        // running on a server, should be good.
-        break;
-        case 'file:':
-        alert('Just a heads-up, events will not work when run locally.');
-        }
+                $('#updateRank #inputUpdateScoreLevelRank').val($rank.score_level);
 
+            },
+            error: function() {
+
+            }
         });
-    </script>
-    <!-- //calendar -->
+      });
+      
+    });
+  </script>
+  
 @endsection
 
 

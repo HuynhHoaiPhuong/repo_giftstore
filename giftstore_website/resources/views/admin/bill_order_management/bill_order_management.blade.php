@@ -29,19 +29,19 @@
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
-    <div class="panel-heading">Danh sách hóa đơn nhập</div>
+    <div class="panel-heading">Lịch sử nhập hàng</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
-        <div class="input-group">
+        {{--<div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
-        </div>
+        </div>--}}
       </div>
     </div>
     <div class="table-responsive">

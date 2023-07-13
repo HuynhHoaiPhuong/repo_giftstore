@@ -65,8 +65,6 @@ class WarehouseDetailController extends Controller
     public function updateWarehouseDetail(Request $request){
         $result = WarehouseDetail::where('id_warehouse_detail', $request->id_warehouse_detail)
         ->update([
-            'id_warehouse' => $request->id_warehouse,
-            'id_product' => $request->id_product,
             'price_pay' => $request->price_pay,
             'total_price' => $request->total_price,
         ]);  

@@ -171,8 +171,8 @@
                     </div>
                     <input type="hidden" name="photoCurrent" id="inputUpdatePhotoCurrentCategory">
                     <div class="form-group">
-                      <label for="addIdTypeCategory">Loại danh mục</label>
-                      <select id="addIdTypeCategory" name="id_type_category" class="form-control">
+                      <label for="inputUpdateTypeCategory">Loại danh mục</label>
+                      <select id="inputUpdateTypeCategory" name="id_type_category" class="form-control">
                         @foreach($typeCategories as $key => $typeCat)
                           <option class="typeCat-{{$typeCat->id_type_category}}" value="{{$typeCat->id_type_category}}">{{$typeCat->name}}</option>
                         @endforeach
@@ -225,7 +225,7 @@
           $id_category = $(this).attr('data-id');
           $.ajax({
               type: 'GET',
-              url: '/api/categorys/get-category-by-id/' + $id_category,
+              url: '/api/categories/get-category-by-id/' + $id_category,
               success: function(data) {
                 $category = data.data;
 
@@ -239,7 +239,7 @@
 
                 $('#updateCategory #inputUpdateTypeCategory').val($category.typeCategory.id_type_category).change();
 
-                $('#updateCategory #inputUpdateDescCategory').val($category.description);
+                // $('#updateCategory #inputUpdateDescCategory').val($category.description);
 
             },
             error: function() {

@@ -80,13 +80,17 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('/update-warehouse',[WarehouseController::class,'updateWarehouse'])->name('update-warehouse');
 
         Route::get('/warehouse-detail-management/{id_warehouse}',[WarehouseDetailController::class,'warehouseDetailManagement'])->name('warehouse-detail-management');
+        Route::post('/update-warehouse-detail',[WarehouseDetailController::class,'updateWarehouseDetail'])->name('update-warehouse-detail');
 
         Route::get('/rank-management',[RankController::class,'rankManagement'])->name('rank-management');
+        Route::post('/update-rank',[RankController::class,'updateRank'])->name('update-rank');
 
         Route::get('/discount-management',[DiscountController::class,'discountManagement'])->name('discount-management');
 
         Route::get('/role-management',[RoleController::class,'roleManagement'])->name('role-management');
         Route::post('/add-role',[RoleController::class,'addRole'])->name('add-role');
+        Route::post('/update-role',[RoleController::class,'updateRole'])->name('update-role');
+
 
         Route::get('/type-category-management',[TypeCategoryController::class,'typeCategoryManagement'])->name('type-category-management');
         Route::post('/add-type-category',[TypeCategoryController::class,'addTypeCategory'])->name('add-type-category');

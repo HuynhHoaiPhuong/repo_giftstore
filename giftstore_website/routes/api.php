@@ -47,14 +47,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Role API
 Route::group(['prefix'=>'/roles'],function()
 {
+    Route::get('/get-role-by-id/{id_role}',[RoleController::class,'getRoleByIdRole']);
     Route::get('/get-all-role-by-status/{status}',[RoleController::class,'getAllRoleByStatus']);
     Route::post('/save-role',[RoleController::class,'saveRole']);
     Route::post('/update-role',[RoleController::class,'updateRole']);
     Route::post('/remove-role',[RoleController::class,'removeRole']);
+    Route::post('/delete-role',[RoleController::class,'deleteRole']);
 });
 //Rank API
 Route::group(['prefix'=>'/ranks'],function()
 {
+    Route::get('/get-rank-by-id/{id_rank}',[RankController::class,'getRankByIdRank']);
     Route::get('/get-all-rank-by-status/{status}',[RankController::class,'getAllRankByStatus']);
     Route::post('/save-rank',[RankController::class,'saveRank']);
     Route::post('/update-rank',[RankController::class,'updateRank']);
@@ -83,6 +86,7 @@ Route::group(['prefix'=>'/products'],function()
 {
     Route::get('/get-product-by-id/{id_product}',[ProductController::class,'getProductByIdProduct']);
     Route::get('/get-all-product-by-status/{status}',[ProductController::class,'getAllProductByStatus']);
+    Route::get('/get-all-product-by-id-provider/{id_provider}',[ProductController::class,'getAllProductByIdProvider']);
     Route::post('/save-product',[ProductController::class,'saveProduct']);
     Route::post('/update-product',[ProductController::class,'updateProduct']);
     Route::post('/remove-product',[ProductController::class,'removeProduct']);
@@ -129,6 +133,7 @@ Route::group(['prefix'=>'/warehouses'],function() {
 });
 //Warehouse Detail API
 Route::group(['prefix'=>'/warehouse-details'],function() {
+    Route::get('/get-warehouse-detail-by-id/{id_warehouse_detail}',[WareHouseDetailController::class,'getWarehouseDetailByIdWarehouseDetail']);
     Route::get('/get-all-warehouse-detail-by-status/{status}',[WareHouseDetailController::class,'getAllWareHouseDetailByStatus']);
     Route::post('/save-warehouse-detail',[WareHouseDetailController::class,'saveWarehouseDetail']);
     Route::post('/update-warehouse-detail',[WareHouseDetailController::class,'updateWarehouseDetail']);

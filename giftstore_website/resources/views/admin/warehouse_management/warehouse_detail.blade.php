@@ -21,6 +21,24 @@
 <!-- Fonts -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+ <!-- Message error css -->
+ <style>
+      .error-popup {
+          position: fixed;
+          right: 20px;
+          bottom: 100px;
+          background-color: #ff0000;
+          color: #fff;
+          padding: 10px 20px;
+          border-radius: 5px;
+          animation: popupAnimation 0.5s ease-in-out;
+      }
+      @keyframes popupAnimation {
+              0% { opacity: 0; transform: translateY(-20px); }
+              100% { opacity: 1; transform: translateY(0); }
+      }
+  </style>
+
 <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
 <script src="{{asset('admin/js/raphael-min.js')}}"></script>
 <script src="{{asset('admin/js/morris.js')}}"></script>
@@ -41,12 +59,12 @@
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
-        <div class="input-group">
+        {{--<div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Go!</button>
           </span>
-        </div>
+        </div>--}}
       </div>
     </div>
     <div class="table-responsive">
@@ -82,11 +100,8 @@
             <td>{{ number_format($warehouseDetail->quantity*$warehouseDetail->price_pay, 0, ',','.')}}đ</td>
             <td>{{ ($warehouseDetail->status == 'enabled') ? 'Còn hàng' : 'Hết hàng' }}</td>
             <td>
-              <a href="" class="active styling-edit" ui-toggle-class="">
+              <a data-id="{{ $warehouseDetail->id_warehouse_detail }}" data-toggle="modal" data-target="#updateWarehouseDetail" href="#" class="updateWarehouseDetail active styling-edit" title="Chỉnh sửa">
                 <i class="fa fa-pencil-square-o text-success text-active"></i>
-              </a>
-              <a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')" href="" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
             <td></td>
@@ -118,6 +133,45 @@
     </footer>--}}
   </div>
 </div>
+
+<!-- /Modal update WarehouseDetail -->
+<div class="modal fade" id="updateWarehouseDetail" tabindex="-1" role="dialog" aria-labelledby="updateWarehouseDetail" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h6 class="modal-title text-white text-uppercase" id="exampleModalPopoversLabel"><strong>Cập nhật giá bán</strong></h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('update-warehouse-detail')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="id_warehouse_detail" id="inputUpdateIdWarehouseDetail">
+                    <input type="hidden" name="id_warehouse" id="inputUpdateIdWarehouse" >
+                    <input type="hidden" name="quantity" id="inputUpdateQuantityWarehouseDetail">
+                    <input type="hidden" name="total_price_old" id="inputUpdateTotalPriceOldWarehouseDetail">
+                    <input type="hidden" name="price_old" id="inputUpdatePriceOldWarehouseDetail">
+                    <div class="form-group">
+                        <label for="inputUpdatePricePayWarehouseDetail">Giá bán ra</label>
+                        <input type="number" placeholder="Giá bán ra" name="price_pay"
+                            id="inputUpdatePricePayWarehouseDetail" class="form-control text-sm">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn_submit_update_warehouse_detail btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if(session('error'))
+    <div class="error-popup">
+        <span class="error-message">{{ session('error') }}</span>
+    </div>
+@endif
+
 @endsection
 
 <!-- JavaScript -->
@@ -157,9 +211,44 @@
         return false;
       });
 
-      
-      
-  });
-</script>
+      // Update WarehouseDetail
+      $('.updateWarehouseDetail').on('click', function() {
+        $id_warehouse_detail = $(this).attr('data-id');
+        $.ajax({
+            type: 'GET',
+            url: '/api/warehouse-details/get-warehouse-detail-by-id/' + $id_warehouse_detail,
+            success: function(data) {
+                $warehouseDetail = data.data;
+
+                $('#updateWarehouseDetail #inputUpdateIdWarehouseDetail').val($warehouseDetail.id_warehouse_detail);
+
+                $('#updateWarehouseDetail #inputUpdateIdWarehouse').val($warehouseDetail.warehouse.id_warehouse);
+
+                $('#updateWarehouseDetail #inputUpdatePricePayWarehouseDetail').val($warehouseDetail.price_pay);
+
+                $('#updateWarehouseDetail #inputUpdatePriceOldWarehouseDetail').val($warehouseDetail.price_pay);
+
+                $('#updateWarehouseDetail #inputUpdateQuantityWarehouseDetail').val($warehouseDetail.quantity);
+
+                $('#updateWarehouseDetail #inputUpdateTotalPriceOldWarehouseDetail').val($warehouseDetail.total_price);
+
+            },
+            error: function() {
+
+            }
+        });
+      });
+    });
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const errorPopup = document.querySelector('.error-popup');
+        if (errorPopup) {
+            setTimeout(() => {
+                    errorPopup.style.display = 'none';
+            }, 5000);
+        }
+    });
+  </script>
 @endsection
 

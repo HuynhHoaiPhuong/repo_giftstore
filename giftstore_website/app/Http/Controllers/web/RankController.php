@@ -17,4 +17,18 @@ class RankController extends Controller
         $ranks = $data_rank['data']->collection;
         return view('admin/rank_management/rank_management', ['ranks' => $ranks]);
     }
+
+    public function updateRank(Request $req){
+        if(!$req->id_rank){
+            return back()->with('error','Chỉnh sửa thất bại');
+        }
+        $rankController = new ServicesRankController();
+
+        $result = $rankController->updateRank($req);
+
+        if($result==null){
+            return back()->with('error','Chỉnh sửa thất bại');
+        }
+        return redirect(route('rank-management'))->with('success','Cập nhật thành công!');
+    }
 }

@@ -25,7 +25,7 @@ class WarehouseController extends Controller
 
         $result = $warehouseController->updateWarehouse($req);
 
-        if($result==null){
+        if($result['data']==null){
             return back()->withErrors('error','Chỉnh sửa thất bại');
         }
         return redirect(route('warehouse-management'));

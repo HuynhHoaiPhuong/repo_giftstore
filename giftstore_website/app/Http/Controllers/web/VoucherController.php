@@ -20,22 +20,24 @@ class VoucherController extends Controller
     public function addVoucher(Request $req){
         $voucherController = new ServicesVoucherController();
         if($req->name==null){
-            return back()->withErrors('error','Tạo thất bại');
+            return back()->with('error','Tạo thất bại');
         }
         $result = $voucherController->saveVoucher($req);
-        if($result==null){
-            return back()->withErrors('error','Tạo thất bại');
+        if($result['data']==null){
+            return back()->with('error','Tạo thất bại');
         }
         return redirect(route('voucher-management'));
     }
 
     public function updateVoucher(Request $req){
         $voucherController = new ServicesVoucherController();
-
+        if($req->code=='' || $req->id_voucher == '' || $req->id_voucher == null){
+            return back()->with('error','Chỉnh sửa thất bại');
+        }
         $result = $voucherController->updateVoucher($req);
 
-        if($result==null){
-            return back()->withErrors('error','Chỉnh sửa thất bại');
+        if($result['data']==null){
+            return back()->with('error','Chỉnh sửa thất bại');
         }
         return redirect(route('voucher-management'));
     }

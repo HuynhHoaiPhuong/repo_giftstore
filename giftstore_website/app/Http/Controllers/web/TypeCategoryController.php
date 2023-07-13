@@ -20,11 +20,11 @@ class TypeCategoryController extends Controller
     public function addTypeCategory(Request $req){
         $typeCategoryController = new ServicesTypeCategoryController();
         if($req->name==null){
-            return back()->withErrors('error','Tạo thất bại');
+            return back()->with('error','Tạo thất bại');
         }
         $result = $typeCategoryController->saveTypeCategory($req);
-        if($result==null){
-            return back()->withErrors('error','Tạo thất bại');
+        if($result['data']==null){
+            return back()->with('error','Tạo thất bại');
         }
         return redirect(route('type-category-management'));
     }

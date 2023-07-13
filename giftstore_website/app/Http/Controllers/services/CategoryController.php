@@ -60,7 +60,7 @@ class CategoryController extends Controller
     public function updateCategory(Request $request){
         $result = Category::where('id_category', $request->id_category)->update([
             'id_type_category' => $request->id_type_category, 
-            'numerical_order' => $request->numerical_order,
+            // 'numerical_order' => $request->numerical_order,
             'name' => $request->name, 
             'photo' => $request->photo, 
             'slug' => $request->slug, 

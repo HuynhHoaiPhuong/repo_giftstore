@@ -62,22 +62,22 @@
                                 <option value="{{$pvd->id_provider}}">{{$pvd->name}}</option>
                             @endforeach
                         </select>
-                        <select  id="addCategoryProduct" class="input-sm form-control w-sm inline v-middle">
+                        {{--<select  id="addCategoryProduct" class="input-sm form-control w-sm hide v-middle">
                             <option value="">Chọn danh mục</option>
                             @foreach($categories as $key => $category)
                                 <option value="{{$category->id_category}}">{{$category->name}}</option>
                             @endforeach
-                        </select>           
+                        </select>  --}}         
                     </div>
                     <div class="col-sm-4">
                     </div>
                     <div class="col-sm-3">
-                        <div class="input-group">
+                        {{--<div class="input-group">
                         <input type="text" class="input-sm form-control" placeholder="Search">
                         <span class="input-group-btn">
                             <button class="btn btn-sm btn-default" type="button">Tìm</button>
                         </span>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -95,27 +95,7 @@
                         </tr>
                         </thead>
                         <tbody class="append-product">
-                        @if($products != [])
-                        <?php $i = 1; ?>
-                        @foreach($products as $key => $product)
-                        <tr class="item-product">
-                            <td>{{$i++}}</td>
-                            @if($product->photo != 'noimage.png' && $product->photo != '')
-                            <td><img src="../upload/product/{{ $product->photo }}" alt="{{$product->name}}" width="40"></td>
-                            @else
-                            <td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>
-                            @endif
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->provider->name}}</td>
-                            <td>{{$product->category->name}}</td>
-                            <td>{{number_format($product->price, 0, ',','.')}}đ</td>
-                            <td><input type="number" min="1" value="1" class="quantity-select form-control"></td>
-                            <td><button type="button" data-q="1" data-id="{{$product->id_product}}" class="add-pro btn btn-info">Thêm</button></td>
-                        </tr>
-                        @endforeach
-                        @else
                             <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
-                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -233,14 +213,56 @@
             if(idprvd != ''){
                 $('#addCategoryProduct').removeClass('hide');
                 $('#addCategoryProduct').addClass('inline');
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/products/get-all-product-by-id-provider/' + idprvd,
+                    success: function(data) {
+                        var products = data.data;
+                        var apstr = '';
+                        
+                        if(products != null){
+                        for(let key = 0;key < products.length ; key++ ){
+                            apstr += '<tr class="item-product"> <td>'+(key + 1)+'</td>';
+                            if(products[key].photo != 'noimage.png' && products[key].photo != ''){ 
+                                apstr += '<td><img src="../upload/product/'+products[key].photo+'" alt="'+products[key].name+'" width="40"></td>'
+                            }else{
+                                apstr += '<td><img src="../admin/images/noimage.png" alt="noimage.png" width="40"></td>'
+                            }
+                            apstr += '<td>'+products[key].name+'</td>\
+                                <td>'+products[key].provider.name+'</td>\
+                                <td>'+products[key].category.name+'</td>\
+                                <td>'+number_format(products[key].price, 0, ',','.')+'đ</td>\
+                                <td><input type="number" min="1" value="1" class="quantity-select form-control"></td>\
+                                <td><button type="button" data-q="1" data-id="'+products[key].id_product+'" class="add-pro btn btn-info">Thêm</button></td>\
+                            </tr>';
+                        }
+                        }else{
+                            apstr += '<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>';
+                        }
+                        $('.append-product tr').remove();
+                        $('.append-product .dataTables_empty').remove();
+                        $('.append-product').append(apstr);
+                        
+                        $('.append-pro-selected tr').remove();
+                        $('.append-pro-selected').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
+                    },
+                    error: function() {
+
+                    }
+                });
             }else{
                 $('#addCategoryProduct').removeClass('inline');
                 $('#addCategoryProduct').addClass('hide');
+
+                $('.append-product tr').remove();
+                $('.append-product').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
+
+                $('.append-pro-selected tr').remove();
+                $('.append-pro-selected').append('<tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>');
             }
         });
 
-        $('.quantity-select').on('change', function(){
-
+        $("body").on("change",".quantity-select",function(){
             var quantity = $(this).val();
             if(quantity > 0)
                 $(this).parent('td').parent('.item-product').find('.add-pro').attr('data-q',quantity);
@@ -250,7 +272,7 @@
             }
         });
 
-        $('.add-pro').on('click', function() {
+        $("body").on("click",".add-pro",function(){
           $id_product = $(this).attr('data-id');
           var quantity = $(this).attr('data-q');
           var totalold = $('#total-price').attr('data-total');

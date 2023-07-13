@@ -34,7 +34,7 @@ class LoginClientController extends Controller
             'username'=>$req->username,
             'password'=>$req->password,
             'fullname'=>$req->fullname,
-            'id_role'=> 2,
+            'id_role'=> 'MB',
             'phone'=>$req->phone,
             'address'=>$req->address,
         ]);

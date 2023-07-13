@@ -36,6 +36,14 @@ class ProductController extends Controller
          }  
         return Payload::toJson(ProductResource::collection($products), "OK", 200);
     }
+    public function getAllProductByIdProvider($id_provider){
+        $products = Product::where('id_provider', $id_provider)->get();
+         if($products->isEmpty())
+         {
+            return Payload::toJson(null, "Data Not Found", 404); 
+         }  
+        return Payload::toJson(ProductResource::collection($products), "OK", 200);
+    }
 
     public function saveProduct(Request $request){
         $product = new Product();
@@ -112,7 +120,7 @@ class ProductController extends Controller
             if(file_exists('upload/product/'.$v->photo)){
                 unlink('upload/product/'.$v->photo);
             }
-            else return back()->withErrors('error','Xóa ảnh thất bại');
+            else return Payload::toJson(false, "Cannot Deleted!", 500);
         }
         $result = Product::where('status', 'disabled')->delete();
         if($result) return Payload::toJson(true, "Remove Successfully", 202);

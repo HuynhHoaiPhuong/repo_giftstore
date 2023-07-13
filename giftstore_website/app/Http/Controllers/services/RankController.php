@@ -20,6 +20,13 @@ class RankController extends Controller
         }
         return Payload::toJson(RankResource::collection($ranks), 'Request Successfully', 200);
     }
+    public function getRankByIdRank($id_rank)
+    {
+        $rank = Rank::where('id_rank', $id_rank)->first();
+        if(!$rank)
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(new RankResource($rank), "OK", 200);
+    }
     public function getAllRankByStatus($status)
     {
         $ranks = Rank::where('status', $status)
