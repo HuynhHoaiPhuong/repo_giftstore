@@ -12,7 +12,9 @@
         <!--logo start-->
         <div class="brand">
             <a href="" class="logo"> Gift Store</a>
-            <div class="sidebar-toggle-box"><div class="fa fa-bars"></div></div>
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars"></div>
+            </div>
         </div>
         <!--logo end-->
         <div class="nav notify-row" id="top_menu">

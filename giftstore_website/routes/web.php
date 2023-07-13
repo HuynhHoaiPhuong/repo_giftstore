@@ -39,7 +39,7 @@ use App\Http\Controllers\user\BillController as userBillController;
 use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\SearchController;
 use App\Http\Controllers\user\LoginClientController;
-
+use App\Http\Controllers\user\ProfileController;
 
 //web-admin
 Route::group(['prefix' => 'admin'],function(){
@@ -120,6 +120,7 @@ Route::group(['prefix' => 'admin'],function(){
 //web-client
 Route::get('/', [HomeController::class,'index'])->name('/');
 Route::get('/check-out', [CheckoutController::class,'index'])->name('checkout');
+Route::get('/profile', [ProfileController::class,'index'])->name('profile');
 Route::get('/contact', [ContactController::class,'index'])->name('contact');
 Route::get('/shop', [ShopController::class,'index'])->name('shop');
 Route::get('/product/{id?}', [userProductController::class,'productDetail'])->name('product-detail');
@@ -127,16 +128,19 @@ Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
 Route::post('/register-member', [LoginClientController::class,'register'])->name('register-member');
 Route::get('/search', [SearchController::class,'search'])->name('search');
 Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
-Route::group(['middleware' => 'auth'], function () {
+
+Route::group(['middleware' => ['redirectIfNotLoggedIn']], function (){
     Route::get('/log-out', [LoginClientController::class, 'logout'])->name('log-out');
+    Route::get('cart/{id_member?}', [CartController::class,'cart'])->name('cart');
 });
 Route::group(['prefix' => 'cart'],function(){
-    Route::get('/{id_member?}', [CartController::class,'cart'])->name('cart');
-    Route::post('/buy-now/{id?}', [CartController::class,'buyNow'])->name('buy-now');
-    Route::post('/update-quantity/{id?}', [CartController::class,'updateQuantity'])->name('update-quantity');
-    Route::post('/remove-item/{id?}', [CartController::class,'removeItem'])->name('remove-item');
+    Route::post('/buy-now', [CartController::class,'buyNow'])->name('buy-now');
+    Route::post('/buy-now-detail', [CartController::class,'buyNowDetail'])->name('buy-now-detail');
+    Route::post('/update-quantity', [CartController::class,'updateQuantity'])->name('update-quantity');
+    Route::post('/remove-item', [CartController::class,'removeItem'])->name('remove-item');
 });
 Route::group(['prefix' => 'bill'],function(){
     Route::post('/pay-bill', [userBillController::class,'payBill'])->name('pay-bill');
 });
+
 

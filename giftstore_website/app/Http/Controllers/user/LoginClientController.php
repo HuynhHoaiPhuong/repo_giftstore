@@ -13,7 +13,8 @@ class LoginClientController extends Controller
 {
     public function login(){
         if (Auth::check()) return redirect()->intended('/');
-        else return view('user/templates/login');
+        else 
+            return view('user/templates/login');
     }
 
     public function authenticate(Request $request){        

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WarehouseDetail;
+use Illuminate\Pagination\Paginator;
+Paginator::useBootstrap();
 
 class SearchController extends Controller
 {
@@ -26,9 +28,14 @@ class SearchController extends Controller
 
             $id_product = $lists->pluck('id_product');
 
-            $lists = WarehouseDetail::whereIn('id_product', $id_product)->get();
+            $lists = WarehouseDetail::whereIn('id_product', $id_product)
+            ->paginate('9')
+            ->withQueryString();
         }
-        return view('user.templates.search', ['keyword' => $keyword , 'lists' => $lists]);
+        return view('user.templates.search', [
+            'keyword' => $keyword, 
+            'lists' => $lists
+        ]);
     }
 }
 

@@ -55,61 +55,65 @@
             </div>
             <div class="col-lg-9">
                 @if (Session::has('userLogin') != null)
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
-                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
-                            </div>
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="" class="nav-item nav-link">{{ session('username') }}</a>
-                                <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
+                            {{-- <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Trang</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{{route('cart')}}" class="dropdown-item">Giỏ hàng</a>
+                                    <a href="{{route('profile')}}" class="dropdown-item">Trang cá nhân</a>
+                                </div>
+                            </div> --}}
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown"><span>Xin chào, {{Auth::user()->fullname}} <i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-menu position-absolute border-0 rounded-0 w-100 m-0">
+                                    <a href="{{route('profile')}}" class="dropdown-item"><i class="fa fa-user"></i> Trang cá nhân</a>
+                                    <a href="{{route('log-out')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
                 @else
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
-                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
-                            </div>
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng nhập</a>
-                                <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng ký</a>
-                            </div>
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
+                            {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
+                            {{-- <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div> --}}
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
                         </div>
-                    </nav>
+                        <div class="navbar-nav ml-auto py-0">
+                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng nhập</a>
+                            <a href="{{route('log-in')}}" class="nav-item nav-link">Đăng ký</a>
+                        </div>
+                    </div>
+                </nav>
                 @endif
 
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -231,7 +235,7 @@
     @if($warehouseDetails != [])
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm của chúng tôi</span></h2>
+            <h2 class="section-title px-5"><span class="px-2">Sản phẩm</span></h2>
         </div>
         <div class="row px-xl-5 pb-3">
             @foreach($warehouseDetails as $key => $warehouseDetail)
@@ -253,7 +257,7 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="product/{{$warehouseDetail->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                        <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                        <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}" data-price="{{$warehouseDetail->price_pay}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                     </div>
                 </div>
             </div>
@@ -335,38 +339,51 @@
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>
 
-    <!-- Login Template Javascript -->
-    <!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{-- Add To Cart --}}
     <script>
-        toastr.options = {
-            positionClass: 'toast-bottom-right'
-        };
-
+        toastr.options = {positionClass: 'toast-bottom-right'};
         var csrfToken = $('meta[name="csrf-token"]').attr('content');   
-        // console.log(csrfToken);
-        $(document).on('click', '.buy-now-btn', function(e) {
-            e.preventDefault();
-            $id_product = $(this).data('id');
-            $.ajax({
-                url: '{{ route('buy-now', ['id' => '']) }}' + '/' + $id_product,
-                type: 'POST',
-                data: { _token: csrfToken,},
-                success: function(response) {
-                    if(response.success == true) {
-                        toastr.success('Đã thêm');
-                    } else {
-                        toastr.error('Thêm thất bại!');
-                    }
-                },
-                error: function(xhr) {}
+
+        $(document).ready(function() {
+            $('.buy-now-btn').on('click', function(e) {
+                e.preventDefault();
+                @if(!Auth::check())
+                    Swal.fire({
+                        title: 'Thông báo',
+                        text: 'Hãy đăng nhập để thêm sản phẩm này vào giỏ hàng!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'Hủy',
+                        confirmButtonText: 'Đăng nhập',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {window.location.href = "{{ route('log-in') }}";}
+                    });
+                @else
+                    $id_product = $(this).data('id');
+                    $price_pay = $(this).data('price');
+                    $.ajax({
+                        url: '{{ route('buy-now') }}',
+                        type: 'POST',
+                        data: { 
+                            _token: csrfToken,
+                            id_product: $id_product,
+                            price_pay: $price_pay
+                        },
+                        success: function(response) {
+                            if(response.success == true) {
+                                toastr.success('Đã thêm');
+                            } else {
+                                toastr.error('Thêm thất bại!');
+                            }
+                        },
+                        error: function(xhr) {}
+                    });
+                @endif
             });
         });
-
     </script>
-        
 @endsection

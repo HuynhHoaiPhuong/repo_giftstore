@@ -4,7 +4,6 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\services\ProductController as ServicesProductController;
 use App\Http\Controllers\services\WarehouseDetailController as ServicesWarehouseDetailController;
 
 class ShopController extends Controller

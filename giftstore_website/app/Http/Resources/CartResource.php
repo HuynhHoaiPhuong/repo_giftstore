@@ -19,6 +19,7 @@ class CartResource extends JsonResource
             'member' => new MemberResource($this->member),
             'product' => new ProductResource($this->product),
             'quantity' => $this->quantity,
+            'price_pay' => $this->price_pay,
         ];
     }
 }

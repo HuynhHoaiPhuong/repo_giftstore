@@ -17,6 +17,7 @@ class Cart extends Model
         'id_member',
         'id_product',
         'quantity',
+        'price_pay',
     ];
     public function member(){
         return $this->belongsTo(Member::class, 'id_member', 'id_member');
