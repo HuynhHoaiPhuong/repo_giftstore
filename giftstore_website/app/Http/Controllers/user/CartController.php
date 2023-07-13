@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\services\CartController as ServicesCartController;
 use App\Http\Controllers\services\MemberController as ServicesMemberController;
 use App\Http\Controllers\services\PaymentController as ServicesPaymentController;
-use App\Http\Payload;
 
 class CartController extends Controller
 {
@@ -47,11 +46,11 @@ class CartController extends Controller
         return null;
     }
 
-    public function buyNow($id_product)
+    public function buyNow(Request $request)
     {
         if (Auth::check()) {
             $member = $this->memberController->getIdMemberByIdUser(Auth::id());
-            $existingCartItem = $this->cartController->getCartItem($member['id_member'], $id_product);
+            $existingCartItem = $this->cartController->getCartItem($member['id_member'], $request->id_product);
 
             if($existingCartItem) {
                 $existingCartItem['quantity'] += 1;
@@ -60,23 +59,44 @@ class CartController extends Controller
             else {
                 $requestCart = new Request([
                     'id_member' => $member['id_member'],
-                    'id_product' => $id_product,
+                    'id_product' => $request->id_product,
                     'quantity' => 1,
+                    'price_pay' => $request->price_pay,
                 ]);
                 $this->cartController->saveCart($requestCart);
             }
             return response()->json(['success' => true]);
-            // return Payload::toJson(true, "Add Successfully", 202);
         } 
         return response()->json(['success' => false]);
-        // return Payload::toJson(false, "Cannot Add!", 500);
     }
-
-    public function updateQuantity(Request $request, $id_product)
-    {
+    
+    public function buyNowDetail(Request $request){
         if (Auth::check()) {
             $member = $this->memberController->getIdMemberByIdUser(Auth::id());
-            $existingCartItem = $this->cartController->getCartItem($member['id_member'], $id_product);
+            $existingCartItem = $this->cartController->getCartItem($member['id_member'], $request->id_product);
+
+            if($existingCartItem) {
+                $existingCartItem['quantity'] += $request->quantity;
+                $this->cartController->updateCartItem($existingCartItem);
+            } 
+            else {
+                $requestCart = new Request([
+                    'id_member' => $member['id_member'],
+                    'id_product' => $request->id_product,
+                    'quantity' => 1,
+                    'price_pay' => $request->price_pay,
+                ]);
+                $this->cartController->saveCart($requestCart);
+            }
+            return response()->json(['success' => true]);
+        } 
+        return response()->json(['success' => false]);
+    }
+
+    public function updateQuantity(Request $request){
+        if (Auth::check()) {
+            $member = $this->memberController->getIdMemberByIdUser(Auth::id());
+            $existingCartItem = $this->cartController->getCartItem($member['id_member'], $request->id_product);
 
             if($existingCartItem) {
                 $existingCartItem['quantity'] = $request->quantity;
@@ -87,9 +107,9 @@ class CartController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function removeItem($id_product)
-    {
-        $this->cartController->removeItem($id_product);
+    public function removeItem(Request $request){
+        $this->cartController->removeItem($request->id_product);
+        
         return response()->json(['success' => true]);
     }
 }

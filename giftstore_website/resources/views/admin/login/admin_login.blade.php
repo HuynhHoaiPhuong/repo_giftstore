@@ -22,24 +22,27 @@
 </head>
 <body>
 	<div class="log-w3">
-	<div class="w3layouts-main">
-		<h2>Đăng nhập hệ thống</h2>
-		@if(session('error'))
-			<div class="alert alert-danger">
-					{{ session('error') }}
-			</div>
-		@endif
-			<form action="{{route('authenticate')}}" method="post">
-				@csrf
-				<input type="text" class="ggg" name="username" placeholder="Tài khoản" required="">
-				<input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
-				<span><input type="checkbox"/> Ghi nhớ</span>
-				<!-- <h6><a href="#">Forgot Password?</a></h6> -->
-				<div class="clearfix"></div>
-				<input type="submit" class="btn" value="Đăng nhập" >
-			</form>
-		<div class="text-center"><a href="{{route('/')}}" class="turn-back-index text-decoration-none text-while" title="Xem website"><i class="fa fa-reply" aria-hidden="true"></i> Trở về</a></div>
-	</div>
+		<div class="w3layouts-main">
+			<h2>Đăng nhập hệ thống</h2>
+			@if(session('error'))
+				<div class="alert alert-danger">{{ session('error') }}</div>
+			@endif
+				<form action="{{route('authenticate')}}" method="post">
+					@csrf
+					<style>
+						div.w3layouts-main form input.ggg{
+							border-radius: 10px;
+						}
+					</style>
+					<input type="text" class="ggg" name="username" placeholder="Tài khoản" required="">
+					<input type="password" class="ggg" name="password" placeholder="Mật khẩu" required="">
+					<span><input type="checkbox"/> Ghi nhớ đăng nhập</span>
+					<!-- <h6><a href="#">Forgot Password?</a></h6> -->
+					<div class="clearfix"></div>
+					<input type="submit" class="btn" value="Đăng nhập" >
+				</form>
+			<div class="text-center"><a href="{{route('/')}}" class="turn-back-index text-decoration-none text-while" title="Xem website"><i class="fa fa-reply" aria-hidden="true"></i> Trở về</a></div>
+		</div>
 	</div>
 	<script src="{{asset('admin/js/bootstrap.js')}}"></script>
 	<script src="{{asset('admin/js/jquery.dcjqaccordion.2.7.js')}}"></script>

@@ -8,17 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
 
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('user/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
-    <!-- Log-in Css -->
-    <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 @endsection
 
@@ -54,33 +53,37 @@
             </div>
             <div class="col-lg-9">
                 @if (Session::has('userLogin') != null)
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
-                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
-                            </div>
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="" class="nav-item nav-link">{{ session('username') }}</a>
-                                <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
+                            {{-- <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Trang</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{{route('cart')}}" class="dropdown-item">Giỏ hàng</a>
+                                    <a href="{{route('profile')}}" class="dropdown-item">Trang cá nhân</a>
+                                </div>
+                            </div> --}}
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown"><span>Xin chào, {{Auth::user()->fullname}} <i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-menu position-absolute border-0 rounded-0 w-100 m-0">
+                                    <a href="{{route('profile')}}" class="dropdown-item"><i class="fa fa-user"></i> Trang cá nhân</a>
+                                    <a href="{{route('log-out')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
                 @else
                     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                         <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
@@ -118,7 +121,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Kết quả tìm kiếm cho: <label style="text-transform: capitalize;">'{{$keyword}}'<label></h1>
+            <h1 class="font-weight-semi-bold mb-3" >Kết Quả Tìm Kiếm <label>"{{$keyword}}"<label></h1>
             <div class="d-inline-flex">
                 <p class="m-0"><a href="{{route('/')}}">Trang chủ</a></p>
                 <p class="m-0 px-2">-</p>
@@ -171,82 +174,6 @@
                     </form>
                 </div>
                 <!-- Price End -->
-                
-                <!-- Color Start -->
-                {{-- <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="price-all">All Color</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label" for="color-2">White</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div> --}}
-                <!-- Color End -->
-
-                <!-- Size Start -->
-                {{-- <div class="mb-5">
-                    <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="size-all">
-                            <label class="custom-control-label" for="size-all">All Size</label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-1">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-2">
-                            <label class="custom-control-label" for="size-2">S</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-3">
-                            <label class="custom-control-label" for="size-3">M</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="size-4">
-                            <label class="custom-control-label" for="size-4">L</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="size-5">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div> --}}
-                <!-- Size End -->
             </div>
             <!-- Shop Sidebar End -->
 
@@ -300,25 +227,44 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach  
+                        @endforeach
+                        {{-- Pagination --}}
                         <div class="col-12 pb-1">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center mb-3">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
+                                    @if ($lists->currentPage() > 1)
+                                    <li class="page-item"><a class="page-link" href="{{$lists->url(1)}}">Trang đầu</a></li>
+                                    @endif
+
+                                    @if ($lists->currentPage() > 1)
+                                    <li class="page-item">
+                                        <a href="{{$lists->previousPageUrl()}}" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    @endif
+                            
+                                    @foreach ($lists->getUrlRange(max($lists->currentPage() - 2, 1), min($lists->currentPage() + 2, $lists->lastPage())) as $page => $url)
+                                        @if ($page == $lists->currentPage())
+                                        <li class="page-item active"><a class="page-link">{{$page}}</a></li>
+                                        @else
+                                        <li class="page-item"><a class="page-link" href="{{$url}}">{{$page}}</a></li>
+                                        @endif
+                                    @endforeach
+                            
+                                    @if ($lists->currentPage() < $lists->lastPage())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{$lists->nextPageUrl()}}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>                                        
+                                        </a>
+                                    </li>
+                                    @endif
+
+                                    @if ($lists->currentPage() < $lists->lastPage())
+                                    <li class="page-item"><a class="page-link" href="{{$lists->url($lists->lastPage())}}">Trang cuối</a></li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
@@ -355,7 +301,50 @@
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>
 
-    <!-- Login Template Javascript -->
-    <!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        toastr.options = {positionClass: 'toast-bottom-right'};
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');   
 
+        $(document).ready(function() {
+            $('.buy-now-btn').on('click', function(e) {
+                e.preventDefault();
+                @if(!Auth::check())
+                    Swal.fire({
+                        title: 'Thông báo',
+                        text: 'Hãy đăng nhập để thêm sản phẩm này vào giỏ hàng!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'Hủy',
+                        confirmButtonText: 'Đăng nhập',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {window.location.href = "{{ route('log-in') }}";}
+                    });
+                @else
+                    $id_product = $(this).data('id');
+                    $price_pay = $(this).data('price');
+                    $.ajax({
+                        url: '{{ route('buy-now') }}',
+                        type: 'POST',
+                        data: { 
+                            _token: csrfToken,
+                            id_product: $id_product,
+                            price_pay: $price_pay
+                        },
+                        success: function(response) {
+                            if(response.success == true) {
+                                toastr.success('Đã thêm');
+                            } else {
+                                toastr.error('Thêm thất bại!');
+                            }
+                        },
+                        error: function(xhr) {}
+                    });
+                @endif
+            });
+        });
+    </script>
 @endsection

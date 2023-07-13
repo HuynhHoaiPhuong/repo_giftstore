@@ -26,6 +26,7 @@ class CartController extends Controller
                 'id_product' => $request->id_product,
                 'id_member' => $request->id_member,
                 'quantity' => $request->quantity,
+                'price_pay' => $request->price_pay,
             ]
         );
         if($cart->save() == 1){

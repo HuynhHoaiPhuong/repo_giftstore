@@ -17,8 +17,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
-    <!-- Log-in Css -->
-    <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 
 @endsection
 
@@ -53,33 +53,30 @@
             </div>
             <div class="col-lg-9">
                 @if (Session::has('userLogin') != null)
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
-                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
-                            </div>
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="" class="nav-item nav-link">{{ session('username') }}</a>
-                                <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown"><span>Xin chào, {{Auth::user()->fullname}} <i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-menu position-absolute border-0 rounded-0 w-100 m-0">
+                                    <a href="{{route('profile')}}" class="dropdown-item"><i class="fa fa-user"></i> Trang cá nhân</a>
+                                    <a href="{{route('log-out')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
                 @else
                     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                         <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
@@ -92,14 +89,6 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
                                 <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
                                 <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0">
@@ -119,7 +108,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Chi tiết sản phẩm</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="{{route('/')}}">Trang chủ</a></p>
+                <a href="{{route('/')}}"><p class="m-0">Trang chủ</p></a>
                 <p class="m-0 px-2">-</p>
                 <p class="m-0">Chi tiết sản phẩm</p>
             </div>
@@ -154,34 +143,34 @@
                 <h3 class="font-weight-semi-bold">{{$warehouseDetail->product->name}}</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
+                        <span>Đánh giá: </span>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star-half-alt"></small>
                         <small class="far fa-star"></small>
                     </div>
-                    <small class="pt-1">(50 Reviews)</small>
+                    {{-- <small class="pt-1">(5.0)</small> --}}
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</h3>
-                <p class="mb-4">{{$warehouseDetail->product->description}}</p>
+                <h3 class="font-weight-semi-bold mb-4">Giá: <span style="color: red;">{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</span></h3>
+                <p class="mb-4"><b>Mã sản phẩm: </b>{{$warehouseDetail->product->id_product}}</p>
+                <p class="mb-4"><b>Loại sản phẩm: </b><a href="">{{$warehouseDetail->product->category->name}}</a></p>
+                <p class="mb-4"><b>Danh mục: </b><a href="">{{$warehouseDetail->product->category->typeCategory->name}}</a></p>
+                <p class="mb-4"><b>Tình trạng: </b><span style="color: red;">Chưa xử lý</span></p>
                 
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
-                            </button>
+                            <button class="btn btn-primary btn-minus" ><i class="fa fa-minus"></i></button>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                        <input type="text" id="quantityProductDetail" name="quantity" class="form-control bg-secondary text-center" value="1" min="1">
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
+                            <button class="btn btn-primary btn-plus"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                    <button class="btn btn-primary px-3 btn-buy-now-detail" data-id="{{$warehouseDetail->product->id_product}}" data-price="{{$warehouseDetail->price_pay}}"><i class="fa fa-shopping-cart mr-1"></i> Đặt mua ngay</button>
                 </div>
-                <div class="d-flex pt-2">
+                {{-- <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Chia sẻ:</p>
                     <div class="d-inline-flex">
                         <a class="text-dark px-2" href="">
@@ -197,7 +186,7 @@
                             <i class="fab fa-pinterest"></i>
                         </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="row px-xl-5">
@@ -208,9 +197,9 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Thông tin thêm</h4>
-                        <p>Họ không lorem eirmod diam diam, eos elitr et gubergren diam sea. Hãy xác định rằng họ ghen tị với ai đó hai nỗi đau và hai điều. Họ ghét sự thật của sự thật và nỗi đau của rebum. Anh ấy đau đớn đứng ở nhà, nhưng trong một thời gian anh ấy đã có thể làm như vậy. Takimata kasd Tôi sẽ buộc tội anh ta vì tội buồn, những nỗi đau đó không phải vì vậy mà diam sẽ chấm dứt hai điều chỉ là, hãy để cho diam thần thánh một lúc nào đó eirmod nonumy đổ lỗi cho nỗi đau mà họ ghen tị.</p>
-                        <div class="row">
+                        <h4 class="mb-3">Mô tả sản phẩm</h4>
+                        <p>{{$warehouseDetail->product->description}}</p>
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item px-0">
@@ -243,7 +232,7 @@
                                     </li>
                                 </ul> 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     {{--<div class="tab-pane fade" id="tab-pane-2">
                         <div class="row">
@@ -329,7 +318,8 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
                             <a href="{{route('product-detail').'/'.$value->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                            <a href="javascript:" class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$value->product->id_product}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$value->product->id_product}}" data-price="{{$warehouseDetail->price_pay}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+
                         </div>
                     </div>
                     @endforeach
@@ -343,42 +333,105 @@
 
 <!-- JavaScript -->
 @section('java-script')
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<!-- Contact Javascript File -->
-<script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
-<script src="{{ asset('user/mail/contact.js') }}"></script>
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('user/mail/contact.js') }}"></script>
 
-<!-- Template Javascript -->
-<script src="{{ asset('user/js/main.js') }}"></script>
+    <!-- Template Javascript -->
+    <script src="{{ asset('user/js/main.js') }}"></script>
 
-<!-- Login Template Javascript -->
-<!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<Script>
-    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-    $(document).on('click', '.buy-now-btn', function(e) {
-        e.preventDefault();
-        $id_product = $(this).data('id');
-        $.ajax({
-            url: '{{ route('buy-now', ['id' => '']) }}' + '/' + $id_product,
-            type: 'POST',
-            data: { _token: csrfToken,},
-            success: function(response) {
-                if(response.success == true) {
-                    alert("Thêm giỏ hàng thành công.");
-                } else {
-                    alert("Thêm vào giỏ hàng không thành công. Vui lòng thử lại sau.");
-                }
-                return false;
-            },
-            error: function(xhr) {}
+    {{-- Add To Cart --}}
+    <script>
+        toastr.options = {positionClass: 'toast-bottom-right'};
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');   
+        // Thêm vào giỏ hàng
+        $(document).ready(function() {
+            $('.buy-now-btn').on('click', function(e) {
+                e.preventDefault();
+                @if(!Auth::check())
+                    Swal.fire({
+                        title: 'Thông báo',
+                        text: 'Hãy đăng nhập để thêm sản phẩm này vào giỏ hàng!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'Hủy',
+                        confirmButtonText: 'Đăng nhập',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {window.location.href = "{{ route('log-in') }}";}
+                    });
+                @else
+                    $id_product = $(this).data('id');
+                    $price_pay = $(this).data('price');
+                    $.ajax({
+                        url: '{{ route('buy-now') }}',
+                        type: 'POST',
+                        data: { 
+                            _token: csrfToken,
+                            id_product: $id_product,
+                            price_pay: $price_pay
+                        },
+                        success: function(response) {
+                            if(response.success == true) {
+                                toastr.success('Đã thêm');
+                            } else {
+                                toastr.error('Thêm thất bại!');
+                            }
+                        },
+                        error: function(xhr) {}
+                    });
+                @endif
+            });
+            
+            // Đặt mua ngay
+            $('.btn-buy-now-detail').on('click', function(e) {
+                e.preventDefault();
+                @if(!Auth::check())
+                    Swal.fire({
+                        title: 'Thông báo',
+                        text: 'Hãy đăng nhập để thêm sản phẩm này vào giỏ hàng!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'Hủy',
+                        confirmButtonText: 'Đăng nhập',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {window.location.href = "{{ route('log-in') }}";}
+                    });
+                @else
+                    $id_product = $(this).data('id');
+                    $price_pay = $(this).data('price');
+                    $quantity = $('#quantityProductDetail').val();
+                    $.ajax({
+                        url: '{{ route('buy-now-detail') }}',
+                        type: 'POST',
+                        data: { 
+                            _token: csrfToken,
+                            id_product : $id_product,
+                            price_pay : $price_pay,
+                            quantity: $quantity,
+                        },
+                        success: function(response) {
+                            if(response.success == true) {
+                                toastr.success('Đã thêm');
+                            } else {
+                                toastr.error('Thêm thất bại!');
+                            }
+                        },
+                        error: function(xhr) {}
+                    });
+                @endif
+            });
         });
-    });
-</Script>
+    </script>   
 
 @endsection

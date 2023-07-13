@@ -12,18 +12,21 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('user/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{asset('user/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
     <!-- Log-in Css -->
     <link rel="stylesheet" href="{{ asset('user/css/login.css') }}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 
 @endsection
 
 @section('web_content')
-
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
@@ -54,33 +57,37 @@
             </div>
             <div class="col-lg-9">
                 @if (Session::has('userLogin') != null)
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                        <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
-                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
-                                <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
-                                {{-- <a href="" class="nav-item nav-link">Shop Detail</a> --}}
-                                {{-- <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="{{route('cart')}}" class="dropdown-item">Shopping Cart</a>
-                                        <a href="{{route('checkout')}}" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div> --}}
-                                <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
-                            </div>
-                            <div class="navbar-nav ml-auto py-0">
-                                <a href="" class="nav-item nav-link">{{ session('username') }}</a>
-                                <a href="{{route('log-out')}}" class="nav-item nav-link"><i class="fas fa-sign-out-alt"></i></a>
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Gift Store</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{{route('/')}}" class="nav-item nav-link">Trang chủ</a>
+                            <a href="{{route('shop')}}" class="nav-item nav-link">Sản phẩm</a>
+                            {{-- <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Trang</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="{{route('cart')}}" class="dropdown-item">Giỏ hàng</a>
+                                    <a href="{{route('profile')}}" class="dropdown-item">Trang cá nhân</a>
+                                </div>
+                            </div> --}}
+                            <a href="{{route('contact')}}" class="nav-item nav-link">Liên hệ</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <div class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown"><span>Xin chào, {{Auth::user()->fullname}} <i class="fa fa-angle-down"></i></span></a>
+                                <div class="dropdown-menu position-absolute border-0 rounded-0 w-100 m-0">
+                                    <a href="{{route('profile')}}" class="dropdown-item"><i class="fa fa-user"></i> Trang cá nhân</a>
+                                    <a href="{{route('log-out')}}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                                </div>
                             </div>
                         </div>
-                    </nav>
+                    </div>
+                </nav>
                 @else
                     <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                         <a href="{{route('/')}}" class="text-decoration-none d-block d-lg-none">
@@ -305,10 +312,11 @@
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 @if($warehouseDetail->product->photo != 'noimage.png' && $warehouseDetail->product->photo != '')
-                                    <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $warehouseDetail->product->photo }}" alt="{{$warehouseDetail->product->name}}">
+                                <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $warehouseDetail->product->photo }}" alt="{{$warehouseDetail->product->name}}">
                                 @else
-                                    <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
-                                @endif                            </div>
+                                <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
+                                @endif                            
+                            </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3">{{$warehouseDetail->product->name}}</h6>
                                 <div class="d-flex justify-content-center">
@@ -317,99 +325,15 @@
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
                                 <a href="product/{{$warehouseDetail->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                                <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>                                
+                                <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}" data-price="{{$warehouseDetail->price_pay}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div class="col-12 pb-1">
-                        <nav aria-label="Page navigation">
-                          <ul class="pagination justify-content-center mb-3">
-                            <li class="page-item disabled">
-                              <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                            </li>
-                            
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </nav>
-                    </div> --}}
-
-                    @if ($pagination['lastPage'] > 1)
-                        @if($pagination['currentPage'] >= 1 && $pagination['currentPage'] <= $pagination['endPage'])
-                        <div class="col-12 pb-1">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center mb-3">
-                                    
-                                    <!-- Hiển thị liên kết đến trang đầu tiên -->
-                                    @if ($pagination['startPage'] > 1)
-                                    <li class="page-item"><a class="page-link" href="?page=1">Trang đầu</a></li>
-                                    @endif
-                                
-                                    <!-- Hiển thị các liên kết đến trang trước trang hiện tại -->
-                                    @if ($pagination['currentPage'] > 1)
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ $pagination['currentPage'] - 1 }}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span id="PreviousPage" class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    @endif
-                                    
-                                    <!-- Hiển thị các liên kết đến các trang lùi -->
-                                    @for ($page = $pagination['startPage']; $page < $pagination['currentPage']; $page++)
-                                    <li class="page-item"><a class="page-link" href="?page={{ $page }}">{{ $page }}</a></li>
-                                    @endfor
-                                    
-                                    {{-- Trang hiện tại --}}
-                                    <li class="page-item active"><a class="page-link">{{ $pagination['currentPage'] }}</a></li>
-
-                                    <!-- Hiển thị các liên kết đến các trang tiếp theo -->
-                                    @for ($page = $pagination['currentPage'] + 1; $page <= $pagination['endPage']; $page++)
-                                    <li class="page-item"><a class="page-link" href="?page={{ $page }}">{{ $page }}</a></li>
-                                    @endfor
-
-                                    <!-- Hiển thị các liên kết đến trang tiếp theo trang hiện tại -->
-                                    @if ($pagination['currentPage'] < $pagination['lastPage'])
-                                    <li class="page-item">
-                                        <a class="page-link" href="?page={{ $pagination['currentPage'] + 1 }}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span id="NextPage" class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                    @endif
-
-                                    <!-- Hiển thị liên kết đến trang cuối cùng -->
-                                    @if ($pagination['endPage'] < $pagination['lastPage'])
-                                    <li class="page-item"><a class="page-link" href="?page={{ $pagination['lastPage'] }}">Trang cuối</a></li>
-                                    @endif
-                                </ul>
-                            </nav>
-                        </div>
-                        @else
-                        <div class="col-12 pb-1">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center mb-3">
-                                    <li><span style="height:auto; margin-top: 10px; margin-right: 5px; font-weight: bold;">Không có dữ liệu, quay lại -  </span>
-                                        <label class="page-item"><a class="page-link" href="?page=1">Trang đầu</a></label>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div> 
-                        @endif
-                    @endif
-
+                    
+                    {{-- Pagination --}}
+                    @include('user.templates.pagination-component')
+                    {{-- Pagination End --}}
 
                 </div>
             </div>
@@ -428,6 +352,7 @@
     <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
+
     <!-- Contact Javascript File -->
     <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
     <script src="{{ asset('user/mail/contact.js') }}"></script>
@@ -435,7 +360,51 @@
     <!-- Template Javascript -->
     <script src="{{ asset('user/js/main.js') }}"></script>
 
-    <!-- Login Template Javascript -->
-    <!-- <script src="{{ asset('user/js/login.js') }}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- Add To Cart --}}
+    <script>
+        toastr.options = {positionClass: 'toast-bottom-right'};
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');   
+
+        $(document).ready(function() {
+            $('.buy-now-btn').on('click', function(e) {
+                e.preventDefault();
+                @if(!Auth::check())
+                    Swal.fire({
+                        title: 'Thông báo',
+                        text: 'Hãy đăng nhập để thêm sản phẩm này vào giỏ hàng!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        cancelButtonText: 'Hủy',
+                        confirmButtonText: 'Đăng nhập',
+                        reverseButtons: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {window.location.href = "{{ route('log-in') }}";}
+                    });
+                @else
+                    $id_product = $(this).data('id');
+                    $price_pay = $(this).data('price');
+                    $.ajax({
+                        url: '{{ route('buy-now') }}',
+                        type: 'POST',
+                        data: { 
+                            _token: csrfToken,
+                            id_product: $id_product,
+                            price_pay: $price_pay
+                        },
+                        success: function(response) {
+                            if(response.success == true) {
+                                toastr.success('Đã thêm');
+                            } else {
+                                toastr.error('Thêm thất bại!');
+                            }
+                        },
+                        error: function(xhr) {}
+                    });
+                @endif
+            });
+        });
+    </script>
 @endsection

@@ -32,7 +32,7 @@
     <div class="col-md-3 market-update-gd">
       <div class="market-update-block clr-block-2">
         <div class="col-md-4 market-update-right">
-          <i class="fa fa-cogs" aria-hidden="true"> </i></i>
+          <i class="fa fa-cogs" aria-hidden="true"></i>
         </div>
         <div class="col-md-8 market-update-left">
           <a href="/admin/static-page-management">
@@ -46,7 +46,7 @@
     <div class="col-md-3 market-update-gd">
       <div class="market-update-block clr-block-1">
         <div class="col-md-4 market-update-right">
-          <i class="fa fa-users" ></i>
+          <i class="fa fa-users"></i>
         </div>
         <div class="col-md-8 market-update-left">
           <a href="/admin/all-member">
@@ -54,7 +54,7 @@
             <p><b>Xem thêm</b></p>
           </a>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
       </div>
     </div>
     <div class="col-md-3 market-update-gd">
@@ -68,7 +68,7 @@
             <p><b>Xem thêm</b></p>
           </a>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
       </div>
     </div>
     <div class="col-md-3 market-update-gd">
@@ -82,10 +82,10 @@
               <p><b>Xem thêm</b></p>
             </a>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
       </div>
     </div>
-    <div class="clearfix"> </div>
+    <div class="clearfix"></div>
   </div>	
   <!-- //market-->
   <div class="row">
