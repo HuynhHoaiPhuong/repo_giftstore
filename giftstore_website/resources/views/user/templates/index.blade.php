@@ -192,7 +192,7 @@
             @foreach($allCategories as $key => $allCategory)
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
+                    {{-- <p class="text-right">15 Products</p> --}}
                     <a href="" class="cat-img position-relative overflow-hidden mb-3">
                         <img width="100%" height="383" class="img-fluid" src="upload/category/{{$allCategory->photo}}" alt="">
                     </a>

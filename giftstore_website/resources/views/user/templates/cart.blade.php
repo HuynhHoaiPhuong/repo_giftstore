@@ -176,15 +176,15 @@
                     {{-- <div id="cart-container"></div> --}}
                 </div>
                 <div class="col-lg-4">
-                    <div class="card border-secondary mb-5">
+                    {{-- <div class="card border-secondary mb-5">
                         <div class="card-header bg-secondary border-0"><h4 class="font-weight-semi-bold m-0">Mã giảm giá</h4></div>
                         <div class="input-group">
                             <input type="text" class="form-control p-4" placeholder="Nhập mã giảm giá">
-                            {{-- <div class="input-group-append">
+                            <div class="input-group-append">
                                 <button class="btn btn-primary">Áp dụng</button>
-                            </div> --}}
+                            </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     @if($payments != [])
                     <div class="card border-secondary mb-5">

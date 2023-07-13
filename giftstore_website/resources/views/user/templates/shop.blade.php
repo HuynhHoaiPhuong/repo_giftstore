@@ -287,7 +287,7 @@
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
+                            {{-- <form action="">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Tìm kiếm">
                                     <div class="input-group-append">
@@ -296,15 +296,15 @@
                                         </span>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="dropdown ml-4">
+                            </form> --}}
+                            {{-- <div class="dropdown ml-4"> --}}
                                 <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sắp xếp theo</button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
                                     <a class="dropdown-item" href="#">Mặc định</a>
                                     <a class="dropdown-item" href="#">Giá tăng dần</a>
                                     <a class="dropdown-item" href="#">Giá giảm dần</a>
                                 </div>
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
                     @foreach($warehouseDetails as $key => $warehouseDetail)

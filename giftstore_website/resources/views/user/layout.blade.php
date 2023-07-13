@@ -68,10 +68,10 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
+                {{-- <a href="" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
-                </a>
+                </a> --}}
                 <a href="{{route('cart')}}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Nhắn tin cho chúng tôi</h5>
+                        {{-- <h5 class="font-weight-bold text-dark mb-4">Nhắn tin cho chúng tôi</h5>
                         <form action="">
                             <div class="form-group">
                                 <input type="text" class="form-control border-0 py-4" placeholder="Nhập tên của bạn" required="required" />
@@ -133,7 +133,9 @@
                             <div>
                                 <button class="btn btn-primary btn-block border-0 py-3" type="submit">Gửi ngay</button>
                             </div>
-                        </form>
+                        </form> --}}
+                        <h5 class="font-weight-bold text-dark mb-4">Bản đồ</h5>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.212915900664!2d106.71924121088665!3d10.794998458805898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527c2f8f30911%3A0x36ac5073f8c91acd!2sT%C3%B2a%20nh%C3%A0%20The%20Landmark%2081!5e0!3m2!1svi!2s!4v1689266314569!5m2!1svi!2s" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
