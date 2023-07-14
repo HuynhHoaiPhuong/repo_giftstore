@@ -59,7 +59,11 @@ class BillController extends Controller
             
             foreach($req->dataProduct as $k => $v){
                 $warehouseDetail = $warehouseDetailController->getWarehouseDetailByIdProduct($v['id_product']);
-                $newQuantity = (int)$warehouseDetail['data']['quantity'] - (int)$v['quantity'];
+                if($warehouseDetail['data']['quantity'] < (int)$v['quantity']){
+                    $newQuantity = (int)$warehouseDetail['data']['quantity'];
+                }else{
+                    $newQuantity = (int)$warehouseDetail['data']['quantity'] - (int)$v['quantity'];
+                }
                 $newTotalPrice = $newQuantity*$warehouseDetail['data']['price_pay'];
                 
                 $reqUpdateQuantity = new Request([
