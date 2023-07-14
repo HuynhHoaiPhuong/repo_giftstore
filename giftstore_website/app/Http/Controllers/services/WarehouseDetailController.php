@@ -18,6 +18,13 @@ class WarehouseDetailController extends Controller
         return Payload::toJson(new WarehouseDetailResource($warehouseDetail), "OK", 200);
     }
 
+    public function getWarehouseDetailByIdProduct($id_product){
+        $warehouseDetail = WarehouseDetail::where('id_product', $id_product)->first();
+        if($warehouseDetail==null)
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(new WarehouseDetailResource($warehouseDetail), "OK", 200);
+    }
+
     public function getAllWarehouseDetailByIdWarehouse($id_warehouse){
         $warehouseDetails = WarehouseDetail::where('id_warehouse', $id_warehouse)->get();
         if($warehouseDetails->isEmpty())
@@ -66,6 +73,19 @@ class WarehouseDetailController extends Controller
         $result = WarehouseDetail::where('id_warehouse_detail', $request->id_warehouse_detail)
         ->update([
             'price_pay' => $request->price_pay,
+            'total_price' => $request->total_price,
+        ]);  
+        if($result == 1){
+            $warehouseDetail = WarehouseDetail::where('id_warehouse_detail', $request->id_warehouse_detail)->first();
+            return Payload::toJson(new WarehouseDetailResource($warehouseDetail), "Completed", 202);
+        }
+        return Payload::toJson(null, "UnCompleted", 500);
+    }
+
+    public function updateQuantityWarehouseDetail(Request $request){
+        $result = WarehouseDetail::where('id_warehouse_detail', $request->id_warehouse_detail)
+        ->update([
+            'quantity' => $request->quantity,
             'total_price' => $request->total_price,
         ]);  
         if($result == 1){

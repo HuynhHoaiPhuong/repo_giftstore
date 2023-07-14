@@ -328,6 +328,7 @@
                         if(response){
                             toastr.success('Đã xóa!');
                             // loadCart(cartContainer);
+                            location.reload(false);
                         }
                         else
                         toastr.error('Xóa thất bại!');

@@ -9,6 +9,7 @@ use App\Http\Controllers\services\BillController as ServicesBillController;
 use App\Http\Controllers\services\BillDetailController as ServicesBillDetailController;
 use App\Http\Controllers\services\MemberController as ServicesMemberController;
 use App\Http\Controllers\services\CartController as ServicesCartController;
+use App\Http\Controllers\services\WarehouseDetailController as ServicesWarehouseDetailController;
 
 class BillController extends Controller
 {
@@ -17,6 +18,7 @@ class BillController extends Controller
         $billDetailController = new ServicesBillDetailController();
         $memberController = new ServicesMemberController();
         $cartController = new ServicesCartController();
+        $warehouseDetailController = new ServicesWarehouseDetailController();
 
         $member = $memberController->getIdMemberByIdUser(Auth::id());
         // 
@@ -54,8 +56,26 @@ class BillController extends Controller
         
         if($billDetail != []){
             $cartController->clearCartByIdMember($member['id_member']);
+            
+            foreach($req->dataProduct as $k => $v){
+                $warehouseDetail = $warehouseDetailController->getWarehouseDetailByIdProduct($v['id_product']);
+                $newQuantity = (int)$warehouseDetail['data']['quantity'] - (int)$v['quantity'];
+                $newTotalPrice = $newQuantity*$warehouseDetail['data']['price_pay'];
+                
+                $reqUpdateQuantity = new Request([
+                    'id_warehouse_detail'=>$warehouseDetail['data']['id_warehouse_detail'],
+                    'total_price'=>$newTotalPrice,
+                    'quantity'=>$newQuantity
+                ]);
+                $checkRe = $warehouseDetailController->updateQuantityWarehouseDetail($reqUpdateQuantity);
+            }
             return redirect()->route('/');
         }
+
+
+       
+        
+
         return redirect()->route('cart');
     }
 }

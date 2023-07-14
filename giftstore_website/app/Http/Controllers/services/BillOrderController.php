@@ -13,7 +13,7 @@ class BillOrderController extends Controller
 {
     public function getAllBillOrder()
     {
-        $billOrders = BillOrder::all();
+        $billOrders = BillOrder::orderBy('date_order', 'desc')->get();
         if($billOrders->isEmpty())
         {
             return Payload::toJson(null,'Data Not Found',404);
@@ -42,7 +42,7 @@ class BillOrderController extends Controller
             'total_quantity' => $request->total_quantity, 
             'total_price' => $request->total_price, 
             'date_order' => Carbon::now()->format('ymdhis'), 
-            // 'date_of_payment' => $request->date_of_payment, 
+            'date_of_payment' => Carbon::now()->format('ymdhis'), 
         ]);
         if($billOrder->save() == 1){
             $BillOrder = BillOrder::where('id_bill_order', $billOrder->id_bill_order)->first();

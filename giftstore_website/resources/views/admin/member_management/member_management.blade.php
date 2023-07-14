@@ -32,24 +32,17 @@
     <div class="panel-heading">Danh sách thành viên</div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-success">Áp dụng</button>  
-        {{-- <a href="" class="btn btn-sm btn-primary">Thêm mới</a> --}}
+        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addMember"><i class="fa fa-plus" aria-hidden="true"></i><strong>Thêm Mới</strong></a>
       </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-3">
-        <div class="input-group">
+        {{--<div class="input-group">
           <input type="text" class="input-sm form-control" placeholder="Search">
           <span class="input-group-btn">
             <button class="btn btn-sm btn-default" type="button">Tìm</button>
           </span>
-        </div>
+        </div>--}}
       </div>
     </div>
     <div class="table-responsive">

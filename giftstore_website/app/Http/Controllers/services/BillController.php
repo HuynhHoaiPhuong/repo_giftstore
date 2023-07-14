@@ -8,6 +8,8 @@ use App\Http\Resources\BillResource;
 use App\Models\Bill;
 use App\Http\Payload;
 use Carbon\Carbon;
+use App\Http\Controllers\services\BillDetailController as ServicesBillDetailController;
+use App\Http\Controllers\services\WarehouseDetailController as ServicesWarehouseDetailController;
 
 class BillController extends Controller
 {
@@ -52,6 +54,23 @@ class BillController extends Controller
         $result = Bill::where('id_bill', $request->id_bill)
         ->update(['status' => $request->status]);
         if($result == 1){
+            if($request->status == 4){
+                $billDetailController = new ServicesBillDetailController();
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                $billdetails = $billDetailController->getAllBillDetailByIdBill($request->id_bill);
+                foreach($billdetails['data'] as $k => $v){
+                    $warehouseDetail = $warehouseDetailController->getWarehouseDetailByIdProduct($v->product->id_product);
+                    $newQuantity = (int)$warehouseDetail['data']->quantity + (int)$v->quantity;
+                    $newTotalPrice = $newQuantity*$warehouseDetail['data']->price_pay;
+                    $reqUpdateQuantity = new Request([
+                        'id_warehouse_detail'=>$warehouseDetail['data']->id_warehouse_detail,
+                        'total_price'=>$newTotalPrice,
+                        'quantity'=>$newQuantity
+                    ]);
+                    $checkRe = $warehouseDetailController->updateQuantityWarehouseDetail($reqUpdateQuantity);
+                }
+            }
+
             return Payload::toJson(true,"Update Successfully",202);
         }
         return Payload::toJson(false,"Cannot Update",500);

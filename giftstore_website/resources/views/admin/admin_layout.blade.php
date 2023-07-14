@@ -263,7 +263,7 @@
                             </a>
                             <ul class="sub">
                                 <li><a href="{{route('rank-management')}}">Xếp hạng thành viên</a></li>
-                                <li><a href="{{route('discount-management')}}">Giảm giá theo thể loại</a></li>
+                                {{--<li><a href="{{route('discount-management')}}">Giảm giá theo thể loại</a></li>--}}
                             </ul>
                         </li>
                         <li class="sub-menu">
