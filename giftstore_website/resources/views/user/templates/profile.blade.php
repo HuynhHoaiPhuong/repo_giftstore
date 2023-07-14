@@ -176,14 +176,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <td>BILL21316484648</td>
-                  <td>Admin</td>
-                  <td>0</td>
-                  <td>Tiền mặt</td>
-                  <td>500.000.000đ</td>
-                  <td>12/27/2023</td>
-                  <td style="font-weight: bold;">Chờ giao</td>
-                  <td><a onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng không?')" href="">Hủy đơn</a></td>
+                  <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
                 </tbody>
               </table>
             </div>
