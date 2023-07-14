@@ -74,7 +74,11 @@
                 </a> --}}
                 <a href="{{route('cart')}}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
+                    @if ($cartCount > 0)
+                    <span class="badge">{{$cartCount}}</span>
+                    @else
                     <span class="badge">0</span>
+                    @endif
                 </a>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('user/layout')
 
-@section('title','Sản phẩm')
+@section('title','Danh mục sản phẩm')
 
 @section('header')
 
@@ -308,33 +308,163 @@
                             {{-- </div> --}}
                         </div>
                     </div>
-                    @foreach($warehouseDetails as $key => $warehouseDetail)
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                        <div class="card product-item border-0 mb-4">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                @if($warehouseDetail->product->photo != 'noimage.png' && $warehouseDetail->product->photo != '')
-                                <img class="img-fluid w-100" width="325" height="325" src="upload/product/{{ $warehouseDetail->product->photo }}" alt="{{$warehouseDetail->product->name}}">
-                                @else
-                                <img class="img-fluid w-100" width="325" height="325" src="user/img/noimage.png" alt="noimage.png" >
-                                @endif                            
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{$warehouseDetail->product->name}}</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</h6>
+                    @if(isset($lists))
+                        @if (count($lists) > 0)
+                            @foreach($lists as $key => $list)
+                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        @if($list->product->photo != 'noimage.png' && $list->product->photo != '')
+                                            <img class="img-fluid w-100" width="325" height="325" src="../upload/product/{{ $list->product->photo }}" alt="{{$list->name}}">
+                                        @else
+                                            <img class="img-fluid w-100" width="325" height="325" src="../user/img/noimage.png" alt="noimage.png" >
+                                        @endif                            
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3">{{$list->product->name}}</h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6>{{ number_format($list->price_pay, 0, ',', '.') }} đ</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="product/{{$list->id_warehouse_detail}}" class="btn btn-sm text-dark p-0">
+                                            <i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết
+                                        </a>
+                                        <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$list->product->id_product}}" data-price="{{$list->price_pay}}">
+                                            <i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="product/{{$warehouseDetail->id_warehouse_detail}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết</a>
-                                <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$warehouseDetail->product->id_product}}" data-price="{{$warehouseDetail->price_pay}}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+                            @endforeach
+                            {{-- Pagination --}}
+                            <div class="col-12 pb-1">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-3">
+                                        @if ($lists->currentPage() > 1)
+                                        <li class="page-item"><a class="page-link" href="{{$lists->url(1)}}">Trang đầu</a></li>
+                                        @endif
+
+                                        @if ($lists->currentPage() > 1)
+                                        <li class="page-item">
+                                            <a href="{{$lists->previousPageUrl()}}" class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                
+                                        @foreach ($lists->getUrlRange(max($lists->currentPage() - 2, 1), min($lists->currentPage() + 2, $lists->lastPage())) as $page => $url)
+                                            @if ($page == $lists->currentPage())
+                                            <li class="page-item active"><a class="page-link">{{$page}}</a></li>
+                                            @else
+                                            <li class="page-item"><a class="page-link" href="{{$url}}">{{$page}}</a></li>
+                                            @endif
+                                        @endforeach
+                                
+                                        @if ($lists->currentPage() < $lists->lastPage())
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{$lists->nextPageUrl()}}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>                                        
+                                            </a>
+                                        </li>
+                                        @endif
+
+                                        @if ($lists->currentPage() < $lists->lastPage())
+                                        <li class="page-item"><a class="page-link" href="{{$lists->url($lists->lastPage())}}">Trang cuối</a></li>
+                                        @endif
+                                    </ul>
+                                </nav>
                             </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    
-                    {{-- Pagination --}}
-                    @include('user.templates.pagination-component')
-                    {{-- Pagination End --}}
+                        @else
+                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="">Không tìm thấy sản phẩm</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @elseif(isset($types))
+                        @if (count($types) > 0)
+                        @foreach($types as $key => $type)
+                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        @if($type->product->photo != 'noimage.png' && $type->product->photo != '')
+                                            <img class="img-fluid w-100" width="325" height="325" src="../upload/product/{{ $type->product->photo }}" alt="{{$type->name}}">
+                                        @else
+                                            <img class="img-fluid w-100" width="325" height="325" src="../user/img/noimage.png" alt="noimage.png" >
+                                        @endif                            
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3">{{$type->product->name}}</h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6>{{ number_format($type->price_pay, 0, ',', '.') }} đ</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="product/{{$type->id_warehouse_detail}}" class="btn btn-sm text-dark p-0">
+                                            <i class="fas fa-eye text-primary mr-1"></i>Xem chi tiết
+                                        </a>
+                                        <a class="btn btn-sm text-dark p-0 buy-now-btn" data-id="{{$type->product->id_product}}" data-price="{{$type->price_pay}}">
+                                            <i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            {{-- Pagination --}}
+                            <div class="col-12 pb-1">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-3">
+                                        @if ($lists->currentPage() > 1)
+                                        <li class="page-item"><a class="page-link" href="{{$lists->url(1)}}">Trang đầu</a></li>
+                                        @endif
+
+                                        @if ($lists->currentPage() > 1)
+                                        <li class="page-item">
+                                            <a href="{{$lists->previousPageUrl()}}" class="page-link" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        @endif
+                                
+                                        @foreach ($lists->getUrlRange(max($lists->currentPage() - 2, 1), min($lists->currentPage() + 2, $lists->lastPage())) as $page => $url)
+                                            @if ($page == $lists->currentPage())
+                                            <li class="page-item active"><a class="page-link">{{$page}}</a></li>
+                                            @else
+                                            <li class="page-item"><a class="page-link" href="{{$url}}">{{$page}}</a></li>
+                                            @endif
+                                        @endforeach
+                                
+                                        @if ($lists->currentPage() < $lists->lastPage())
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{$lists->nextPageUrl()}}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>                                        
+                                            </a>
+                                        </li>
+                                        @endif
+
+                                        @if ($lists->currentPage() < $lists->lastPage())
+                                        <li class="page-item"><a class="page-link" href="{{$lists->url($lists->lastPage())}}">Trang cuối</a></li>
+                                        @endif
+                                    </ul>
+                                </nav>
+                            </div>
+                        @else
+                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="">Không tìm thấy sản phẩm</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
 
                 </div>
             </div>

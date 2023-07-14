@@ -28,18 +28,19 @@
                 @if($typeCategories != [])
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        @foreach($typeCategories as $key => $typeCategory)
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">{{$typeCategory->name}}<i class="fa fa-angle-down float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                @foreach ($categoriesByType[$typeCategory->id_type_category] as $category)
-                                <a href="#" class="dropdown-item">{{$category->name}}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endforeach
-                        @foreach ($getAllTypeCategories as $nonCategory)
-                        <a href="" class="nav-item nav-link">{{$nonCategory->name}}</a>
+                        @foreach($typeCategories as $typeCategory)
+                            @if(isset($categoriesByType[$typeCategory->id_type_category]) && count($categoriesByType[$typeCategory->id_type_category]) > 0)
+                                <div class="nav-item dropdown">
+                                    <a href="{{route('type-category', $typeCategory->id_type_category)}}" class="nav-link" data-toggle="dropdown">{{$typeCategory->name}}<i class="fa fa-angle-down float-right mt-1"></i></a>
+                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                        @foreach ($categoriesByType[$typeCategory->id_type_category] as $category)
+                                            <a href="{{route('type-category', $category->id_category)}}" class="dropdown-item">{{$category->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @else
+                                <a href="{{route('type-category', $typeCategory->id_type_category)}}" class="nav-item nav-link">{{$typeCategory->name}}</a>
+                            @endif
                         @endforeach
                     </div>
                 </nav>

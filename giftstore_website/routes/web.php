@@ -40,6 +40,8 @@ use App\Http\Controllers\user\ShopController;
 use App\Http\Controllers\user\SearchController;
 use App\Http\Controllers\user\LoginClientController;
 use App\Http\Controllers\user\ProfileController;
+use App\Http\Controllers\user\CategoryController as userCategoryController;
+use App\Http\Controllers\user\TypeCategoryController as userTypeCategoryController;
 
 //web-admin
 Route::group(['prefix' => 'admin'],function(){
@@ -132,6 +134,8 @@ Route::get('/log-in', [LoginClientController::class,'login'])->name('log-in');
 Route::post('/register-member', [LoginClientController::class,'register'])->name('register-member');
 Route::get('/search', [SearchController::class,'search'])->name('search');
 Route::post('/client-authenticate', [LoginClientController::class,'authenticate'])->name('client-authenticate');
+Route::get('/category/{id}', [userCategoryController::class,'category'])->name('category');
+Route::get('/type-category/{id}', [userTypeCategoryController::class,'type'])->name('type-category');
 
 Route::group(['middleware' => ['redirectIfNotLoggedIn']], function (){
     Route::get('/log-out', [LoginClientController::class, 'logout'])->name('log-out');

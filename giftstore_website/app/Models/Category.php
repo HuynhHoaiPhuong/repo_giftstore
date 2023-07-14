@@ -21,7 +21,12 @@ class Category extends Model
         'created_at',
         'updated_at',
     ];
+
     public function typeCategory(){
         return $this->belongsTo(TypeCategory::class, 'id_type_category', 'id_type_category');
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class, 'id_category', 'id_category');
     }
 }

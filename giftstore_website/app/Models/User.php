@@ -30,11 +30,15 @@ class User extends Authenticatable
         'address',
         'gender',
         'birthday',
-        'id_google'
+        // 'id_google'
     ];
     
     public function role(){
         return $this->belongsTo(Role::class, 'id_role', 'id_role');
+    }
+    
+    public function member(){
+        return $this->hasOne(Member::class, 'id_user', 'id_user');
     }
     
 }

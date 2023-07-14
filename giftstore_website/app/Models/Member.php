@@ -19,10 +19,16 @@ class Member extends Model
         'created_at',
         'updated_at'
     ];
+
     public function user(){
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
+
     public function rank(){
         return $this->belongsTo(Rank::class, 'id_rank', 'id_rank');
+    }
+
+    public function carts(){
+        return $this->hasMany(Cart::class, 'id_member', 'id_member');
     }
 }

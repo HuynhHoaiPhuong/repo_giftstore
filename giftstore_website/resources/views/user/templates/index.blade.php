@@ -36,18 +36,19 @@
                 @if($typeCategories != [])
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        @foreach($typeCategories as $key => $typeCategory)
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">{{$typeCategory->name}}<i class="fa fa-angle-down float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                @foreach ($categoriesByType[$typeCategory->id_type_category] as $category)
-                                <a href="#" class="dropdown-item">{{$category->name}}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                        @endforeach
-                        @foreach ($getAllTypeCategories as $nonCategory)
-                        <a href="" class="nav-item nav-link">{{$nonCategory->name}}</a>
+                        @foreach($typeCategories as $typeCategory)
+                            @if(isset($categoriesByType[$typeCategory->id_type_category]) && count($categoriesByType[$typeCategory->id_type_category]) > 0)
+                                <div class="nav-item dropdown">
+                                    <a href="{{route('type-category', $typeCategory->id_type_category)}}" class="nav-link" data-toggle="dropdown">{{$typeCategory->name}}<i class="fa fa-angle-down float-right mt-1"></i></a>
+                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                        @foreach ($categoriesByType[$typeCategory->id_type_category] as $category)
+                                            <a href="{{route('type-category', $category->id_category)}}" class="dropdown-item">{{$category->name}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @else
+                                <a href="{{route('type-category', $typeCategory->id_type_category)}}" class="nav-item nav-link">{{$typeCategory->name}}</a>
+                            @endif
                         @endforeach
                     </div>
                 </nav>
@@ -189,14 +190,13 @@
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
-            @foreach($allCategories as $key => $allCategory)
+            @foreach($categories as $key => $category)
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    {{-- <p class="text-right">15 Products</p> --}}
-                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img width="100%" height="383" class="img-fluid" src="upload/category/{{$allCategory->photo}}" alt="">
+                    <a href="{{route('type-category', $category->id_category)}}" class="cat-img position-relative overflow-hidden mb-3">
+                        <img width="100%" height="383" class="img-fluid" src="upload/category/{{$category->photo}}" alt="">
                     </a>
-                    <h5 class="font-weight-semi-bold m-0">{{$allCategory->name}}</h5>
+                    <h5 class="font-weight-semi-bold m-0">{{$category->name}}</h5>
                 </div>
             </div>
             @endforeach
