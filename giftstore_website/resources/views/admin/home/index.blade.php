@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-8 market-update-left">
           <a href="/admin/static-page-management">
-            <h4>Cấu Hình Website</h4>
+            <h4>Cấu Hình</h4>
             <p><b>Xem thêm</b></p>
           </a>
         </div>
