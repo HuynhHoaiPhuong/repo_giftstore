@@ -110,7 +110,7 @@
               </tr>
               @endforeach
               @else
-                  <tr class="odd"><td valign="top" colspan="6" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
+                  <tr class="odd"><td valign="top" colspan="12" class="text-center dataTables_empty">Chưa có dữ liệu</td></tr>
               @endif
             </form>
           </tbody>

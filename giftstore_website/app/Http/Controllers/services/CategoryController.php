@@ -34,6 +34,13 @@ class CategoryController extends Controller
             return Payload::toJson(null, "Data Not Found", 404);   
         return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
     }
+    public function getAllCategoryByStatusAndLimit($status,$limit)
+    {
+        $categories = Category::where('status', $status)->orderBy('date_order', 'desc')->take($limit)->get();
+        if($categories->isEmpty())
+            return Payload::toJson(null, "Data Not Found", 404);   
+        return Payload::toJson(CategoryResource::collection($categories), "Request Successfully", 200);
+    }
     public function getAllCategoryByTypeCategory($id)
     {
         return $category = Category::select('id_category')->where('id_type_category',$id)->first();
@@ -50,6 +57,8 @@ class CategoryController extends Controller
             'photo' => $req->photo, 
             'slug' => $req->slug, 
         ]);
+        $checkName = Category::where('name', $category->name)->first();
+        if($checkName) return Payload::toJson(null,'Tên sản danh mục không được trùng lặp!',500);
         if($category->save() == 1){
             $category = Category::where('id_category', $category->id_category)->first();
             return Payload::toJson(new CategoryResource($category), "Create Successfully", 201);
@@ -58,6 +67,8 @@ class CategoryController extends Controller
     }
 
     public function updateCategory(Request $request){
+        $checkName = Category::where('name', $request->name)->where('id_category', '!=', $request->id_category)->first();
+        if($checkName) return Payload::toJson(null,'Tên sản danh mục không được trùng lặp!',500);
         $result = Category::where('id_category', $request->id_category)->update([
             'id_type_category' => $request->id_type_category, 
             // 'numerical_order' => $request->numerical_order,
@@ -81,5 +92,19 @@ class CategoryController extends Controller
             return Payload::toJson(new CategoryResource($category), "Remove Successfully", 202);
         }
         return Payload::toJson(null, "Cannot Update", 500);
+    }
+
+    public function deleteCategory(Request $req)
+    {
+        if($req->id_category){
+            $category = Category::where('id_category', $req->id_category)->first();
+            if(file_exists('upload/category/'.$category->photo)){
+                unlink('upload/category/'.$category->photo);
+                $result = Category::where('id_category', $req->id_category)->delete();
+                if($result) return Payload::toJson(true, "Remove Successfully", 202);
+            }
+            else return Payload::toJson(false, "Cannot Deleted!", 500);
+        }
+        return Payload::toJson(false, "Cannot Deleted!", 500);
     }
 }

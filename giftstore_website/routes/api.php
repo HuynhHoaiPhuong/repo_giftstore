@@ -80,6 +80,7 @@ Route::group(['prefix'=>'/categories'],function()
     Route::post('/save-category',[CategoryController::class,'saveCategory']);
     Route::post('/update-category',[CategoryController::class,'updateCategory']);
     Route::post('/remove-category',[CategoryController::class,'removeCategory']);
+    Route::post('/delete-category',[CategoryController::class,'deleteCategory']);
 });
 //Product API
 Route::group(['prefix'=>'/products'],function()

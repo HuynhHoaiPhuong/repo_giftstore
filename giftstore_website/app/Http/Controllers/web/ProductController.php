@@ -82,7 +82,7 @@ class ProductController extends Controller
         $req->photo = $newName;
         $result = $productController->saveProduct($req);
         if($result['data']==null){
-            return back()->with('error','Tạo thất bại');
+            return back()->with('error',$result['message']);
         }
         return redirect(route('product-management'));
     }
@@ -111,7 +111,7 @@ class ProductController extends Controller
         $result = $productController->updateProduct($req);
 
         if($result['data']==null){
-            return back()->with('error','Chỉnh sửa thất bại');
+            return back()->with('error',$result['message']);
         }
         return redirect(route('product-management'));
     }

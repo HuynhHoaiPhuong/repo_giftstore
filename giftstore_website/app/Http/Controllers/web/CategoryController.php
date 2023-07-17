@@ -42,8 +42,8 @@ class CategoryController extends Controller
         }
         $req->photo = $newName;
         $result = $categoryController->saveCategory($req);
-        if($result==null){
-            return back()->with('error','Tạo thất bại');
+        if($result['data']==null){
+            return back()->with('error',$result['message']);
         }
         return redirect(route('category-management'));
     }
@@ -71,8 +71,8 @@ class CategoryController extends Controller
 
         $result = $categoryController->updateCategory($req);
 
-        if($result==null){
-            return back()->with('error','Chỉnh sửa thất bại');
+        if($result['data']==null){
+            return back()->with('error',$result['message']);
         }
         return redirect(route('category-management'));
     }
