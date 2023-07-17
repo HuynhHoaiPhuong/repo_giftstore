@@ -113,17 +113,17 @@
         </tbody>
       </table>
     </div>
-    <footer class="panel-footer">
+    {{-- <footer class="panel-footer">
       <div class="row">
         <div class="col-sm-5 text-center">
         </div>
-        <div class="col-sm-7 text-right text-center-xs">                
-          {{-- Pagination --}}
+        <div class="col-sm-7 text-right text-center-xs">    
+
           @include('admin.pagination-component')
-          {{-- Pagination End --}}
+
         </div>
       </div>
-    </footer>
+    </footer> --}}
   </div>
 </div>
 
