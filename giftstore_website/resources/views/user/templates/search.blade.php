@@ -137,50 +137,62 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-12">
-                <!-- Price Start -->
+            {{-- <div class="col-lg-3 col-md-12">
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all">Tất cả</label>
-                            <span class="badge border font-weight-normal">1000</span>
+                    <form action="" method="">
+                        <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                        <div class="border-bottom mb-4 pb-4">
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-0" name="price_pay[]" value="price-0">
+                                <label class="custom-control-label" for="price-0">Tất cả</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-1" name="price_pay[]" value="price-1">
+                                <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-2" name="price_pay[]" value="price-2">
+                                <label class="custom-control-label" for="price-2">100.000đ - 500.000đ</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-3" name="price_pay[]" value="price-3">
+                                <label class="custom-control-label" for="price-3">500.000đ - 1 triệu</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-4" name="price_pay[]" value="price-4">
+                                <label class="custom-control-label" for="price-4">1 triệu - 3 triệu</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-5" name="price_pay[]" value="price-5">
+                                <label class="custom-control-label" for="price-5">3 triệu - 5 triệu</label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-6" name="price_pay[]" value="price-6">
+                                <label class="custom-control-label" for="price-6">Trên 5 triệu</label>
+                            </div>
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">$0 - $100</label>
-                            <span class="badge border font-weight-normal">150</span>
+                        <!-- Price End -->
+                            
+                        <!-- Category Start -->
+                        <div class="border-bottom mb-4 pb-4">
+                            <h5 class="font-weight-semi-bold mb-4">Danh mục sản phẩm</h5>
+                            @foreach($categories as $key => $cate)
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="category-{{$cate->id_category}}" name="category[]" value="category-{{$cate->id_category}}">
+                                <label class="custom-control-label" for="category-{{$cate->id_category}}">{{$cate->name}}</label>
+                            </div>
+                            @endforeach
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">$100 - $200</label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3">$200 - $300</label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4">$300 - $400</label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="price-5">
-                            <label class="custom-control-label" for="price-5">$400 - $500</label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
+                        <!-- Category End -->
+                        <button type="submit" class="btn btn-primary col-md-12" style="margin:auto;">Lọc</button>
                     </form>
                 </div>
-                <!-- Price End -->
-            </div>
+            </div> --}}
             <!-- Shop Sidebar End -->
 
 
             <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -194,20 +206,18 @@
                                     </div>
                                 </div>
                             </form> --}}
-                            {{-- <div class="dropdown ml-4"> --}}
-                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">Sắp xếp theo</button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
-                                </div>
-                            {{-- </div> --}}
+                            {{-- <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Sắp xếp theo</button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                <a class="dropdown-item" href="#">Latest</a>
+                                <a class="dropdown-item" href="#">Popularity</a>
+                                <a class="dropdown-item" href="#">Best Rating</a>
+                            </div> --}}
                         </div>
                     </div>
                     @if (count($lists) > 0)
                         @foreach($lists as $key => $list)
-                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                     @if($list->product->photo != 'noimage.png' && $list->product->photo != '')

@@ -327,7 +327,6 @@
                     success: function(response) {
                         if(response){
                             toastr.success('Đã xóa!');
-                            // loadCart(cartContainer);
                             location.reload(false);
                         }
                         else
@@ -338,20 +337,6 @@
                     }
                 });
             });
-
-            // function loadCart() {
-            //     $.ajax({
-            //         url: '{{ route('cart') }}',
-            //         type: 'GET',
-            //         data: {_token: csrfToken},
-            //         success: function (response) {
-            //             $('#cart-container').html(response);
-            //         },
-            //         error: function (xhr, status, error) {
-                
-            //         },
-            //     });
-            // }
 
             $('#formBillPay').submit(function(e) {
                 e.preventDefault();

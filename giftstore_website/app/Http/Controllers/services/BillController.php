@@ -75,4 +75,11 @@ class BillController extends Controller
         }
         return Payload::toJson(false,"Cannot Update",500);
     }
+
+    public function getAllBillByIdMember($id_member){
+        $bills = Bill::where('id_member', $id_member)->get();
+        if($bills->isEmpty())
+            return Payload::toJson(null,'Data Not Found', 404);
+        return Payload::toJson(BillResource::collection($bills), 'Request Successfully', 200);
+    }
 }

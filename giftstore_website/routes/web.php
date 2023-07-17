@@ -151,4 +151,4 @@ Route::group(['prefix' => 'bill'],function(){
     Route::post('/pay-bill', [userBillController::class,'payBill'])->name('pay-bill');
 });
 
-
+Route::get('/filter-products', [ShopController::class,'filterProducts'])->name('filter-products');

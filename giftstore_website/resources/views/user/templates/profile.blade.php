@@ -16,6 +16,8 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('user/css/style.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+
 @endsection
 @section('web_content')
     <!-- Navbar Start -->
@@ -151,9 +153,18 @@
                   <label class="col-md-3" style="color: #ff4d29;">Địa chỉ:</label>
                   <input class="form-control" type="text" value="{{Auth::user()->address}}" readonly>
               </div>
+              <div class="col-md-10 form-group d-flex justify-content-between">
+                  <label class="col-md-3" style="color: #ff4d29;">Điểm tích lũy:</label>
+                  <input class="form-control" type="text" value="{{Auth::user()->member->current_point}}" readonly>
+
+              </div>
+              <div class="col-md-10 form-group d-flex justify-content-between">
+                  <label class="col-md-3" style="color: #ff4d29;">Xếp hạng:</label>
+                  <input class="form-control" type="text" value="{{Auth::user()->member->rank->rank_name}}" readonly>
+              </div>
 
               <div class="col-md-6" style="margin: auto; margin-top: 50px; margin-bottom: 50px;">
-                <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Cập nhật</button>
+                <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" data-toggle="modal" data-target="#updateProfile">Cập nhật</button>
               </div>
             </div>
           </div>
@@ -170,14 +181,49 @@
                     <td>Mã giảm giá</td>
                     <td>PTTT</td>
                     <td>Tổng tiền</td>
+                    <td>Số lượng</td>
                     <td>Ngày đặt</td>
                     <td>Trạng thái</td>
                     <td>Thao tác<td>
                   </tr>
                 </thead>
+                @if($bills != [])
+                <tbody>
+                  @foreach($bills as $key => $bill)
+                  <tr class="odd">
+                    <td>{{$bill->id_bill}}</td>
+                    <td>{{$bill->member->user->fullname}}</td>
+
+                    @if($bill->voucher == null)
+                      <td>Không</td>
+                    @else
+                      <td>{{$bill->voucher->name}}</td>
+                    @endif
+
+                    <td>{{$bill->payment->name}}</td>
+                    <td>{{number_format($bill->total_price, 0, ',', '.')}} đ</td>
+                    <td>{{$bill->total_quantity}}</td>
+                    <td>{{$bill->order_date}}</td>
+
+                    @if($bill->status == 'enabled') <td>Chờ duyệt</td>
+                    @elseif($bill->status == '2') <td>Đang giao</td>
+                    @elseif($bill->status == '3') <td>Đã giao</td>
+                    @elseif($bill->status == '4') <td>Đã hủy</td>
+                    @endif
+
+                    @if($bill->status == '4' || $bill->status == '2' || $bill->status == '3')
+                      <td><a class="btn btn-dark btn-cancel" style="margin-bottom: 5px; pointer-events: none; cursor: not-allowed;">Không thể xử lý</a></td>
+                    @else
+                      <td><a href="" class="btn btn-danger btn-cancel" style="margin-bottom: 5px;" data-id="{{$bill->id_bill}}" ui-toggle-class="">Hủy</a></td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+                @else
                 <tbody>
                   <tr class="odd "><td valign="top" colspan="12" class="text-center dataTables_empty">Danh sách trống</td></tr>
                 </tbody>
+                @endif
               </table>
             </div>
           </div>
@@ -226,36 +272,117 @@
       </div>
     </div>
     <!-- Checkout End -->
+
+
+    <!-- /Modal Update Profile -->
+    <div class="modal fade" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="updateProfile" aria-hidden="true">
+      <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center text-uppercase" id="exampleModalPopoversLabel" style="text-align:center;"><strong>Cập nhật thông tin cá nhân</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <form action="">
+                  @csrf
+                  <div class="col-md-10 form-group d-flex">
+                    <label class="col-md-3" style="color: #ff4d29;">Họ và tên:</label>
+                    <input class="form-control" type="text" value="">
+                  </div>
+                  <div class="col-md-10 form-group d-flex justify-content-between">
+                      <label class="col-md-3" style="color: #ff4d29;">Số điện thoại:</label>
+                      <input class="form-control" type="text" value="">
+                  </div>
+                  <div class="col-md-10 form-group d-flex justify-content-between">
+                      <label class="col-md-3" style="color: #ff4d29;">Giới tính:</label>
+                      <input class="form-control" type="text" value="">
+                  </div>
+                  <div class="col-md-10 form-group d-flex justify-content-between">
+                      <label class="col-md-3" style="color: #ff4d29;">Ngày sinh:</label>
+                      <input class="form-control" type="text" value="">
+                  </div>
+                  <div class="col-md-10 form-group d-flex justify-content-between">
+                      <label class="col-md-3" style="color: #ff4d29;">Địa chỉ:</label>
+                      <input class="form-control" type="text" value="">
+                  </div>
+                  <div class="form-group">
+                      <button class="btn_submit_add_rank btn btn-primary btn-block mr-10" type="submit">Lưu</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
 @endsection
 
 <!-- JavaScript -->
 @section('java-script')
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('user/lib/easing/easing.min.js') }}"></script>
+  <script src="{{ asset('user/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
-<!-- Contact Javascript File -->
-<script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script>
-<script src="{{ asset('user/mail/contact.js') }}"></script>
+  <!-- Contact Javascript File -->
+  {{-- <script src="{{ asset('user/mail/jqBootstrapValidation.min.js') }}"></script> --}}
+  {{-- <script src="{{ asset('user/mail/contact.js') }}"></script> --}}
 
-<!-- Template Javascript -->
-<script src="{{ asset('user/js/main.js') }}"></script>
+  <!-- Template Javascript -->
+  <script src="{{ asset('user/js/main.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
-<script>
-  function openLink(evt, animName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("city");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
+
+
+  <script>
+    function openLink(evt, animName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("city");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(animName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
     }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-    }
-    document.getElementById(animName).style.display = "block";
-    evt.currentTarget.className += " w3-red";
-  }
-  </script>
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $('.btn-cancel').on('click', function(e) {
+          e.preventDefault();
+          var id_bill = $(this).attr('data-id');
+          var status = '4';
+
+          $.ajax({
+            type: 'POST',
+            url: '/api/bills/update-bill/',
+            data: {
+              id_bill: id_bill,
+              status: status,
+            },
+            success: function(data) {
+              if (data.data == true) {
+                swal({
+                  title: "Cập nhật trạng thái thành công",
+                  icon: "success",
+                  button: "Đóng",
+                }).then(function() {
+                  location.reload(false);
+                });
+              } else {
+                swal("Cập nhật trạng thái thất bại", "Vui lòng thử lại", "error");
+              }
+            },
+            error: function(xhr) {
+              swal("Lỗi", "Đã xảy ra lỗi khi cập nhật trạng thái", "error");
+            }
+          });
+        });
+      });
+    </script>
 @endsection
