@@ -3,45 +3,45 @@
 @section('title','Quản lý chi tiết kho')
 
 @section('header')
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <!-- bootstrap-css -->
+  <link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}" >
 
-<!-- Custom CSS -->
-<link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
+  <!-- Custom CSS -->
+  <link href="{{asset('admin/css/style.css')}}" rel='stylesheet' type='text/css' />
+  <link href="{{asset('admin/css/style-responsive.css')}}" rel="stylesheet"/>
 
-<!-- Font-Awesome-->
-<link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
-<link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
+  <!-- Font-Awesome-->
+  <link rel="stylesheet" href="{{asset('admin/css/font.css')}}" type="text/css"/>
+  <link href="{{asset('admin/css/font-awesome.css')}}" rel="stylesheet"> 
 
-<link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
-<link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/css/morris.css')}}" type="text/css"/>
+  <link rel="stylesheet" href="{{asset('admin/css/monthly.css')}}">
 
-<!-- Fonts -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
- <!-- Message error css -->
- <style>
-      .error-popup {
-          position: fixed;
-          right: 20px;
-          bottom: 100px;
-          background-color: #ff0000;
-          color: #fff;
-          padding: 10px 20px;
-          border-radius: 5px;
-          animation: popupAnimation 0.5s ease-in-out;
-      }
-      @keyframes popupAnimation {
-              0% { opacity: 0; transform: translateY(-20px); }
-              100% { opacity: 1; transform: translateY(0); }
-      }
-  </style>
+  <!-- Message error css -->
+  <style>
+        .error-popup {
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: popupAnimation 0.5s ease-in-out;
+        }
+        @keyframes popupAnimation {
+                0% { opacity: 0; transform: translateY(-20px); }
+                100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 
-<script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
-<script src="{{asset('admin/js/raphael-min.js')}}"></script>
-<script src="{{asset('admin/js/morris.js')}}"></script>
+  <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
+  <script src="{{asset('admin/js/raphael-min.js')}}"></script>
+  <script src="{{asset('admin/js/morris.js')}}"></script>
 @endsection
 
 @section('admin_content')
@@ -113,24 +113,17 @@
         </tbody>
       </table>
     </div>
-    {{--<footer class="panel-footer">
+    <footer class="panel-footer">
       <div class="row">
-        
         <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-          </ul>
+          {{-- Pagination --}}
+          @include('admin.pagination-component')
+          {{-- Pagination End --}}
         </div>
       </div>
-    </footer>--}}
+    </footer>
   </div>
 </div>
 
