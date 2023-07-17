@@ -143,21 +143,21 @@
             <div class="col-lg-7 pb-5">
                 <h3 class="font-weight-semi-bold">{{$warehouseDetail->product->name}}</h3>
                 <div class="d-flex mb-3">
-                    <div class="text-primary mr-2">
+                    {{--<div class="text-primary mr-2">
                         <span>Đánh giá: </span>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star"></small>
                         <small class="fas fa-star-half-alt"></small>
                         <small class="far fa-star"></small>
-                    </div>
+                    </div>--}}
                     {{-- <small class="pt-1">(5.0)</small> --}}
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">Giá: <span style="color: red;">{{ number_format($warehouseDetail->price_pay, 0, ',', '.') }} đ</span></h3>
                 <p class="mb-4"><b>Mã sản phẩm: </b>{{$warehouseDetail->product->id_product}}</p>
-                <p class="mb-4"><b>Loại sản phẩm: </b><a href="">{{$warehouseDetail->product->category->name}}</a></p>
-                <p class="mb-4"><b>Danh mục: </b><a href="">{{$warehouseDetail->product->category->typeCategory->name}}</a></p>
-                <p class="mb-4"><b>Tình trạng: </b><span style="color: red;">Chưa xử lý</span></p>
+                <p class="mb-4"><b>Loại danh mục: </b><a >{{$warehouseDetail->product->category->typeCategory->name}}</a></p>
+                <p class="mb-4"><b>Danh mục: </b><a >{{$warehouseDetail->product->category->name}}</a></p>
+                {{--<p class="mb-4"><b>Tình trạng: </b><span style="color: red;">Chưa xử lý</span></p>--}}
                 
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">

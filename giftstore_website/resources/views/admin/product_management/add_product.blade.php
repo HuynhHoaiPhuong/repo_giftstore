@@ -21,6 +21,24 @@
   <!-- Fonts -->
   <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
+  <!-- Message error css -->
+  <style>
+      .error-popup {
+          position: fixed;
+          right: 20px;
+          bottom: 100px;
+          background-color: #ff0000;
+          color: #fff;
+          padding: 10px 20px;
+          border-radius: 5px;
+          animation: popupAnimation 0.5s ease-in-out;
+      }
+      @keyframes popupAnimation {
+              0% { opacity: 0; transform: translateY(-20px); }
+              100% { opacity: 1; transform: translateY(0); }
+      }
+  </style>
+
   <script src="{{asset('admin/js/jquery2.0.3.min.js')}}"></script>
   <script src="{{asset('admin/js/raphael-min.js')}}"></script>
   <script src="{{asset('admin/js/morris.js')}}"></script>
@@ -79,6 +97,13 @@
         </section>
     </div>
 </div>
+
+@if(session('error'))
+    <div class="error-popup">
+        <span class="error-message">{{ session('error') }}</span>
+    </div>
+@endif
+
 @endsection
 
 <!-- JavaScript -->
@@ -106,4 +131,14 @@
         
       });
     </script>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const errorPopup = document.querySelector('.error-popup');
+        if (errorPopup) {
+            setTimeout(() => {
+                    errorPopup.style.display = 'none';
+            }, 5000);
+        }
+    });
+  </script>
 @endsection

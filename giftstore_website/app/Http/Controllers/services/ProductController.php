@@ -58,8 +58,8 @@ class ProductController extends Controller
             'slug' => $request->slug,
             'description' => $request->description,
         ]);
-        $checkName = Product::where('name', $product->name)->first();
-        if($checkName) return Payload::toJson(null,'Duplicate product name!',500);
+        $checkName = Product::where('name', $product->name)->orWhere('slug', $product->slug)->first();
+        if($checkName) return Payload::toJson(null,'Tên sản phẩm, đường dẫn không được trùng lặp!',500);
         if($product->save() == 1){
             $product = Product::where('id_product', $product->id_product)->first();
             return Payload::toJson(new ProductResource($product), "Completed", 201);
@@ -69,8 +69,8 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request)
     {
-        $checkName = Product::where('name', $request->name)->where('id_product', '!=', $request->id_product)->first();
-        if($checkName) return Payload::toJson(null,'Duplicate product name!',500);
+        $checkName = Product::where('name', $request->name)->where('name', $request->name)->where('id_product', '!=', $request->id_product)->first();
+        if($checkName) return Payload::toJson(null,'Tên sản phẩm, đường dẫn không được trùng lặp!',500);
         $result = Product::where('id_product', $request->id_product)
         ->update([
             'id_category' => $request->id_category, 
@@ -84,9 +84,9 @@ class ProductController extends Controller
         ]); 
         if($result == 1){
             $product = Product::where('id_product', $request->id_product)->first();
-            return Payload::toJson(new ProductResource($product), "Completed", 201);
+            return Payload::toJson(new ProductResource($product), "Cập nhật thành công!", 201);
         }
-        return Payload::toJson(null,'Uncompleted',500);
+        return Payload::toJson(null,'Chỉnh sửa thất bại!',500);
     }
 
     public function removeProduct(Request $request){

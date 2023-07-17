@@ -162,7 +162,7 @@
                                         </div>
                                         <input type="text" id="quantityProduct" name="dataProduct[{{$key}}][quantity]" class="form-control form-control-sm bg-secondary text-center" value="{{$cart->quantity}}" min="1" readonly>
                                         <div class="input-group-btn">
-                                            <a class="btn btn-sm btn-primary btn-plus increase" data-product-id="{{$cart->id_product}}"><i class="fa fa-plus"></i></a>
+                                            <a class="btn btn-sm btn-primary btn-plus increase" data-max="{{$cart->max}}" data-product-id="{{$cart->id_product}}"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </td>
@@ -265,26 +265,29 @@
         $(document).ready(function() {
             $('.increase').click(function() {
                 var id_product = $(this).data('product-id');
+                var max = $(this).data('max');
                 var input = $(this).closest('.quantity').find('input');
                 var currentValue = parseInt(input.val()); 
                 var updatedValue = currentValue + 1;
                 
-                $.ajax({
-                    url: '{{ route('update-quantity') }}',
-                    method: 'POST', 
-                    data: {
-                        _token: csrfToken,
-                        id_product : id_product,
-                        quantity: updatedValue,
-                    },
-                    success: function(response) {
-                        input.val(updatedValue);
-                        location.reload();
-                    },
-                    error: function(xhr) {
-                        
-                    }
-                });
+                if(updatedValue <= max){
+                    $.ajax({
+                        url: '{{ route('update-quantity') }}',
+                        method: 'POST', 
+                        data: {
+                            _token: csrfToken,
+                            id_product : id_product,
+                            quantity: updatedValue,
+                        },
+                        success: function(response) {
+                            input.val(updatedValue);
+                            location.reload();
+                        },
+                        error: function(xhr) {
+                            
+                        }
+                    });
+                }
             });
             
             $('.decrease').click(function() {

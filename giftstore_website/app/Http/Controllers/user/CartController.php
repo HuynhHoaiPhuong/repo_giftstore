@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\services\CartController as ServicesCartController;
 use App\Http\Controllers\services\MemberController as ServicesMemberController;
 use App\Http\Controllers\services\PaymentController as ServicesPaymentController;
+use App\Http\Controllers\services\WarehouseDetailController as ServicesWarehouseDetailController;
 
 class CartController extends Controller
 {
@@ -28,7 +29,14 @@ class CartController extends Controller
             $carts = [];
             if ($data_cart['data'] != null) {
                 $carts = $data_cart['data']->collection;
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                foreach($carts as $kcart => $vcart){
+                    $dataCheck = $warehouseDetailController->getWarehouseDetailByIdProduct($vcart->product->id_product);
+                    $carts[$kcart]['max'] = $dataCheck['data']->quantity;
+                }
             }
+
+            
 
             $paymentController = new ServicesPaymentController();
             $data_payment = $paymentController->getAllPaymentByStatus('enabled');
@@ -54,6 +62,9 @@ class CartController extends Controller
 
             if($existingCartItem) {
                 $existingCartItem['quantity'] += 1;
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                $dataCheck = $warehouseDetailController->getWarehouseDetailByIdProduct($request->id_product);
+                if($dataCheck['data'] != null && $existingCartItem['quantity'] > $dataCheck['data']->quantity) return response()->json(['success' => false]);
                 $this->cartController->updateCartItem($existingCartItem);
             } 
             else {
@@ -63,6 +74,9 @@ class CartController extends Controller
                     'quantity' => 1,
                     'price_pay' => $request->price_pay,
                 ]);
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                $dataCheck = $warehouseDetailController->getWarehouseDetailByIdProduct($requestCart->id_product);
+                if($dataCheck['data'] != null && $dataCheck['data']->quantity <= 0) return response()->json(['success' => false]);
                 $this->cartController->saveCart($requestCart);
             }
             return response()->json(['success' => true]);
@@ -77,15 +91,21 @@ class CartController extends Controller
 
             if($existingCartItem) {
                 $existingCartItem['quantity'] += $request->quantity;
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                $dataCheck = $warehouseDetailController->getWarehouseDetailByIdProduct($request->id_product);
+                if($dataCheck['data'] != null && $existingCartItem['quantity'] > $dataCheck['data']->quantity) return response()->json(['success' => false]);
                 $this->cartController->updateCartItem($existingCartItem);
             } 
             else {
                 $requestCart = new Request([
                     'id_member' => $member['id_member'],
                     'id_product' => $request->id_product,
-                    'quantity' => 1,
+                    'quantity' => $request->quantity,
                     'price_pay' => $request->price_pay,
                 ]);
+                $warehouseDetailController = new ServicesWarehouseDetailController();
+                $dataCheck = $warehouseDetailController->getWarehouseDetailByIdProduct($requestCart->id_product);
+                if($dataCheck['data'] != null && $requestCart->quantity > $dataCheck['data']->quantity) return response()->json(['success' => false]);
                 $this->cartController->saveCart($requestCart);
             }
             return response()->json(['success' => true]);
